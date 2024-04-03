@@ -1,0 +1,114 @@
+/* JavaFX FXML CSS */
+
+/* Body */
+.root {
+    -fx-font-family: "Montserrat", sans-serif;
+    -fx-font-size: 16px;
+    -fx-text-fill: #00000099;
+}
+
+/* Headings */
+.label, .h1, .h2, .h3, .h4, .h5, .h6 {
+    -fx-font-family: "Montserrat", sans-serif;
+}
+
+.h1, .h2 {
+    -fx-font-size: 38px;
+    -fx-text-fill: #da5f46;
+}
+
+.h3 {
+    -fx-font-size: 28px;
+    -fx-text-fill: #da5f46;
+}
+
+/* Buttons */
+.MFXbutton {
+    -fx-font-family: "Montserrat", sans-serif;
+    -fx-font-size: 14px;
+    -fx-background-color: linear-gradient(to right, #da5f46, #FA849B);
+    -fx-text-fill: white;
+    -fx-padding: 8px 16px;
+    -fx-background-radius: 0;
+    -fx-border-radius: 0;
+}
+
+.button:hover {
+    -fx-background-color: linear-gradient(to right, #FA849B, #da5f46);
+}
+
+/* Text Fields */
+.text-field {
+    -fx-font-family: "Montserrat", sans-serif;
+    -fx-font-size: 14px;
+    -fx-background-color: transparent;
+    -fx-border-color: #da5f46;
+    -fx-border-width: 0px 0px 2px 0px;
+    -fx-font-weight: bold;
+}
+
+.text-field:focused {
+    -fx-border-color: #da5f46;
+}
+
+/* Labels */
+.label {
+    -fx-font-family: "Montserrat", sans-serif;
+    -fx-font-size: 14px;
+    -fx-text-fill: #da5f46;
+}
+
+/* Anchors */
+.anchor-pane {
+    -fx-background-color: #1043dc;
+}
+
+/* Borders */
+.border {
+    -fx-border-color: #da5f46;
+}
+
+/* Dropdown */
+.dropdown-menu {
+    -fx-background-color: #1c1c1c;
+    -fx-border-radius: 0;
+    -fx-box-shadow: 0 5px 5px 0 rgba(0, 0, 0, 0.03);
+    -fx-padding: 24px 0 26px;
+    -fx-min-width: 280px;
+}
+
+.dropdown-item {
+    -fx-text-fill: #c8c8c8;
+    -fx-font-size: 12px;
+    -fx-padding: 0.55rem 2rem;
+}
+
+.dropdown-item:hover {
+    -fx-background-color: transparent;
+    -fx-text-fill: #da5f46;
+
+    .title {
+        -fx-font-size: 2em;
+        -fx-text-fill: #910112;
+        -fx-font-weight: bold;
+    }
+    .form_container {
+        -fx-background-color: #EEEEEE;
+    }
+    .form-container-Text {
+        -fx-font-size: 1.2em;
+        -fx-fill: #888888;
+    }
+    .form-container-VBox {
+        -fx-border-width: 1.2em;
+        -fx-border-color: #000000;
+        -fx-padding: 10;
+        -fx-spacing: 10;
+    }
+
+
+
+
+
+
+}
