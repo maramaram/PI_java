@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import io.github.palexdev.materialfx.controls.MFXDatePicker?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.text.Text?>
+
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="576.0" prefWidth="1101.0" stylesheets="@../../../style.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.UpdateProfileController">
+    <center>
+        <BorderPane prefHeight="556.0" prefWidth="1102.0" BorderPane.alignment="CENTER">
+            <top>
+                <AnchorPane prefHeight="49.0" prefWidth="1101.0" styleClass="anchor-pane" stylesheets="@../../../style.css" BorderPane.alignment="CENTER">
+                    <children>
+                        <Label layoutX="170.0" layoutY="18.0" prefHeight="31.0" prefWidth="72.0" text="Search" />
+                        <ImageView fitHeight="47.0" fitWidth="62.0" layoutX="14.0" layoutY="5.0" pickOnBounds="true" preserveRatio="true">
+                            <image>
+                                <Image url="@../../../../../OneDrive/Documents/breatheOut/logo_1.png" />
+                            </image>
+                        </ImageView>
+                        <ImageView fx:id="pp_view" fitHeight="34.0" fitWidth="55.0" layoutX="946.0" layoutY="13.0" pickOnBounds="true" preserveRatio="true">
+                            <image>
+                                <Image url="@../../java/image/download.jpg" />
+                            </image>
+                        </ImageView>
+                        <Label layoutX="463.0" layoutY="22.0" text="Shop" />
+                        <Label layoutX="571.0" layoutY="24.0" prefHeight="21.0" prefWidth="72.0" text="Exercices" />
+                        <Label layoutX="698.0" layoutY="24.0" prefHeight="20.0" prefWidth="42.0" text="Blog" />
+                        <Label layoutX="804.0" layoutY="24.0" prefHeight="21.0" prefWidth="60.0" text="Sessions" />
+                        <Label fx:id="logout_btn" layoutX="1035.0" layoutY="28.0"  text="Logout" />
+                        <TextField layoutX="216.0" layoutY="10.0" prefHeight="31.0" prefWidth="205.0" />
+                        <Text fill="WHITE" layoutX="81.0" layoutY="37.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="text-field" text="BreatheOut" wrappingWidth="88.43966674804688" />
+                    </children>
+                </AnchorPane>
+            </top>
+            <left>
+                <AnchorPane prefHeight="523.0" prefWidth="1102.0" BorderPane.alignment="CENTER">
+                    <children>
+                        <Label fx:id="firstname" layoutX="38.0" layoutY="63.0" prefHeight="20.0" prefWidth="74.0" text="First Name" />
+                        <Label fx:id="email" layoutX="40.0" layoutY="118.0" text="Last Name" />
+                        <Label fx:id="adresse" layoutX="40.0" layoutY="164.0" text="Email" />
+                        <Label fx:id="phonenumber" layoutX="23.0" layoutY="225.0" text="Phone Number" />
+                        <Label fx:id="Birthdate" layoutX="44.0" layoutY="270.0" text="Adresse" />
+                        <Button fx:id="update_btn" layoutX="421.0" layoutY="408.0" mnemonicParsing="false"  text="Update" />
+                        <ImageView fx:id="profile_img" fitHeight="150.0" fitWidth="200.0" layoutX="708.0" layoutY="34.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../../java/image/download.jpg" />
+                     </image></ImageView>
+                  <TextField fx:id="tf_firstname" layoutX="139.0" layoutY="57.0" />
+                  <TextField fx:id="tf_lastname" layoutX="139.0" layoutY="112.0" />
+                  <TextField fx:id="tf_email" layoutX="139.0" layoutY="158.0" />
+                  <TextField fx:id="tf_numtel" layoutX="139.0" layoutY="209.0" />
+                  <TextField fx:id="adress" layoutX="139.0" layoutY="264.0" />
+                  <MFXDatePicker fx:id="birthdate" layoutX="139.0" layoutY="326.0" prefWidth="196.0" />
+                  <Button fx:id="choose_photo_btn" layoutX="698.0" layoutY="246.0" mnemonicParsing="false"  text="Change Profile Picture" />
+                  <Label layoutX="44.0" layoutY="345.0" text="Birth Date" />
+                    </children>
+                </AnchorPane>
+            </left>
+        </BorderPane>
+    </center>
+</BorderPane>
