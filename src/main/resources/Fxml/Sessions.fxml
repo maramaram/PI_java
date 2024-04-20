@@ -7,34 +7,37 @@
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
-<?import javafx.scene.layout.VBox?>
-<?import javafx.scene.text.Text?>
+<?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="479.0" prefWidth="745.0" stylesheets="@../css/style.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="tn.esprit.javafxproject.SessionController">
+<AnchorPane prefHeight="521.0" prefWidth="798.0" stylesheets="@styleback.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.SessionController">
    <children>
-      <VBox layoutY="110.0" prefHeight="300.0" prefWidth="300.0" spacing="10.0" AnchorPane.leftAnchor="5.0" AnchorPane.topAnchor="110.0">
-         <children>
-            <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Cap" />
-            <TextField fx:id="tCap" styleClass="text-field" />
-            <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Des" />
-            <TextField fx:id="tDes" styleClass="text-field" />
-         </children>
-      </VBox>
-      <TableView fx:id="table" layoutX="393.0" layoutY="120.0" onMouseClicked="#getData" prefHeight="200.0" prefWidth="394.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="120.0">
+      <TableView fx:id="table" layoutX="59.0" layoutY="192.0" prefHeight="200.0" prefWidth="618.0" AnchorPane.rightAnchor="121.0" AnchorPane.topAnchor="192.0">
         <columns>
-            <TableColumn fx:id="colid" prefWidth="75.0" text="ID" />
-            <TableColumn fx:id="colcap" prefWidth="75.0" text="Cap" />
-            <TableColumn fx:id="coldes" prefWidth="75.0" text="Des" />
+            <TableColumn fx:id="colid" text="id" />
+            <TableColumn fx:id="coltype" text="type" />
+            <TableColumn fx:id="colcoach" prefWidth="98.0" text="coach" />
+            <TableColumn fx:id="coldes" prefWidth="129.0" text="des" />
+            <TableColumn fx:id="coldate" prefWidth="104.0" text="date" />
+            <TableColumn fx:id="colcap" prefWidth="132.0" text="cap" />
         </columns>
       </TableView>
-      <Label alignment="CENTER" layoutX="300.0" layoutY="30.0" text="CRUD Session" />
-      <ButtonBar layoutX="243.0" layoutY="377.0" prefHeight="40.0" prefWidth="382.0">
+      <Label alignment="CENTER" layoutX="324.0" layoutY="30.0" text="CRUD Session" textAlignment="CENTER">
+         <font>
+            <Font name="System Bold" size="24.0" />
+         </font></Label>
+      <ButtonBar layoutX="240.0" layoutY="412.0" prefHeight="40.0" prefWidth="318.0">
         <buttons>
-          <Button fx:id="btnSave" mnemonicParsing="false" onAction="#createSession" text="Save" />
             <Button fx:id="btnUpdate" layoutX="135.0" layoutY="18.0" mnemonicParsing="false" onAction="#updateSession" text="Update" />
             <Button fx:id="btnDelete" layoutX="135.0" layoutY="18.0" mnemonicParsing="false" onAction="#deleteSession" text="Delete" />
-            <Button fx:id="btnClear" layoutX="200.0" layoutY="18.0" mnemonicParsing="false" onAction="#clearfield" text="Clear" />
         </buttons>
+      </ButtonBar>
+      <TextField fx:id="searchField" alignment="CENTER" layoutX="100.0" layoutY="79.0" prefHeight="25.0" prefWidth="418.0" promptText="Chercher" />
+    <Button fx:id="btnAjouter" alignment="CENTER" contentDisplay="CENTER" layoutX="100.0" layoutY="112.0" mnemonicParsing="false" onAction="#createSession" prefHeight="25.0" prefWidth="418.0" text="Add" textAlignment="CENTER" />
+      <ButtonBar layoutX="263.0" layoutY="467.0" prefHeight="40.0" prefWidth="318.0">
+         <buttons>
+            <Button fx:id="btnsortase" layoutX="135.0" layoutY="18.0" mnemonicParsing="false" onAction="#sortSessionsAscending" text="sort Asending" />
+            <Button fx:id="btnsortdes" layoutX="135.0" layoutY="18.0" mnemonicParsing="false" onAction="#sortSessionsDescending" text="sortDescending" />
+         </buttons>
       </ButtonBar>
    </children>
 </AnchorPane>
