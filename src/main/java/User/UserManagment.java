@@ -11,8 +11,8 @@ import java.io.IOException;
 public class UserManagment extends Application {
     @Override
     public void start(Stage stage) throws IOException {
-        FXMLLoader fxmlLoader = new FXMLLoader(DataBase.class.getResource("/User/DataBase.fxml"));
-        Scene scene = new Scene(fxmlLoader.load(), 750, 620);
+        FXMLLoader fxmlLoader = new FXMLLoader(DataBase.class.getResource("/User/LogIn.fxml"));
+        Scene scene = new Scene(fxmlLoader.load());
         stage.setTitle("Breathe Out");
         stage.setScene(scene);
         stage.show();
