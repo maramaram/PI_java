@@ -4,6 +4,8 @@ import Entities.Defi;
 import Entities.Exercice;
 import Service.DefiService;
 import Service.ExerciceService;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -57,7 +59,7 @@ public class DefiUpdate {
     @FXML
     private TextArea desM;
     @FXML
-    private TextField ndM;
+    private ChoiceBox<String> ndM;
     @FXML
     private TextField nbjM;
 
@@ -85,7 +87,11 @@ public class DefiUpdate {
     }
     
     public void setNdM(String ndM) {
-        this.ndM.setText(ndM);
+        if (ndM.equals("1"))
+            this.ndM.setValue("Facile");
+        else if (ndM.equals("2"))
+            this.ndM.setValue("Moyen");
+        else this.ndM.setValue("Difficile");
     }
 
     public void setNbjM(String nbjM) {
@@ -113,7 +119,8 @@ public class DefiUpdate {
     @FXML
     public void initialize() {
          // Appeler la méthode pour afficher les données
-
+        ObservableList<String> valeurs = FXCollections.observableArrayList("Facile", "Moyen", "Difficile");
+        ndM.setItems(valeurs);
         // Ajouter un écouteur sur la table pour détecter les double-clics
         table.setOnMouseClicked(event -> {
             if (event.getClickCount() == 2) { // Vérifier si c'est un double-clic
@@ -157,10 +164,15 @@ public class DefiUpdate {
         DefiService es = new DefiService();
         boolean test=true;
         // Vérifier si tous les champs de texte sont remplis
-        if (nomM.getText().isEmpty() ){
-            test=false;
+        if (nomM.getText().isEmpty()) {
+            test = false;
             nomEE.setText("vide");
-        }else {nomEE.setText("");}
+        } else if (!nomM.getText().matches("^[^0-9]*$")) {
+            test = false;
+            nomEE.setText("Le nom ne doit pas contenir de chiffres");
+        } else {
+            nomEE.setText("");
+        }
 
 
         if (desM.getText().isEmpty()) {
@@ -172,9 +184,9 @@ public class DefiUpdate {
         
 
 
-        if (ndM.getText().isEmpty() && !ndM.getText().equals("facile") &&
-                !ndM.getText().equals("moyen") &&
-                !ndM.getText().equals("difficile") ) {
+        if (ndM.getValue() == null || ndM.getValue().isEmpty() ||(!ndM.getValue().equals("Facile") &&
+                !ndM.getValue().equals("Moyen") &&
+                !ndM.getValue().equals("Difficile") )) {
             test=false;
             ndEE.setText("Veuillez choisir parmi facile , moyen ou difficile");
         }else {ndEE.setText("");}
@@ -191,13 +203,13 @@ public class DefiUpdate {
 
         if (test){
             String a;
-            if(ndM.getText().equals("facile")) a="1";
-            else if (ndM.getText().equals("moyen")) a="2";
+            if(ndM.getValue().equals("Facile")) a="1";
+            else if (ndM.getValue().equals("Moyen")) a="2";
             else a="3";
             Defi de = new Defi(Integer.parseInt(idM.getText()),nomM.getText(), desM.getText(),
                    a, Integer.parseInt(nbjM.getText()), new ArrayList<>(ex));
             try{
-                System.out.println(de);
+
                 es.modifier(de);
                 Alert alert = new Alert(Alert.AlertType.INFORMATION);
                 alert.setTitle("Succées");

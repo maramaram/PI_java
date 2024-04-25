@@ -8,7 +8,7 @@ import java.util.Objects;
 
 public class Exercice {
 
-private ImageView etat, image;
+private ImageView etat, image, giif;
     private int id ;
     private String nom,des,mc,nd,img,gif ;
 private boolean test;
@@ -25,6 +25,10 @@ private boolean test;
         image.setFitWidth(125); // Définissez la largeur souhaitée
         image.setFitHeight(100); // Définissez la hauteur souhaitée
 
+        giif = new ImageView(new Image(this.getClass().getResourceAsStream("/"+gif)));
+        giif.setFitWidth(125); // Définissez la largeur souhaitée
+        giif.setFitHeight(100); // Définissez la hauteur souhaitée
+
 
     }
 
@@ -40,7 +44,28 @@ private boolean test;
         image = new ImageView(new Image(this.getClass().getResourceAsStream("/"+img)));
         image.setFitWidth(125); // Définissez la largeur souhaitée
         image.setFitHeight(100); // Définissez la hauteur souhaitée
+
+        giif = new ImageView(new Image(this.getClass().getResourceAsStream("/"+gif)));
+        giif.setFitWidth(125); // Définissez la largeur souhaitée
+        giif.setFitHeight(100); // Définissez la hauteur souhaitée
     }
+
+    public void setImage(ImageView image) {
+        this.image = image;
+    }
+
+    public ImageView getGiif() {
+        return giif;
+    }
+
+    public void setGiif(ImageView giif) {
+        this.giif = giif;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
     public ImageView getImage() {
         return image;
     }

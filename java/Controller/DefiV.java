@@ -3,6 +3,8 @@ package Controller;
 import Entities.Defi;
 import Entities.Exercice;
 import Service.DefiService;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -10,9 +12,7 @@ import javafx.geometry.Insets;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Label;
-import javafx.scene.control.Separator;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.GridPane;
@@ -38,119 +38,196 @@ public class DefiV {
     private VBox vbox;
     @FXML
     private TextField search ;
+    @FXML
+    private ChoiceBox<String> choice;
+
+    @FXML
+    private ChoiceBox<String> choice1;
+
+    private int wez=0,wezz=1;
 
     @FXML
     public void initialize() {
+        ObservableList<String> valeurs = FXCollections.observableArrayList("Nom", "Nombre de jours", "Niveau de difficulté");
+        choice.setItems(valeurs);
 
+        ObservableList<String> valeurss = FXCollections.observableArrayList("ASC", "DESC");
+        choice1.setItems(valeurss);
+        choice1.setValue("ASC");
+
+        choice.setOnAction(event -> {
+            // Appelez votre fonction de tri ici
+            Tri();
+        });
+
+        choice1.setOnAction(event -> {
+            // Appelez votre fonction de tri ici
+            Tri();
+        });
         AfficherEX(); // Appeler la méthode pour afficher les données
 
     }
 
 
+    @FXML
+    private void Tri(){
+        if (choice.getValue().equals("Nom"))
+            wez=1;
+        else if (choice.getValue().equals("Nombre de jours"))
+            wez=2;
+        else if (choice.getValue().equals("Niveau de difficulté"))
+            wez=3;
+        else
+            wez=0;
 
+
+        if (choice1.getValue().equals("ASC"))
+            wezz=1;
+        else
+            wezz=2;
+
+        AfficherEXSearch();
+    }
+
+
+
+    private VBox createPage(List<Defi> l, int pageIndex) {
+        VBox page = new VBox();
+        page.setSpacing(10);
+
+        int startIndex = pageIndex * 9; // Index of the first defi on this page
+        int endIndex = Math.min(startIndex + 9, l.size()); // Index of the last defi on this page
+
+        // Loop through the defis on this page
+        for (int i = startIndex; i < endIndex; i += 3) {
+            // Create an HBox for each group of three defis
+            HBox hbox = new HBox();
+            hbox.setSpacing(20); // Add more space between the elements of the HBox
+
+            // Add the three defi elements to the HBox
+            for (int j = i; j < i + 3 && j < endIndex; j++) {
+                // Create a VBox for each defi
+                VBox ez = new VBox();
+                ez.setSpacing(10);
+                ez.setStyle("-fx-border-color: #da5f46; -fx-border-width: 2px; -fx-padding: 10px; -fx-alignment: center; -fx-background-color: #f0f0f0;"); // Add a light gray background color to the VBox
+                ez.setMinWidth(343); // Set a minimum width for all VBoxes
+                ez.setMaxWidth(343); // Set a maximum width for all VBoxes
+
+                Defi defi = l.get(j);
+                // Add the elements of the defi to the VBox
+
+                Label nomLabel = new Label(defi.getNom());
+                Label titre = new Label("Exercies                                       S / R");
+                nomLabel.setStyle("-fx-alignment: center; -fx-font-size: 26; -fx-font-weight: bold;");
+                titre.setStyle("-fx-alignment: center; -fx-font-size: 18; -fx-font-weight: bold;");
+                Separator separator = new Separator();
+                separator.setPrefHeight(2);
+
+                Separator separator1 = new Separator();
+                separator1.setPrefHeight(2);
+
+                Separator separator2 = new Separator();
+                separator2.setPrefHeight(2);
+
+                ez.getChildren().addAll(nomLabel, separator, titre, separator1);
+
+                // Create a grid to display the values under each iteration
+                GridPane grid = new GridPane();
+                grid.setHgap(10); // Horizontal spacing between elements
+                grid.setVgap(5); // Vertical spacing between elements
+
+                ArrayList<Exercice> lpl = defi.getLex();
+                Iterator<Exercice> iterator = lpl.iterator();
+                int row = 0;
+
+                // Loop through the exercises and display them in the grid
+                while (iterator.hasNext()) {
+                    Exercice exercice = iterator.next();
+                    Label nomExerciceLabel = new Label(exercice.getNom());
+                    Label valeurLabel = new Label(Integer.parseInt(defi.getNd()) * 3 + " / " + Integer.parseInt(exercice.getNd()) * 5);
+
+                    // Apply style to labels
+                    nomExerciceLabel.setStyle("-fx-text-fill: black;");
+                    valeurLabel.setStyle("-fx-text-fill: black;");
+                    nomExerciceLabel.setOnMouseClicked(event -> detail(exercice));
+
+                    // Add horizontal spacing between labels
+                    GridPane.setMargin(valeurLabel, new Insets(0, 0, 0, 19)); // Left spacing of valeurLabel
+
+                    // Add the labels to the grid
+                    grid.add(nomExerciceLabel, 0, row); // Add the exercise name to column 0, current row
+                    grid.add(valeurLabel, 1, row); // Add the value to column 1, current row
+                    row++; // Move to the next row for the next exercise
+                }
+                // Add the grid to the VBox
+                ez.getChildren().add(grid);
+
+                Label desLabel = new Label(defi.getDes());
+                Label nbjLabel = new Label(String.valueOf(defi.getNbj()));
+                desLabel.setStyle("-fx-text-fill: grey;"); // Set gray color for the text of mcLabel
+
+                ImageView ndImage;
+
+                if (defi.getNd().equals("1")) {
+                    ndImage = new ImageView(new Image(this.getClass().getResourceAsStream("/Front/images/exo/et1.png")));
+                } else if (defi.getNd().equals("2")) {
+                    ndImage = new ImageView(new Image(this.getClass().getResourceAsStream("/Front/images/exo/et2.png")));
+                } else {
+                    ndImage = new ImageView(new Image(this.getClass().getResourceAsStream("/Front/images/exo/et3.png")));
+                }
+                ndImage.setFitWidth(200);
+                ndImage.setFitHeight(33);
+
+                // Add the elements to the VBox
+                ez.getChildren().addAll(separator2,desLabel,nbjLabel, ndImage);
+                hbox.getChildren().add(ez);
+            }
+
+            // Add the HBox containing the three defis to the VBox with a margin
+            VBox.setMargin(hbox, new Insets(10)); // Add a margin around each HBox
+            page.getChildren().add(hbox);
+        }
+
+        return page;
+    }
 
     @FXML
     protected void AfficherEX() {
         DefiService es = new DefiService();
         try {
-            List<Defi> l = es.afficherList();
+            List<Defi> l = es.afficherListTri(wez,wezz);
 
-            // Effacer les données existantes de la VBox
+            // Create a pagination object
+            Pagination pagination = new Pagination((l.size() + 8) / 9, 0); // (total number of items + items per page - 1) / items per page
+            pagination.setPageFactory(pageIndex -> createPage(l, pageIndex));
+
+            // Add the pagination object to the VBox
             vbox.getChildren().clear();
-
-            // Parcourir la liste des defis
-            for (int i = 0; i < l.size(); i += 3) {
-                // Créer une HBox pour chaque groupe de quatre defis
-                HBox hbox = new HBox();
-                hbox.setSpacing(20); // Ajouter plus d'espace entre les éléments de la HBox
-
-                // Ajouter les quatre éléments de l'defi à la HBox
-                for (int j = i; j < i + 3 && j < l.size(); j++) {
-                    // Créer une VBox pour chaque defi
-                    VBox ez = new VBox();
-                    ez.setSpacing(10);
-                    ez.setStyle("-fx-border-color: #da5f46; -fx-border-width: 2px; -fx-padding: 10px; -fx-alignment: center; -fx-background-color: #f0f0f0;"); // Ajouter une couleur de fond gris clair à la VBox
-                    ez.setMinWidth(345); // Définir une largeur minimale pour toutes les VBox
-                    ez.setMaxWidth(345); // Définir une largeur maximale pour toutes les VBox
-
-                    Defi defi = l.get(j);
-                    // Ajouter les éléments de l'defi à la VBox
-
-                    Label nomLabel = new Label(defi.getNom());
-                    Label titre = new Label("Exercies                                       S / R");
-                    nomLabel.setStyle("-fx-alignment: center; -fx-font-size: 26; -fx-font-weight: bold;");
-                    titre.setStyle("-fx-alignment: center; -fx-font-size: 18; -fx-font-weight: bold;");
-                    Separator separator = new Separator();
-                    separator.setPrefHeight(2);
-
-                    Separator separator1 = new Separator();
-                    separator1.setPrefHeight(2);
-
-                    Separator separator2 = new Separator();
-                    separator2.setPrefHeight(2);
-
-                    ez.getChildren().addAll(nomLabel, separator, titre, separator1);
-
-                    // Créer une grille pour afficher les valeurs sous chaque itération
-                    GridPane grid = new GridPane();
-                    grid.setHgap(10); // Espacement horizontal entre les éléments
-                    grid.setVgap(5); // Espacement vertical entre les éléments
-
-                    ArrayList<Exercice> lpl = defi.getLex();
-                    Iterator<Exercice> iterator = lpl.iterator();
-                    int row = 0;
-
-                    // Parcourir les exercices et les afficher dans la grille
-                    while (iterator.hasNext()) {
-                        Exercice exercice = iterator.next();
-                        Label nomExerciceLabel = new Label(exercice.getNom());
-                        Label valeurLabel = new Label(Integer.parseInt(defi.getNd()) * 3 + " / " + Integer.parseInt(exercice.getNd()) * 5);
-
-                        // Appliquer le style aux étiquettes
-                        nomExerciceLabel.setStyle("-fx-text-fill: black;");
-                        valeurLabel.setStyle("-fx-text-fill: black;");
-                        nomExerciceLabel.setOnMouseClicked(event -> detail(exercice));
-
-                        // Ajouter un espacement horizontal entre les étiquettes
-                        GridPane.setMargin(valeurLabel, new Insets(0, 0, 0, 200)); // Espacement à gauche de la valeurLabel
-
-                        // Ajouter les étiquettes à la grille
-                        grid.add(nomExerciceLabel, 0, row); // Ajouter le nom de l'exercice à la colonne 0, ligne courante
-                        grid.add(valeurLabel, 1, row); // Ajouter la valeur à la colonne 1, ligne courante
-                        row++; // Passer à la ligne suivante pour le prochain exercice
-                    }
-                    // Ajouter la grille à la VBox
-                    ez.getChildren().add(grid);
-
-                    Label desLabel = new Label(defi.getDes());
-                    desLabel.setStyle("-fx-text-fill: grey;"); // Définir la couleur grise pour le texte de mcLabel
-
-                    ImageView ndImage;
-
-                    if (defi.getNd().equals("1")) {
-                        ndImage = new ImageView(new Image(this.getClass().getResourceAsStream("/Front/images/exo/et1.png")));
-                    } else if (defi.getNd().equals("2")) {
-                        ndImage = new ImageView(new Image(this.getClass().getResourceAsStream("/Front/images/exo/et2.png")));
-                    } else {
-                        ndImage = new ImageView(new Image(this.getClass().getResourceAsStream("/Front/images/exo/et3.png")));
-                    }
-                    ndImage.setFitWidth(200);
-                    ndImage.setFitHeight(33);
-
-                    // Ajouter les éléments à la VBox
-                    ez.getChildren().addAll(separator2, desLabel, ndImage);
-                    hbox.getChildren().add(ez);
-                }
-
-                // Ajouter la HBox contenant les quatre defis à la VBox principale avec une marge
-                VBox.setMargin(hbox, new Insets(10)); // Ajouter une marge autour de chaque HBox
-                vbox.getChildren().add(hbox);
-            }
+            vbox.getChildren().add(pagination);
 
         } catch (SQLException e) {
             System.out.println(e.getMessage());
         }
     }
+
+
+    @FXML
+    protected void AfficherEXSearch() {
+        DefiService es = new DefiService();
+        try {
+            List<Defi> l = es.afficherListSearchTri(search.getText(),wez,wezz);
+
+            Pagination pagination = new Pagination((l.size() + 8) / 9, 0); // (total number of items + items per page - 1) / items per page
+            pagination.setPageFactory(pageIndex -> createPage(l, pageIndex));
+            // Add the pagination object to the VBox
+            vbox.getChildren().clear();
+            vbox.getChildren().add(pagination);
+
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+        }
+    }
+
 
 
 
@@ -182,108 +259,6 @@ public class DefiV {
 
 
 
-    @FXML
-    protected void AfficherEXSearch() {
-        DefiService es = new DefiService();
-        try {
-            List<Defi> l = es.afficherListSearch(search.getText());
-
-            // Effacer les données existantes de la VBox
-            vbox.getChildren().clear();
-
-            // Parcourir la liste des defis
-            for (int i = 0; i < l.size(); i += 3) {
-                // Créer une HBox pour chaque groupe de quatre defis
-                HBox hbox = new HBox();
-                hbox.setSpacing(20); // Ajouter plus d'espace entre les éléments de la HBox
-
-                // Ajouter les quatre éléments de l'defi à la HBox
-                for (int j = i; j < i + 3 && j < l.size(); j++) {
-                    // Créer une VBox pour chaque defi
-                    VBox ez = new VBox();
-                    ez.setSpacing(10);
-                    ez.setStyle("-fx-border-color: #da5f46; -fx-border-width: 2px; -fx-padding: 10px; -fx-alignment: center; -fx-background-color: #f0f0f0;"); // Ajouter une couleur de fond gris clair à la VBox
-                    ez.setMinWidth(345); // Définir une largeur minimale pour toutes les VBox
-                    ez.setMaxWidth(345); // Définir une largeur maximale pour toutes les VBox
-
-                    Defi defi = l.get(j);
-                    // Ajouter les éléments de l'defi à la VBox
-
-                    Label nomLabel = new Label(defi.getNom());
-                    Label titre = new Label("Exercies                                       S / R");
-                    nomLabel.setStyle("-fx-alignment: center; -fx-font-size: 26; -fx-font-weight: bold;");
-                    titre.setStyle("-fx-alignment: center; -fx-font-size: 18; -fx-font-weight: bold;");
-                    Separator separator = new Separator();
-                    separator.setPrefHeight(2);
-
-                    Separator separator1 = new Separator();
-                    separator1.setPrefHeight(2);
-
-                    Separator separator2 = new Separator();
-                    separator2.setPrefHeight(2);
-
-                    ez.getChildren().addAll(nomLabel, separator, titre, separator1);
-
-                    // Créer une grille pour afficher les valeurs sous chaque itération
-                    GridPane grid = new GridPane();
-                    grid.setHgap(10); // Espacement horizontal entre les éléments
-                    grid.setVgap(5); // Espacement vertical entre les éléments
-
-                    ArrayList<Exercice> lpl = defi.getLex();
-                    Iterator<Exercice> iterator = lpl.iterator();
-                    int row = 0;
-
-                    // Parcourir les exercices et les afficher dans la grille
-                    while (iterator.hasNext()) {
-                        Exercice exercice = iterator.next();
-                        Label nomExerciceLabel = new Label(exercice.getNom());
-                        Label valeurLabel = new Label(Integer.parseInt(defi.getNd()) * 3 + " / " + Integer.parseInt(exercice.getNd()) * 5);
-
-                        // Appliquer le style aux étiquettes
-                        nomExerciceLabel.setStyle("-fx-text-fill: black;");
-                        valeurLabel.setStyle("-fx-text-fill: black;");
-                        nomExerciceLabel.setOnMouseClicked(event -> detail(exercice));
-
-                        // Ajouter un espacement horizontal entre les étiquettes
-                        GridPane.setMargin(valeurLabel, new Insets(0, 0, 0, 200)); // Espacement à gauche de la valeurLabel
-
-                        // Ajouter les étiquettes à la grille
-                        grid.add(nomExerciceLabel, 0, row); // Ajouter le nom de l'exercice à la colonne 0, ligne courante
-                        grid.add(valeurLabel, 1, row); // Ajouter la valeur à la colonne 1, ligne courante
-                        row++; // Passer à la ligne suivante pour le prochain exercice
-                    }
-                    // Ajouter la grille à la VBox
-                    ez.getChildren().add(grid);
-
-                    Label desLabel = new Label(defi.getDes());
-                    desLabel.setStyle("-fx-text-fill: grey;"); // Définir la couleur grise pour le texte de mcLabel
-
-                    ImageView ndImage;
-
-                    if (defi.getNd().equals("1")) {
-                        ndImage = new ImageView(new Image(this.getClass().getResourceAsStream("/Front/images/exo/et1.png")));
-                    } else if (defi.getNd().equals("2")) {
-                        ndImage = new ImageView(new Image(this.getClass().getResourceAsStream("/Front/images/exo/et2.png")));
-                    } else {
-                        ndImage = new ImageView(new Image(this.getClass().getResourceAsStream("/Front/images/exo/et3.png")));
-                    }
-                    ndImage.setFitWidth(200);
-                    ndImage.setFitHeight(33);
-
-                    // Ajouter les éléments à la VBox
-                    ez.getChildren().addAll(separator2, desLabel, ndImage);
-                    hbox.getChildren().add(ez);
-                }
-
-                // Ajouter la HBox contenant les quatre defis à la VBox principale avec une marge
-                VBox.setMargin(hbox, new Insets(10)); // Ajouter une marge autour de chaque HBox
-                vbox.getChildren().add(hbox);
-            }
-
-        } catch (SQLException e) {
-            System.out.println(e.getMessage());
-        }
-    }
 
 
 

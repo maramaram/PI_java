@@ -82,9 +82,77 @@ public class ExerciceService implements ICRUD<Exercice>{
         return people;
     }
 
+
+    public List<Exercice> afficherListTri(int a,int b) throws SQLException {
+        String req="";
+        if (a==0)
+        req = "SELECT * FROM `exercice`";
+        else if (a==1 && b==1)
+            req = "SELECT * FROM `exercice` ORDER BY `nom` ASC";
+        else if (a==1 && b==2)
+            req = "SELECT * FROM `exercice` ORDER BY `nom` DESC";
+            else if (a==2 && b==1)
+            req = "SELECT * FROM `exercice` ORDER BY `mc` ASC";
+        else if (a==2 && b==2)
+            req = "SELECT * FROM `exercice` ORDER BY `mc` DESC";
+            else if (a==3 && b==1)
+            req = "SELECT * FROM `exercice` ORDER BY `nd` ASC";
+        else if (a==3 && b==2)
+            req = "SELECT * FROM `exercice` ORDER BY `nd` DESC";
+                    stm  = conx.createStatement();
+        ResultSet res = stm.executeQuery(req);
+
+        List<Exercice> people = new ArrayList<>();
+
+        while (res.next()){
+            people.add(new Exercice(res.getInt(1),res.getString(2),res.getString(3),res.getString(4),res.getString(5),res.getString(6),res.getString(7)));
+        }
+
+
+        return people;
+    }
+
+
+
+
     @Override
     public List<Exercice> afficherListSearch(String s) throws SQLException {
         String req = "SELECT * FROM `exercice` WHERE `nom` LIKE '"+"%"+s+"%"+"' OR `mc` LIKE '"+"%"+s+"%"+"' OR `nd` LIKE '"+"%"+s+"%'";
+
+        stm  = conx.createStatement();
+        ResultSet res = stm.executeQuery(req);
+
+        List<Exercice> people = new ArrayList<>();
+
+        while (res.next()){
+            people.add(new Exercice(res.getInt(1),res.getString(2),res.getString(3),res.getString(4),res.getString(5),res.getString(6),res.getString(7)));
+        }
+
+
+        return people;
+    }
+
+
+    public List<Exercice> afficherListSearchTri(String s,int a,int b) throws SQLException {
+
+
+        String req="";
+        if (a==0)
+            req = "SELECT * FROM `exercice` WHERE `nom` LIKE '"+"%"+s+"%"+"' OR `mc` LIKE '"+"%"+s+"%"+"' OR `nd` LIKE '"+"%"+s+"%'";
+        else if (a==1 && b==1)
+            req = "SELECT * FROM `exercice` WHERE `nom` LIKE '"+"%"+s+"%"+"' OR `mc` LIKE '"+"%"+s+"%"+"' OR `nd` LIKE '"+"%"+s+"%' ORDER BY `nom` ASC";
+        else if (a==1&& b==2)
+            req = "SELECT * FROM `exercice` WHERE `nom` LIKE '"+"%"+s+"%"+"' OR `mc` LIKE '"+"%"+s+"%"+"' OR `nd` LIKE '"+"%"+s+"%' ORDER BY `nom` DESC";
+        else if (a==2&& b==1)
+            req = "SELECT * FROM `exercice` WHERE `nom` LIKE '"+"%"+s+"%"+"' OR `mc` LIKE '"+"%"+s+"%"+"' OR `nd` LIKE '"+"%"+s+"%' ORDER BY `mc` ASC";
+        else if (a==2&& b==2)
+            req = "SELECT * FROM `exercice` WHERE `nom` LIKE '"+"%"+s+"%"+"' OR `mc` LIKE '"+"%"+s+"%"+"' OR `nd` LIKE '"+"%"+s+"%' ORDER BY `mc` DESC";
+        else if (a==3&& b==1)
+            req = "SELECT * FROM `exercice` WHERE `nom` LIKE '"+"%"+s+"%"+"' OR `mc` LIKE '"+"%"+s+"%"+"' OR `nd` LIKE '"+"%"+s+"%' ORDER BY `nd` ASC";
+        else if (a==3&& b==2)
+            req = "SELECT * FROM `exercice` WHERE `nom` LIKE '"+"%"+s+"%"+"' OR `mc` LIKE '"+"%"+s+"%"+"' OR `nd` LIKE '"+"%"+s+"%' ORDER BY `nd` DESC";
+
+
 
         stm  = conx.createStatement();
         ResultSet res = stm.executeQuery(req);

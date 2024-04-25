@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ChoiceBox?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
@@ -15,7 +16,6 @@
     <left>
         <AnchorPane prefHeight="584.0" prefWidth="1102.0" stylesheets="@../styleback.css" BorderPane.alignment="CENTER">
             <children>
-                <TextField fx:id="ndM" layoutX="494.0" layoutY="289.0" prefWidth="308.0" />
                 <TextField fx:id="nbjM" layoutX="493.0" layoutY="320.0" prefWidth="308.0" />
                 <TextField fx:id="nomM" layoutX="492.0" layoutY="100.0" prefWidth="308.0" />
                 <Label layoutX="380.0" layoutY="104.0" prefHeight="19.0" prefWidth="110.0" styleClass="outline-label" text="Nom" />
@@ -62,6 +62,7 @@
                   <Label layoutX="677.0" layoutY="19.0" prefHeight="28.0" prefWidth="96.0" text="LogOut" />
                </children>
             </AnchorPane>
+            <ChoiceBox fx:id="ndM" layoutX="494.0" layoutY="289.0" prefWidth="307.0" />
             </children>
 
 

@@ -86,3 +86,64 @@
   -fx-background-color: transparent;
   -fx-text-fill: #da5f46;
 }
+/* ScrollPane */
+.scroll-pane {
+  -fx-background-color: #f0f0f0; /* Couleur de fond du ScrollPane */
+  -fx-border-color: #da5f46; /* Couleur des bordures */
+  -fx-border-width: 1px; /* Épaisseur des bordures */
+}
+
+.scroll-pane .viewport {
+  -fx-background-color: transparent; /* Rend le fond de la zone de contenu transparent */
+}
+
+.scroll-pane .scroll-bar {
+  -fx-background-color: #e0e0e0; /* Couleur de fond des barres de défilement */
+}
+
+.scroll-pane .scroll-bar:vertical {
+  -fx-pref-width: 8px; /* Largeur préférée de la barre de défilement verticale */
+}
+
+.scroll-pane .scroll-bar:horizontal {
+  -fx-pref-height: 8px; /* Hauteur préférée de la barre de défilement horizontale */
+}
+
+.scroll-pane .scroll-bar .thumb {
+  -fx-background-color: #da5f46; /* Couleur de la partie mobile de la barre de défilement (le thumb) */
+  -fx-background-insets: 2, 2, 2, 2; /* Ajustements internes pour le thumb pour éviter qu'il ne touche directement les bords */
+  -fx-background-radius: 4px; /* Arrondissement des angles du thumb */
+}
+
+.scroll-pane .scroll-bar .thumb:hover {
+  -fx-background-color: #e08040; /* Couleur du thumb lorsque la souris passe dessus */
+}
+.chat-container {
+  -fx-background-color: #f0f0f0;
+  -fx-padding: 10px;
+  -fx-spacing: 10px;
+}
+
+.message-bubble {
+  -fx-background-color: #d9edf7;
+  -fx-border-radius: 10px;
+  -fx-padding: 10px;
+  -fx-max-width: 300px;
+}
+
+.message-label {
+  -fx-font-size: 14px;
+  -fx-font-weight: bold;
+}
+
+.response-label {
+  -fx-font-size: 14px;
+}
+
+.user-bubble {
+  -fx-background-color: #d9edf7;
+}
+
+.assistant-bubble {
+  -fx-background-color: #82eca7;
+}

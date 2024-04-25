@@ -155,6 +155,63 @@ public class DefiService implements ICRUD<Defi>{
         return people;
     }
 
+
+    public List<Defi> afficherListTri(int a,int b) throws SQLException {
+
+
+        String req="";
+        if (a==0)
+            req = "SELECT * FROM `defi`";
+        else if (a==1 && b==1)
+            req = "SELECT * FROM `defi` ORDER BY `nom` ASC";
+        else if (a==1 && b==2)
+            req = "SELECT * FROM `defi` ORDER BY `nom` DESC";
+        else if (a==2 && b==1)
+            req = "SELECT * FROM `defi` ORDER BY `nbj` ASC";
+        else if (a==2 && b==2)
+            req = "SELECT * FROM `defi` ORDER BY `nbj` DESC";
+        else if (a==3 && b==1)
+            req = "SELECT * FROM `defi` ORDER BY `nd` ASC";
+        else if (a==3 && b==2)
+            req = "SELECT * FROM `defi` ORDER BY `nd` DESC";
+
+
+        stm  = conx.createStatement();
+        ResultSet res = stm.executeQuery(req);
+
+        List<Defi> people = new ArrayList<>();
+
+        while (res.next()){
+
+
+            Defi d = new Defi(res.getInt(1),res.getString(2),res.getString(3),res.getString(4),res.getInt(5),new ArrayList<Exercice>());
+            req = "SELECT `exercice_id` FROM `defi_exercice` where `defi_id`='"+d.getId()+"'";
+            ArrayList<Exercice> exos = new ArrayList<>();
+            stm  = conx.createStatement();
+            ResultSet rres = stm.executeQuery(req);
+
+            while (rres.next()) {
+
+                req = "SELECT * FROM `exercice`where `id`='"+rres.getInt(1)+"'";
+                stm  = conx.createStatement();
+                ResultSet rrres = stm.executeQuery(req);
+
+
+                while (rrres.next()) {
+
+                    exos.add(new Exercice(rrres.getInt(1),rrres.getString(2),rrres.getString(3),rrres.getString(4),rrres.getString(5),rrres.getString(6),rrres.getString(7)));
+                }
+            }
+
+            d.setLex(exos);
+
+            people.add(d);
+        }
+
+
+        return people;
+    }
+
     @Override
     public List<Defi> afficherListSearch(String s) throws SQLException {
         String req = "SELECT * FROM `defi` WHERE `nom` LIKE '"+"%"+s+"%"+"' OR `nd` LIKE '"+"%"+s+"%'";
@@ -194,4 +251,61 @@ public class DefiService implements ICRUD<Defi>{
 
         return people;
     }
+
+    public List<Defi> afficherListSearchTri(String s,int a, int b) throws SQLException {
+
+
+        String req="";
+        if (a==0)
+            req = "SELECT * FROM `defi` WHERE `nom` LIKE '"+"%"+s+"%"+"' OR `nd` LIKE '"+"%"+s+"%'"+" OR `nbj` LIKE '"+"%"+s+"%'";
+        else if (a==1 && b==1)
+            req = "SELECT * FROM `defi` WHERE `nom` LIKE '"+"%"+s+"%"+"' OR `nd` LIKE '"+"%"+s+"%'"+" OR `nbj` LIKE '"+"%"+s+"%' ORDER BY `nom` ASC";
+        else if (a==1&& b==2)
+            req = "SELECT * FROM `defi` WHERE `nom` LIKE '"+"%"+s+"%"+"' OR `nd` LIKE '"+"%"+s+"%'"+" OR `nbj` LIKE '"+"%"+s+"%' ORDER BY `nom` DESC";
+        else if (a==2&& b==1)
+            req = "SELECT * FROM `defi` WHERE `nom` LIKE '"+"%"+s+"%"+"' OR `nd` LIKE '"+"%"+s+"%'"+" OR `nbj` LIKE '"+"%"+s+"%' ORDER BY `nbj` ASC";
+        else if (a==2&& b==2)
+            req = "SELECT * FROM `defi` WHERE `nom` LIKE '"+"%"+s+"%"+"' OR `nd` LIKE '"+"%"+s+"%'"+" OR `nbj` LIKE '"+"%"+s+"%' ORDER BY `nbj` DESC";
+        else if (a==3&& b==1)
+            req = "SELECT * FROM `defi` WHERE `nom` LIKE '"+"%"+s+"%"+"' OR `nd` LIKE '"+"%"+s+"%'"+" OR `nbj` LIKE '"+"%"+s+"%' ORDER BY `nd` ASC";
+        else if (a==3&& b==2)
+            req = "SELECT * FROM `defi` WHERE `nom` LIKE '"+"%"+s+"%"+"' OR `nd` LIKE '"+"%"+s+"%'"+" OR `nbj` LIKE '"+"%"+s+"%' ORDER BY `nd` DESC";
+
+
+        stm  = conx.createStatement();
+        ResultSet res = stm.executeQuery(req);
+
+        List<Defi> people = new ArrayList<>();
+
+        while (res.next()){
+
+
+            Defi d = new Defi(res.getInt(1),res.getString(2),res.getString(3),res.getString(4),res.getInt(5),new ArrayList<Exercice>());
+            req = "SELECT `exercice_id` FROM `defi_exercice` where `defi_id`='"+d.getId()+"'";
+            ArrayList<Exercice> exos = new ArrayList<>();
+            stm  = conx.createStatement();
+            ResultSet rres = stm.executeQuery(req);
+
+            while (rres.next()) {
+
+                req = "SELECT * FROM `exercice`where `id`='"+rres.getInt(1)+"'";
+                stm  = conx.createStatement();
+                ResultSet rrres = stm.executeQuery(req);
+
+
+                while (rrres.next()) {
+
+                    exos.add(new Exercice(rrres.getInt(1),rrres.getString(2),rrres.getString(3),rrres.getString(4),rrres.getString(5),rrres.getString(6),rrres.getString(7)));
+                }
+            }
+
+            d.setLex(exos);
+
+            people.add(d);
+        }
+
+
+        return people;
+    }
+
 }

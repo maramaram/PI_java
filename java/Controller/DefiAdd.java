@@ -4,6 +4,8 @@ import Entities.Defi;
 import Entities.Exercice;
 import Service.DefiService;
 import Service.ExerciceService;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -50,7 +52,7 @@ public class DefiAdd {
     @FXML
     private TextArea desA;
     @FXML
-    private TextField ndA;
+    private ChoiceBox<String> ndA;
     @FXML
     private TextField nbjA;
 
@@ -92,6 +94,8 @@ public class DefiAdd {
     public void initialize() {
         // Appeler la méthode pour afficher les données
         AfficherEX();
+        ObservableList<String> valeurs = FXCollections.observableArrayList("Facile", "Moyen", "Difficile");
+        ndA.setItems(valeurs);
         // Ajouter un écouteur sur la table pour détecter les double-clics
         table.setOnMouseClicked(event -> {
             if (event.getClickCount() == 2) { // Vérifier si c'est un double-clic
@@ -142,10 +146,16 @@ public class DefiAdd {
         DefiService es = new DefiService();
 boolean test=true;
         // Vérifier si tous les champs de texte sont remplis
-        if (nomA.getText().isEmpty() ){
-            test=false;
+        if (nomA.getText().isEmpty()) {
+            test = false;
             nomE.setText("vide");
-        }else {nomE.setText("");}
+        } else if (!nomA.getText().matches("^[^0-9]*$")) {
+            test = false;
+            nomE.setText("Le nom ne doit pas contenir de chiffres");
+        } else {
+            nomE.setText("");
+        }
+
 
 
         if (desA.getText().isEmpty()) {
@@ -155,9 +165,9 @@ boolean test=true;
         
 
 
-        if (ndA.getText().isEmpty() && !ndA.getText().equals("facile") &&
-                !ndA.getText().equals("moyen") &&
-                !ndA.getText().equals("difficile") ) {
+        if (ndA.getValue() == null || ndA.getValue().isEmpty() ||( !ndA.getValue().equals("Facile") &&
+                !ndA.getValue().equals("Moyen") &&
+                !ndA.getValue().equals("Difficile") )) {
             test=false;
             ndE.setText("Veuillez choisir parmi facile , moyen ou difficile");
         }else {ndE.setText("");}
@@ -176,8 +186,8 @@ boolean test=true;
 
            if (test){
             String a;
-            if(ndA.getText().equals("facile")) a="1";
-            else if (ndA.getText().equals("moyen")) a="2";
+            if(ndA.getValue().equals("Facile")) a="1";
+            else if (ndA.getValue().equals("Moyen")) a="2";
              else a="3";
                Defi de;
                if(ex!=null)

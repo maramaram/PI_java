@@ -2,6 +2,8 @@ package Controller;
 
 import Entities.Exercice;
 import Service.ExerciceService;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -12,9 +14,16 @@ import javafx.scene.control.*;
 import javafx.stage.Stage;
 
 import java.io.IOException;
+import java.net.URI;
+import java.net.URISyntaxException;
+import java.net.URL;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+import java.nio.file.StandardCopyOption;
 import java.sql.SQLException;
-
-
+import javafx.stage.FileChooser;
+import java.io.File;
 public class ExerciceAdd {
 
     @FXML
@@ -37,15 +46,18 @@ public class ExerciceAdd {
     @FXML
     private TextArea desA;
     @FXML
-    private TextField mcA;
+    private ChoiceBox<String> mcA;
     @FXML
-    private TextField ndA;
+    private ChoiceBox<String> ndA;
     @FXML
     private TextField imgA;
     @FXML
     private TextField gifA;
 
-
+    @FXML
+    private Button ib;
+    @FXML
+    private Button gb;
     private Stage primaryStage;
 
 
@@ -69,16 +81,124 @@ public class ExerciceAdd {
         }
     }
 
+    @FXML
+    public void initialize() {
+
+        // Action à effectuer lors du clic sur le bouton
+        ib.setOnAction(e -> {
+            // Création du sélecteur de fichier
+            FileChooser fileChooser = new FileChooser();
+            fileChooser.setTitle("Choisir une image");
+
+            // Filtrer les types de fichiers
+            fileChooser.getExtensionFilters().addAll(
+                    new FileChooser.ExtensionFilter("Images", "*.png", "*.jpg", "*.bmp", "*.jpeg"),
+                    new FileChooser.ExtensionFilter("Tous les fichiers", "*.*")
+            );
+
+            // Afficher la boîte de dialogue pour sélectionner un fichier
+            File selectedFile = fileChooser.showOpenDialog(primaryStage);
+
+            // Vérifier si un fichier a été sélectionné
+            if (selectedFile != null) {
+                try {
+                    // Définir le répertoire de destination dans les ressources
+                    String destinationDirectory = "Front/images/exo/";
+                    String fileName = selectedFile.getName();
+
+                    // Obtenir le répertoire de destination dans les ressources
+                    Path destinationPath = Paths.get("src/main/resources", destinationDirectory);
+
+                    // Créer le chemin complet du fichier de destination
+                    Path destinationFilePath = destinationPath.resolve(fileName);
+
+                    // Copier le fichier sélectionné vers le répertoire de destination dans les ressources
+                    Files.copy(selectedFile.toPath(), destinationFilePath, StandardCopyOption.REPLACE_EXISTING);
+
+                    // Mettre à jour le chemin de l'image dans imgA
+                    String newImagePath = destinationDirectory + fileName;
+                    imgA.setText(newImagePath);
+
+                    // Afficher un message de succès
+                    System.out.println("Fichier téléchargé avec succès dans les ressources. Nouveau chemin : " + newImagePath);
+                } catch (IOException ex) {
+                    // Gérer les exceptions en cas d'erreur de téléchargement
+                    ex.printStackTrace();
+                }
+            } else {
+                System.out.println("Aucun fichier sélectionné.");
+            }
+        });
+
+
+
+        gb.setOnAction(e -> {
+            // Création du sélecteur de fichier
+            FileChooser fileChooser = new FileChooser();
+            fileChooser.setTitle("Choisir une Gif");
+
+            // Filtrer les types de fichiers
+            fileChooser.getExtensionFilters().addAll(
+                    new FileChooser.ExtensionFilter("Gifs", "*.gif"),
+                    new FileChooser.ExtensionFilter("Tous les fichiers", "*.*")
+            );
+
+            // Afficher la boîte de dialogue pour sélectionner un fichier
+            File selectedFilee = fileChooser.showOpenDialog(primaryStage);
+           // gifA=selectedFilee.getAbsolutePath()
+            // Vérifier si un fichier a été sélectionné
+            if (selectedFilee != null) {
+                try {
+                    // Définir le répertoire de destination dans les ressources
+                    String destinationDirectory = "Front/images/exo/gif/";
+                    String fileName = selectedFilee.getName();
+
+                    // Obtenir le répertoire de destination dans les ressources
+                    Path destinationPath = Paths.get("src/main/resources", destinationDirectory);
+
+                    // Créer le chemin complet du fichier de destination
+                    Path destinationFilePath = destinationPath.resolve(fileName);
+
+                    // Copier le fichier sélectionné vers le répertoire de destination dans les ressources
+                    Files.copy(selectedFilee.toPath(), destinationFilePath, StandardCopyOption.REPLACE_EXISTING);
+
+                    // Mettre à jour le chemin de l'image dans imgA
+                    String newImagePath = destinationDirectory + fileName;
+                    gifA.setText(newImagePath);
+
+                    // Afficher un message de succès
+                    System.out.println("Fichier téléchargé avec succès dans les ressources. Nouveau chemin : " + newImagePath);
+                } catch (IOException ex) {
+                    // Gérer les exceptions en cas d'erreur de téléchargement
+                    ex.printStackTrace();
+                }
+            } else {
+                System.out.println("Aucun fichier sélectionné.");
+            }
+        });
+
+
+
+        ObservableList<String> valeurs = FXCollections.observableArrayList("Pectoraux", "Epaules", "Biceps", "Triceps", "Abdos", "Dos", "Quadriceps", "Ischio-jambiers", "Fessiers" , "Mollets");
+        mcA.setItems(valeurs);
+        ObservableList<String> valeurss = FXCollections.observableArrayList("Facile", "Moyen", "Difficile");
+        ndA.setItems(valeurss);
+    }
 
     @FXML
     protected void AjouterEX() {
         ExerciceService es = new ExerciceService();
 boolean test=true;
         // Vérifier si tous les champs de texte sont remplis
-        if (nomA.getText().isEmpty() ){
-            test=false;
+        if (nomA.getText().isEmpty()) {
+            test = false;
             nomE.setText("vide");
-        }else {nomE.setText("");}
+        } else if (!nomA.getText().matches("^[^0-9]*$")) {
+            test = false;
+            nomE.setText("Le nom ne doit pas contenir de chiffres");
+        } else {
+            nomE.setText("");
+        }
 
 
         if (desA.getText().isEmpty()) {
@@ -87,17 +207,17 @@ boolean test=true;
         }else {desE.setText("");}
 
 
-        if (mcA.getText().isEmpty() ||
-                (!mcA.getText().equals("Pectoraux") &&
-                        !mcA.getText().equals("Epaules") &&
-                        !mcA.getText().equals("Biceps") &&
-                        !mcA.getText().equals("Triceps") &&
-                        !mcA.getText().equals("Abdos") &&
-                        !mcA.getText().equals("Dos") &&
-                        !mcA.getText().equals("Quadriceps") &&
-                        !mcA.getText().equals("Ischio-jambiers") &&
-                        !mcA.getText().equals("Fessiers") &&
-                        !mcA.getText().equals("Mollets"))) {
+        if (mcA.getValue() == null ||
+                (!mcA.getValue().equals("Pectoraux") &&
+                        !mcA.getValue().equals("Epaules") &&
+                        !mcA.getValue().equals("Biceps") &&
+                        !mcA.getValue().equals("Triceps") &&
+                        !mcA.getValue().equals("Abdos") &&
+                        !mcA.getValue().equals("Dos") &&
+                        !mcA.getValue().equals("Quadriceps") &&
+                        !mcA.getValue().equals("Ischio-jambiers") &&
+                        !mcA.getValue().equals("Fessiers") &&
+                        !mcA.getValue().equals("Mollets"))) {
             test = false;
             mcE.setText("Veuillez choisir parmi Pectoraux, Epaules, Biceps, Triceps, Abdos, Dos, Quadriceps, Ischio-jambiers, Fessiers ou Mollets");
         } else {
@@ -105,13 +225,15 @@ boolean test=true;
         }
 
 
-        if (ndA.getText().isEmpty() && !ndA.getText().equals("facile") &&
-                !ndA.getText().equals("moyen") &&
-                !ndA.getText().equals("difficile") ) {
-            test=false;
-            ndE.setText("Veuillez choisir parmi facile , moyen ou difficile");
-        }else {ndE.setText("");}
-
+        if (ndA.getValue() == null || ndA.getValue().isEmpty() ||
+                (!ndA.getValue().equals("Facile") &&
+                        !ndA.getValue().equals("Moyen") &&
+                        !ndA.getValue().equals("Difficile"))) {
+            test = false;
+            ndE.setText("Veuillez choisir parmi facile, moyen ou difficile");
+        } else {
+            ndE.setText("");
+        }
 
         if (imgA.getText().isEmpty()) {
             test=false;
@@ -127,11 +249,11 @@ boolean test=true;
 
            if (test){
             String a;
-            if(ndA.getText().equals("facile")) a="1";
-            else if (ndA.getText().equals("moyen")) a="2";
+            if(ndA.getValue().equals("Facile")) a="1";
+            else if (ndA.getValue().equals("Moyen")) a="2";
              else a="3";
 
-            Exercice ex = new Exercice(nomA.getText(), desA.getText(), mcA.getText(),
+            Exercice ex = new Exercice(nomA.getText(), desA.getText(), mcA.getValue(),
                     a, imgA.getText(), gifA.getText());
             try{
             es.add(ex);
