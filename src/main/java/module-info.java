@@ -8,7 +8,7 @@ module User {
     requires MaterialFX;
     requires VirtualizedFX;
     requires jakarta.mail;
-
+    requires twilio;
     exports Controller;
 
     opens Controller to javafx.fxml;

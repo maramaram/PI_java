@@ -69,7 +69,6 @@ public class AdminPannelController {
     private TableView<User> userTableView;
     @FXML
     private Label logout_btn;
-    private  Button actionButton;
 
     @FXML
     private TextField filterField;
@@ -193,6 +192,7 @@ adminID.setText(userId);
                 } else {
                     // Activate the user
                     us.activateUser(user.getId());
+                    EmailSender.sendActivationEmail(user.getEmail());
                     AdminPannelController adminPannelController = new AdminPannelController();
                     adminPannelController.showList();
                 }

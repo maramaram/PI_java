@@ -11,7 +11,7 @@
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="576.0" prefWidth="1101.0" stylesheets="@style.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.AdminPannelController">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="576.0" prefWidth="1101.0" stylesheets="@style.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.AdminController">
    <left>
       <AnchorPane onMouseClicked="#logout" prefHeight="584.0" prefWidth="1102.0" styleClass="gradient-anchor" stylesheets="@styleback.css" BorderPane.alignment="CENTER">
          <children>
@@ -46,14 +46,12 @@
             <TableView fx:id="userTableView" layoutX="307.0" layoutY="112.0" prefHeight="422.0" prefWidth="788.0">
                <columns>
                   <TableColumn fx:id="photo" prefWidth="75.0" text="photo" />
-                  <TableColumn fx:id="id" prefWidth="46.399993896484375" text="Id" />
-                  <TableColumn fx:id="firstname" prefWidth="68.00006103515625" text="prenom" />
-                  <TableColumn fx:id="lastname" prefWidth="61.60003662109375" text="Nom" />
+                  <TableColumn fx:id="firstname" prefWidth="68.00006103515625" text="Nom" />
+                  <TableColumn fx:id="lastname" prefWidth="61.60003662109375" text="Prenom" />
                   <TableColumn fx:id="email" prefWidth="86.39996337890625" text="Email" />
                   <TableColumn fx:id="phonenumber" prefWidth="105.60003662109375" text="PhoneNumber" />
                   <TableColumn fx:id="date_n" prefWidth="77.5999755859375" text="Date" />
                   <TableColumn fx:id="role" minWidth="0.0" prefWidth="0.0" text="role" />
-                  <TableColumn fx:id="action" prefWidth="100.79998779296875" text="Action" />
                   <TableColumn fx:id="status" prefWidth="114.39996337890625" text="Status" />
                   <TableColumn fx:id="adress" prefWidth="95.2000732421875" text="Adresse" />
                </columns>

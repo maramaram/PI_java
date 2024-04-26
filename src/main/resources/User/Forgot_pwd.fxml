@@ -13,7 +13,7 @@
 
 <BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="576.0" prefWidth="1101.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.ForgotPwdController">
     <left>
-        <AnchorPane prefHeight="576.0" prefWidth="690.0" styleClass="anchor-pane" stylesheets="@style.css" BorderPane.alignment="CENTER">
+        <AnchorPane prefHeight="576.0" prefWidth="718.0" styleClass="anchor-pane" stylesheets="@style.css" BorderPane.alignment="CENTER">
             <children>
                 <Text fill="WHITE" layoutX="27.0" layoutY="254.0" strokeType="OUTSIDE" strokeWidth="0.0" text="WELCOME TO BREATHE OUT" wrappingWidth="591.51171875">
                     <font>
@@ -31,36 +31,90 @@
             </children>
         </AnchorPane>
     </left>
-    <center>
+   <right>
         <AnchorPane prefHeight="620.0" prefWidth="454.0" stylesheets="@style.css" BorderPane.alignment="CENTER">
-            <TextField fx:id="phone_number" layoutX="112.0" layoutY="301.0" prefHeight="25.0" prefWidth="202.0" promptText="Phone Number" style="-fx-background-color: transparent; -fx-border-color: #404040; -fx-border-width: 0px 0px 2px 0px;" />
-            <Button fx:id="sendCode_btn" layoutX="174.0" layoutY="450.0" mnemonicParsing="false" onAction="#sendCode" prefHeight="43.0" prefWidth="106.0" stylesheets="@style.css" text="Send!" textFill="WHITE">
-                <cursor>
-                    <Cursor fx:constant="OPEN_HAND" />
-                </cursor>
-                <font>
-                    <Font size="20.0" />
-                </font>
-            </Button>
-            <Label fx:id="CheckPhoneNumber" layoutX="109.0" layoutY="337.0" prefHeight="18.0" prefWidth="295.0" text="checknum_tel" />
-            <ImageView fx:id="imageView" fitHeight="127.0" fitWidth="141.0" layoutX="153.0" layoutY="54.0" pickOnBounds="true" preserveRatio="true">
-                <image>
-                    <Image url="@../../../../../OneDrive/Documents/breatheOut/logo.png" />
-                </image></ImageView>
             <ImageView fx:id="copy" fitHeight="48.0" fitWidth="46.0" layoutX="319.0" layoutY="426.0" pickOnBounds="true" preserveRatio="true" />
-         <Text fill="#da5f46" layoutX="97.0" layoutY="242.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="text-field" text="Please Enter your Phone Number to receive the code" wrappingWidth="254.6080322265625">
-            <cursor>
-               <Cursor fx:constant="HAND" />
-            </cursor>
-            <font>
-               <Font name="Arial" size="13.0" />
-            </font>
-         </Text>
-         <ImageView fx:id="go_back" fitHeight="60.0" fitWidth="58.0" layoutX="39.0" layoutY="161.0" onMouseClicked="#go_to_login" pickOnBounds="true" preserveRatio="true">
+         <ImageView fx:id="go_back" fitHeight="60.0" fitWidth="58.0" layoutX="16.0" layoutY="32.0" onMouseClicked="#go_to_login" pickOnBounds="true" preserveRatio="true">
             <image>
                <Image url="@../../java/image/image-removebg-preview%20(3).png" />
             </image>
          </ImageView>
+         <AnchorPane fx:id="password" layoutX="52.0" layoutY="202.0" prefHeight="279.0" prefWidth="269.0">
+            <children>
+               <TextField fx:id="newpasswordfield" layoutX="39.0" layoutY="58.0" prefHeight="25.0" prefWidth="202.0" promptText="New Password" style="-fx-background-color: transparent; -fx-border-color: #404040; -fx-border-width: 0px 0px 2px 0px;" />
+               <TextField fx:id="confirmPassword" layoutX="39.0" layoutY="124.0" prefHeight="25.0" prefWidth="202.0" promptText="Confirm Password" style="-fx-background-color: transparent; -fx-border-color: #404040; -fx-border-width: 0px 0px 2px 0px;" />
+               <Text fill="#da5f46" layoutX="13.0" layoutY="29.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="text-field" wrappingWidth="254.6080322265625">
+                  <cursor>
+                     <Cursor fx:constant="HAND" />
+                  </cursor>
+                  <font>
+                     <Font name="Arial" size="13.0" />
+                  </font>
+               </Text>
+               <Button fx:id="resetbutton" layoutX="71.0" layoutY="178.0" mnemonicParsing="false" onAction="#resetbutton" prefHeight="43.0" prefWidth="106.0" stylesheets="@style.css" text="Reset" textFill="WHITE">
+                  <cursor>
+                     <Cursor fx:constant="OPEN_HAND" />
+                  </cursor>
+                  <font>
+                     <Font size="20.0" />
+                  </font>
+               </Button>
+               <Label fx:id="checkPasswordForgot" layoutX="29.0" layoutY="89.0" prefHeight="20.0" prefWidth="230.0" text="checknum_tel" />
+               <Label fx:id="checkconfirmpassword" layoutX="29.0" layoutY="155.0" prefHeight="20.0" prefWidth="245.0" text="checknum_tel" />
+               <Text fill="#da5f46" layoutX="24.0" layoutY="69.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="text-field" text="set a new password" wrappingWidth="254.6080322265625">
+                  <cursor>
+                     <Cursor fx:constant="HAND" />
+                  </cursor>
+                  <font>
+                     <Font name="Arial" size="13.0" />
+                  </font>
+               </Text>
+            </children>
+         </AnchorPane>
+         <AnchorPane fx:id="code" layoutX="52.0" layoutY="202.0" prefHeight="200.0" prefWidth="200.0">
+            <children>
+               <TextField fx:id="codefield" layoutX="14.0" layoutY="100.0" prefHeight="25.0" prefWidth="202.0" promptText="Insert Your code" style="-fx-background-color: transparent; -fx-border-color: #404040; -fx-border-width: 0px 0px 2px 0px;" />
+               <Text fill="#da5f46" layoutX="6.0" layoutY="31.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="text-field" text="Great! you just received a code on your phone! Please enter the code" wrappingWidth="254.6080322265625">
+                  <cursor>
+                     <Cursor fx:constant="HAND" />
+                  </cursor>
+                  <font>
+                     <Font name="Arial" size="13.0" />
+                  </font>
+               </Text>
+               <Label fx:id="checkcode" layoutX="14.0" layoutY="131.0" prefHeight="20.0" prefWidth="205.0" text="checknum_tel" />
+               <Button fx:id="CodeButton1" layoutX="56.0" layoutY="150.0" mnemonicParsing="false" onAction="#checkCODE" prefHeight="43.0" prefWidth="106.0" stylesheets="@style.css" text="Verify" textFill="WHITE">
+                  <cursor>
+                     <Cursor fx:constant="OPEN_HAND" />
+                  </cursor>
+                  <font>
+                     <Font size="20.0" />
+                  </font>
+               </Button>
+            </children>
+         </AnchorPane>
+         <AnchorPane fx:id="telephone" layoutX="43.0" layoutY="202.0" prefHeight="241.0" prefWidth="264.0">
+            <children>
+               <Text fill="#da5f46" layoutY="38.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="text-field" text="Please Enter your Phone Number to receive the code" wrappingWidth="254.6080322265625">
+                  <cursor>
+                     <Cursor fx:constant="HAND" />
+                  </cursor>
+                  <font>
+                     <Font name="Arial" size="13.0" />
+                  </font>
+               </Text>
+                  <TextField fx:id="phone_number" layoutX="26.0" layoutY="68.0" prefHeight="25.0" prefWidth="202.0" promptText="Phone Number" style="-fx-background-color: transparent; -fx-border-color: #404040; -fx-border-width: 0px 0px 2px 0px;" />
+                  <Label fx:id="CheckPhoneNumber" layoutX="22.0" layoutY="111.0" prefHeight="20.0" prefWidth="210.0" text="checknum_tel" />
+                  <Button fx:id="sendCode_btn" layoutX="69.0" layoutY="142.0" mnemonicParsing="false" onAction="#sendCode" prefHeight="43.0" prefWidth="106.0" stylesheets="@style.css" text="Send!" textFill="WHITE">
+                      <cursor>
+                          <Cursor fx:constant="OPEN_HAND" />
+                      </cursor>
+                      <font>
+                          <Font size="20.0" />
+                      </font>
+                  </Button>
+            </children>
+         </AnchorPane>
         </AnchorPane>
-    </center>
+   </right>
 </BorderPane>

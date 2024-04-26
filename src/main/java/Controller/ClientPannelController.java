@@ -26,6 +26,14 @@ import java.util.Objects;
 import java.util.ResourceBundle;
 
 public class ClientPannelController {
+    @FXML
+    private Label logout_btn;
+
+
+
+
+    @FXML
+    private ImageView pp_view;
 
     @FXML
     private Label Birthdate;
@@ -41,9 +49,6 @@ public class ClientPannelController {
 
     @FXML
     private Label lastname;
-
-    @FXML
-    private Label logout_btn;
     @FXML
     private Button update_btn;
 
@@ -51,9 +56,22 @@ public class ClientPannelController {
     private Label phonenumber;
     private UserService userService;
     @FXML
-    private ImageView pp_view;
+    private ImageView pp_view1;
+    @FXML
+    private Button NewPwd_btn;
+    String imagePath="";
     public ClientPannelController() {
         this.userService = new UserService();
+    }
+    @FXML
+    void actionNewPwd_btn(ActionEvent eventAction) throws IOException {
+        Stage stage = (Stage) update_btn.getScene().getWindow();
+        stage.close();
+        Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/User/EnterPassword.fxml")));
+        Scene scene = new Scene(root);
+        stage.setScene(scene);
+        stage.setTitle("User SignIn");
+        stage.show();
     }
     @FXML
     public void initialize() {
@@ -73,8 +91,22 @@ public class ClientPannelController {
             Birthdate.setText(user.getDate_N().toString()); // Assuming Birthdate is a LocalDate
             adresse.setText(user.getAdress());
 
+            String photoPath = user.getPhoto();
+            if (photoPath != null && !photoPath.isEmpty()) {
+                try {
+                    File file = new File(photoPath);
+                    String imageUrl = file.toURI().toURL().toString();
+                    Image image = new Image(imageUrl);
+                   pp_view1.setImage(image);
+                } catch (MalformedURLException e) {
+                    // Handle invalid URL exception
+                    e.printStackTrace();
+                    // Show an alert or fallback image
+                }
+            }
 
         }}
+
 
     @FXML
     void logout_click(MouseEvent event) {

@@ -4,37 +4,28 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="219bd414-8940-4b2a-834a-a288c154de45" name="Changes" comment="architecture basique du projet (commit1)">
-      <change afterPath="$PROJECT_DIR$/src/main/java/Controller/AdminPannelController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/Controller/BaseFrontController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/Controller/ClientPannelController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/Controller/EmailSender.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/Controller/EnterPassword.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/Controller/ForgotPwdController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/Controller/LoginController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/Controller/RegisterController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/Controller/UpdateProfileController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/Controller/basebackController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/Entities/SessionManager.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/Entities/User.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/Service/UserService.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/helper/AlertHelper.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/META-INF/javamail.default.address.map" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/User/AdminPannel.fxml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/User/EnterPassword.fxml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/User/Forgot_pwd.fxml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/User/LogIn.fxml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/User/SignUp.fxml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/User/UpdateProfile.fxml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/User/baseback.fxml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/User/basefront.fxml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/User/clientPannel.fxml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/cssStylesheet.css" afterDir="false" />
+    <list default="true" id="219bd414-8940-4b2a-834a-a288c154de45" name="Changes" comment="crud, active inactive small problem , search back, show password, recaptcha">
+      <change afterPath="$PROJECT_DIR$/src/main/java/Controller/AdminController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/Controller/EmailConfig.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/User/clientPanne.fxml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/User/UserManagment.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/User/UserManagment.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/Utils/DataBase.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Utils/DataBase.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Controller/AdminPannelController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Controller/AdminPannelController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Controller/ClientPannelController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Controller/ClientPannelController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Controller/EmailSender.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Controller/EmailSender.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Controller/EnterPassword.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Controller/EnterPassword.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Controller/ForgotPwdController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Controller/ForgotPwdController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Controller/LoginController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Controller/LoginController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Controller/RegisterController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Controller/RegisterController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Controller/UpdateProfileController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Controller/UpdateProfileController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Entities/SessionManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Entities/SessionManager.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/module-info.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/module-info.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/User/AdminPannel.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/User/AdminPannel.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/User/EnterPassword.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/User/EnterPassword.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/User/Forgot_pwd.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/User/Forgot_pwd.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/User/LogIn.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/User/LogIn.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/User/basefront.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/User/basefront.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/User/clientPannel.fxml" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -51,6 +42,20 @@
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="GitHubPullRequestSearchHistory">{
+  &quot;lastFilter&quot;: {
+    &quot;state&quot;: &quot;OPEN&quot;,
+    &quot;assignee&quot;: &quot;Khalil-Bouazizi&quot;
+  }
+}</component>
+  <component name="GithubPullRequestsUISettings">
+    <option name="selectedUrlAndAccountId">
+      <UrlAndAccount>
+        <option name="accountId" value="6747543a-4174-46cf-99c3-8330c018cffb" />
+        <option name="url" value="https://github.com/maramaram/PI_java.git" />
+      </UrlAndAccount>
+    </option>
   </component>
   <component name="MavenImportPreferences">
     <option name="generalSettings">
@@ -71,29 +76,29 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;ASKED_ADD_EXTERNAL_FILES&quot;: &quot;true&quot;,
-    &quot;Application.HelloApplication.executor&quot;: &quot;Run&quot;,
-    &quot;Application.UserManagment.executor&quot;: &quot;Run&quot;,
-    &quot;Gradle.MaterialFX [run].executor&quot;: &quot;Run&quot;,
-    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;Gestion__User&quot;,
-    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
-    &quot;last_opened_file_path&quot;: &quot;C:/Users/bouaz/PREVIOUS/src/main/resources/User&quot;,
-    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
-    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
-    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
-    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
-    &quot;project.structure.last.edited&quot;: &quot;Modules&quot;,
-    &quot;project.structure.proportion&quot;: &quot;0.15&quot;,
-    &quot;project.structure.side.proportion&quot;: &quot;0.39885056&quot;,
-    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "ASKED_ADD_EXTERNAL_FILES": "true",
+    "Application.HelloApplication.executor": "Run",
+    "Application.UserManagment.executor": "Run",
+    "Gradle.MaterialFX [run].executor": "Run",
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
+    "git-widget-placeholder": "Gestion__User",
+    "kotlin-language-version-configured": "true",
+    "last_opened_file_path": "C:/Users/bouaz/PREVIOUS/src/main/resources/User/clientPanne.fxml",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "project.structure.last.edited": "Modules",
+    "project.structure.proportion": "0.15",
+    "project.structure.side.proportion": "0.39885056",
+    "vue.rearranger.settings.migration": "true"
   }
-}</component>
+}]]></component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="C:\Users\bouaz\PREVIOUS\src\main\resources\User" />
@@ -164,15 +169,39 @@
       <workItem from="1713792773441" duration="2512000" />
       <workItem from="1713901888639" duration="6011000" />
       <workItem from="1713948468016" duration="7804000" />
-      <workItem from="1713985355175" duration="634000" />
+      <workItem from="1713985355175" duration="1133000" />
+      <workItem from="1714036297169" duration="7612000" />
+      <workItem from="1714050409575" duration="6585000" />
+      <workItem from="1714066393282" duration="18652000" />
     </task>
+    <task id="LOCAL-00001" summary="crud, active inactive small problem , search back, show password, recaptcha">
+      <option name="closed" value="true" />
+      <created>1713986156998</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1713986156998</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
   </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="architecture basique du projet (commit1)" />
-    <option name="LAST_COMMIT_MESSAGE" value="architecture basique du projet (commit1)" />
+    <MESSAGE value="crud, active inactive small problem , search back, show password, recaptcha" />
+    <option name="LAST_COMMIT_MESSAGE" value="crud, active inactive small problem , search back, show password, recaptcha" />
   </component>
 </project>

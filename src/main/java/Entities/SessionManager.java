@@ -12,6 +12,8 @@ public class SessionManager {
     private static SessionManager instance;
     private String userId;
 
+    private String userfront ;
+
     private SessionManager() {
     }
 
@@ -26,11 +28,22 @@ public class SessionManager {
         this.userId = userId;
     }
 
+    public void setUserFront(String userfront) {
+        this.userfront = userfront;
+    }
+    public String getUserFront() {
+        return userfront;
+    }
+
+
     public String getUserId()
     {
         return userId;
     }
     public void cleanUserSessionAdmin() {
-        userId="null" ;
+        userId= " " ;
+    }
+    public void cleanUserSessionFront() {
+        userfront="";
     }
 }

@@ -29,7 +29,6 @@ import javafx.stage.Stage;
 import helper.AlertHelper;
 import java.io.IOException;
 import java.net.URL;
-import java.sql.PreparedStatement;
 import java.util.Objects;
 import java.util.Random;
 import java.util.ResourceBundle;
@@ -47,7 +46,11 @@ public class LoginController implements Initializable {
     @FXML
     private Label captchaLabel;
     @FXML
+    private Label pwd_forgot_label;
+    @FXML
     private Label checkrecaptcha;
+
+
     @FXML
     private TextField tfCaptcha;
     @FXML
@@ -118,7 +121,7 @@ public class LoginController implements Initializable {
     private void openClientPanel() throws IOException {
         Stage stage = (Stage) loginButton.getScene().getWindow();
         stage.close();
-        Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/User/clientPannel.fxml")));
+        Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/User/clientPanne.fxml")));
         Scene scene = new Scene(root);
         stage.setScene(scene);
         stage.setTitle("Client Panel");
@@ -420,7 +423,18 @@ public class LoginController implements Initializable {
         stage.setTitle("User SignIn");
         stage.show();
     }
+    @FXML
+    void go_to_forgottenPWD(MouseEvent event) throws IOException {
 
+        Stage stage = (Stage) loginButton.getScene().getWindow();
+        stage.close();
+        Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/User/Forgot_pwd.fxml")));
+        Scene scene = new Scene(root);
+        stage.setScene(scene);
+        stage.setTitle("Mot de passe oublié");
+        stage.show();
+
+    }
     @FXML
     private void generateCaptcha() {
         String captcha = generateRandomString(6);

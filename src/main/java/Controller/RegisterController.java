@@ -413,53 +413,17 @@ public class RegisterController  implements Initializable {
             if (isUserAdded) {
                 String query = "SELECT id FROM user ORDER BY id DESC LIMIT 1";
 
-                try {
-                    ps = con.prepareStatement(query);
-                    rs = ps.executeQuery();
-                    if (rs.next()) {
-                        String userID = rs.getString("id");
-                        System.out.println(userID);
-                        String subject = "Welcome To Our Website BreatheOut";
-                        String verificationUrl = "http://www.breatheout.com/verif/email/" + userID + "/" + token;
-                        String messageBody = "Welcome to BreatheOut!\n\n";
-                        messageBody += "Please click the following link to verify your account:\n";
-                        messageBody += "<a href='" + verificationUrl + "'>Verify Account</a>";
-                        String email_to = mail;
-                        EmailSender.sendEmail(email_to, subject, messageBody);
-                        viderTextField();
+                viderTextField();
 
-                        alertHelper.showAlert(Alert.AlertType.INFORMATION, window, "Information",
-                                "You have registered successfully.");
-                    }}
+                alertHelper.showAlert(Alert.AlertType.INFORMATION, window, "Information",
+                        "You have registered successfully.");
 
-                catch(Exception e) {
-                        e.printStackTrace();
-                        alertHelper.showAlert(Alert.AlertType.ERROR, window, "Error",
-                                "Failed to retrieve user ID. Please try again later.");
-                    }
-            finally {if (rs != null) {
-                    try {
-                        rs.close();
-                    } catch (SQLException e) {
-                        e.printStackTrace();
-                    }
-                }
-                    if (ps != null) {
-                        try {
-                            ps.close();
-                        } catch (SQLException e) {
-                            e.printStackTrace();
-                        }
-                    }
 
-                }
+            }
+                else{
 
-                    Alert alert = new Alert(Alert.AlertType.INFORMATION);
-                    alert.setTitle("Success");
-                    alert.setContentText("user added successfully");
-                    alert.showAndWait();
-                    viderTextField();
-                }else  {
+
+
                     Alert alert = new Alert(Alert.AlertType.ERROR);
                     alert.setTitle("Error");
                     alert.setContentText("Something wrong");
@@ -470,7 +434,6 @@ public class RegisterController  implements Initializable {
         }
 
     @FXML
-
     public void showLoginStage(javafx.scene.input.MouseEvent mouseEvent)  throws IOException{
         Stage stage = (Stage) registerButton.getScene().getWindow();
         stage.close();
