@@ -3,6 +3,7 @@ package Utils;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
+import java.sql.SQLOutput;
 
 public class MyDataBase {
     static String user = "root";
@@ -15,10 +16,10 @@ public class MyDataBase {
     // Private constructor to prevent instantiation from outside
     private MyDataBase() {
         try {
-            Class.forName(driver);
-            this.connection = DriverManager.getConnection(url, user, password);
-        } catch (ClassNotFoundException | SQLException e) {
-            throw new RuntimeException(e);
+            connection = DriverManager.getConnection(url, user, password);
+            System.out.println("Connexion établie !");
+        } catch ( SQLException e) {
+            System.out.println(e.getMessage());
         }
     }
 
@@ -27,7 +28,6 @@ public class MyDataBase {
             instance = new MyDataBase();
         return instance;
     }
-
     public Connection getConnection() {
         return connection;
     }

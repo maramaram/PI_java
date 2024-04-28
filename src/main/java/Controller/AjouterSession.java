@@ -2,6 +2,8 @@ package Controller;
 
 import Entities.Session;
 import Service.ServiceSession;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -25,8 +27,6 @@ public class AjouterSession implements Initializable {
     @FXML
     private Label capE;
     @FXML
-    private Label desE;
-    @FXML
     private Label coachE;
     @FXML
     private Label dateE;
@@ -35,29 +35,31 @@ public class AjouterSession implements Initializable {
     @FXML
     private ComboBox<String> comboBoxCoach;
     @FXML
-    private DatePicker datePicker;
+    private ComboBox<String> comboBoxType;
     @FXML
-    private TextField tType;
+    private DatePicker datePicker;
+
     @FXML
     private TextField tCap;
-    @FXML
-    private TextField tDes;
     private SessionController sessionController;
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         coachE.setText("");
         // Initialise la liste déroulante des coaches, si nécessaire
-        comboBoxCoach.getItems().addAll("Firas", "Rayan", "Coach 3", "Aziz"); // Remplacez avec vos propres valeurs si nécessaire
+        comboBoxCoach.getItems().addAll("Firas", "Rayan", "Yahya", "Aziz"); // Remplacez avec vos propres valeurs si nécessaire
+
+        // Remplacez avec vos types de session réels
+        comboBoxType.getItems().addAll( "hit", "endurance", "cross fit","pilate","Muscu-training"); // Correction du nom de la ComboBox
     }
 
     @FXML
-    private void sauvegarderSession(ActionEvent actionEvent) {
+    private void AjouterSE(ActionEvent actionEvent) {
         boolean test = true;
         // Vérifier si tous les champs de texte sont remplis
-        if (tType.getText().isEmpty()) {
+        if (comboBoxType.getValue() == null || comboBoxType.getValue().isEmpty()) {
             test = false;
-            typeE.setText("vide");
+            typeE.setText("Le type de la session est obligatoire");
         } else {
             typeE.setText("");
         }
@@ -65,16 +67,9 @@ public class AjouterSession implements Initializable {
         // Vérifier si la capacité est un entier
         if (!isInteger(tCap.getText())) {
             test = false;
-            capE.setText("Doit être un entier");
+            capE.setText("La capacité de la session doit être un entier");
         } else {
             capE.setText("");
-        }
-
-        if (tDes.getText().isEmpty()) {
-            test = false;
-            desE.setText("vide");
-        } else {
-            desE.setText("");
         }
 
         if (comboBoxCoach.getValue() == null || comboBoxCoach.getValue().isEmpty()) {
@@ -102,19 +97,18 @@ public class AjouterSession implements Initializable {
 
     private void saveSessionToDatabase() {
         // Retrieve data from the form
-        String type = tType.getText();
+        String type = comboBoxType.getValue();
         int cap = Integer.parseInt(tCap.getText());
-        String des = tDes.getText();
         String coach = comboBoxCoach.getValue();
-        java.util.Date date = java.util.Date.from(datePicker.getValue().atStartOfDay(ZoneId.systemDefault()).toInstant());
-
         // Create a new session object
-        Session session = new Session(cap, des, type, date, coach);
+        java.sql.Date date = java.sql.Date.valueOf(datePicker.getValue());
+
+        Session session = new Session(cap, type, (java.sql.Date) date, coach);
 
         // Call the service to save the session
         ServiceSession serviceSession = new ServiceSession();
         try {
-            serviceSession.ajouter(session);
+            serviceSession.add(session);
             showSuccessMessage("Session added successfully!");
             // If needed, notify the session controller to refresh the sessions table
             if (sessionController != null) {
@@ -168,10 +162,10 @@ public class AjouterSession implements Initializable {
     @FXML
     void createSession() {
         try {
-            Parent loader = FXMLLoader.load(getClass().getResource("/Fxml/Sessions.fxml"));
+            Parent loader = FXMLLoader.load(getClass().getResource("/Fxml/AjouterSession.fxml"));
             Stage s;
             Scene scene = new Scene(loader);
-            s = (Stage) (tType).getScene().getWindow();
+            s = (Stage) (comboBoxType).getScene().getWindow();
             s.setScene(scene);
             s.show();
         } catch (IOException e) {

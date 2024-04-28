@@ -4,10 +4,10 @@ import java.util.List;
 
 public interface IService<T> {
 
-    void ajouter(T t ) throws SQLException;
+    void add(T t ) throws SQLException;
     void modifier(T t) throws SQLException;
 
-    void supprimer(T t) throws SQLException;
+    void delete(T t) throws SQLException;
 
-    List<T> afficher() throws SQLException;
+    List<T> afficherList() throws SQLException;
 }

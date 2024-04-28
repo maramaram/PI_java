@@ -2,89 +2,83 @@ package Service;
 
 import Entities.Session;
 import Utils.MyDataBase;
+
+import java.sql.*;
+import java.util.ArrayList;
+import java.util.List;
+
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.util.Date;
-import java.sql.*;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Locale;
+
 
 public class ServiceSession implements IService<Session> {
 
-    private Connection connection;
+    private Connection conx;
+    private Statement stm;
+    private PreparedStatement pstm;
 
     public ServiceSession(){
-        connection= MyDataBase.getInstance().getConnection();
+        conx= MyDataBase.getInstance().getConnection();
     }
 
     @Override
-    public void ajouter(Session session) throws SQLException {
-        String dateString = String.valueOf(session.getDate()); // Example date string
-        if(dateString == null || dateString.isEmpty()) {
-            System.out.println(" error");
-            return;
-        }
-        SimpleDateFormat dateFormat = new SimpleDateFormat("EEE MMM dd HH:mm:ss zzz yyyy", Locale.ENGLISH);
-        Date date;
-        try {
-            date = dateFormat.parse(dateString);
-        } catch (ParseException e) {
-            System.err.println("Error parsing date : " + e+ e.getMessage());
-            // Handle the parse exception
-            e.printStackTrace();
-            // You may choose to throw the exception or return from the method here
-            return;
-        }
-
-        String sql = "INSERT INTO `session`(`cap`, `des`, `Type`, `Date`, `Coach`) VALUES (?, ?, ?, ?, ?)";
-        PreparedStatement statement = connection.prepareStatement(sql);
-        statement.setInt(1, session.getCap());
-        statement.setString(2, session.getDes());
-        statement.setString(3, session.getType());
-        statement.setDate(4, new java.sql.Date(date.getTime())); // Convert Date to java.sql.Date
-        statement.setString(5, session.getCoach());
-        System.out.println("eeeeeeeeeeeeeee");
-        statement.executeUpdate();
+    public void add(Session session) throws SQLException {
+        String req = "INSERT INTO `session` (`cap`, `type`, `date`, `coach`) VALUES ('"+session.getCap()+"','"+session.getType()+"','"+session.getDate()+"','"+session.getCoach()+"')";
+      stm = conx.createStatement();
+      stm.executeUpdate(req);
+      System.out.println("Session ajoutée avec succes");
     }
 
     @Override
     public void modifier(Session session) throws SQLException {
-        String sql = "Update session set cap = ?, des= ? , type= ? , Date= ? , Coach= ? where id = ?";
-        PreparedStatement preparedStatement= connection.prepareStatement(sql);
-        preparedStatement.setString(1, String.valueOf(session.getCap()));
-        preparedStatement.setString(2, session.getDes());
-        preparedStatement.setString(3,session.getType());
-        preparedStatement.setDate(4, java.sql.Date.valueOf(session.getDate()));
-        preparedStatement.setString(5,session.getCoach());
-        preparedStatement.executeUpdate();
+        String req = "Update session set cap = ?, type= ? , date= ? , coach= ? where id = ?";
+        pstm = conx.prepareStatement(req);
+        pstm.setInt(1, (session.getCap()));
+        pstm.setString(2,session.getType());
+        LocalDate date = LocalDate.parse(session.getDate()); // Assuming 'date' is a String in the format 'yyyy-MM-dd'
+        pstm.setDate(3, java.sql.Date.valueOf(date));
+        pstm.setString(4,session.getCoach());
+        pstm.setInt(5,session.getId());
+        pstm.executeUpdate();
+        System.out.println("Session modifier");
     }
 
     @Override
-    public void supprimer(Session session) throws SQLException {
+    public void delete(Session session) throws SQLException {
 
-        String sql= "delete from session where id = ?";
-        PreparedStatement preparedStatement= connection.prepareStatement(sql);
-        preparedStatement.setInt(1,session.getId());
-        preparedStatement.executeUpdate();
+        String req= "delete from session where id = ?";
+        pstm = conx.prepareStatement(req);
+        pstm.setInt(1,session.getId());
+        pstm.executeUpdate();
+        System.out.println("Session supprimer");
     }
     @Override
-    public List<Session> afficher() throws SQLException {
-        List<Session> sessions= new ArrayList<>();
-        String sql = "select * from session";
-        Statement statement = connection.createStatement();
-        ResultSet rs = statement.executeQuery(sql);
-        while (rs.next()){
-            Session s = new Session();
-            s.setId(rs.getInt("id"));
-            s.setCap(Integer.valueOf(rs.getString("cap")));
-            s.setDes(rs.getString("des"));
-            s.setType(rs.getString("type"));
-            s.setDate(String.valueOf(LocalDate.parse(String.valueOf(rs.getDate("Date")))));
-            s.setCoach(rs.getString("coach"));
-            sessions.add(s);
+    public List<Session> afficherList() throws SQLException {
+        String req = "SELECT * FROM `session`";
+
+        stm = conx.createStatement();
+        ResultSet res = stm.executeQuery(req);
+        List<Session> se = new ArrayList<>();
+
+        while (res.next()) {
+            se.add(new Session(res.getInt(1), res.getInt(2), res.getString(3), res.getDate(4), res.getString(5)));
         }
-        return sessions;
+        return se;
     }
+
+        public List<Session> afficherListSearch(String s) throws SQLException {
+            String req = "SELECT * FROM `session` WHERE `type` LIKE '"+"%"+s+"%"+"' OR `coach` LIKE '"+"%"+s+"%'";
+
+            stm  = conx.createStatement();
+            ResultSet res = stm.executeQuery(req);
+
+            List<Session> se = new ArrayList<>();
+
+            while (res.next()) {
+                se.add(new Session(res.getInt(1), res.getInt(2), res.getString(3), res.getDate(4), res.getString(5)));
+            }
+            return se;
+        }
 }

@@ -1,45 +1,32 @@
 package Entities;
 
+import java.sql.Date;
+import java.time.LocalDate;
+
 public class Reservation {
-    int id;
-    String date,session,client,action;
+    private int id;
+    private String session;
+    private Date date;
+    private String etat;
+    private String client;
 
-    public Reservation(int id, String date, String session, String client, String action) {
+    public Reservation() {
+        // Constructeur par défaut
+    }
+
+    public Reservation(int id, String session, Date date, String etat, String client) {
         this.id = id;
-        this.date = date;
         this.session = session;
+        this.date = date;
+        this.etat = etat;
         this.client = client;
-        this.action = action;
     }
-    public Reservation(String date, String session, String client, String action) {
-        this.date = date;
+
+    public Reservation(String session, Date date, String etat, String client) {
         this.session = session;
+        this.date = date;
+        this.etat = etat;
         this.client = client;
-        this.action = action;
-    }
-
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
-    }
-
-    public String getDate() {
-        return date;
-    }
-
-    public void setDate(String date) {
-        this.date = date;
-    }
-
-    public String getSession() {
-        return session;
-    }
-
-    public void setSession(String session) {
-        this.session = session;
     }
 
     public String getClient() {
@@ -50,22 +37,46 @@ public class Reservation {
         this.client = client;
     }
 
-    public String getAction() {
-        return action;
+    public int getId() {
+        return id;
     }
 
-    public void setAction(String action) {
-        this.action = action;
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public String getSession() {
+        return session;
+    }
+
+    public void setSession(String session) {
+        this.session = session;
+    }
+
+    public LocalDate getDate() {
+        return date.toLocalDate();
+    }
+
+    public void setDate(Date date) {
+        this.date = date;
+    }
+
+    public String getEtat() {
+        return etat;
+    }
+
+    public void setEtat(String etat) {
+        this.etat = etat;
     }
 
     @Override
     public String toString() {
         return "Reservation{" +
                 "id=" + id +
-                ", date='" + date + '\'' +
-                ", session='" + session + '\'' +
+                ", sessionId=" + session +
+                ", date=" + date +
+                ", etat='" + etat + '\'' +
                 ", client='" + client + '\'' +
-                ", action='" + action + '\'' +
                 '}';
     }
 }

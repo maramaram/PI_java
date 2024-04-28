@@ -1,55 +1,54 @@
 package Entities;
 
-import java.util.Date;
+import java.sql.Date;
 
 public class Session {
 
-    private int id,cap;
+    private int id, cap;
     private String date;
-    private String des;
     private String type;
     private String coach;
 
-    public Session() {}
-
-    public Session(int id, int cap, String des, String type , Date date, String coach) {
-       this.id = id;
-       this.cap = cap;
-       this.des = des;
-       this.type = type;
-       this.date = date.toString();
-       this.coach = coach;
+    public Session(int id, int cap, String type, Date date, String coach) {
+        this.id = id;
+        this.cap = cap;
+        this.type = type;
+        this.date = date.toString();
+        this.coach = coach;
     }
 
-    public Session(Integer cap, String des, String type, Date date, String coach) {
+    public Session(int cap, String type, Date date, String coach) {
         this.cap = cap;
-        this.des = des;
-       this.type = type;
-       this.date = String.valueOf(date);
-       this.coach = coach;
+        this.type = type;
+        this.date = String.valueOf(date);
+        this.coach = coach;
+    }
+
+    public Session() {
     }
 
     public int getId() {
         return id;
     }
+
     public void setId(int id) {
         this.id = id;
     }
 
-    public Integer getCap() {
+    public int getCap() {
         return cap;
     }
 
-    public void setCap(Integer cap) {
-       this.cap = cap;
+    public void setCap(int cap) {
+        this.cap = cap;
     }
 
-    public String getDes() {
-        return des;
+    public String getDate() {
+        return date;
     }
 
-    public void setDes(String des) {
-        this.des = des;
+    public void setDate(String date) {
+        this.date = date;
     }
 
     public String getType() {
@@ -66,13 +65,5 @@ public class Session {
 
     public void setCoach(String coach) {
         this.coach = coach;
-    }
-
-    public String getDate() {
-        return  date;
-    }
-
-    public void setDate(String date) {
-        this.date = date;
     }
 }
