@@ -16,12 +16,7 @@
     <left>
         <AnchorPane prefHeight="576.0" prefWidth="690.0" styleClass="anchor-pane" stylesheets="@style.css" BorderPane.alignment="CENTER">
             <children>
-                <Text fill="WHITE" layoutX="27.0" layoutY="254.0" strokeType="OUTSIDE" strokeWidth="0.0" text="WELCOME TO BREATHE OUT" wrappingWidth="591.51171875">
-                    <font>
-                        <Font name="System Bold" size="40.0" />
-                    </font>
-                </Text>
-                <Text fill="#da5f46" layoutX="27.0" layoutY="282.0" onMouseClicked="#showSignInStage" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="text-field" text="Don't have an account? Register" wrappingWidth="210.6080322265625">
+                <Text fill="#da5f46" layoutX="27.0" layoutY="400.0" onMouseClicked="#showSignInStage" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="text-field" text="Don't have an account? Register" wrappingWidth="210.6080322265625">
                     <cursor>
                         <Cursor fx:constant="HAND" />
                     </cursor>
@@ -29,6 +24,11 @@
                         <Font name="Arial" size="13.0" />
                     </font>
                 </Text>
+            <ImageView fx:id="imageView" fitHeight="336.0" fitWidth="452.0" layoutX="125.0" layoutY="39.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../../java/image/logo.png" />
+               </image>
+            </ImageView>
             </children>
         </AnchorPane>
     </left>
@@ -46,10 +46,6 @@
             </Button>
             <Label fx:id="checkMailLogin" layoutX="122.0" layoutY="251.0" prefHeight="18.0" prefWidth="295.0" />
             <Label fx:id="CheckPasswordLogin" layoutX="122.0" layoutY="307.0" prefHeight="18.0" prefWidth="295.0" />
-            <ImageView fx:id="imageView" fitHeight="127.0" fitWidth="141.0" layoutX="153.0" layoutY="54.0" pickOnBounds="true" preserveRatio="true">
-            <image>
-               <Image url="@../../../../../OneDrive/Documents/breatheOut/logo.png" />
-            </image></ImageView>
          <TextField fx:id="tfCaptcha" layoutX="122.0" layoutY="357.0" prefHeight="25.0" prefWidth="202.0" promptText="code" style="-fx-background-color: transparent; -fx-border-color: #404040; -fx-border-width: 0px 0px 2px 0px;" />
          <Label fx:id="captchaLabel" layoutX="195.0" layoutY="327.0" prefHeight="20.0" prefWidth="124.0" />
          <Label fx:id="checkrecaptcha" layoutX="153.0" layoutY="395.0" prefHeight="16.0" prefWidth="121.0" />
@@ -67,6 +63,11 @@
          </ImageView>
          <TextField fx:id="tempPasswordField" layoutX="124.0" layoutY="270.0" prefHeight="31.0" prefWidth="205.0" />
          <Label fx:id="pwd_forgot_label" layoutX="158.0" layoutY="511.0" onMouseClicked="#go_to_forgottenPWD" text="Forgot password?" />
+             <Text layoutX="169.0" layoutY="171.0" strokeType="OUTSIDE" strokeWidth="0.0" text="LOGIN" wrappingWidth="131.51199340820312">
+                 <font>
+                     <Font name="System Bold" size="27.0" />
+                 </font>
+             </Text>
         </AnchorPane>
     </center>
 </BorderPane>

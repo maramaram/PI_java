@@ -71,7 +71,10 @@ public class ForgotPwdController implements Initializable {
     private ImageView copy;
 
     @FXML
-    private ImageView go_back;
+    private ImageView goback;
+
+    @FXML
+    private ImageView imageView;
 
     @FXML
     private TextField newpasswordfield;
@@ -177,17 +180,31 @@ public class ForgotPwdController implements Initializable {
         telephone.setVisible(true);
         try {
             // Convert the file path to a URL
-            File file = new File("C:/Users/bouaz/PREVIOUS/src/main/java/image/image-removebg-preview (3).png");
+            File file = new File("C:/Users/bouaz/PREVIOUS/src/main/java/image/goback.png");
             String imageUrl = file.toURI().toURL().toString();
             // Create an Image object from the URL
             Image image = new Image(imageUrl);
             // Set the image to the ImageView
-            go_back.setImage(image);
+            goback.setImage(image);
         } catch (MalformedURLException e) {
             // Handle invalid URL exception
             e.printStackTrace();
             // Optionally, show an alert or fallback image
         }
+        try {
+            // Convert the file path to a URL
+            File file = new File("C:/Users/bouaz/PREVIOUS/src/main/java/image/logo.png");
+            String imageUrl = file.toURI().toURL().toString();
+            // Create an Image object from the URL
+            Image image = new Image(imageUrl);
+            // Set the image to the ImageView
+            imageView.setImage(image);
+        } catch (MalformedURLException e) {
+            // Handle invalid URL exception
+            e.printStackTrace();
+            // Optionally, show an alert or fallback image
+        }
+
     }
     @FXML
     void resetbutton(ActionEvent event) throws SQLException {
@@ -249,5 +266,23 @@ public class ForgotPwdController implements Initializable {
             checkPasswordForgot.setVisible(false);
         }
         return verif;
+    }
+
+    public void showSignInStage() throws IOException {
+        Stage stage = (Stage) sendCode_btn.getScene().getWindow();
+        stage.close();
+        Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/User/SignUp.fxml")));
+        Scene scene = new Scene(root);
+        stage.setScene(scene);
+        stage.setTitle("User SignIn");
+        stage.show();
+    }public void goback() throws IOException {
+        Stage stage = (Stage) sendCode_btn.getScene().getWindow();
+        stage.close();
+        Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/User/LogIn.fxml")));
+        Scene scene = new Scene(root);
+        stage.setScene(scene);
+        stage.setTitle("Log IN");
+        stage.show();
     }
 }

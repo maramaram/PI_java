@@ -18,6 +18,8 @@ import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 
 import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.net.MalformedURLException;
 import java.sql.Connection;
@@ -51,6 +53,11 @@ public class UpdateProfileController {
 
     @FXML
     private TextField adress;
+
+
+
+    @FXML
+    private ImageView goback;
 
 
 
@@ -133,9 +140,15 @@ public class UpdateProfileController {
             tf_numtel.setText(user.getNum_tel());
             adress.setText(user.getAdress());
             birthdate.setValue(user.getDate_N());
-            
 
 
+            try {
+                FileInputStream fileInputStream2 = new FileInputStream("C:/Users/bouaz/PREVIOUS/src/main/java/image/gobackwhite.png"); // Replace "path_to_your_image.jpg" with the actual path to your image file
+                Image image3 = new Image(fileInputStream2);
+                goback.setImage(image3);
+            } catch (FileNotFoundException e) {
+                e.printStackTrace();
+            }
             // Load the profile image into profile_img ImageView
             photoPath = user.getPhoto();
             if (photoPath != null && !photoPath.isEmpty()) {
@@ -153,6 +166,16 @@ public class UpdateProfileController {
 
         }
 
+    }
+    @FXML
+    public void goback(MouseEvent actionEvent) throws IOException {
+        Stage stage = (Stage) update_btn.getScene().getWindow();
+        stage.close();
+        Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/User/clientPanne.fxml")));
+        Scene scene = new Scene(root);
+        stage.setScene(scene);
+        stage.setTitle("User Profile");
+        stage.show();
     }
     private boolean isAlreadyRegisteredWithMail() {
         PreparedStatement ps;
@@ -510,7 +533,15 @@ public class UpdateProfileController {
     }
 
 
-
+    public void changepwd(MouseEvent mouseEvent) throws IOException {
+        Stage stage = (Stage) update_btn.getScene().getWindow();
+        stage.close();
+        Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/User/EnterPassword.fxml")));
+        Scene scene = new Scene(root);
+        stage.setScene(scene);
+        stage.setTitle("User SignIn");
+        stage.show();
+    }
 }
 
 

@@ -8,24 +8,33 @@ import javafx.animation.Timeline;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
+import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
+import javafx.stage.Window;
 import javafx.util.Duration;
 import org.apache.commons.codec.digest.DigestUtils;
-import javafx.stage.Window;
+
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.net.URL;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import javafx.event.ActionEvent;
+import java.util.Objects;
+import java.util.ResourceBundle;
 
-public class EnterPassword {
+public class EnterPassword implements Initializable {
     @FXML
     private Button changePWD_btn;
 
@@ -37,6 +46,12 @@ public class EnterPassword {
 
     @FXML
     private Label firstname;
+
+    @FXML
+    private ImageView goback;
+
+    @FXML
+    private ImageView imageView;
 
     @FXML
     private TextField new_pwd;
@@ -128,7 +143,7 @@ public class EnterPassword {
 
             boolean verif = true;
 
-            if (old_pwd.getText().isEmpty() || old_pwd.getText().isEmpty() ) {
+            if (old_pwd.getText().isEmpty() ||  new_pwd.getText().isEmpty() ) {
                 checkOld_PWD.setVisible(true);
                 checkOld_PWD.setText("Fields cannot be blank.");
                 checkOld_PWD.setStyle("-fx-text-fill: red;");
@@ -145,5 +160,26 @@ public class EnterPassword {
 
     }
 
+    @FXML
+    public void goback(MouseEvent actionEvent) throws IOException {
+        Stage stage = (Stage) changePWD_btn.getScene().getWindow();
+        stage.close();
+        Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/User/clientPanne.fxml")));
+        Scene scene = new Scene(root);
+        stage.setScene(scene);
+        stage.setTitle("User Profile");
+        stage.show();
+    }
+    @Override
+    public void initialize(URL url, ResourceBundle resourceBundle) {
 
+        try {
+            FileInputStream fileInputStream2 = new FileInputStream("C:/Users/bouaz/PREVIOUS/src/main/java/image/gobackwhite.png"); // Replace "path_to_your_image.jpg" with the actual path to your image file
+            Image image3 = new Image(fileInputStream2);
+            goback.setImage(image3);
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        }
+
+    }
 }

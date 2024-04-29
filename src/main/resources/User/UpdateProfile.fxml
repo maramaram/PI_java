@@ -16,26 +16,20 @@
          <top>
                 <AnchorPane prefHeight="523.0" prefWidth="1102.0" BorderPane.alignment="CENTER">
                     <children>
-                        <Button fx:id="update_btn" layoutX="512.0" layoutY="442.0" mnemonicParsing="false" onAction="#update" text="Update" />
-                        <ImageView fx:id="profile_img" fitHeight="150.0" fitWidth="200.0" layoutX="688.0" layoutY="128.0" pickOnBounds="true" preserveRatio="true">
-                     <image>
-                        <Image url="@../../java/image/download.jpg" />
-                     </image></ImageView>
-                  <Button fx:id="choose_photo_btn" layoutX="688.0" layoutY="329.0" mnemonicParsing="false" onAction="#choose_photo" text="Change Profile Picture" />
-                  <AnchorPane layoutX="37.0" layoutY="91.0" prefHeight="434.0" prefWidth="379.0">
+                  <AnchorPane layoutX="157.0" layoutY="106.0" prefHeight="463.0" prefWidth="962.0">
                      <children>
-                              <Label fx:id="firstname" layoutX="17.0" layoutY="34.0" prefHeight="20.0" prefWidth="74.0" text="First Name" />
+                              <Label fx:id="firstname" layoutX="17.0" layoutY="34.0" prefHeight="20.0" prefWidth="74.0" styleClass="white-label" text="First Name" />
                         <TextField fx:id="tf_firstname" layoutX="171.0" layoutY="28.0" />
-                              <Label fx:id="email" layoutX="21.0" layoutY="88.0" text="Last Name" />
+                              <Label fx:id="email" layoutX="21.0" layoutY="88.0" styleClass="white-label" text="Last Name" />
                         <TextField fx:id="tf_lastname" layoutX="171.0" layoutY="82.0" />
-                              <Label layoutX="45.0" layoutY="142.0" text="Email" />
+                              <Label layoutX="45.0" layoutY="142.0" styleClass="white-label" text="Email" />
                         <TextField fx:id="tf_email" layoutX="171.0" layoutY="136.0" />
-                              <Label fx:id="phonenumber" layoutX="7.0" layoutY="192.0" text="Phone Number" />
+                              <Label fx:id="phonenumber" layoutX="7.0" layoutY="192.0" styleClass="white-label" text="Phone Number" />
                         <TextField fx:id="tf_numtel" layoutX="171.0" layoutY="186.0" />
-                              <Label layoutX="30.0" layoutY="258.0" text="Adresse" />
+                              <Label layoutX="30.0" layoutY="258.0" styleClass="white-label" text="Adresse" />
                         <TextField fx:id="adress" layoutX="171.0" layoutY="252.0" />
-                        <Label layoutX="23.0" layoutY="316.0" text="Date of Birth" />
-                        <DatePicker fx:id="birthdate" layoutX="160.0" layoutY="310.0" styleClass="text-field" />
+                        <Label layoutX="23.0" layoutY="316.0" styleClass="white-label" text="Date of Birth" />
+                        <DatePicker fx:id="birthdate" layoutX="174.0" layoutY="310.0" prefHeight="34.0" prefWidth="185.0" styleClass="text-field" />
                         <Label fx:id="checkfirstName" layoutX="172.0" layoutY="59.0" prefHeight="20.0" prefWidth="187.0" />
                         <Label fx:id="checklastName" layoutX="169.0" layoutY="113.0" prefHeight="20.0" prefWidth="188.0" />
                         <Label fx:id="CheckMail" layoutX="166.0" layoutY="167.0" prefHeight="20.0" prefWidth="191.0" />
@@ -43,8 +37,21 @@
                         <Label fx:id="checkDateBirthday" layoutX="160.0" layoutY="354.0" prefHeight="20.0" prefWidth="194.0" />
                         <Label fx:id="CheckAdresse" layoutX="156.0" layoutY="283.0" prefHeight="20.0" prefWidth="214.0" />
                         <Label fx:id="changepwd" layoutX="79.0" layoutY="387.0" onMouseClicked="#changepwd" text="Change password?" />
+                        <Label layoutX="88.0" prefHeight="34.0" prefWidth="214.0" styleClass="bold-label" stylesheets="@style.css" text="Update Profile" />
+                              <Button fx:id="update_btn" layoutX="211.0" layoutY="442.0" mnemonicParsing="false" onAction="#update" text="Update" />
+                        <Button fx:id="choose_photo_btn" layoutX="427.0" layoutY="219.0" mnemonicParsing="false" onAction="#choose_photo" text="Change Profile Picture" />
+                              <ImageView fx:id="profile_img" fitHeight="150.0" fitWidth="200.0" layoutX="437.0" layoutY="53.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../../java/image/download.jpg" />
+                           </image>
+                        </ImageView>
                      </children>
                   </AnchorPane>
+                  <ImageView fx:id="goback" fitHeight="82.0" fitWidth="93.0" layoutX="28.0" layoutY="58.0" onMouseClicked="#goback" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../../java/image/gobackwhite.png" />
+                     </image>
+                  </ImageView>
                     </children>
                 </AnchorPane>
          </top>

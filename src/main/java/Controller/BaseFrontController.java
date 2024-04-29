@@ -34,7 +34,8 @@ import java.util.ResourceBundle;
         private Label logout_btn;
 
 
-
+            @FXML
+            private ImageView bg_pic;
 
         @FXML
         private ImageView pp_view;
@@ -52,7 +53,32 @@ import java.util.ResourceBundle;
 
             // Populate the labels with user details
             if (user != null) {
-
+                try {
+                    // Convert the file path to a URL
+                    File file = new File("C:/Users/bouaz/PREVIOUS/src/main/java/image/logo.png");
+                    String imageUrl = file.toURI().toURL().toString();
+                    // Create an Image object from the URL
+                    Image image = new Image(imageUrl);
+                    // Set the image to the ImageView
+                    bg_pic.setImage(image);
+                } catch (MalformedURLException e) {
+                    // Handle invalid URL exception
+                    e.printStackTrace();
+                    // Optionally, show an alert or fallback image
+                }
+                try {
+                    // Convert the file path to a URL
+                    File file = new File("C:/Users/bouaz/PREVIOUS/src/main/java/image/Untitled design.png");
+                    String imageUrl = file.toURI().toURL().toString();
+                    // Create an Image object from the URL
+                    Image image = new Image(imageUrl);
+                    // Set the image to the ImageView
+                    bg_pic.setImage(image);
+                } catch (MalformedURLException e) {
+                    // Handle invalid URL exception
+                    e.printStackTrace();
+                    // Optionally, show an alert or fallback image
+                }
                 String photoPath = user.getPhoto();
                 if (photoPath != null && !photoPath.isEmpty()) {
                     try {

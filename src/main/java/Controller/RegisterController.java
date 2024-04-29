@@ -24,6 +24,10 @@ import org.w3c.dom.events.MouseEvent;
 import org.apache.commons.codec.digest.DigestUtils;
 import javafx.scene.control.Alert;
 import javafx.stage.Window;
+
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.net.MalformedURLException;
 import java.util.ResourceBundle;
 import java.io.File;
 import java.io.IOException;
@@ -56,6 +60,9 @@ public class RegisterController  implements Initializable {
 
     @FXML
     private ImageView pp_view;
+    @FXML
+    private ImageView imageView;
+
 
     @FXML
     private Label checkPhoto;
@@ -180,6 +187,20 @@ public class RegisterController  implements Initializable {
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         role.getItems().addAll("Client", "Coach");
+        try {
+            FileInputStream fileInputStream1 = new FileInputStream("C:/Users/bouaz/PREVIOUS/src/main/java/image/logo.png"); // Replace "path_to_your_image.jpg" with the actual path to your image file
+            Image image2 = new Image(fileInputStream1);
+            imageView.setImage(image2);
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        }
+        try {
+            FileInputStream fileInputStream2 = new FileInputStream("C:/Users/bouaz/PREVIOUS/src/main/java/image/blank-profile-picture-973460_1280.png"); // Replace "path_to_your_image.jpg" with the actual path to your image file
+            Image image3 = new Image(fileInputStream2);
+            pp_view.setImage(image3);
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        }
     }
 
     private boolean isValidEmail(String email) {
@@ -443,5 +464,6 @@ public class RegisterController  implements Initializable {
         stage.setTitle("User LogIn");
         stage.show();
     }
+
 }
 

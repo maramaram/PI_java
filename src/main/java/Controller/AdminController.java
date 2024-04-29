@@ -1,9 +1,11 @@
 package Controller;
+import Service.UserService;
 import helper.AlertHelper;
 import Entities.* ;
 import Utils.DataBase ;
 import io.github.palexdev.materialfx.controls.MFXPagination;
 import io.github.palexdev.materialfx.controls.MFXTableColumn;
+import javafx.collections.FXCollections;
 import javafx.collections.transformation.FilteredList;
 import javafx.collections.transformation.SortedList;
 import javafx.scene.control.*;
@@ -22,6 +24,7 @@ import javafx.fxml.FXMLLoader;
 import java.io.IOException;
 import java.sql.*;
 import java.time.LocalDate;
+import java.util.List;
 import java.util.Objects;
 import java.util.Optional;
 import java.util.UUID;
@@ -75,12 +78,17 @@ public class AdminController {
 
     @FXML
     private TextField filterField;
-
+    private UserService us;
     private ObservableList<User> listM;
     ObservableList<User> dataList;
     Window window;
+    public AdminController() {
+        this.us = new UserService(); // Initialize the UserService field
+    }
 
     public void DisplayUser() {
+        List<User> listUsers = us.getAllUsers();
+        ObservableList<User> observableList = FXCollections.observableArrayList(listUsers);
         firstname.setCellValueFactory(new PropertyValueFactory<>("prenom"));
         lastname.setCellValueFactory(new PropertyValueFactory<>("nom"));
         email.setCellValueFactory(new PropertyValueFactory<>("email"));
@@ -92,6 +100,24 @@ public class AdminController {
         photo.setCellValueFactory(new PropertyValueFactory<>("photo"));
         listM = DataBase.getDatauser();
         userTableView.setItems(listM);
+        int itemsPerPage = 8; // Show 8 rows per page
+        int pageCount = (int) Math.ceil((double) listUsers.size() / itemsPerPage);
+        pages.setMaxPage(pageCount); // Set the max number of pages
+
+        // Handle pagination changes
+        pages.currentPageProperty().addListener((observable, oldValue, newValue) -> {
+            // Adjust the current page index for zero-based indexing
+            int currentPageIndex = newValue.intValue() - 1;
+            int fromIndex = currentPageIndex * itemsPerPage;
+            int toIndex = Math.min(fromIndex + itemsPerPage, listUsers.size());
+            if (fromIndex < listUsers.size()) {
+                userTableView.setItems(FXCollections.observableArrayList(listUsers.subList(fromIndex, toIndex)));
+            } else {
+                // Handle the case where the current page index exceeds the valid range of indices
+                // Set the TableView to an empty list when no items should be displayed
+                userTableView.setItems(FXCollections.emptyObservableList());
+            }
+        });
     }
     public void initialize() throws SQLException {
         DisplayUser();
@@ -126,6 +152,7 @@ public class AdminController {
         });
         SortedList<User> sortedData = new SortedList<>(filteredData);
         sortedData.comparatorProperty().bind(userTableView.comparatorProperty());
+
         userTableView.setItems(sortedData);
     }
     private void ActivateUserBack() {
