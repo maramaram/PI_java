@@ -90,6 +90,26 @@ public class CommandeService implements ICRUD<Commande> {
 
     @Override
     public List<Commande> afficherListSearch(String s) throws SQLException {
-        return null;
+        String req = "SELECT * FROM commande WHERE statut LIKE '"+"%"+s+"%"+"' ";
+
+        Statement stm = conx.createStatement();
+        ResultSet res = stm.executeQuery(req);
+
+        List<Commande> commandes = new ArrayList<>();
+
+        while (res.next()) {
+            commandes.add(new Commande(
+                    res.getInt("id"),
+                    res.getInt("livreur_id"),
+                    res.getInt("user_id"),
+                    res.getString("statut"),
+                    res.getInt("prixtotale")
+            ));
+        }
+
+        return commandes;
     }
+
+
+
 }

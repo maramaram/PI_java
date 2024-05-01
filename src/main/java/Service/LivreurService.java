@@ -94,6 +94,45 @@ public class LivreurService implements ICRUD<Livreur> {
 
     @Override
     public List<Livreur> afficherListSearch(String s) throws SQLException {
-        return null;
+        String req = "SELECT * FROM livreur WHERE nom LIKE '"+"%"+s+"%"+"' OR prenom LIKE '"+"%"+s+"%'";
+
+        PreparedStatement stm = conx.prepareStatement(req);
+        ResultSet res = stm.executeQuery();
+
+        List<Livreur> livreurs = new ArrayList<>();
+
+        while (res.next()) {
+            livreurs.add(new Livreur(res.getInt("id"),
+                    res.getString("nom"),
+                    res.getString("prenom"),
+                    res.getString("disponibilite"),
+                    res.getString("image"),
+                    res.getInt("note")));
+        }
+
+        return livreurs;
     }
+
+    public Livreur getLivreurById(int livreurId) throws SQLException {
+        String req = "SELECT * FROM `livreur` WHERE `id` = ?";
+        pstm = conx.prepareStatement(req);
+        pstm.setInt(1, livreurId);
+
+        ResultSet res = pstm.executeQuery();
+
+        Livreur livreur = null;
+
+        if (res.next()) {
+            livreur = new Livreur(res.getInt("id"),
+                    res.getString("nom"),
+                    res.getString("prenom"),
+                    res.getString("disponibilite"),
+                    res.getString("image"),
+                    res.getInt("note"));
+        }
+
+        return livreur;
+    }
+
+
 }

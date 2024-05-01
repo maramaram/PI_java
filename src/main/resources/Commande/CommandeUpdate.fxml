@@ -8,26 +8,23 @@
 <?import javafx.scene.text.Font?>
 
 <?import javafx.scene.control.ChoiceBox?>
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="576.0" prefWidth="1101.0" stylesheets="@../styleback.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.LivreurAdd">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="576.0" prefWidth="1101.0" stylesheets="@../styleback.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.CommandeUpdate">
 
     <left>
         <AnchorPane prefHeight="584.0" prefWidth="1102.0" stylesheets="@../styleback.css" BorderPane.alignment="CENTER">
             <children>
-                <ChoiceBox fx:id="disponibiliteA" layoutX="444.0" layoutY="201.0" prefWidth="308.0" />
-                <TextField fx:id="imageA" disable="true" layoutX="443.0" layoutY="241.0" prefWidth="308.0" />
-                <TextField fx:id="noteA" layoutX="443.0" layoutY="280.0" prefWidth="308.0" />
-                <TextField fx:id="nomA" layoutX="442.0" layoutY="125.0" prefWidth="308.0" />
-                <Label layoutX="330.0" layoutY="129.0" prefHeight="19.0" prefWidth="110.0" styleClass="outline-label" text="Nom" />
-                <Label layoutX="330.0" layoutY="167.0" prefHeight="19.0" prefWidth="110.0" styleClass="outline-label" text="prenom" />
-                <Label layoutX="330.0" layoutY="205.0" prefHeight="19.0" prefWidth="110.0" styleClass="outline-label" text="disponibilite" />
-                <Label layoutX="330.0" layoutY="245.0" prefHeight="19.0" prefWidth="110.0" styleClass="outline-label" text="image" />
-                <Label layoutX="330.0" layoutY="284.0" prefHeight="19.0" prefWidth="110.0" styleClass="outline-label" text="note" />
-                <Button layoutX="595.0" layoutY="481.0" mnemonicParsing="false" onAction="#AjouterEX" prefHeight="26.0" prefWidth="92.0" text="Ajouter" />
-                <Label fx:id="nomE" layoutX="755.0" layoutY="130.0" prefHeight="18.0" prefWidth="334.0" styleClass="error-label" />
-                <Label fx:id="prenomE" layoutX="755.0" layoutY="168.0" prefHeight="18.0" prefWidth="336.0" styleClass="error-label" />
-                <Label fx:id="disponibiliteE" layoutX="755.0" layoutY="206.0" prefHeight="18.0" prefWidth="338.0" styleClass="error-label" />
-                <Label fx:id="imageE" layoutX="755.0" layoutY="246.0" prefHeight="18.0" prefWidth="339.0" styleClass="error-label" />
-                <Label fx:id="noteE" layoutX="755.0" layoutY="284.0" prefHeight="18.0" prefWidth="337.0" styleClass="error-label" />
+                <ChoiceBox fx:id="StatutA" layoutX="448.0" layoutY="227.0" prefWidth="308.0" />
+                <TextField fx:id="PrixTotalA" layoutX="447.0" layoutY="262.0" prefWidth="308.0" />
+                <ChoiceBox fx:id="livreurChoiceBox" layoutX="446.0" layoutY="151.0" prefWidth="308.0" />
+                <Label layoutX="334.0" layoutY="155.0" prefHeight="19.0" prefWidth="110.0" styleClass="outline-label" text="LivreurId" />
+                <Label layoutX="334.0" layoutY="193.0" prefHeight="19.0" prefWidth="110.0" styleClass="outline-label" text="UserId" />
+                <Label layoutX="334.0" layoutY="231.0" prefHeight="19.0" prefWidth="110.0" styleClass="outline-label" text="Statut" />
+                <Label layoutX="334.0" layoutY="266.0" prefHeight="19.0" prefWidth="110.0" styleClass="outline-label" text="PrixTotal" />
+                <Button layoutX="595.0" layoutY="481.0" mnemonicParsing="false" onAction="#Mod" prefHeight="26.0" prefWidth="92.0" text="Modifier" />
+                <Label fx:id="LivreurIdE" layoutX="759.0" layoutY="156.0" prefHeight="18.0" prefWidth="334.0" styleClass="error-label" />
+                <Label fx:id="UserIdE" layoutX="759.0" layoutY="194.0" prefHeight="18.0" prefWidth="334.0" styleClass="error-label" />
+                <Label fx:id="StatutE" layoutX="759.0" layoutY="232.0" prefHeight="18.0" prefWidth="334.0" styleClass="error-label" />
+                <Label fx:id="PrixTotalE" layoutX="759.0" layoutY="266.0" prefHeight="18.0" prefWidth="334.0" styleClass="error-label" />
                 <AnchorPane layoutY="-3.0" prefHeight="576.0" prefWidth="305.0" styleClass="context-menu" stylesheets="@../MFXListView.css">
                     <children>
                         <Button layoutX="1.0" layoutY="100.0" mnemonicParsing="false" prefHeight="50.0" prefWidth="300.0" text="Users" />
@@ -51,8 +48,9 @@
                         <Label layoutX="677.0" layoutY="19.0" prefHeight="28.0" prefWidth="96.0" text="LogOut" />
                     </children>
                 </AnchorPane>
-            <TextField fx:id="prenomA" layoutX="444.0" layoutY="163.0" prefWidth="308.0" />
-            <Button fx:id="ib" layoutX="481.0" layoutY="481.0" minHeight="17.0" mnemonicParsing="false" prefHeight="17.0" prefWidth="105.0" text="Upload image" />
+                <TextField fx:id="UserIdA" layoutX="448.0" layoutY="189.0" prefWidth="308.0" />
+                <Label layoutX="334.0" layoutY="115.0" prefHeight="19.0" prefWidth="110.0" styleClass="outline-label" text="ID" />
+                <TextField fx:id="idA" disable="true" layoutX="448.0" layoutY="112.0" prefWidth="308.0" />
             </children>
         </AnchorPane>
     </left>

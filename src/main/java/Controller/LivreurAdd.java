@@ -15,6 +15,14 @@ import java.io.File;
 import java.io.IOException;
 import java.sql.SQLException;
 
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+import java.nio.file.StandardCopyOption;
+import javafx.stage.FileChooser;
+import javafx.scene.control.ChoiceBox;
+
+
 
 public class LivreurAdd {
 
@@ -36,17 +44,67 @@ public class LivreurAdd {
     @FXML
     private TextField prenomA;
     @FXML
-    private TextField disponibiliteA;
+    private ChoiceBox<String> disponibiliteA;
     @FXML
     private TextField noteA;
     @FXML
     private TextField imageA;
-
+    @FXML
+    private Button ib ;
 
     private Stage primaryStage;
 
 
+    @FXML
+    public void initialize() {
+        disponibiliteA.getItems().addAll("disponible", "indisponible", "en livraison");
 
+        // Action à effectuer lors du clic sur le bouton
+        ib.setOnAction(e -> {
+            // Création du sélecteur de fichier
+            FileChooser fileChooser = new FileChooser();
+            fileChooser.setTitle("Choisir une image");
+
+            // Filtrer les types de fichiers
+            fileChooser.getExtensionFilters().addAll(
+                    new FileChooser.ExtensionFilter("Images", "*.png", "*.jpg", "*.bmp", "*.jpeg"),
+                    new FileChooser.ExtensionFilter("Tous les fichiers", "*.*")
+            );
+
+            // Afficher la boîte de dialogue pour sélectionner un fichier
+            File selectedFile = fileChooser.showOpenDialog(primaryStage);
+
+            // Vérifier si un fichier a été sélectionné
+            if (selectedFile != null) {
+                try {
+                    // Définir le répertoire de destination dans les ressources
+                    String destinationDirectory = "Front/images/";
+                    String fileName = selectedFile.getName();
+
+                    // Obtenir le répertoire de destination dans les ressources
+                    Path destinationPath = Paths.get("src/main/resources", destinationDirectory);
+
+                    // Créer le chemin complet du fichier de destination
+                    Path destinationFilePath = destinationPath.resolve(fileName);
+
+                    // Copier le fichier sélectionné vers le répertoire de destination dans les ressources
+                    Files.copy(selectedFile.toPath(), destinationFilePath, StandardCopyOption.REPLACE_EXISTING);
+
+                    // Mettre à jour le chemin de l'image dans imgA
+                    String newImagePath = destinationDirectory + fileName;
+                    imageA.setText(newImagePath);
+
+                    // Afficher un message de succès
+                    System.out.println("Fichier téléchargé avec succès dans les ressources. Nouveau chemin : " + newImagePath);
+                } catch (IOException ex) {
+                    // Gérer les exceptions en cas d'erreur de téléchargement
+                    ex.printStackTrace();
+                }
+            } else {
+                System.out.println("Aucun fichier sélectionné.");
+            }
+        });
+    }
 
     // Méthode appelée lorsque le bouton est cliqué
     public void Lib() {
@@ -81,6 +139,12 @@ public class LivreurAdd {
         }
         else {nomE.setText("");}
 
+        if (disponibiliteA.getValue() == null) {
+            test = false;
+            disponibiliteE.setText("vide");
+        } else {
+            disponibiliteE.setText("");
+        }
 
         if (prenomA.getText().isEmpty()) {
             test=false;
@@ -89,20 +153,6 @@ public class LivreurAdd {
             test = false;
             prenomE.setText("Le prenom ne doit contenir que des lettres");
         }else {prenomE.setText("");}
-
-
-        if (disponibiliteA.getText().isEmpty()) {
-            test = false;
-            disponibiliteE.setText("vide");
-        }else if (!disponibiliteA.getText().equals("en livraison") &&
-                !disponibiliteA.getText().equals("indisponible") &&
-                !disponibiliteA.getText().equals("disponible")) {
-            test = false;
-            disponibiliteE.setText("Veuillez choisir parmi disponible , indisponible et en livraison");
-        } else {
-            disponibiliteE.setText("");
-        }
-
 
         if (noteA.getText().isEmpty()) {
             test = false;
@@ -122,29 +172,12 @@ public class LivreurAdd {
         if (chemin.isEmpty()) {
             test = false;
             imageE.setText("vide");
-        } else if (!chemin.startsWith("Front/images/")) {
-            test = false;
-            imageE.setText("Le chemin doit commencer par 'Front/images/'");
-        } else {
-            // Vérifier si le fichier existe
-            File fichier = new File(chemin);
-            if (!fichier.exists()) {
-                test = false;
-                imageE.setText("Le fichier spécifié n'existe pas.");
-            } else {
+        }  else {
                 imageE.setText(""); // Réinitialiser le champ d'erreur
             }
-        }
-
-
-
-
-
 
         if (test){
-           
-
-            Livreur ex = new Livreur(nomA.getText(), prenomA.getText(), disponibiliteA.getText(),
+            Livreur ex = new Livreur(nomA.getText(), prenomA.getText(), disponibiliteA.getValue(),
                     imageA.getText(),Integer.parseInt(noteA.getText()));
             try{
                 es.add(ex);

@@ -119,13 +119,28 @@ public class LivreurFront {
             }
 
             // Associer les propriétés prenom objets Livreur aux colonnes de la TableView
-            id.setCellValueFactory(new PropertyValueFactory<>("id"));
-            nom.setCellValueFactory(new PropertyValueFactory<>("nom"));
-            prenom.setCellValueFactory(new PropertyValueFactory<>("prenom"));
-            disponibilite.setCellValueFactory(new PropertyValueFactory<>("disponibilite"));
-            note.setCellValueFactory(new PropertyValueFactory<>("note"));
-            image.setCellValueFactory(new PropertyValueFactory<>("img"));
+            if (this.id != null) {
+                id.setCellValueFactory(new PropertyValueFactory<>("id"));
+            }
 
+            if (this.nom != null) {
+                nom.setCellValueFactory(new PropertyValueFactory<>("nom"));
+            }
+
+            if (this.prenom != null) {
+                prenom.setCellValueFactory(new PropertyValueFactory<>("prenom"));
+            }
+
+            if (this.disponibilite != null) {
+                disponibilite.setCellValueFactory(new PropertyValueFactory<>("disponibilite"));
+            }
+
+            if (this.note != null) {
+                note.setCellValueFactory(new PropertyValueFactory<>("note"));
+            }
+            if (this.image != null) {
+                image.setCellValueFactory(new PropertyValueFactory<>("img"));
+            }
         } catch (SQLException e) {
             System.out.println(e.getMessage());
         }
@@ -204,7 +219,7 @@ public class LivreurFront {
         }
     }
 
-    public void Livreurs(ActionEvent event) {
+    public void defis(ActionEvent event) {
         try {
             // Charger le fichier FXML de la nouvelle scène
 
