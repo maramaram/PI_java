@@ -1,8 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.chart.PieChart?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.ButtonBar?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Pagination?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.control.TextField?>
@@ -14,7 +16,7 @@
     <left>
         <AnchorPane prefHeight="584.0" prefWidth="1102.0" styleClass="gradient-anchor" stylesheets="@../styleback.css" BorderPane.alignment="CENTER">
             <children>
-                <TableView fx:id="table" layoutX="318.0" layoutY="75.0" prefHeight="409.0" prefWidth="769.0">
+                <TableView fx:id="table" layoutX="318.0" layoutY="75.0" prefHeight="256.0" prefWidth="770.0">
                     <columns>
                         <TableColumn fx:id="id" prefWidth="66.4000244140625" text="ID" />
                         <TableColumn fx:id="LivreurId" prefWidth="111.199951171875" text="LivreurId" />
@@ -24,12 +26,12 @@
                     </columns>
                 </TableView>
 
-                <ButtonBar layoutX="319.0" layoutY="497.0" prefHeight="50.0" prefWidth="767.0">
+                <ButtonBar layoutX="319.0" layoutY="427.0" prefHeight="50.0" prefWidth="526.0">
                     <buttons>
-                        <Button mnemonicParsing="false" onAction="#AJ" prefHeight="26.0" prefWidth="92.0" text="Ajouter" />
+                        <Button mnemonicParsing="false" onAction="#AJ" prefHeight="26.0" prefWidth="134.0" text="Ajouter" />
                         <Button mnemonicParsing="false" onAction="#supprimerEX" prefHeight="41.0" prefWidth="82.0" text="Supprimer" />
-                  <Button mnemonicParsing="false" onAction="#PDF" prefHeight="26.0" prefWidth="92.0" text="PDF" />
-                  <Button mnemonicParsing="false" onAction="#Excel" prefHeight="26.0" prefWidth="92.0" text="Excel" />
+                        <Button mnemonicParsing="false" onAction="#PDF" prefHeight="26.0" prefWidth="92.0" text="PDF" />
+                        <Button mnemonicParsing="false" onAction="#Excel" prefHeight="26.0" prefWidth="92.0" text="Excel" />
                     </buttons>
                 </ButtonBar>
                 <fx:include source="../Navigation.fxml" />
@@ -40,9 +42,9 @@
                         <Label layoutX="677.0" layoutY="19.0" prefHeight="28.0" prefWidth="96.0" text="LogOut" />
                     </children>
                 </AnchorPane>
+                <Pagination fx:id="pagination" layoutX="318.0" layoutY="383.0" prefWidth="770.0" />
+                <PieChart fx:id="piechart" layoutX="852.0" layoutY="335.0" prefHeight="230.0" prefWidth="236.0" style="-fx-background-color: ffffff80;" />
             </children>
-
-
         </AnchorPane>
     </left>
 </BorderPane>

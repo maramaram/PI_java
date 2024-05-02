@@ -15,10 +15,9 @@ import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.chart.XYChart;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.layout.HBox;
 import javafx.stage.Stage;
 
 import java.awt.datatransfer.Clipboard;
@@ -33,9 +32,6 @@ import org.apache.pdfbox.pdmodel.PDPage;
 import org.apache.pdfbox.pdmodel.PDPageContentStream;
 import org.apache.pdfbox.pdmodel.common.PDRectangle;
 import org.apache.pdfbox.pdmodel.font.PDType1Font;
-import java.io.IOException;
-import java.util.List;
-import java.sql.SQLException;
 import org.apache.poi.ss.usermodel.*;
 import org.apache.poi.xssf.usermodel.XSSFCell;
 import org.apache.poi.xssf.usermodel.XSSFRow;
@@ -43,6 +39,7 @@ import org.apache.poi.xssf.usermodel.XSSFSheet;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 import java.io.FileOutputStream;
 import java.awt.Color;
+import javafx.scene.chart.PieChart;
 
 
 public class CommandeFront {
@@ -68,10 +65,27 @@ public class CommandeFront {
     @FXML
     private TextField search;
 
+    @FXML
+    private PieChart piechart;
+    @FXML
+    private HBox hbox;
+    @FXML
+    private Pagination pagination;
+    @FXML
+    private Label currentPageLabel;
+    private CommandeService commandeService = new CommandeService();
+    private LivreurService livreurService = new LivreurService();
+
+    private ObservableList<Commande> commandes = FXCollections.observableArrayList();
 
 
     @FXML
     public void initialize() {
+        currentPageLabel = new Label();
+        // Ajouter un écouteur d'événement sur la pagination pour appeler handlePageChange() lorsque la page change
+        pagination.currentPageIndexProperty().addListener((observable, oldValue, newValue) -> {
+            handlePageChange();
+        });
         AfficherEX(); // Appeler la méthode pour afficher les données
 
         // Ajouter un écouteur sur la table pour détecter les double-clics
@@ -104,7 +118,40 @@ public class CommandeFront {
                 }
             }
         });
+        CommandeService es = new CommandeService();
+        try {
+            List<Commande> listeCommandes = es.afficherList();
+
+
+
+            // Parcourir la liste d'Commandes et compter le nombre d'Commandes pour chaque niveau de difficulté
+            int countNiveau1 = 0;
+            int countNiveau2 = 0;
+            int countNiveau3 = 0;
+
+            for (Commande commande : listeCommandes) {
+                String niveau = commande.getStatut();
+                if (niveau.equals("en attente")) {
+                    countNiveau1++;
+                } else if (niveau.equals("arrivée")) {
+                    countNiveau2++;
+                } else if (niveau.equals("en route")) {
+                    countNiveau3++;
+                }
+            }
+
+            // Ajouter les données au PieChart
+            PieChart.Data dataNiveau1 = new PieChart.Data("en attente (" + countNiveau1 + ")", countNiveau1);
+            PieChart.Data dataNiveau2 = new PieChart.Data("arrivée (" + countNiveau2 + ")", countNiveau2);
+            PieChart.Data dataNiveau3 = new PieChart.Data("en route (" + countNiveau3 + ")", countNiveau3);
+            piechart.getData().addAll(dataNiveau1, dataNiveau2, dataNiveau3);
+
+
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+        }
     }
+
 
     @FXML
     protected void supprimerEX() {
@@ -129,19 +176,14 @@ public class CommandeFront {
 
     @FXML // affiche nom prenom et marche
     protected void AfficherEX() {
-        CommandeService es = new CommandeService();
         try {
-            List<Commande> commandes = es.afficherList();
+            commandes.clear();
+            commandes.addAll(commandeService.afficherList());
 
-            // Effacer les données existantes de la TableView
-            table.getItems().clear();
+            int totalPages = (int) Math.ceil(commandes.size() / 5.0);
+            pagination.setPageCount(totalPages);
+            pagination.setCurrentPageIndex(0);
 
-            // Ajouter les données de la liste à la TableView
-            for (Commande commande : commandes) {
-                table.getItems().add(commande);
-            }
-
-            // Associer les colonnes de la TableView aux propriétés correspondantes
             id.setCellValueFactory(new PropertyValueFactory<>("id"));
             LivreurId.setCellValueFactory(new Callback<TableColumn.CellDataFeatures<Commande, String>, ObservableValue<String>>() {
                 @Override
@@ -157,105 +199,29 @@ public class CommandeFront {
                     return new SimpleStringProperty(livreur.getNom() + " " + livreur.getPrenom());
                 }
             });
-
             UserId.setCellValueFactory(new PropertyValueFactory<>("userId"));
             Statut.setCellValueFactory(new PropertyValueFactory<>("statut"));
             PrixTotal.setCellValueFactory(new PropertyValueFactory<>("prixTotal"));
+
+            table.setItems(getCommandesForCurrentPage());
+            currentPageLabel.setText("Page " + (pagination.getCurrentPageIndex() + 1) + " / " + pagination.getPageCount());
 
         } catch (SQLException e) {
             System.out.println(e.getMessage());
         }
     }
 
+    @FXML
+    protected void handlePageChange() {
+        table.setItems(getCommandesForCurrentPage());
+        currentPageLabel.setText("Page " + (pagination.getCurrentPageIndex() + 1) + " / " + pagination.getPageCount());
+    }
 
-    /*@FXML // afficher avec nom et prenom mais sont modifier
-    protected void AfficherEX() {
-        CommandeService es = new CommandeService();
-        try {
-            List<Commande> commandes = es.afficherList();
-
-            // Effacer les données existantes de la TableView
-            table.getItems().clear();
-            LivreurService liv = new LivreurService();
-            Livreur liv2 = new Livreur();
-            // Ajouter les données de la liste à la TableView
-            for (Commande commande : commandes) {
-                liv2 = liv.getLivreurById(commande.getLivreurId());
-
-                String id = String.valueOf(commande.getId());
-                String livreurId = liv2.getNom() + " " + liv2.getPrenom();
-                String userId = String.valueOf(commande.getUserId());
-                String statut = commande.getStatut();
-                String prixTotal = String.valueOf(commande.getPrixTotal());
-
-                // Créer une nouvelle ligne dans la TableView avec les données de la commande
-                ObservableList<String> row = FXCollections.observableArrayList(id, livreurId, userId, statut, prixTotal);
-                table.getItems().add(row);
-            }
-
-            // Associer les colonnes de la TableView aux propriétés correspondantes
-            id.setCellValueFactory(new Callback<TableColumn.CellDataFeatures<ObservableList<String>, String>, ObservableValue<String>>() {
-                @Override
-                public ObservableValue<String> call(TableColumn.CellDataFeatures<ObservableList<String>, String> param) {
-                    return new SimpleStringProperty(param.getValue().get(0));
-                }
-            });
-            LivreurId.setCellValueFactory(new Callback<TableColumn.CellDataFeatures<ObservableList<String>, String>, ObservableValue<String>>() {
-                @Override
-                public ObservableValue<String> call(TableColumn.CellDataFeatures<ObservableList<String>, String> param) {
-                    return new SimpleStringProperty(param.getValue().get(1));
-                }
-            });
-            UserId.setCellValueFactory(new Callback<TableColumn.CellDataFeatures<ObservableList<String>, String>, ObservableValue<String>>() {
-                @Override
-                public ObservableValue<String> call(TableColumn.CellDataFeatures<ObservableList<String>, String> param) {
-                    return new SimpleStringProperty(param.getValue().get(2));
-                }
-            });
-            Statut.setCellValueFactory(new Callback<TableColumn.CellDataFeatures<ObservableList<String>, String>, ObservableValue<String>>() {
-                @Override
-                public ObservableValue<String> call(TableColumn.CellDataFeatures<ObservableList<String>, String> param) {
-                    return new SimpleStringProperty(param.getValue().get(3));
-                }
-            });
-            PrixTotal.setCellValueFactory(new Callback<TableColumn.CellDataFeatures<ObservableList<String>, String>, ObservableValue<String>>() {
-                @Override
-                public ObservableValue<String> call(TableColumn.CellDataFeatures<ObservableList<String>, String> param) {
-                    return new SimpleStringProperty(param.getValue().get(4));
-                }
-            });
-
-        } catch (SQLException e) {
-            System.out.println(e.getMessage());
-        }
-    }*/
-
-    /*@FXML  // affiche id
-    protected void AfficherEX() {
-        CommandeService es = new CommandeService();
-        try {
-            List<Commande> l = es.afficherList();
-
-            // Effacer les données existantes de la TableView
-            table.getItems().clear();
-
-            // Ajouter les données de la liste à la TableView
-            for (Commande Commande : l) {
-                table.getItems().add(Commande);
-            }
-
-            // Associer les propriétés UserId objets Commande aux colonnes de la TableView
-            id.setCellValueFactory(new PropertyValueFactory<>("id"));
-            LivreurId.setCellValueFactory(new PropertyValueFactory<>("livreurId"));
-            UserId.setCellValueFactory(new PropertyValueFactory<>("userId"));
-            Statut.setCellValueFactory(new PropertyValueFactory<>("statut"));
-            PrixTotal.setCellValueFactory(new PropertyValueFactory<>("prixTotal"));
-
-        } catch (SQLException e) {
-            System.out.println(e.getMessage());
-        }
-    }*/
-
+    private ObservableList<Commande> getCommandesForCurrentPage() {
+        int fromIndex = pagination.getCurrentPageIndex() * 5;
+        int toIndex = Math.min(fromIndex + 5, commandes.size());
+        return FXCollections.observableArrayList(commandes.subList(fromIndex, toIndex));
+    }
 
     public void AJ(ActionEvent event) {
         try {
@@ -274,30 +240,37 @@ public class CommandeFront {
         }
     }
 
-
-
-
     @FXML
     protected void AfficherEXSearch() {
-        CommandeService es = new CommandeService();
-        LivreurService ls = new LivreurService();
         try {
-            List<Commande> l = es.afficherListSearch(search.getText());
+            commandes.clear();
+            commandes.addAll(commandeService.afficherListSearch(search.getText()));
 
-            // Effacer les données existantes de la TableView
-            table.getItems().clear();
+            int totalPages = (int) Math.ceil(commandes.size() / 5.0);
+            pagination.setPageCount(totalPages);
+            pagination.setCurrentPageIndex(0);
 
-            // Ajouter les données de la list   e à la TableView
-            for (Commande Commande : l) {
-                table.getItems().add(Commande);
-            }
-
-            // Associer les propriétés UserId objets Commande aux colonnes de la TableView
             id.setCellValueFactory(new PropertyValueFactory<>("id"));
-            LivreurId.setCellValueFactory(new PropertyValueFactory<>("LivreurId"));
-            UserId.setCellValueFactory(new PropertyValueFactory<>("UserId"));
-            Statut.setCellValueFactory(new PropertyValueFactory<>("Statut"));
-            PrixTotal.setCellValueFactory(new PropertyValueFactory<>("PrixTotal"));
+            LivreurId.setCellValueFactory(new Callback<TableColumn.CellDataFeatures<Commande, String>, ObservableValue<String>>() {
+                @Override
+                public ObservableValue<String> call(TableColumn.CellDataFeatures<Commande, String> cellData) {
+                    Commande commande = cellData.getValue();
+                    LivreurService liv = new LivreurService();
+                    Livreur livreur = null;
+                    try {
+                        livreur = liv.getLivreurById(commande.getLivreurId());
+                    } catch (SQLException e) {
+                        throw new RuntimeException(e);
+                    }
+                    return new SimpleStringProperty(livreur.getNom() + " " + livreur.getPrenom());
+                }
+            });
+            UserId.setCellValueFactory(new PropertyValueFactory<>("userId"));
+            Statut.setCellValueFactory(new PropertyValueFactory<>("statut"));
+            PrixTotal.setCellValueFactory(new PropertyValueFactory<>("prixTotal"));
+
+            table.setItems(getCommandesForCurrentPage());
+            currentPageLabel.setText("Page " + (pagination.getCurrentPageIndex() + 1) + " / " + pagination.getPageCount());
 
         } catch (SQLException e) {
             System.out.println(e.getMessage());
