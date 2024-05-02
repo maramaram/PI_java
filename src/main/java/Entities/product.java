@@ -18,17 +18,19 @@ public class product {
         this.categories = categories;
         this.prix = prix;
         this.image = image;
-        //this.img=new ImageView(new Image(this.getClass().getResourceAsStream("/"+image)));
-       // this.img.setFitHeight(125);
-       // this.img.setFitWidth(125);
-        if (this.getClass().getResourceAsStream("/"+image) != null) {
+
+        /*if (this.getClass().getResourceAsStream("/"+image) != null) {
             this.img = new ImageView(new Image(this.getClass().getResourceAsStream("/"+image)));
             this.img.setFitHeight(125);
             this.img.setFitWidth(125);
         } else {
             System.out.println("Image not found: " + image);
             // ou lancez une exception ou affichez un message d'erreur
-        }
+        }*/
+        String imagePath = "file:///C:/Users/wesla/IdeaProjects/projectpi/src/main/resources/" + image;
+        this.img = new ImageView(new Image(imagePath));
+        this.img.setFitHeight(125);
+        this.img.setFitWidth(125);
 
 
     }
@@ -42,20 +44,27 @@ public class product {
         this.prix = Float.parseFloat(String.valueOf(prix));
         this.image = String.valueOf(image);
 
-        //this.img=new ImageView(new Image(this.getClass().getResourceAsStream(image)));
-       /// this.img.setFitHeight(125);
-        //this.img.setFitWidth(75);
-        if (this.getClass().getResourceAsStream("/"+image) != null) {
+
+      /*  if (this.getClass().getResourceAsStream("/"+image) != null) {
             this.img = new ImageView(new Image(this.getClass().getResourceAsStream("/"+image)));
             this.img.setFitHeight(125);
             this.img.setFitWidth(125);
         } else {
             System.out.println("Image not found: " + image);
             // ou lancez une exception ou affichez un message d'erreur
-        }
+        }*/
+        String imagePath = "file:///C:/Users/wesla/IdeaProjects/projectpi/src/main/resources/" + image;
+        this.img = new ImageView(new Image(imagePath));
+        this.img.setFitHeight(125);
+        this.img.setFitWidth(125);
 
     }
 
+    public product(String nom, String description, float prix) {
+        this.nom = nom;
+        this.description = description;
+        this.prix = prix;
+    }
 
 
     public ImageView getImg() {

@@ -6,11 +6,14 @@ import Service.panierService;
 import Service.productService;
 import com.example.projectpi.HelloApplication;
 import javafx.application.Application;
+import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.Node;
+import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
@@ -24,7 +27,7 @@ public class panierController extends Application {
     @Override
     public void start(Stage stage) throws IOException {
         FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("/paniers/basebackp.fxml"));
-        Scene scene = new Scene(fxmlLoader.load(), 320, 240);
+        Scene scene = new Scene(fxmlLoader.load());
         stage.setTitle("Hello!");
         stage.setScene(scene);
         stage.show();
@@ -52,6 +55,12 @@ public class panierController extends Application {
     private TextField txt_quantite;
     @FXML
     private ComboBox<String> comboBoxProduits;
+    @FXML
+    private TableColumn<panier, String> col_produit;
+
+    @FXML
+    private TextField search1;
+
 
     // Instance de panierService
     private panierService pService;
@@ -101,6 +110,26 @@ public class panierController extends Application {
         }
     }
 
+    @FXML
+    void deplacerversproducts(ActionEvent event) {
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/products/baseback.fxml"));
+            Parent root = loader.load();
+
+            // Obtenez le Stage actuel
+            Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+
+            // Créez une nouvelle scène avec la racine chargée
+            Scene scene = new Scene(root);
+
+            // Remplacez la scène actuelle par la nouvelle scène
+            stage.setScene(scene);
+            stage.show();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
     private boolean validateFields() {
         // Validation pour le champ Prix Total
         if (txt_prix_tot.getText().isEmpty() || Integer.parseInt(txt_prix_tot.getText()) <= 0) {
@@ -134,10 +163,24 @@ public class panierController extends Application {
         }
     }
     @FXML
-    public void initialize() {
+    public void initialize()  {
         // Initialisez le TableView avec les données des produits
+        try {
+            search1.textProperty().addListener((observable, oldValue, newValue) -> {
+                filterTable(newValue);
+            });
+            panierService ez=new panierService();
+
+            System.out.println(ez.afficherList());
+            System.out.println("ded");
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+        }
+
         initTableView();
         initComboBox();
+
+
         // Ajoutez un gestionnaire d'événements de sélection sur le TableView
         table_panier.getSelectionModel().selectedItemProperty().addListener((obs, oldSelection, newSelection) -> {
             if (newSelection != null) {
@@ -147,10 +190,41 @@ public class panierController extends Application {
                 // Affichez les données du produit sélectionné dans les champs de texte correspondants
                 txt_prix_tot.setText(String.valueOf(selectedpanier.getPrix_tot()));
                 txt_quantite.setText(String.valueOf(selectedpanier.getQuantite()));
-
             }
         });
     }
+    private void filterTable(String keyword) {
+        ObservableList<panier> filteredList = FXCollections.observableArrayList();
+        if (keyword.isEmpty()) {
+            try {
+                afficherPanier();
+            } catch (SQLException e) {
+                e.printStackTrace();
+                showAlert(Alert.AlertType.ERROR, "Erreur", "Erreur lors de l'affichage du panier !");
+            }
+            return;
+        }
+        try {
+            List<panier> paniers = pService.afficherp();
+            for (panier p : paniers) {
+                // Vérifiez si le nom du produit ou la description contient le mot-clé de recherche
+                if (String.valueOf(p.getId()).toLowerCase().contains(keyword.toLowerCase()) ||
+                        String.valueOf(p.getPrix_tot()).toLowerCase().contains(keyword.toLowerCase()) ||
+                        String.valueOf(p.getQuantite()).toLowerCase().contains(keyword.toLowerCase())) {
+                    filteredList.add(p);
+                }
+            }
+            // Mettez à jour le TableView avec la liste filtrée
+            table_panier.setItems(filteredList);
+        } catch (SQLException e) {
+            e.printStackTrace();
+            showAlert(Alert.AlertType.ERROR, "Erreur", "Erreur lors de la récupération des paniers !");
+        }
+    }
+
+
+    // Autres méthodes du contrôleur...
+
     private void initComboBox() {
         try {
             productService pService = new productService();
@@ -170,17 +244,25 @@ public class panierController extends Application {
     private void initTableView() {
         try {
             panierService pService = new panierService(); // Créez une instance de productService
-            List<panier> panierList = pService.afficherp(); // Récupérez la liste des produits depuis la base de données
-            ObservableList<panier> observablepanierList = FXCollections.observableArrayList(panierList); // Créez une liste observable à partir de la liste de produits
+
+                List<panier> panierList = pService.afficherp();
+
+                // Effacer les données existantes de la TableView
+            table_panier.getItems().clear();
+
+                // Ajouter les données de la liste à la TableView
+                for (panier p : panierList) {
+                    table_panier.getItems().add(p);
+                }
 
             // Associez chaque colonne à une propriété du modèle de données
             col_id.setCellValueFactory(new PropertyValueFactory<>("id"));
             col_prix_tot.setCellValueFactory(new PropertyValueFactory<>("prix_tot"));
             col_quantite.setCellValueFactory(new PropertyValueFactory<>("quantite"));
-
+            col_produit.setCellValueFactory(new PropertyValueFactory<>("nomx"));
 
             // Remplissez le TableView avec les données des produits
-            table_panier.setItems(observablepanierList);
+
         } catch (SQLException e) {
             e.printStackTrace();
             // Gérez l'exception

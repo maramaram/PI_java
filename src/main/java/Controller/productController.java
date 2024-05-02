@@ -4,28 +4,41 @@ import Entities.product;
 import Service.productService;
 import com.example.projectpi.HelloApplication;
 import javafx.application.Application;
+import javafx.beans.property.ObjectProperty;
+import javafx.beans.property.SimpleObjectProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.Node;
+import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Alert;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
+import javafx.scene.text.Text;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
 
 import javafx.fxml.FXML;
 
 import java.io.File;
+import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.Comparator;
 import java.util.List;
 
+import javafx.scene.control.TableColumn;
+import javafx.scene.control.TableView;
+import org.apache.pdfbox.pdmodel.PDDocument;
+import org.apache.pdfbox.pdmodel.PDPage;
+import org.apache.pdfbox.pdmodel.PDPageContentStream;
+import org.apache.pdfbox.pdmodel.graphics.image.PDImageXObject;
+import org.apache.pdfbox.pdmodel.font.PDType1Font;
 public class productController extends Application {
 
 
@@ -33,7 +46,7 @@ public class productController extends Application {
     @Override
     public void start(Stage stage) throws IOException {
         FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("/products/baseback.fxml"));
-        Scene scene = new Scene(fxmlLoader.load(), 320, 240);
+        Scene scene = new Scene(fxmlLoader.load());
         stage.setTitle("Hello!");
         stage.setScene(scene);
         stage.show();
@@ -42,6 +55,8 @@ public class productController extends Application {
     public static void main(String[] args) {
         launch();
     }
+    private final ObjectProperty<product> selectedProductProperty = new SimpleObjectProperty<>();
+    private boolean isAscending = true;
 
     @FXML
     private TableColumn<?, ?> col_categorie;
@@ -84,6 +99,112 @@ public class productController extends Application {
     @FXML
     private TextField txt_image;
     @FXML
+    private TextField search;
+    @FXML
+    private ChoiceBox<String> choiceBoxSort;
+    @FXML
+    private Button btnGeneratePDF;
+    @FXML
+    private void handleGeneratePDFButton(ActionEvent event) {
+        try {
+            PDDocument document = new PDDocument();
+            PDPage page = new PDPage();
+            document.addPage(page);
+
+            PDPageContentStream contentStream = new PDPageContentStream(document, page);
+
+            // Déterminez les dimensions et les marges du tableau
+            float margin = 50;
+            float tableWidth = page.getMediaBox().getWidth() - (2 * margin);
+            float nexty = page.getMediaBox().getHeight() - margin;
+            float rowHeight = 20;
+            float[] columnWidths = {50, 100, 100, 100, 100, 100}; // Largeurs de colonne pour chaque colonne
+            String[] columnTitles = {"ID", "Nom", "Description", "Quantité", "Catégorie", "Prix"}; // Titres de colonne
+
+            // Dessinez le tableau avec les données du TableView
+            drawTable(contentStream, nexty, margin, tableWidth, rowHeight, columnWidths, columnTitles);
+
+            contentStream.close();
+            document.save("tableau_produits.pdf");
+            document.close();
+
+            // Affichez un message de succès
+            Alert alert = new Alert(Alert.AlertType.INFORMATION);
+            alert.setTitle("Succès");
+            alert.setContentText("Le fichier PDF a été généré avec succès !");
+            alert.showAndWait();
+        } catch (IOException e) {
+            // Gérez les exceptions d'entrée/sortie
+            e.printStackTrace();
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Erreur");
+            alert.setContentText("Une erreur s'est produite lors de la génération du fichier PDF !");
+            alert.showAndWait();
+        }
+    }
+
+
+
+    private void drawTable(PDPageContentStream contentStream, float nexty, float margin, float tableWidth, float rowHeight, float[] columnWidths, String[] columnTitles) throws IOException {
+        final int numberOfColumns = columnTitles.length;
+        final int numberOfRows = table_produits.getItems().size() + 1;
+
+        float tableTopY = nexty;
+        float tableBottomY = tableTopY - numberOfRows * rowHeight;
+        float tableHeight = tableTopY - tableBottomY;
+        float rowWidth = tableWidth / numberOfColumns;
+        float tableMargin = 10;
+
+        // Dessinez les lignes horizontales
+        float nexty1 = tableTopY;
+        contentStream.drawLine(margin, tableTopY, margin + tableWidth, tableTopY);
+        for (int i = 0; i <= numberOfRows; i++) {
+            contentStream.drawLine(margin, nexty1 - rowHeight, margin + tableWidth, nexty1 - rowHeight);
+            nexty1 -= rowHeight;
+        }
+
+        // Dessinez les lignes verticales
+        float nextx = margin;
+        contentStream.drawLine(nextx, tableTopY, nextx, tableBottomY);
+        for (int i = 0; i < numberOfColumns; i++) {
+            nextx += rowWidth;
+            contentStream.drawLine(nextx, tableTopY, nextx, tableBottomY);
+        }
+
+        // Remplissez les cellules avec les données
+        float textx = margin + tableMargin;
+        float texty = tableTopY - 15;
+        for (int i = 0; i < numberOfColumns; i++) {
+            contentStream.beginText();
+            contentStream.setFont(PDType1Font.HELVETICA_BOLD, 12);
+            contentStream.newLineAtOffset(textx, texty);
+            contentStream.showText(columnTitles[i]);
+            contentStream.endText();
+            textx += columnWidths[i];
+        }
+
+        ObservableList<product> productList = table_produits.getItems();
+        for (product item : productList) {
+            texty -= rowHeight;
+            textx = margin + tableMargin;
+            contentStream.beginText();
+            contentStream.setFont(PDType1Font.HELVETICA, 12);
+            contentStream.newLineAtOffset(textx, texty);
+            contentStream.showText(String.valueOf(item.getId()));
+            contentStream.newLineAtOffset(columnWidths[0], 0);
+            contentStream.showText(item.getNom());
+            contentStream.newLineAtOffset(columnWidths[1], 0);
+            contentStream.showText(item.getDescription());
+            contentStream.newLineAtOffset(columnWidths[2], 0);
+            contentStream.showText(String.valueOf(item.getQuantite_stock()));
+            contentStream.newLineAtOffset(columnWidths[3], 0);
+            contentStream.showText(item.getCategories());
+            contentStream.newLineAtOffset(columnWidths[4], 0);
+            contentStream.showText(String.valueOf(item.getPrix()));
+            contentStream.endText();
+        }
+    }
+    @FXML
     void ajouterproduit(ActionEvent event) throws SQLException {
         if (validateFields()) {
             productService pService = new productService(); // Créez une instance de productService
@@ -103,6 +224,27 @@ public class productController extends Application {
             }
         }
     }
+
+    @FXML
+    void deplacerverscart(ActionEvent event) {
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/paniers/basebackp.fxml"));
+            Parent root = loader.load();
+
+            // Obtenez le Stage actuel
+            Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+
+            // Créez une nouvelle scène avec la racine chargée
+            Scene scene = new Scene(root);
+
+            // Remplacez la scène actuelle par la nouvelle scène
+            stage.setScene(scene);
+            stage.show();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
     private boolean validateFields() {
         // Validation pour le champ Nom
         if (txt_nom.getText().isEmpty()) {
@@ -130,10 +272,10 @@ public class productController extends Application {
             showAlert("Erreur", "Le Prix doit être un nombre positif !");
             return false;
         }
-        if (txt_image.getText().isEmpty() || !validateImageExtension(txt_image.getText())) {
+       /* if (txt_image.getText().isEmpty() || !validateImageExtension(txt_image.getText())) {
             showAlert("Erreur", "L'extension de l'image n'est pas valide ! Les extensions autorisées sont : jpg, jpeg, png, gif");
             return false;
-        }
+        }*/
         // Validation pour le champ Image (ajoutez votre propre validation ici)
 
         return true;
@@ -158,10 +300,13 @@ public class productController extends Application {
         alert.showAndWait();
     }
     @FXML
-    public void initialize() {
+    public  void initialize() {
         // Initialisez le TableView avec les données des produits
         initTableView();
-
+        setupImageColumn();
+       search.textProperty().addListener((observable, oldValue, newValue) -> {
+            filterTable(newValue);
+        });
         // Ajoutez un gestionnaire d'événements de sélection sur le TableView
         table_produits.getSelectionModel().selectedItemProperty().addListener((obs, oldSelection, newSelection) -> {
             if (newSelection != null) {
@@ -190,8 +335,50 @@ public class productController extends Application {
                 txt_prix.setText(newValue.replaceAll("[^\\d\\.]", ""));
             }
         });
+        ObservableList<String> sortOptions = FXCollections.observableArrayList("Quantite", "Nom", "Prix");
+        choiceBoxSort.setItems(sortOptions);
 
+        // Ajoutez les options de tri au ChoiceBox
+        choiceBoxSort.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> {
+            switch (newValue) {
+                case "Quantite":
+                    // Tri par ID
+                    sortBy("quantite_stock");
+                    break;
+                case "Nom":
+                    // Tri par Nom
+                    sortBy("nom");
+                    break;
+                case "Prix":
+                    // Tri par Prix
+                    sortBy("prix");
+                    break;
+                default:
+                    // Par défaut, ne pas trier
+                    // Vous pouvez ajouter une logique de tri par défaut ici si nécessaire
+            }
+        });
     }
+    private void sortBy(String columnName) {
+        // Obtenez la colonne correspondant au nom de la colonne
+        TableColumn<product, ?> column = getColumnByName(columnName);
+
+        // Triez les éléments de la colonne en ordre ascendant
+        table_produits.getSortOrder().clear();
+        column.setSortType(TableColumn.SortType.ASCENDING);
+        table_produits.getSortOrder().add(column);
+    }
+
+    // Méthode pour obtenir une colonne par son nom
+    private TableColumn<product, ?> getColumnByName(String name) {
+        for (TableColumn<product, ?> column : table_produits.getColumns()) {
+            if (column.getText().equalsIgnoreCase(name)) {
+                return column;
+            }
+        }
+        return null;
+    }
+
 
     private void initTableView() {
         try {
@@ -288,48 +475,83 @@ public class productController extends Application {
     }
 
 
-
-   /* @FXML
-    public void initialize() {
-        try {
-            // Créez une instance de productService
-            productService pService = new productService();
-
-            // Récupérez la liste des produits depuis la base de données
-            List<product> productList = pService.afficherList();
-
-            // Créez une liste observable à partir de la liste de produits
-            ObservableList<product> observableProductList = FXCollections.observableArrayList(productList);
-
-            // Associez chaque colonne à une propriété du modèle de données
-            col_nom.setCellValueFactory(new PropertyValueFactory<>("nom"));
-            col_description.setCellValueFactory(new PropertyValueFactory<>("description"));
-            col_quantite.setCellValueFactory(new PropertyValueFactory<>("quantiteStock"));
-            col_categorie.setCellValueFactory(new PropertyValueFactory<>("categories"));
-            col_prix.setCellValueFactory(new PropertyValueFactory<>("prix"));
-            col_image.setCellValueFactory(new PropertyValueFactory<>("image"));
-
-            // Remplissez le TableView avec les données des produits
-            table_produits.setItems(observableProductList);
-        } catch (SQLException e) {
-            e.printStackTrace();
-            // Gérez l'exception
-        }
-    }*/
-
     @FXML
     private void choisirImage(ActionEvent event) {
         FileChooser fileChooser = new FileChooser();
         fileChooser.setTitle("Choisir une image");
         fileChooser.getExtensionFilters().addAll(
-                new FileChooser.ExtensionFilter("Images", ".jpg", ".jpeg", ".png", ".gif")
+                new FileChooser.ExtensionFilter("Images", "*.jpg", "*.jpeg", "*.png", "*.gif")
         );
 
         File selectedFile = fileChooser.showOpenDialog(null);
         if (selectedFile != null) {
-            txt_image.setText(selectedFile.getAbsolutePath());
+            try {
+                // Créez un ImageView avec l'image sélectionnée
+                ImageView imageView = new ImageView(new Image(selectedFile.toURI().toString()));
+                imageView.setFitHeight(125);
+                imageView.setFitWidth(125);
+
+                // Créez un nouveau produit avec l'image sélectionnée
+                product newProduct = new product(txt_nom.getText(), txt_description.getText(),
+                        Integer.parseInt(txt_quantite.getText()), txt_categorie.getText(),
+                        Float.parseFloat(txt_prix.getText()), selectedFile.getAbsolutePath());
+
+                // Définissez l'image de votre produit sur l'ImageView créé
+                newProduct.setImg(imageView);
+
+                // Ajoutez le nouveau produit à la liste observable
+                ObservableList<product> productList = table_produits.getItems();
+                productList.add(newProduct);
+
+                // Effacez le chemin de l'image dans le champ texte (si nécessaire)
+                txt_image.clear();
+            } catch (Exception e) {
+                e.printStackTrace();
+                // Gérez les erreurs si nécessaire
+            }
         }
+    }
+    private void setupImageColumn() {
+        // Créez une colonne personnalisée pour afficher les images
+        TableColumn<product, ImageView> imageColumn = new TableColumn<>("Image");
+        imageColumn.setCellValueFactory(new PropertyValueFactory<>("img"));
+
+        // Définissez la largeur de la colonne
+        imageColumn.setPrefWidth(150);
+
+        // Ajoutez la colonne au TableView
+        table_produits.getColumns().add(imageColumn);
     }
 
 
+    private void filterTable(String keyword) {
+        ObservableList<product> filteredList = FXCollections.observableArrayList();
+        if (keyword.isEmpty()) {
+            initTableView();
+            return;
+        }
+        for (product item : table_produits.getItems()) {
+            // Vérifiez si le nom, la description ou le prix contient le mot-clé de recherche
+            if (item.getNom().toLowerCase().contains(keyword.toLowerCase()) ||
+                    item.getDescription().toLowerCase().contains(keyword.toLowerCase()) ||
+                    String.valueOf(item.getPrix()).toLowerCase().contains(keyword.toLowerCase())) {
+                filteredList.add(item);
+            }
+        }
+
+        // Mettez à jour le TableView avec la liste filtrée
+        table_produits.setItems(filteredList);
+    }
+
+    public ObjectProperty<product> selectedProductProperty() {
+        return selectedProductProperty;
+    }
+
+    public product getSelectedProduct() {
+        return selectedProductProperty.get();
+    }
+
+    public void setSelectedProduct(product product) {
+        selectedProductProperty.set(product);
+    }
 }

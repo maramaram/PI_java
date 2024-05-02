@@ -1,10 +1,10 @@
 /* JavaFX FXML CSS */
 
 /* Font */
-@font-face {
-    src: url('path_to_your_font.ttf'); /* Replace 'path_to_your_font.ttf' with the actual path to your font file */
+/*@font-face {
+    src: url('path_to_your_font.ttf');
     font-family: 'Montserrat';
-}
+}*/
 
 /* Body */
 .root {
@@ -75,19 +75,19 @@
 }
 
 /* Dropdown */
-.dropdown-menu {
+/*.dropdown-menu {
     -fx-background-color: #1c1c1c;
     -fx-border-radius: 0;
     -fx-box-shadow: 0 5px 5px 0 rgba(0, 0, 0, 0.03);
     -fx-padding: 24px 0 26px;
     -fx-min-width: 280px;
-}
+}*/
 
-.dropdown-item {
+/*.dropdown-item {
     -fx-text-fill: #c8c8c8;
     -fx-font-size: 12px;
     -fx-padding: 0.55rem 2rem;
-}
+}*/
 
 .dropdown-item:hover {
     -fx-background-color: transparent;
