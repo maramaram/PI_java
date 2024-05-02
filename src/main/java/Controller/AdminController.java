@@ -9,6 +9,8 @@ import javafx.collections.FXCollections;
 import javafx.collections.transformation.FilteredList;
 import javafx.collections.transformation.SortedList;
 import javafx.scene.control.*;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.util.Callback;
 import javafx.collections.ObservableList;
@@ -21,7 +23,12 @@ import javafx.scene.control.Pagination;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.fxml.FXMLLoader;
+
+import java.io.File;
 import java.io.IOException;
+import java.net.MalformedURLException;
+import java.net.URI;
+import java.net.URL;
 import java.sql.*;
 import java.time.LocalDate;
 import java.util.List;
@@ -120,6 +127,7 @@ public class AdminController {
         });
     }
     public void initialize() throws SQLException {
+        photo.setCellFactory(column -> new PhotoTableCell());
         DisplayUser();
         String userId = SessionManager.getInstance().getUserId();
         String id =  SessionManager.getInstance().getUserFront();
@@ -127,13 +135,25 @@ public class AdminController {
         InactiveUserBack();
         search_user();
     }
-
+    void updateDisplayedUsers(List<User> userList) {
+        // Update the displayed list of users based on pagination
+        int itemsPerPage = 8;
+        int currentPageIndex = pages.getCurrentPage() - 1;
+        int fromIndex = currentPageIndex * itemsPerPage;
+        int toIndex = Math.min(fromIndex + itemsPerPage, userList.size());
+        if (fromIndex < userList.size()) {
+            userTableView.setItems(FXCollections.observableArrayList(userList.subList(fromIndex, toIndex)));
+        } else {
+            userTableView.setItems(FXCollections.emptyObservableList());
+        }
+    }
     void search_user() {
         email.setCellValueFactory(new PropertyValueFactory<User,String>("email"));
         phonenumber.setCellValueFactory(new PropertyValueFactory<User,String>("num_tel"));
-        dataList = DataBase.getDatauser();
-        userTableView.setItems(dataList);
-        FilteredList<User> filteredData = new FilteredList<>(dataList, b -> true);
+        List<User> userList = us.getAllUsers();
+        ObservableList<User> observableList = FXCollections.observableArrayList(userList);
+        userTableView.setItems(observableList);
+        FilteredList<User> filteredData = new FilteredList<>(observableList, b -> true);
         filterField.textProperty().addListener((observable, oldValue, newValue) -> {
             filteredData.setPredicate(person -> {
                 if (newValue == null || newValue.isEmpty()) {
@@ -154,7 +174,10 @@ public class AdminController {
         sortedData.comparatorProperty().bind(userTableView.comparatorProperty());
 
         userTableView.setItems(sortedData);
+        // Reset pagination to the first page after performing a search
+
     }
+
     private void ActivateUserBack() {
         TableColumn<User, Void> activateButtonColumn = new TableColumn<>("ACTIONS");
         Callback<TableColumn<User, Void>, TableCell<User, Void>> cellFactory = (TableColumn<User, Void> param) -> {
@@ -262,4 +285,38 @@ public class AdminController {
             e.printStackTrace();
         }
     }
-}
+
+private static class PhotoTableCell extends TableCell<User, String> {
+
+    private final ImageView imageView;
+
+    public PhotoTableCell() {
+        imageView = new ImageView();
+        imageView.setFitWidth(50);
+        imageView.setFitHeight(50);
+        setGraphic(imageView);
+    }
+
+    @Override
+    protected void updateItem(String imagePath, boolean empty) {
+        super.updateItem(imagePath, empty);
+
+        if (empty || imagePath == null) {
+            setGraphic(null);
+        } else {
+            try {
+                // Create a file URL from the image path
+                File file = new File(imagePath);
+                URI uri = file.toURI();
+                URL url = uri.toURL();
+
+                Image image = new Image(url.toExternalForm());
+                imageView.setImage(image);
+                setGraphic(imageView);
+            } catch (MalformedURLException e) {
+                e.printStackTrace();
+            }
+        }
+    }
+
+}}

@@ -9,6 +9,8 @@ module User {
     requires VirtualizedFX;
     requires jakarta.mail;
     requires twilio;
+
+    requires bcrypt;
     exports Controller;
 
     opens Controller to javafx.fxml;

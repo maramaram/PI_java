@@ -37,6 +37,7 @@ import java.util.ResourceBundle;
             @FXML
             private ImageView bg_pic;
 
+
         @FXML
         private ImageView pp_view;
         public BaseFrontController() {

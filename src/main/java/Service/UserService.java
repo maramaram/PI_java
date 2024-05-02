@@ -1,16 +1,21 @@
 package Service;
 
-import Controller.AdminPannelController;
+import Controller.AdminController;
 import Utils.DataBase;
 import Entities.*;
-
+import at.favre.lib.crypto.bcrypt.BCrypt;
+import helper.AlertHelper;
+import javafx.scene.control.Alert;
+import helper.AlertHelper;
+import java.awt.*;
 import java.sql.*;
-import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
-public class UserService  {
+import static java.awt.SystemColor.window;
 
+public class UserService  {
+    Window window;
     Connection conn;
 
     public boolean addUser(User user) {
@@ -56,25 +61,29 @@ public class UserService  {
         Connection connection = dataBase.getConnect();
 
         if (connection != null) {
-            String sql = "SELECT * FROM user WHERE email = ? AND pwd = ?";
+            String sql = "SELECT * FROM user WHERE email = ?";
             try (PreparedStatement stmt = connection.prepareStatement(sql)) {
                 stmt.setString(1, email);
-                stmt.setString(2, password);
                 ResultSet rs = stmt.executeQuery();
                 if (rs.next()) {
-                    User user = new User();
-                    user.setId(rs.getString("id"));
-                    user.setNom(rs.getString("nom"));
-                    user.setPrenom(rs.getString("prenom"));
-                    user.setEmail(rs.getString("email"));
-                    user.setNum_tel(rs.getString("num_tel"));
-                    user.setPwd(rs.getString("pwd"));
-                    user.setStatus(rs.getString("status"));
-                    user.setRole(rs.getString("role"));
-                    user.setDate_N(rs.getDate("date_n").toLocalDate()); // Convert java.sql.Date to LocalDate
-                    user.setPhoto(rs.getString("photo"));
-                    user.setAdress(rs.getString("adress"));
-                    return user; // User found, return the user object
+                    String passwordBase = rs.getString("pwd");
+                    BCrypt.Result result=BCrypt.verifyer().verify(password.toCharArray(),passwordBase);
+                    if (result.verified) {
+                        User user = new User();
+                        user.setId(rs.getString("id"));
+                        user.setNom(rs.getString("nom"));
+                        user.setPrenom(rs.getString("prenom"));
+                        user.setEmail(rs.getString("email"));
+                        user.setNum_tel(rs.getString("num_tel"));
+                        user.setPwd(rs.getString("pwd"));
+                        user.setStatus(rs.getString("status"));
+                        user.setRole(rs.getString("role"));
+                        user.setDate_N(rs.getDate("date_n").toLocalDate()); // Convert java.sql.Date to LocalDate
+                        user.setPhoto(rs.getString("photo"));
+                        user.setAdress(rs.getString("adress"));
+                        return user; // User found, return the user object
+                    }
+
                 } else {
                     return null; // User not found
                 }
@@ -176,7 +185,7 @@ public class UserService  {
         Connection connection = dataBase.getConnect();
 
         if (connection != null) {
-            String sql = "SELECT * FROM user";
+            String sql = "SELECT * FROM user WHERE LOWER(role) NOT IN ('admin', 'Admin')";
             try (PreparedStatement stmt = connection.prepareStatement(sql)) {
                 ResultSet rs = stmt.executeQuery();
                 while (rs.next()) {
@@ -192,7 +201,10 @@ public class UserService  {
                     user.setDate_N(rs.getDate("date_n").toLocalDate()); // Convert java.sql.Date to LocalDate
                     user.setPhoto(rs.getString("photo"));
                     user.setAdress(rs.getString("adress"));
-                    userList.add(user); // Add user to the list
+
+                        userList.add(user); // Add user to the list
+
+                   // Add user to the list
                 }
             } catch (SQLException e) {
                 e.printStackTrace(); // Handle exception appropriately
@@ -244,36 +256,7 @@ public class UserService  {
         }
         return false;
     }*/
-    public void activateUser(String userId) {
-        DataBase dataBase = new DataBase();
-        try (Connection connection = dataBase.getConnect()) {
-            String sql = "UPDATE user SET status = 'active' WHERE id = ?";
-            try (PreparedStatement stmt = connection.prepareStatement(sql)) {
-                stmt.setString(1, userId);
-                stmt.executeUpdate();
-                AdminPannelController adminPannelController = new AdminPannelController();
-                adminPannelController.showList();
-            }
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-    }
 
-    public void deactivateUser(String userId) {
-        DataBase dataBase = new DataBase();
-        try (Connection connection = dataBase.getConnect()) {
-            String sql = "UPDATE user SET status = 'inactive' WHERE id = ?";
-            try (PreparedStatement stmt = connection.prepareStatement(sql)) {
-                stmt.setString(1, userId);
-                stmt.executeUpdate();
-                AdminPannelController adminPannelController = new AdminPannelController();
-                adminPannelController.showList();
-
-            }
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-    }
 
 }
 

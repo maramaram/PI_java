@@ -2,6 +2,7 @@ package Controller;
 
 import Entities.SessionManager;
 import Utils.DataBase;
+import at.favre.lib.crypto.bcrypt.BCrypt;
 import helper.AlertHelper;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
@@ -38,14 +39,12 @@ public class EnterPassword implements Initializable {
     @FXML
     private Button changePWD_btn;
 
-    @FXML
-    private Label checkNew_PWD;
+
 
     @FXML
     private Label checkOld_PWD;
 
-    @FXML
-    private Label firstname;
+
 
     @FXML
     private ImageView goback;
@@ -63,64 +62,75 @@ public class EnterPassword implements Initializable {
     @FXML
     void change_pwd(ActionEvent actionEvent) {
         String passwordnew = new_pwd.getText();
+        System.out.println("New password: " + passwordnew);
 
         if (password()) {
-            String oldPassword = old_pwd.getText();
-            String hashedOldPwd = DigestUtils.sha1Hex(oldPassword);
             DataBase dataBase = new DataBase();
             Connection con = dataBase.getConnect();
-            String userId = SessionManager.getInstance().getUserFront();
+            String userId = SessionManager.getInstance().getUserId();
+            System.out.println("User ID: " + userId);
+
             try {
                 String query = "SELECT pwd FROM user WHERE id = ?";
                 PreparedStatement statement = con.prepareStatement(query);
                 statement.setString(1, userId);
                 ResultSet resultSet = statement.executeQuery();
-
                 if (resultSet.next()) {
                     String hashedbase = resultSet.getString("pwd");
-                    if (hashedbase.equals(hashedOldPwd)) {
-                        if (passwordnew.equals(new_pwd)) {
-                            String hashedPwd = DigestUtils.sha1Hex(passwordnew);
-                            String query_edit = "UPDATE user SET pwd = ? WHERE id = ?";
-                            PreparedStatement statement1 = con.prepareStatement(query_edit);
-                            statement1.setString(1, hashedPwd);
-                            statement1.setString(2, userId);
-                            int rowsAffected = statement1.executeUpdate();
-                            if (rowsAffected > 0) {
-                                AlertHelper.showAlert(Alert.AlertType.INFORMATION, window, "Information",
-                                        "User password updated successfully , Session expired in 10 seconds");
-                                Timeline timeline = new Timeline(new KeyFrame(Duration.seconds(10), event -> {
-                                    SessionManager.getInstance().cleanUserSessionFront();
-                                    FXMLLoader loader = new FXMLLoader(getClass().getResource("/User/LogIn.fxml"));
-                                    Parent root = null;
-                                    try {
-                                        root = loader.load();
-                                    } catch (IOException e) {
-                                        throw new RuntimeException(e);
-                                    }
-                                    Stage stage = (Stage) new_pwd.getScene().getWindow();
-                                    stage.setScene(new Scene(root));
-                                }));
-                                timeline.setCycleCount(1);
-                                timeline.play();
-                            } else {
-                                AlertHelper.showAlert(Alert.AlertType.ERROR, window, "Error",
-                                        "Failed to edit user password, try again");
-                            }
+                    System.out.println("Hashed password from database: " + hashedbase);
+
+                    BCrypt.Result result = BCrypt.verifyer().verify(old_pwd.getText().toCharArray(), hashedbase);
+                    if (result.verified) {
+                        System.out.println("Old password verified successfully.");
+
+                        String hashedPwd = BCrypt.withDefaults().hashToString(12, new_pwd.getText().toCharArray());
+                        System.out.println("New hashed password: " + hashedPwd);
+
+                        String query_edit = "UPDATE user SET pwd = ? WHERE id = ?";
+                        PreparedStatement statement1 = con.prepareStatement(query_edit);
+                        statement1.setString(1, hashedPwd);
+                        statement1.setString(2, userId);
+                        int rowsAffected = statement1.executeUpdate();
+                        if (rowsAffected > 0) {
+                            System.out.println("Password updated successfully.");
+
+                            AlertHelper.showAlert(Alert.AlertType.INFORMATION, window, "Information",
+                                    "User password updated successfully, Session expired in 5 seconds");
+
+                            Timeline timeline = new Timeline(new KeyFrame(Duration.seconds(5), event -> {
+                                SessionManager.getInstance().cleanUserSessionFront();
+                                FXMLLoader loader = new FXMLLoader(getClass().getResource("/User/LogIn.fxml"));
+                                Parent root = null;
+                                try {
+                                    root = loader.load();
+                                } catch (IOException e) {
+                                    throw new RuntimeException(e);
+                                }
+                                Stage stage = (Stage) new_pwd.getScene().getWindow();
+                                stage.setScene(new Scene(root));
+                            }));
+                            timeline.setCycleCount(1);
+                            timeline.play();
                         } else {
+                            System.out.println("Failed to update password.");
                             AlertHelper.showAlert(Alert.AlertType.ERROR, window, "Error",
-                                    "Password and confirm password are not compatible");
+                                    "Failed to edit user password, try again");
                         }
                     } else {
+                        System.out.println("Incompatible old password.");
                         AlertHelper.showAlert(Alert.AlertType.ERROR, window, "Error",
                                 "Incompatible Old password");
                     }
                 }
             } catch (SQLException e) {
+                System.out.println("SQL Exception: " + e.getMessage());
                 throw new RuntimeException(e);
             }
         }
-        }
+    }
+
+
+
     public boolean CheckPasswordConstraint(String test) {
         if (test.length() < 8)
             return false;
@@ -141,22 +151,22 @@ public class EnterPassword implements Initializable {
     }
     private boolean password() {
 
-            boolean verif = true;
+        boolean isValid = true;
 
-            if (old_pwd.getText().isEmpty() ||  new_pwd.getText().isEmpty() ) {
-                checkOld_PWD.setVisible(true);
-                checkOld_PWD.setText("Fields cannot be blank.");
-                checkOld_PWD.setStyle("-fx-text-fill: red;");
-                verif = false;
-            } else if (!CheckPasswordConstraint(old_pwd.getText()) || !CheckPasswordConstraint(new_pwd.getText())) {
-                checkOld_PWD.setVisible(true);
-                checkOld_PWD.setText("Password must be strong: at least one uppercase letter, one special character, and one digit.");
-                checkOld_PWD.setStyle("-fx-text-fill: red;");
-                verif = false;
-            } else {
-                checkOld_PWD.setVisible(false);
-            }
-            return verif;
+        if (old_pwd.getText().isEmpty() ||  new_pwd.getText().isEmpty()) {
+            checkOld_PWD.setVisible(true);
+            checkOld_PWD.setText("Fields cannot be blank.");
+            checkOld_PWD.setStyle("-fx-text-fill: red;");
+            isValid = false;
+        } else if (!CheckPasswordConstraint(old_pwd.getText()) || !CheckPasswordConstraint(new_pwd.getText())) {
+            checkOld_PWD.setVisible(true);
+            checkOld_PWD.setText("Password must be strong: at least one uppercase letter, one special character, and one digit.");
+            checkOld_PWD.setStyle("-fx-text-fill: red;");
+            isValid = false;
+        } else {
+            checkOld_PWD.setVisible(false);
+        }
+        return isValid;
 
     }
 

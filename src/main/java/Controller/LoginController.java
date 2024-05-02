@@ -11,6 +11,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 
+import at.favre.lib.crypto.bcrypt.BCrypt;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
@@ -131,13 +132,13 @@ public class LoginController implements Initializable {
         if (checkIsValidated()) {
             UserService us= new UserService();
             String email = mailFieldLogin.getText();
-            String password = DigestUtils.sha1Hex(passwordFieldLogin.getText());
+            String password =passwordFieldLogin.getText();
             User user= us.login(email,password);
             if (user != null) {
                 SessionManager.getInstance().setUserId(user.getId());
                 String role = user.getRole();
                 String status = user.getStatus();
-                if ("Admin".equals(role)) {
+                if ("admin".equals(role)) {
                     String fullName = user.getNom() + " " + user.getPrenom();
                     SessionManager.getInstance().setUserId(fullName);
                     try {

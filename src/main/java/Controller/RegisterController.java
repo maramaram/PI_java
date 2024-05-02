@@ -1,6 +1,6 @@
 package Controller;
 import javafx.scene.Node;
-
+import at.favre.lib.crypto.bcrypt.BCrypt;
 import javafx.fxml.Initializable;
 import javafx.scene.control.ComboBox;
 import helper.AlertHelper;
@@ -16,11 +16,11 @@ import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.text.Text;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 import javafx.stage.Window;
-import org.w3c.dom.events.MouseEvent;
 import org.apache.commons.codec.digest.DigestUtils;
 import javafx.scene.control.Alert;
 import javafx.stage.Window;
@@ -427,35 +427,57 @@ public class RegisterController  implements Initializable {
             String adress = adresse.getText();
 
 
-            String hashedPwd = DigestUtils.sha1Hex(pwd);
+            String hashedPwd = BCrypt.withDefaults().hashToString(12, pwd.toCharArray());
             User user = new User(nom, prenom, mail,hashedPwd,date_n,roles,adress, imagePath, tel);
             boolean isUserAdded = us.addUser(user);
-            Object AlertHelper;
+            AlertHelper AlertHelper = null;
             if (isUserAdded) {
                 String query = "SELECT id FROM user ORDER BY id DESC LIMIT 1";
-
-                viderTextField();
-
-                alertHelper.showAlert(Alert.AlertType.INFORMATION, window, "Information",
-                        "You have registered successfully.");
-
-
-            }
-                else{
-
-
-
-                    Alert alert = new Alert(Alert.AlertType.ERROR);
-                    alert.setTitle("Error");
-                    alert.setContentText("Something wrong");
-                    alert.showAndWait();
+                try {
+                    ps = con.prepareStatement(query);
+                    rs = ps.executeQuery();
+                    if (rs.next()) {
+                        int userID = rs.getInt("id");
+                            String subject = "Welcome On our BreatheOut Application";
+                        String verificationUrl = "http://www.breatheout.com/user/verif/email/" + userID + "/" + token;
+                        String messageBody = "Welcome to Breathe Out!\n\n";
+                        messageBody += "Please click the following link to verify your account:\n";
+                        messageBody += "<a href='" + verificationUrl + "'>Verify Account</a>";
+                        String email_to = email.getText();
+                        EmailSender.sendEmail(email_to, subject, messageBody);
+                        viderTextField();
+                        AlertHelper.showAlert(Alert.AlertType.INFORMATION, window, "Information",
+                                "You have registered successfully.");
+                    }
+                } catch (Exception e) {
+                    e.printStackTrace();
+                    AlertHelper.showAlert(Alert.AlertType.ERROR, window, "Error",
+                            "Failed to retrieve user ID. Please try again later.");
+                } finally {
+                    if (rs != null) {
+                        try {
+                            rs.close();
+                        } catch (SQLException e) {
+                            e.printStackTrace();
+                        }
+                    }
+                    if (ps != null) {
+                        try {
+                            ps.close();
+                        } catch (SQLException e) {
+                            e.printStackTrace();
+                        }
+                    }
                 }
-
+            } else {
+                AlertHelper.showAlert(Alert.AlertType.ERROR, window, "Error",
+                        "Failed to register user. Please try again later.");
             }
         }
+    }
 
     @FXML
-    public void showLoginStage(javafx.scene.input.MouseEvent mouseEvent)  throws IOException{
+    public void showLoginStage(MouseEvent mouseEvent)  throws IOException{
         Stage stage = (Stage) registerButton.getScene().getWindow();
         stage.close();
         Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/User/LogIn.fxml")));

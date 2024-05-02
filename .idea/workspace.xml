@@ -4,20 +4,24 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="219bd414-8940-4b2a-834a-a288c154de45" name="Changes" comment="crud, active inactive , search back, show password, recaptcha,forgot password,">
+    <list default="true" id="219bd414-8940-4b2a-834a-a288c154de45" name="Changes" comment="interface front rectifié, problem forget pwd,">
+      <change afterPath="$PROJECT_DIR$/src/main/resources/User/CoachPannel.fxml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/Controller/AdminController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Controller/AdminController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Controller/AdminPannelController.java" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/Controller/BaseFrontController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Controller/BaseFrontController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Controller/EmailConfig.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Controller/EmailSender.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Controller/EmailSender.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/Controller/EnterPassword.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Controller/EnterPassword.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/Controller/ForgotPwdController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Controller/ForgotPwdController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Controller/LoginController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Controller/LoginController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/Controller/RegisterController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Controller/RegisterController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/Controller/UpdateProfileController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Controller/UpdateProfileController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/User/EnterPassword.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/User/EnterPassword.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Service/UserService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Service/UserService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/module-info.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/module-info.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/User/AdminPannel.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/User/AdminPannel.fxml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/resources/User/Forgot_pwd.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/User/Forgot_pwd.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/User/LogIn.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/User/LogIn.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/User/SignUp.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/User/SignUp.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/User/UpdateProfile.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/User/UpdateProfile.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/User/basefront.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/User/basefront.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/User/clientPanne.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/User/clientPanne.fxml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -27,8 +31,8 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
-        <option value="FxmlFile" />
         <option value="Class" />
+        <option value="FxmlFile" />
       </list>
     </option>
   </component>
@@ -167,7 +171,15 @@
       <workItem from="1714066393282" duration="18923000" />
       <workItem from="1714119893665" duration="5048000" />
       <workItem from="1714323415208" duration="5333000" />
-      <workItem from="1714388442665" duration="8432000" />
+      <workItem from="1714388442665" duration="8662000" />
+      <workItem from="1714425888942" duration="194000" />
+      <workItem from="1714482034063" duration="684000" />
+      <workItem from="1714503043752" duration="4233000" />
+      <workItem from="1714557409209" duration="617000" />
+      <workItem from="1714567299602" duration="16486000" />
+      <workItem from="1714646651248" duration="2427000" />
+      <workItem from="1714653548490" duration="7031000" />
+      <workItem from="1714683772255" duration="1001000" />
     </task>
     <task id="LOCAL-00001" summary="crud, active inactive small problem , search back, show password, recaptcha">
       <option name="closed" value="true" />
@@ -185,7 +197,15 @@
       <option name="project" value="LOCAL" />
       <updated>1714091128997</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL-00003" summary="interface front rectifié, problem forget pwd,">
+      <option name="closed" value="true" />
+      <created>1714424826880</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1714424826880</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -206,6 +226,7 @@
     <MESSAGE value="architecture basique du projet (commit1)" />
     <MESSAGE value="crud, active inactive small problem , search back, show password, recaptcha" />
     <MESSAGE value="crud, active inactive , search back, show password, recaptcha,forgot password," />
-    <option name="LAST_COMMIT_MESSAGE" value="crud, active inactive , search back, show password, recaptcha,forgot password," />
+    <MESSAGE value="interface front rectifié, problem forget pwd," />
+    <option name="LAST_COMMIT_MESSAGE" value="interface front rectifié, problem forget pwd," />
   </component>
 </project>
