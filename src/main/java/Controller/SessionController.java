@@ -11,6 +11,9 @@ import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.chart.LineChart;
+import javafx.scene.chart.NumberAxis;
+import javafx.scene.chart.XYChart;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.KeyEvent;
@@ -21,7 +24,9 @@ import java.io.IOException;
 import java.net.URL;
 import java.sql.*;
 import java.time.LocalDate;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.ResourceBundle;
 
 import static java.sql.Date.valueOf;
@@ -65,22 +70,29 @@ public class SessionController implements Initializable {
 
     @FXML
     private TextField searchField;
+
     int myIndex;
+    @FXML
+    private Pagination pagination;
 
+    @FXML
+    private Label currentPageLabel;
+
+    private ServiceSession serviceSession = new ServiceSession();
+    private ObservableList<Session> sessions = FXCollections.observableArrayList();
+
+    @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        ServiceSession ss = new ServiceSession();
-        try {
-            List<Session> listeSession = ss.afficherList();
-        } catch (SQLException e) {
-            System.out.println(e.getMessage());
-        }
+        currentPageLabel = new Label();
+        pagination.currentPageIndexProperty().addListener((observable, oldValue, newValue) -> handlePageChange());
+        AfficherSE();
 
-        AfficherSE(); // Appeler la methode pour afficher les données
+
 
         table.setOnMouseClicked(event -> {
-            if (event.getClickCount() == 2) { // Vérifier si c'est un double-clic
-                // Convertir l'objet sélectionné en Session en utilisant le casting
+            if (event.getClickCount() == 2) {
                 Session session = (Session) table.getSelectionModel().getSelectedItem();
+
                 if (session != null) {
                     try {
                         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/Fxml/ModifierSession.fxml"));
@@ -96,21 +108,23 @@ public class SessionController implements Initializable {
 
                         table.getScene().setRoot(root);
                     } catch (IOException e) {
-                        throw new RuntimeException(e);
+                        e.printStackTrace();
                     }
                 }
             }
         });
     }
 
-    public void AfficherSE() {
-        ServiceSession ss = new ServiceSession();
+    private void AfficherSE() {
         try {
-            List<Session> l = ss.afficherList();
-            table.getItems().clear();
-            for (Session session : l) {
-                table.getItems().add(session);
-            }
+            List<Session> l = serviceSession.afficherList();
+            sessions.clear();
+            sessions.addAll(l);
+            int totalPages = (int) Math.ceil(sessions.size() / 5.0);
+            pagination.setPageCount(totalPages);
+            pagination.setCurrentPageIndex(0);
+
+            table.getItems().setAll(getCommandesForCurrentPage());
 
             id.setCellValueFactory(new PropertyValueFactory<>("id"));
             cap.setCellValueFactory(new PropertyValueFactory<>("cap"));
@@ -118,16 +132,30 @@ public class SessionController implements Initializable {
             date.setCellValueFactory(new PropertyValueFactory<>("date"));
             coach.setCellValueFactory(new PropertyValueFactory<>("coach"));
         } catch (SQLException e) {
-            System.out.println(e.getMessage());
+            e.printStackTrace();
         }
     }
 
     @FXML
+    protected void handlePageChange() {
+        table.getItems().setAll(getCommandesForCurrentPage());
+        currentPageLabel.setText("Page " + (pagination.getCurrentPageIndex() + 1) + " / " + pagination.getPageCount());
+    }
+
+    private ObservableList<Session> getCommandesForCurrentPage() {
+        int fromIndex = pagination.getCurrentPageIndex() * 5;
+        int toIndex = Math.min(fromIndex + 5, sessions.size());
+        List<Session> subList = sessions.subList(fromIndex, toIndex);
+        return FXCollections.observableArrayList(subList);
+    }
+
+
+    @FXML
     void AJ(ActionEvent event) {
         try {
-            Parent root =  FXMLLoader.load(getClass().getResource("/Fxml/AjouterSession.fxml"));
-            primaryStage =(Stage)((Node) event.getSource()).getScene().getWindow();
-            Scene scene=new Scene(root);
+            Parent root = FXMLLoader.load(getClass().getResource("/Fxml/AjouterSession.fxml"));
+            primaryStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+            Scene scene = new Scene(root);
             primaryStage.setScene(scene);
             primaryStage.show();
         } catch (IOException e) {
@@ -152,14 +180,17 @@ public class SessionController implements Initializable {
             System.out.println("Aucune ligne sélectionnée.");
         }
     }
+
     private void showErrorAlert(String s) {
     }
 
     private void showSuccessMessage(String s) {
     }
+
     @FXML
     void refreshSessions() {
     }
+
     private void searchSessions(String keyword) {
 
         ObservableList<Session> allSessions = getSesions();
@@ -222,4 +253,4 @@ public class SessionController implements Initializable {
             System.out.println(e.getMessage());
         }
     }
-    }
+}

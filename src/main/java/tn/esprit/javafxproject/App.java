@@ -8,7 +8,7 @@ import javafx.stage.Stage;
 
 public class App extends Application {
     @Override
-    public void start(Stage stage) throws Exception {
+    public void start(Stage stage) throws Exception {///Fxml/AdminPannel.fxml
         Parent parent = FXMLLoader.load(getClass().getResource("/Fxml/AdminPannel.fxml"));
         Scene scene = new Scene(parent);
         stage.setTitle("Welcome");

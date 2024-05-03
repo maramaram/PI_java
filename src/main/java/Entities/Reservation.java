@@ -1,12 +1,12 @@
 package Entities;
 
-import java.sql.Date;
 import java.time.LocalDate;
+import java.util.Date;
 
 public class Reservation {
     private int id;
     private String session;
-    private Date date;
+    private String date;
     private String etat;
     private String client;
 
@@ -14,19 +14,19 @@ public class Reservation {
         // Constructeur par défaut
     }
 
-    public Reservation(int id, String session, Date date, String etat, String client) {
+    public Reservation(int id, String etat, String client, String session, Date date) {
         this.id = id;
-        this.session = session;
-        this.date = date;
         this.etat = etat;
         this.client = client;
+        this.session = session;
+        this.date = date.toString();
     }
 
-    public Reservation(String session, Date date, String etat, String client) {
-        this.session = session;
-        this.date = date;
+    public Reservation(String etat, String client, String session, Date date) {
         this.etat = etat;
         this.client = client;
+        this.session = session;
+        this.date = String.valueOf(date);
     }
 
     public String getClient() {
@@ -53,11 +53,11 @@ public class Reservation {
         this.session = session;
     }
 
-    public LocalDate getDate() {
-        return date.toLocalDate();
+    public String getDate() {
+        return date;
     }
 
-    public void setDate(Date date) {
+    public void setDate(String date) {
         this.date = date;
     }
 
@@ -73,7 +73,7 @@ public class Reservation {
     public String toString() {
         return "Reservation{" +
                 "id=" + id +
-                ", sessionId=" + session +
+                ", sessionId='" + session + '\'' +
                 ", date=" + date +
                 ", etat='" + etat + '\'' +
                 ", client='" + client + '\'' +

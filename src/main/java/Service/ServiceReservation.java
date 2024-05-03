@@ -1,6 +1,7 @@
 package Service;
 
 import Entities.Reservation;
+import Entities.Session;
 import Utils.MyDataBase;
 
 import java.sql.*;
@@ -21,21 +22,24 @@ Date date;
         String sql = "INSERT INTO `reservation`(`session`, `date`, `etat`, `client`) VALUES (?, ?, ?,?)";
         PreparedStatement statement = connection.prepareStatement(sql);
         statement.setString(1, reservation.getSession());
-        statement.setDate(2, new java.sql.Date(date.getTime())); // Convert Date to java.sql.Date
+        statement.setDate(2, Date.valueOf(reservation.getDate())); // Convert Date to java.sql.Date
         statement.setString(3, reservation.getEtat());
-        statement.setString(4, reservation.getEtat());
+        statement.setString(4, reservation.getClient());
         statement.executeUpdate();
     }
-
     @Override
     public void modifier(Reservation reservation) throws SQLException {
-        String sql = "UPDATE reservation SET session_id = ?, date = ?, etat = ? WHERE id = ?";
+        String sql = "UPDATE reservation SET session = ?, date = ?, etat = ? , Client = ? WHERE id = ?";
         PreparedStatement preparedStatement= connection.prepareStatement(sql);
+
         preparedStatement.setString(1, reservation.getSession());
-        preparedStatement.setDate(3, java.sql.Date.valueOf(reservation.getDate()));
+        LocalDate date = LocalDate.parse(reservation.getDate());
+        preparedStatement.setDate(2, java.sql.Date.valueOf(date));
         preparedStatement.setString(3, reservation.getEtat());
-        preparedStatement.setInt(4, reservation.getId());
+        preparedStatement.setString(4, reservation.getClient());
+        preparedStatement.setInt(5, reservation.getId());
         preparedStatement.executeUpdate();
+        System.out.println("Reservation modifier");
     }
 
     @Override
@@ -48,18 +52,15 @@ Date date;
 
     @Override
     public List<Reservation> afficherList() throws SQLException {
-        List<Reservation> reservations = new ArrayList<>();
+        List<Reservation> re = new ArrayList<>();
         String sql = "SELECT * FROM reservation";
         Statement statement = connection.createStatement();
         ResultSet rs = statement.executeQuery(sql);
         while (rs.next()){
             Reservation r = new Reservation();
-            r.setId(rs.getInt("id"));
-            r.setSession(rs.getString("session"));
-            r.setDate(Date.valueOf(String.valueOf(LocalDate.parse(String.valueOf(rs.getDate("Date"))))));
-            r.setEtat(rs.getString("etat"));
-            reservations.add(r);
+
+            re.add(new Reservation(rs.getInt(1), rs.getString(2), rs.getString(3),rs.getString(4) ,  rs.getDate(5)));
         }
-        return reservations;
+        return re;
     }
 }

@@ -1,5 +1,8 @@
 package Controller;
+
+import Entities.Reservation;
 import Entities.Session;
+import Service.ServiceReservation;
 import Service.ServiceSession;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -10,73 +13,68 @@ import javafx.scene.control.*;
 import javafx.stage.Stage;
 
 import java.io.IOException;
-import java.net.URL;
 import java.sql.Date;
 import java.sql.SQLException;
 import java.time.LocalDate;
-import java.time.ZoneId;
-import java.util.ResourceBundle;
 
-public class ModifierSession {
+public class ModifierReservation {
+    @FXML
+    private ComboBox<String> comboBoxClient;
+    @FXML
+    private ComboBox<String> comboBoxEtat;
+    @FXML
+    private ComboBox<String> comboBoxSession;
 
+    @FXML
+    private Label etatE;
+    @FXML
+    private Label sessionE;
+    @FXML
+    private Label clientE;
     @FXML
     private Label dateE;
     @FXML
-    private Label typeE;
-    @FXML
-    private Label capE;
-    @FXML
-    private Label coachE;
+    private Button btnsave;
     @FXML
     private TextField idA;
-    @FXML
-    private TextField tCap;
+
     @FXML
     private DatePicker datePicker;
-    @FXML
-    private ComboBox<String> comboBoxCoach;
-    @FXML
-    private ComboBox<String> comboBoxType;
 
-    private SessionController sessionController;
+    private ReservationController reservationControllerController;
     private Stage primaryStage;
-@FXML
-private Button btnsave;
+
     public void initialize() {
-        coachE.setText("");
+        etatE.setText("");
         // Initialise la liste déroulante des coaches, si nécessaire
-        comboBoxCoach.getItems().addAll("Firas", "Rayan", "Yahya", "Aziz"); // Remplacez avec vos propres valeurs si nécessaire
+        comboBoxClient.getItems().addAll("Firas", "Rayan", "Yahya", "Aziz"); // Remplacez avec vos propres valeurs si nécessaire
 
         // Remplacez avec vos types de session réels
-        comboBoxType.getItems().addAll( "hit", "endurance", "cross fit","pilate","Muscu-training"); // Correction du nom de la ComboBox
-    }
-    public void setIdA(String idA) {
-        this.idA.setText(idA);
+        comboBoxSession.getItems().addAll("1","2","3","4","5"); // Correction du nom de la ComboBox
+        comboBoxEtat.getItems().addAll( "1","2");
     }
 
-    public void settCap(String tCap) {
-        this.tCap.setText(tCap);
+    public void setIdA(String idA) {
+        this.idA.setText(idA);
     }
 
     public void setDatePicker(LocalDate newDate) {
         this.datePicker.setValue(newDate);
     }
-    public void setComboBoxCoach(String selectedCoach) {
-        this.comboBoxCoach.setValue(selectedCoach);
+    public void setComboBoxClient(String selectedClient) {
+        this.comboBoxClient.setValue(selectedClient);
     }
-    public void setComboBoxType(String selectedType) {
-        this.comboBoxType.setValue(selectedType);
+    public void setComboBoxSession(String selectedSession) {
+        this.comboBoxSession.setValue(selectedSession);
     }
+    public void setComboBoxEtat (String selectedEtat) { this.comboBoxEtat.setValue(selectedEtat);}
 
-
-
-    // Méthode appelée lorsque le bouton est cliqué
     public void Se() {
         try {
             // Charger le fichier FXML de la nouvelle scène
 
-            Parent root = FXMLLoader.load(getClass().getResource("/Fxml/Sessions.fxml"));
-            primaryStage = (Stage) tCap.getScene().getWindow();
+            Parent root = FXMLLoader.load(getClass().getResource("/Fxml/Reservation.fxml"));
+            primaryStage = (Stage) comboBoxEtat.getScene().getWindow();
             // Créer une nouvelle scène
             Scene scene = new Scene(root);
 
@@ -90,29 +88,28 @@ private Button btnsave;
 
     @FXML
     private void ModifierSE(ActionEvent actionEvent) {
-        ServiceSession ss = new ServiceSession();
+        ServiceReservation sr = new ServiceReservation();
         boolean test = true;
         // Vérifier si tous les champs de texte sont remplis
-        if (comboBoxType.getValue().isEmpty()) {
+        if (comboBoxEtat.getValue().isEmpty()) {
             test = false;
-            typeE.setText("vide");
+            etatE.setText("vide");
         } else {
-            typeE.setText("");
+            etatE.setText("");
         }
 
-        // Vérifier si la capacité est un entier
-        if (!isInteger(tCap.getText())) {
-            test = false;
-            capE.setText("La capacité de la session doit être un entier");
-        } else {
-            capE.setText("");
-        }
+        if(comboBoxClient.getValue().isEmpty() || comboBoxClient.getValue() == null) {
+    test = false;
+    clientE.setText("vide");
+} else {
+    clientE.setText("");
+}
 
-        if (comboBoxCoach.getValue() == null || comboBoxCoach.getValue().isEmpty()) {
-            coachE.setText("Coach is required");
+        if (comboBoxSession.getValue() == null || comboBoxSession.getValue().isEmpty()) {
+            sessionE.setText("Session is required");
             test = false;
         } else {
-            coachE.setText("");
+            sessionE.setText("");
         }
 
         // Vérifier si la date est postérieure à la date actuelle
@@ -123,16 +120,16 @@ private Button btnsave;
         } else {
             dateE.setText("");
         }
-        
+
         if (test) {
-            ServiceSession see= new ServiceSession();
+            ServiceReservation ree= new ServiceReservation();
             Date date = Date.valueOf(selectedDate);
-            Session se = new Session(Integer.parseInt(idA.getText()) , Integer.parseInt(tCap.getText()) , comboBoxType.getValue(), date , comboBoxCoach.getValue());
+            Reservation re = new Reservation(comboBoxEtat.getValue() , comboBoxClient.getValue(), comboBoxSession.getValue(),date);
             try {
-                see.modifier(se);
+                ree.modifier(re);
                 Alert alert = new Alert(Alert.AlertType.INFORMATION);
                 alert.setTitle("Succées");
-                alert.setContentText("La Session a été a modifié avec succées !!");
+                alert.setContentText("La Reservation a été a modifié avec succées !!");
                 alert.showAndWait();
                 Se();
             } catch (SQLException e) {
@@ -148,6 +145,7 @@ private Button btnsave;
             alert.showAndWait();
         }
     }
+
     private void showSuccessMessage(String message) {
         // You can implement this method to show a success message to the user
         Alert alert = new Alert(Alert.AlertType.INFORMATION);
@@ -164,17 +162,7 @@ private Button btnsave;
         alert.setContentText(message);
         alert.showAndWait();
     }
-    private boolean isInteger(String str) {
-        if (str == null) {
-            return false;
-        }
-        try {
-            Integer.parseInt(str);
-        } catch (NumberFormatException e) {
-            return false;
-        }
-        return true;
-    }
+
     private void fermerFenetre() {
         // Récupérer la scène actuelle à partir du bouton sauvegarder
         Stage stage = (Stage) btnsave.getScene().getWindow();

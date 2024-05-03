@@ -31,6 +31,6 @@
       <Label fx:id="coachE" layoutX="283.0" layoutY="262.0" prefHeight="17.0" prefWidth="250.0" styleClass="error-label" text="Label" textFill="WHITE" />
       <Label fx:id="dateE" layoutX="286.0" layoutY="100.0" prefHeight="17.0" prefWidth="250.0" styleClass="error-label" text="Label" textFill="WHITE" />
 
-      <Button fx:id="btnsave" layoutX="250.0" layoutY="350.0" mnemonicParsing="false" onAction="#AjouterSE" text="ADD" />
+      <Button fx:id="btnsave" layoutX="250.0" layoutY="350.0" mnemonicParsing="false" onAction="#AjouterSE" text="Ajouter" />
    </children>
 </AnchorPane>

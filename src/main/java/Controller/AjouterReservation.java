@@ -44,13 +44,13 @@ public class AjouterReservation {
         private SessionController sessionController;
 
 
-        public void initialize(URL location, ResourceBundle resources) {
+        public void initialize() {
             etatE.setText("");
             // Initialise la liste déroulante des coaches, si nécessaire
             comboBoxClient.getItems().addAll("Firas", "Rayan", "Yahya", "Aziz"); // Remplacez avec vos propres valeurs si nécessaire
 
             // Remplacez avec vos types de session réels
-            comboBoxSession.getItems().addAll( "hit", "endurance", "cross fit","pilate","Muscu-training"); // Correction du nom de la ComboBox
+            comboBoxSession.getItems().addAll("1","2","3","4","5"); // Correction du nom de la ComboBox
             comboBoxEtat.getItems().addAll( "1","2");
         }
 
@@ -58,7 +58,7 @@ public class AjouterReservation {
         private void sauvegarderReservation(ActionEvent actionEvent) {
             boolean test = true;
             // Vérifier si tous les champs de texte sont remplis
-            if (comboBoxClient.getValue().isEmpty()) {
+            if  (comboBoxSession.getValue() == null ||comboBoxClient.getValue().isEmpty()) {
                 test = false;
                clientE.setText("Client is required");
             } else {
@@ -79,7 +79,12 @@ public class AjouterReservation {
             } else {
                 dateE.setText("");
             }
-
+            if (comboBoxEtat.getValue() == null || comboBoxEtat.getValue().isEmpty()) {
+                test = false;
+                etatE.setText("Etat is required");
+            } else {
+                etatE.setText("");
+            }
             if (test) {
                 saveSessionToDatabase();
                 fermerFenetre();
@@ -87,14 +92,13 @@ public class AjouterReservation {
             }
         }
     private void saveSessionToDatabase() {
-        String session = comboBoxSession.getValue();
-        String client = comboBoxClient.getValue();
+            String client = comboBoxClient.getValue();
         String etat = comboBoxEtat.getValue();
-        LocalDate selectedDate = datePicker.getValue();
-        Date sqlDate = Date.valueOf(selectedDate);
+        String session = comboBoxSession.getValue();
+        java.sql.Date date = java.sql.Date.valueOf(datePicker.getValue());
 
         // Create a new reservation object
-        Reservation reservation = new Reservation(session, sqlDate, etat, client);
+        Reservation reservation = new Reservation(etat, client, session,(java.sql.Date) date);
 
         // Call the service to save the reservation
         ServiceReservation serviceReservation = new ServiceReservation();
@@ -109,8 +113,6 @@ public class AjouterReservation {
             showErrorAlert("Failed to add reservation: " + e.getMessage());
         }
     }
-
-
 
         private void fermerFenetre() {
             // Récupérer la scène actuelle à partir du bouton sauvegarder
@@ -129,10 +131,6 @@ public class AjouterReservation {
             } catch (IOException e) {
                 e.printStackTrace();
             }
-        }
-
-        public void setSessionController(SessionController sessionController) {
-            this.sessionController = sessionController;
         }
 
         private void showSuccessMessage(String message) {
@@ -165,6 +163,20 @@ public class AjouterReservation {
                 e.printStackTrace();
             }
         }
+    private String getSessionType(String sessionNumber) {
+        switch (sessionNumber) {
+            case "1":
+                return "hit";
+            case "2":
+                return "endurance";
+            case "3":
+                return "cross fit";
+            case "4":
+                return "pilate";
+            default:
+                return "Muscu-training";
+        }
+    }
 }
 
 

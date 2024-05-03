@@ -1,7 +1,11 @@
 package Controller;
 
 import Entities.Reservation;
+import Entities.Session;
 import Service.ServiceReservation;
+import Utils.MyDataBase;
+import javafx.beans.property.SimpleStringProperty;
+import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -13,12 +17,17 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
-import Utils.MyDataBase;
 import javafx.stage.Stage;
+import javafx.util.Callback;
 
 import java.io.IOException;
 import java.net.URL;
-import java.sql.*;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.time.LocalDate;
+import java.util.List;
 import java.util.ResourceBundle;
 
 public class ReservationController implements Initializable {
@@ -36,9 +45,6 @@ public class ReservationController implements Initializable {
     private Button btnAjouter;
 
     @FXML
-    private Button btnUpdate;
-
-    @FXML
     private DatePicker datePicker;
     @FXML
     private ComboBox<String> comboBoxClient;
@@ -49,17 +55,19 @@ public class ReservationController implements Initializable {
     private TextField tEtat;
 
     @FXML
-    private TableColumn<Reservation, Integer> colid;
+    private TableColumn<Reservation, Integer> id;
 
     @FXML
-    private TableColumn<Reservation, Integer> colsession;
+    private TableColumn<Reservation, String> session;
 
     @FXML
-    private TableColumn<Reservation, Date> coldate;
+    private TableColumn<Reservation, LocalDate> date;
 
     @FXML
-    private TableColumn<Reservation, String> coletat;
-    int id;
+    private TableColumn<Reservation, String> etat;
+    @FXML
+    private TableColumn<Reservation, String> client;
+
     @FXML
     private TableView<Reservation> table;
 
@@ -71,6 +79,31 @@ public class ReservationController implements Initializable {
     public void initialize(URL url, ResourceBundle resourceBundle) {
         showReservations();
         searchField.textProperty().addListener((observable, oldValue, newValue) -> searchReservations(newValue));
+
+        table.setOnMouseClicked(event -> {
+            if (event.getClickCount() == 2) {
+                Reservation reservation = (Reservation) table.getSelectionModel().getSelectedItem();
+
+                if (reservation != null) {
+                    try {
+                        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/Fxml/ModifierReservation.fxml"));
+                        Parent root = fxmlLoader.load();
+
+                        ModifierReservation modifierReservation = fxmlLoader.getController();
+
+                        modifierReservation.setIdA(String.valueOf(reservation.getId()));
+                        modifierReservation.setDatePicker(LocalDate.parse(reservation.getDate()));
+                        modifierReservation.setComboBoxClient(String.valueOf(reservation.getClient()));
+                        modifierReservation.setComboBoxSession(String.valueOf(reservation.getSession()));
+                        modifierReservation.setComboBoxEtat(String.valueOf(reservation.getEtat()));
+
+                        table.getScene().setRoot(root);
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
+                }
+            }
+        });
     }
 
     public ObservableList<Reservation> getReservations() {
@@ -84,8 +117,9 @@ public class ReservationController implements Initializable {
                 Reservation reservation = new Reservation();
                 reservation.setId(rs.getInt("id"));
                 reservation.setSession(rs.getString("session"));
-                reservation.setDate(Date.valueOf(String.valueOf(rs.getDate("Date"))));
+                reservation.setDate(String.valueOf(rs.getDate("Date").toLocalDate())); // Convert java.sql.Date to LocalDate
                 reservation.setEtat(rs.getString("etat"));
+                reservation.setClient(rs.getString("client")); // Ajoutez cette ligne pour récupérer le nom du client
                 reservations.add(reservation);
             }
         } catch (SQLException e) {
@@ -94,62 +128,123 @@ public class ReservationController implements Initializable {
         return reservations;
     }
 
+
     public void showReservations() {
         ObservableList<Reservation> list = getReservations();
         table.setItems(list);
-        colid.setCellValueFactory(new PropertyValueFactory<>("id"));
-        colsession.setCellValueFactory(new PropertyValueFactory<>("sessionId"));
-        coldate.setCellValueFactory(new PropertyValueFactory<>("date"));
-        coletat.setCellValueFactory(new PropertyValueFactory<>("etat"));
+
+        id.setCellValueFactory(new PropertyValueFactory<>("id"));
+        etat.setCellValueFactory(new PropertyValueFactory<>("etat"));
+        date.setCellValueFactory(new PropertyValueFactory<>("date"));
+        client.setCellValueFactory(new PropertyValueFactory<>("client"));
+
+        etat.setCellFactory(col -> new TableCell<Reservation, String>() {
+            @Override
+            public void updateItem(String item, boolean empty) {
+                super.updateItem(item, empty);
+                if (empty || item == null) {
+                    setText(null);
+                } else {
+                    setText(item.equals("1") ? "En cours" : "Terminée");
+                }
+            }
+        });
+
+        client.setCellFactory(col -> new TableCell<Reservation, String>() {
+            @Override
+            public void updateItem(String item, boolean empty) {
+                super.updateItem(item, empty);
+                if (empty || item == null) {
+                    setText(null);
+                } else {
+                    setText(item);
+                    System.out.println("Client affiché : " + getItem());
+                }
+            }
+        });
+
+        session.setCellValueFactory(new Callback<TableColumn.CellDataFeatures<Reservation, String>, ObservableValue<String>>() {
+            @Override
+            public ObservableValue<String> call(TableColumn.CellDataFeatures<Reservation, String> param) {
+                Reservation reservation = param.getValue();
+                String sessionValue = reservation.getSession();
+
+                String sessionName = "";
+                switch (sessionValue) {
+                    case "1":
+                        sessionName = "hit";
+                        break;
+                    case "2":
+                        sessionName = "endurance";
+                        break;
+                    case "3":
+                        sessionName = "cross fit";
+                        break;
+                    case "4":
+                        sessionName = "pilate";
+                        break;
+                    default:
+                        sessionName = "muscu training";
+                        break;
+                }
+                return new SimpleStringProperty(sessionName);
+            }
+        });
     }
+
 
     @FXML
     void createReservation(ActionEvent event) {
         // Code pour afficher la vue de création de réservation
 
-            try {
-                Parent loader =  FXMLLoader.load(getClass().getResource("/Fxml/AjouterReservation.fxml"));
-                Stage s;
-                Scene scene=new Scene(loader);
-                s=(Stage)((Node)event.getSource()).getScene().getWindow();
-                s.setScene(scene);
-                s.show();
-                showReservations();
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
+        try {
+            Parent loader = FXMLLoader.load(getClass().getResource("/Fxml/AjouterReservation.fxml"));
+            Stage s;
+            Scene scene = new Scene(loader);
+            s = (Stage) ((Node) event.getSource()).getScene().getWindow();
+            s.setScene(scene);
+            s.show();
+            showReservations();
+        } catch (IOException e) {
+            e.printStackTrace();
         }
+    }
 
     @FXML
     void deleteReservation(ActionEvent event) {
-        // Code pour supprimer une réservation sélectionnée
-        String delete = "delete from session where id = ?";
 
-        TableView.TableViewSelectionModel<Reservation> selectionModel=table.getSelectionModel();
-        if (!selectionModel.isEmpty())
-        {
-            ServiceReservation sr=new ServiceReservation();
+        TableView.TableViewSelectionModel<Reservation> selectionModel = table.getSelectionModel();
+        if (!selectionModel.isEmpty()) {
+            ServiceReservation rs = new ServiceReservation();
             Reservation selectedReservation = selectionModel.getSelectedItem();
-            try{
-                sr.delete(selectedReservation);
-            }catch(SQLException e)
-            {
+            try {
+                rs.delete(selectedReservation);
+                AfficherSE();
+            } catch (SQLException e) {
                 System.out.println(e.getMessage());
             }
         } else {
             System.out.println("Aucune ligne sélectionnée.");
         }
-        con = MyDataBase.getInstance().getConnection();
-        try {
-            st = con.prepareStatement(delete);
-            st.setInt(1, id);
-            st.executeUpdate();
-            showReservations();
-        } catch (SQLException e) {
-            throw new RuntimeException(e);
-        }
     }
 
+    public void AfficherSE() {
+        ServiceReservation sr = new ServiceReservation();
+        try {
+            List<Reservation> l = sr.afficherList();
+            table.getItems().clear();
+            for (Reservation reservation : l) {
+                table.getItems().add(reservation);
+            }
+            id.setCellValueFactory(new PropertyValueFactory<>("id"));
+            etat.setCellValueFactory(new PropertyValueFactory<>("etat"));
+            client.setCellValueFactory(new PropertyValueFactory<>("client"));
+            session.setCellValueFactory(new PropertyValueFactory<Reservation, String>("session"));
+            date.setCellValueFactory(new PropertyValueFactory<>("date"));
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+        }
+    }
 
     @FXML
     void sauvegarderReservation(ActionEvent event) {
@@ -161,24 +256,16 @@ public class ReservationController implements Initializable {
         // Code pour rafraîchir la liste des réservations
     }
 
-    @FXML
-    void sortReservationAscending(ActionEvent event) {
-        ObservableList<Reservation> sortedList = table.getItems().sorted((s1, s2) -> s1.getDate().compareTo(s2.getDate()));
-        table.setItems(sortedList);
-    }
-
-    @FXML
-    void sortReservationDescending(ActionEvent event) {
-        ObservableList<Reservation> sortedList = table.getItems().sorted((s1, s2) -> s2.getDate().compareTo(s1.getDate()));
-        table.setItems(sortedList);
-    }
-
-    @FXML
-    void updateReservation(ActionEvent event) {
-        // Code pour mettre à jour une réservation sélectionnée
-    }
-
     private void searchReservations(String keyword) {
-        // Code pour rechercher des réservations selon un mot-clé
+        ObservableList<Reservation> allReservation = getReservations();
+        ObservableList<Reservation> filteredReservation = FXCollections.observableArrayList();
+
+        for (Reservation reservation : allReservation) {
+            if (reservation.getSession().toLowerCase().contains(keyword.toLowerCase())) {
+                filteredReservation.add(reservation);
+            }
+        }
+
+        table.setItems(filteredReservation);
     }
 }
