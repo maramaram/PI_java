@@ -3,6 +3,7 @@ module com.example.projectpi {
     requires javafx.fxml;
     requires java.sql;
     requires org.apache.pdfbox;
+    requires org.controlsfx.controls;
     exports Controller;
 
     opens Controller to javafx.fxml;

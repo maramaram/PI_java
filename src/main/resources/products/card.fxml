@@ -9,27 +9,27 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<HBox fx:id="box" alignment="TOP_CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="216.0" prefWidth="300.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.cardController">
+<HBox fx:id="box" alignment="TOP_CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="235.0" prefWidth="367.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.cardController">
    <children>
-      <ImageView fx:id="imagep" fitHeight="231.0" fitWidth="148.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fx:id="imagep" fitHeight="187.0" fitWidth="180.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../tapis sport.jpg" />
          </image>
          <HBox.margin>
-            <Insets left="15.0" top="30.0" />
+            <Insets bottom="30.0" left="15.0" top="50.0" />
          </HBox.margin>
       </ImageView>
-      <VBox fx:id="vbox" prefHeight="216.0" prefWidth="178.0">
+      <VBox fx:id="vbox" prefHeight="206.0" prefWidth="194.0">
          <HBox.margin>
-            <Insets left="20.0" right="15.0" />
+            <Insets bottom="40.0" left="20.0" right="20.0" top="30.0" />
          </HBox.margin>
          <children>
-            <Label fx:id="nom" contentDisplay="CENTER" prefHeight="58.0" prefWidth="123.0" text="tapis" textAlignment="CENTER">
+            <Label fx:id="nom" contentDisplay="CENTER" prefHeight="43.0" prefWidth="82.0" text="Tapis" textAlignment="CENTER">
                <font>
                   <Font size="29.0" />
                </font>
                <VBox.margin>
-                  <Insets left="25.0" />
+                  <Insets left="30.0" />
                </VBox.margin>
             </Label>
             <Label fx:id="description" layoutX="10.0" layoutY="10.0" prefHeight="58.0" prefWidth="123.0" text="hajhbjbhjbjk">
@@ -37,12 +37,12 @@
                   <Font size="16.0" />
                </font>
                <VBox.margin>
-                  <Insets left="15.0" />
+                  <Insets left="26.0" />
                </VBox.margin>
             </Label>
             <Label prefHeight="18.0" prefWidth="56.0" text="price:">
                <VBox.margin>
-                  <Insets left="20.0" top="15.0" />
+                  <Insets left="30.0" top="10.0" />
                </VBox.margin>
                <font>
                   <Font size="15.0" />
@@ -50,16 +50,16 @@
             </Label>
             <Label fx:id="prix" layoutX="10.0" layoutY="68.0" prefHeight="58.0" prefWidth="82.0" text="250DT">
                <VBox.margin>
-                  <Insets left="40.0" />
+                  <Insets left="70.0" />
                </VBox.margin>
                <font>
                   <Font size="17.0" />
                </font>
             </Label>
             <!-- ... -->
-            <Button fx:id="addtocart" mnemonicParsing="false" onAction="#addtocart" prefHeight="40.0" prefWidth="118.0" text="AddToCart">
+            <Button fx:id="addtocart" mnemonicParsing="false" onAction="#addtocart" prefHeight="26.0" prefWidth="58.0" text="Add">
                <VBox.margin>
-                  <Insets />
+                  <Insets left="20.0" right="50.0" />
                </VBox.margin>
             </Button>
             <!-- ... -->

@@ -23,9 +23,7 @@ import javafx.stage.Stage;
 
 import javafx.fxml.FXML;
 
-import java.io.File;
-import java.io.FileNotFoundException;
-import java.io.IOException;
+import java.io.*;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -34,6 +32,7 @@ import java.util.List;
 
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
+import org.apache.pdfbox.io.IOUtils;
 import org.apache.pdfbox.pdmodel.PDDocument;
 import org.apache.pdfbox.pdmodel.PDPage;
 import org.apache.pdfbox.pdmodel.PDPageContentStream;
@@ -104,6 +103,9 @@ public class productController extends Application {
     private ChoiceBox<String> choiceBoxSort;
     @FXML
     private Button btnGeneratePDF;
+
+
+
     @FXML
     private void handleGeneratePDFButton(ActionEvent event) {
         try {
@@ -149,31 +151,40 @@ public class productController extends Application {
         final int numberOfColumns = columnTitles.length;
         final int numberOfRows = table_produits.getItems().size() + 1;
 
-        float tableTopY = nexty;
-        float tableBottomY = tableTopY - numberOfRows * rowHeight;
-        float tableHeight = tableTopY - tableBottomY;
-        float rowWidth = tableWidth / numberOfColumns;
-        float tableMargin = 10;
 
-        // Dessinez les lignes horizontales
-        float nexty1 = tableTopY;
-        contentStream.drawLine(margin, tableTopY, margin + tableWidth, tableTopY);
+
+        // Ajout de l'en-tête avec le titre du document
+        contentStream.beginText();
+        contentStream.setFont(PDType1Font.HELVETICA_BOLD, 16);
+        contentStream.newLineAtOffset(margin + 100, nexty + 20);
+        contentStream.showText("Liste des Produits");
+        contentStream.endText();
+
+        // Ajout du pied de page avec la date et l'heure de génération
+        contentStream.beginText();
+        contentStream.setFont(PDType1Font.HELVETICA, 12);
+        contentStream.newLineAtOffset(margin, 40);
+        contentStream.showText("Généré le " + java.time.LocalDate.now() + " à " + java.time.LocalTime.now());
+        contentStream.endText();
+
+        // Dessin des lignes horizontales et verticales
+        float nexty1 = nexty;
+        contentStream.drawLine(margin, nexty1, margin + tableWidth, nexty1);
         for (int i = 0; i <= numberOfRows; i++) {
             contentStream.drawLine(margin, nexty1 - rowHeight, margin + tableWidth, nexty1 - rowHeight);
             nexty1 -= rowHeight;
         }
 
-        // Dessinez les lignes verticales
         float nextx = margin;
-        contentStream.drawLine(nextx, tableTopY, nextx, tableBottomY);
+        contentStream.drawLine(nextx, nexty, nextx, nexty - numberOfRows * rowHeight);
         for (int i = 0; i < numberOfColumns; i++) {
-            nextx += rowWidth;
-            contentStream.drawLine(nextx, tableTopY, nextx, tableBottomY);
+            nextx += columnWidths[i];
+            contentStream.drawLine(nextx, nexty, nextx, nexty - numberOfRows * rowHeight);
         }
 
-        // Remplissez les cellules avec les données
-        float textx = margin + tableMargin;
-        float texty = tableTopY - 15;
+        // Remplissage des cellules avec les données
+        float textx = margin;
+        float texty = nexty - 15;
         for (int i = 0; i < numberOfColumns; i++) {
             contentStream.beginText();
             contentStream.setFont(PDType1Font.HELVETICA_BOLD, 12);
@@ -186,7 +197,7 @@ public class productController extends Application {
         ObservableList<product> productList = table_produits.getItems();
         for (product item : productList) {
             texty -= rowHeight;
-            textx = margin + tableMargin;
+            textx = margin;
             contentStream.beginText();
             contentStream.setFont(PDType1Font.HELVETICA, 12);
             contentStream.newLineAtOffset(textx, texty);
@@ -204,6 +215,8 @@ public class productController extends Application {
             contentStream.endText();
         }
     }
+
+
     @FXML
     void ajouterproduit(ActionEvent event) throws SQLException {
         if (validateFields()) {
@@ -304,7 +317,7 @@ public class productController extends Application {
         // Initialisez le TableView avec les données des produits
         initTableView();
         setupImageColumn();
-       search.textProperty().addListener((observable, oldValue, newValue) -> {
+        search.textProperty().addListener((observable, oldValue, newValue) -> {
             filterTable(newValue);
         });
         // Ajoutez un gestionnaire d'événements de sélection sur le TableView

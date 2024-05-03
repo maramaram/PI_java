@@ -22,6 +22,7 @@ import java.net.URL;
 import java.sql.SQLException;
 import java.util.List;
 import java.util.ResourceBundle;
+import org.controlsfx.control.Notifications;
 
 public class cardController extends Application {
     @Override
@@ -103,7 +104,10 @@ public class cardController extends Application {
             }
             // Créer un nouvel objet product
             product newProduct = new product(productName, productDescription, productPrice);
-
+            Notifications.create()
+                    .title("Produit ajouté")
+                    .text("Le produit " + productName + " a été ajouté à votre panier.")
+                    .showInformation();
 
 
             // Mettre à jour l'affichage du panier
@@ -125,4 +129,3 @@ public class cardController extends Application {
     }*/
 
 }
-
