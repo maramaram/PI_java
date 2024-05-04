@@ -12,12 +12,12 @@
     <fx:include source="basefront.fxml" />
     <center>
         <BorderPane prefHeight="556.0" prefWidth="1102.0" styleClass="border" stylesheets="@style.css" BorderPane.alignment="CENTER">
-            <left>
-                <AnchorPane prefHeight="523.0" prefWidth="626.0" BorderPane.alignment="CENTER">
+         <center>
+                <AnchorPane prefHeight="574.0" prefWidth="732.0" BorderPane.alignment="CENTER">
                     <children>
-                        <Button fx:id="update_btn" layoutX="55.0" layoutY="445.0" mnemonicParsing="false" onMouseClicked="#showUpdateStage" prefHeight="36.0" prefWidth="166.0" text="Edit" />
+                        <Button fx:id="update_btn" layoutX="270.0" layoutY="373.0" mnemonicParsing="false" onMouseClicked="#showUpdateStage" prefHeight="36.0" prefWidth="166.0" text="Edit" />
                         <ImageView fitHeight="150.0" fitWidth="200.0" layoutX="394.0" layoutY="89.0" pickOnBounds="true" preserveRatio="true" />
-                        <AnchorPane layoutX="271.0" layoutY="89.0" prefHeight="330.0" prefWidth="334.0" styleClass="h6" stylesheets="@style.css">
+                        <AnchorPane layoutX="511.0" layoutY="89.0" prefHeight="330.0" prefWidth="334.0" styleClass="h6" stylesheets="@style.css">
                             <children>
                                 <Label fx:id="firstname" layoutX="39.0" layoutY="51.0" styleClass="white-label" text="Label" />
                                 <Label fx:id="lastname" layoutX="120.0" layoutY="51.0" styleClass="white-label" text="Label" />
@@ -26,7 +26,7 @@
                                 <Label fx:id="phonenumber" layoutX="39.0" layoutY="175.0" styleClass="white-label" text="Label" />
                                 <Label fx:id="Birthdate" layoutX="39.0" layoutY="219.0" styleClass="white-label" text="Label" />
                             </children></AnchorPane>
-                        <ImageView fx:id="pp_view1" fitHeight="159.0" fitWidth="154.0" layoutX="62.0" layoutY="148.0" pickOnBounds="true" preserveRatio="true">
+                        <ImageView fx:id="pp_view1" fitHeight="159.0" fitWidth="154.0" layoutX="270.0" layoutY="117.0" pickOnBounds="true" preserveRatio="true">
                      <image>
                         <Image url="@../../java/image/download.jpg" />
                      </image></ImageView>
@@ -35,10 +35,10 @@
                                 <Font name="System Bold" size="36.0" />
                             </font>
                         </Label>
-                        <Button fx:id="NewPwd_btn" layoutX="58.0" layoutY="496.0" mnemonicParsing="false" onAction="#actionNewPwd_btn" prefHeight="33.0" prefWidth="165.0" text="Change Password" />
+                        <Button fx:id="NewPwd_btn" layoutX="270.0" layoutY="419.0" mnemonicParsing="false" onAction="#actionNewPwd_btn" prefHeight="33.0" prefWidth="165.0" text="Change Password" />
                     </children>
                 </AnchorPane>
-            </left>
+         </center>
         </BorderPane>
     </center>
 </BorderPane>
