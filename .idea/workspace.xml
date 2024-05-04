@@ -6,8 +6,6 @@
   <component name="ChangeListManager">
     <list default="true" id="219bd414-8940-4b2a-834a-a288c154de45" name="Changes" comment="simple interface adjustments">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/Controller/EmailSender.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Controller/EmailSender.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/Controller/ForgotPwdController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Controller/ForgotPwdController.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -168,7 +166,7 @@
       <workItem from="1714683772255" duration="1843000" />
       <workItem from="1714724553748" duration="1980000" />
       <workItem from="1714727092112" duration="601000" />
-      <workItem from="1714820032155" duration="2702000" />
+      <workItem from="1714820032155" duration="3353000" />
     </task>
     <task id="LOCAL-00001" summary="crud, active inactive small problem , search back, show password, recaptcha">
       <option name="closed" value="true" />
@@ -266,7 +264,31 @@
       <option name="project" value="LOCAL" />
       <updated>1714824983825</updated>
     </task>
-    <option name="localTasksCounter" value="13" />
+    <task id="LOCAL-00013" summary="simple interface adjustments">
+      <option name="closed" value="true" />
+      <created>1714825048268</created>
+      <option name="number" value="00013" />
+      <option name="presentableId" value="LOCAL-00013" />
+      <option name="project" value="LOCAL" />
+      <updated>1714825048268</updated>
+    </task>
+    <task id="LOCAL-00014" summary="simple interface adjustments">
+      <option name="closed" value="true" />
+      <created>1714825099471</created>
+      <option name="number" value="00014" />
+      <option name="presentableId" value="LOCAL-00014" />
+      <option name="project" value="LOCAL" />
+      <updated>1714825099471</updated>
+    </task>
+    <task id="LOCAL-00015" summary="simple interface adjustments">
+      <option name="closed" value="true" />
+      <created>1714825113110</created>
+      <option name="number" value="00015" />
+      <option name="presentableId" value="LOCAL-00015" />
+      <option name="project" value="LOCAL" />
+      <updated>1714825113110</updated>
+    </task>
+    <option name="localTasksCounter" value="16" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
