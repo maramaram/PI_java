@@ -46,12 +46,9 @@ public class LoginController implements Initializable {
     private ImageView copy;
     @FXML
     private Label captchaLabel;
-    @FXML
-    private Label pwd_forgot_label;
+
     @FXML
     private Label checkrecaptcha;
-
-
     @FXML
     private TextField tfCaptcha;
     @FXML

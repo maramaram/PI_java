@@ -4,8 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="219bd414-8940-4b2a-834a-a288c154de45" name="Changes" comment="mot de passe oublié, changement de mot de passe, mot de passe web+java compatible">
+    <list default="true" id="219bd414-8940-4b2a-834a-a288c154de45" name="Changes" comment="simple interface adjustments">
+      <change afterPath="$PROJECT_DIR$/src/main/java/Controller/CoachPannelController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/User/CoachPannel.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/User/CoachPannel.fxml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/resources/User/basefront.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/User/basefront.fxml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -16,8 +18,8 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
-        <option value="Class" />
         <option value="FxmlFile" />
+        <option value="Class" />
       </list>
     </option>
   </component>
@@ -167,7 +169,7 @@
       <workItem from="1714683772255" duration="1843000" />
       <workItem from="1714724553748" duration="1980000" />
       <workItem from="1714727092112" duration="601000" />
-      <workItem from="1714820032155" duration="1345000" />
+      <workItem from="1714820032155" duration="1801000" />
     </task>
     <task id="LOCAL-00001" summary="crud, active inactive small problem , search back, show password, recaptcha">
       <option name="closed" value="true" />
@@ -201,7 +203,15 @@
       <option name="project" value="LOCAL" />
       <updated>1714686148438</updated>
     </task>
-    <option name="localTasksCounter" value="5" />
+    <task id="LOCAL-00005" summary="simple interface adjustments">
+      <option name="closed" value="true" />
+      <created>1714823652007</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1714823652007</updated>
+    </task>
+    <option name="localTasksCounter" value="6" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -224,6 +234,7 @@
     <MESSAGE value="crud, active inactive , search back, show password, recaptcha,forgot password," />
     <MESSAGE value="interface front rectifié, problem forget pwd," />
     <MESSAGE value="mot de passe oublié, changement de mot de passe, mot de passe web+java compatible" />
-    <option name="LAST_COMMIT_MESSAGE" value="mot de passe oublié, changement de mot de passe, mot de passe web+java compatible" />
+    <MESSAGE value="simple interface adjustments" />
+    <option name="LAST_COMMIT_MESSAGE" value="simple interface adjustments" />
   </component>
 </project>

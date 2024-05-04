@@ -8,16 +8,15 @@
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="576.0" prefWidth="1101.0" stylesheets="@style.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.ClientPannelController">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="576.0" prefWidth="1101.0" stylesheets="@style.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.CoachPannelController">
     <fx:include source="basefront.fxml" />
     <center>
         <BorderPane prefHeight="556.0" prefWidth="1102.0" styleClass="border" stylesheets="@style.css" BorderPane.alignment="CENTER">
-            <left>
-                <AnchorPane prefHeight="523.0" prefWidth="626.0" BorderPane.alignment="CENTER">
+         <center>
+                <AnchorPane prefHeight="574.0" prefWidth="386.0" BorderPane.alignment="CENTER">
                     <children>
-                        <Button fx:id="update_btn" layoutX="55.0" layoutY="445.0" mnemonicParsing="false" onMouseClicked="#showUpdateStage" prefHeight="36.0" prefWidth="166.0" text="Edit" />
-                        <ImageView fitHeight="150.0" fitWidth="200.0" layoutX="394.0" layoutY="89.0" pickOnBounds="true" preserveRatio="true" />
-                        <AnchorPane layoutX="271.0" layoutY="89.0" prefHeight="330.0" prefWidth="334.0" styleClass="h6" stylesheets="@style.css">
+                        <Button fx:id="update_btn" layoutX="327.0" layoutY="373.0" mnemonicParsing="false" onMouseClicked="#showUpdateStage" prefHeight="36.0" prefWidth="166.0" text="Edit" />
+                        <AnchorPane layoutX="522.0" layoutY="93.0" prefHeight="330.0" prefWidth="334.0" styleClass="h6" stylesheets="@style.css">
                             <children>
                                 <Label fx:id="firstname" layoutX="39.0" layoutY="51.0" styleClass="white-label" text="Label" />
                                 <Label fx:id="lastname" layoutX="120.0" layoutY="51.0" styleClass="white-label" text="Label" />
@@ -26,19 +25,19 @@
                                 <Label fx:id="phonenumber" layoutX="39.0" layoutY="175.0" styleClass="white-label" text="Label" />
                                 <Label fx:id="Birthdate" layoutX="39.0" layoutY="219.0" styleClass="white-label" text="Label" />
                             </children></AnchorPane>
-                        <ImageView fx:id="pp_view1" fitHeight="159.0" fitWidth="154.0" layoutX="62.0" layoutY="148.0" pickOnBounds="true" preserveRatio="true">
+                        <ImageView fx:id="pp_view1" fitHeight="159.0" fitWidth="154.0" layoutX="333.0" layoutY="123.0" pickOnBounds="true" preserveRatio="true">
                             <image>
                                 <Image url="@../../java/image/download.jpg" />
                             </image></ImageView>
-                        <Label layoutX="61.0" layoutY="81.0" prefHeight="36.0" prefWidth="229.0" styleClass="h1" text="Client Profile">
+                        <Label layoutX="61.0" layoutY="81.0" prefHeight="36.0" prefWidth="229.0" styleClass="h1" text="Coach Profile">
                             <font>
                                 <Font name="System Bold" size="36.0" />
                             </font>
                         </Label>
-                        <Button fx:id="NewPwd_btn" layoutX="58.0" layoutY="496.0" mnemonicParsing="false" onAction="#actionNewPwd_btn" prefHeight="33.0" prefWidth="165.0" text="Change Password" />
+                        <Button fx:id="NewPwd_btn" layoutX="327.0" layoutY="442.0" mnemonicParsing="false" onAction="#actionNewPwd_btn" prefHeight="33.0" prefWidth="165.0" text="Change Password" />
                     </children>
                 </AnchorPane>
-            </left>
+         </center>
         </BorderPane>
     </center>
 </BorderPane>
