@@ -8,8 +8,8 @@ import jakarta.mail.internet.InternetAddress;
 import jakarta.mail.internet.MimeMessage;
 
 public class EmailSender {
-    private static final String EMAIL_FROM = "bouazizmaram@gmail.com";
-    private static final String APP_PASSWORD = "ukzd arnu vkiq jhaj\n";
+    private static final String EMAIL_FROM = "";
+    private static final String APP_PASSWORD = "";
 
     public static void sendEmail(String email_to, String subject, String messageBody) throws Exception {
         Message message = new MimeMessage(getEmailSession());

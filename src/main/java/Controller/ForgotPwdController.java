@@ -146,12 +146,12 @@ public class ForgotPwdController implements Initializable {
                 code.setVisible(true);
                password.setVisible(false);
                telephone.setVisible(false);
-                final String ACCOUNT_SID = "AC6665dcfb55922d5790824ffe2f31a1db";
-                final String AUTH_TOKEN = "8bb13ac396b36f78c5c69a549b8dc6b1";
+                final String ACCOUNT_SID = "";
+                final String AUTH_TOKEN = "";
                 Twilio.init(ACCOUNT_SID, AUTH_TOKEN);
                 Message message = Message.creator(
-                                new PhoneNumber("+21652307610"),
-                                new PhoneNumber("+12678282138"),
+                                new PhoneNumber(""),
+                                new PhoneNumber(""),
                                 "Hi " + fullName + " , this is your code for password reset: " + codeFromSMS)
                         .create();
             }
