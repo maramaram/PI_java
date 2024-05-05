@@ -11,6 +11,14 @@ module com.example.pijava {
     requires org.apache.poi.ooxml;
     requires okhttp3;
     requires com.google.gson;
+    requires org.controlsfx.controls;
+
+    requires com.google.protobuf;
+
+    requires proto.google.cloud.speech.v1;
+    requires com.google.auth.oauth2;
+    requires assemblyai.java;
+
 
     opens com.example.pijava to javafx.fxml;
     opens Entities to javafx.base; // Ajout de cette ligne pour ouvrir le paquetage Entities à javafx.base

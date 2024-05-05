@@ -9,6 +9,7 @@ import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.geometry.Pos;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
@@ -17,6 +18,8 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.stage.Stage;
+import javafx.util.Duration;
+import org.controlsfx.control.Notifications;
 
 import java.io.IOException;
 import java.sql.SQLException;
@@ -201,11 +204,25 @@ boolean test=true;
 
             try{
             es.add(de);
-                Alert alert = new Alert(Alert.AlertType.INFORMATION);
-                alert.setTitle("Succées");
-                alert.setContentText("Le defi a été a jouté avec succées !!");
-                alert.showAndWait();
                 EX();
+                ImageView commentaireIcon = new ImageView(new Image(getClass().getResourceAsStream("/Front/images/exo/ez.png")));
+                commentaireIcon.setFitHeight(50);
+                commentaireIcon.setFitWidth(50);
+                Notifications.create()
+                        .title("Succès")
+                        .text("Le defi a été a jouté avec succées !!")
+                        .graphic(commentaireIcon) // No custom image
+                        .hideAfter(Duration.seconds(7)) // Notification disappears after 5 seconds
+                        .position(Pos.BOTTOM_RIGHT) // Position the notification on the screen
+                        .darkStyle() // Use a dark style for the notification
+                        .onAction(event -> {
+                            System.out.println("Notification cliquée !");
+                            // Add any action you want to perform when the notification is clicked
+                        })
+                        .show(); // Display the notification
+
+// Play a sound effect
+                java.awt.Toolkit.getDefaultToolkit().beep();
            } catch (SQLException e) {
             System.out.println(e.getMessage());
         }

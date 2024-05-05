@@ -1,41 +1,27 @@
 package Controller;
 
-import Entities.Exercice;
-import Service.ExerciceService;
+import com.assemblyai.api.AssemblyAI;
+import com.assemblyai.api.resources.transcripts.types.Transcript;
+import com.google.gson.Gson;
+import com.google.gson.JsonObject;
 import javafx.beans.binding.Bindings;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
-import javafx.geometry.Insets;
-import javafx.geometry.Pos;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextArea;
-import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
-import com.google.gson.Gson;
-import com.google.gson.JsonObject;
-import okhttp3.MediaType;
-import okhttp3.OkHttpClient;
-import okhttp3.Request;
-import okhttp3.RequestBody;
-import okhttp3.Response;
-import org.w3c.dom.ls.LSOutput;
+import okhttp3.*;
 
+import javax.sound.sampled.*;
+import java.io.ByteArrayInputStream;
+import java.io.ByteArrayOutputStream;
+import java.io.File;
 import java.io.IOException;
-
-
-import java.awt.*;
-import java.io.IOException;
-import java.sql.SQLException;
-import java.util.List;
-
-
 public class ExerciceDetails {
 
 
@@ -58,12 +44,80 @@ public class ExerciceDetails {
     private TextArea fo9;
     @FXML
     private VBox vchat;
-
+    private ByteArrayOutputStream out;
     private static final String API_KEY = System.getenv("API_KEY");
     private static final String API_URL = "https://api.openai.com/v1/completions";
     private static final MediaType JSON = MediaType.get("application/json; charset=utf-8");
     private static final OkHttpClient client = new OkHttpClient();
     private static final Gson gson = new Gson();
+
+private boolean to=true;
+
+
+    @FXML
+    public void recordVoice() {
+        try {
+            ByteArrayOutputStream out = new ByteArrayOutputStream();
+
+            // Définir le format audio
+            AudioFormat format = new AudioFormat(16000, 16, 1, true, true);
+            DataLine.Info info = new DataLine.Info(TargetDataLine.class, format);
+
+            // Ouvrir la ligne de capture audio
+            TargetDataLine line = (TargetDataLine) AudioSystem.getLine(info);
+            line.open(format);
+            line.start();
+
+            System.out.println("Enregistrement en cours...");
+
+            // Buffer pour stocker les données audio
+            byte[] buffer = new byte[16000];
+            int bytesRead;
+
+            long startTime = System.currentTimeMillis(); // Temps de départ de l'enregistrement
+            long duration = 10000; // Durée d'enregistrement en millisecondes (10 secondes)
+
+            // Lecture des données audio et écriture dans ByteArrayOutputStream jusqu'à ce que la durée soit atteinte
+            while (System.currentTimeMillis() - startTime < duration) {
+                bytesRead = line.read(buffer, 0, buffer.length);
+                out.write(buffer, 0, bytesRead);
+            }
+
+            // Arrêt de la capture audio
+            line.stop();
+            line.close();
+
+            // Enregistrement du fichier audio au format .wav
+            AudioInputStream audioInputStream = new AudioInputStream(new ByteArrayInputStream(out.toByteArray()), format, out.size());
+            File audioFile = new File("audio.wav");
+            AudioSystem.write(audioInputStream, AudioFileFormat.Type.WAVE, audioFile);
+
+            System.out.println("Enregistrement terminé. Fichier audio enregistré sous : " + audioFile.getAbsolutePath());
+            convertVoiceToText();
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        }
+    }
+
+
+    public void convertVoiceToText() {
+      AssemblyAI aai=AssemblyAI.builder().apiKey(System.getenv("API_KEY_SOUND")).build();
+        File audioFile = new File("C:/Users/Vayso/OneDrive/Bureau/piJAVA/audio.wav");
+        try {
+            Transcript t=aai.transcripts().transcribe(audioFile);
+            if (t.getText().isPresent())
+            fo9.setText(t.getText().get());
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+
+
+
+
+
+
     public void setNomM(String nomM) {
         this.nomM.setText(nomM);
         this.nomM.setStyle("-fx-alignment: center; -fx-font-size: 30; -fx-font-weight: bold;");
@@ -115,6 +169,7 @@ public class ExerciceDetails {
     public void initialize() {
         // Load the CSS file
         // Set the chat container style
+
         vchat.getStyleClass().add("chat-container");
 
         // Set the VBox properties
@@ -145,6 +200,9 @@ public class ExerciceDetails {
             }
         });
     }
+
+
+
 
 
     public static String sendMessage(String message) throws IOException {

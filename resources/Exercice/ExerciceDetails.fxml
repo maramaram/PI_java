@@ -40,7 +40,7 @@
                            <Label fx:id="desM" alignment="TOP_LEFT" wrapText="true" />
                        </content>
                    </ScrollPane>
-                   <ImageView fx:id="image" fitHeight="300.0" fitWidth="509.0" layoutX="200.0" layoutY="61.0" pickOnBounds="true" preserveRatio="true" />
+                   <ImageView fx:id="image" fitHeight="300.0" fitWidth="509.0" layoutX="185.0" layoutY="61.0" pickOnBounds="true" preserveRatio="true" />
                   <Label fx:id="nomM" layoutX="308.0" layoutY="10.0" prefHeight="40.0" prefWidth="483.0">
                      <font>
                         <Font size="39.0" />
@@ -48,15 +48,20 @@
                   </Label>
                   <Label fx:id="mcM" layoutX="15.0" layoutY="9.0" prefHeight="16.0" prefWidth="137.0" />
                   <ImageView fx:id="ndM" fitHeight="92.0" fitWidth="135.0" layoutX="10.0" layoutY="34.0" pickOnBounds="true" preserveRatio="true" />
-                  <ScrollPane fitToHeight="true" fitToWidth="true" layoutX="678.0" layoutY="70.0" prefHeight="237.0" prefWidth="342.0">
+                  <ScrollPane fitToHeight="true" fitToWidth="true" layoutX="620.0" layoutY="70.0" prefHeight="237.0" prefWidth="400.0">
                      <content>
-                        <VBox fx:id="vchat"  prefWidth="329.0" />
+                        <VBox fx:id="vchat" prefHeight="233.0" prefWidth="388.0" />
                      </content>
                   </ScrollPane>
-                  <TextArea fx:id="fo9" layoutX="678.0" layoutY="307.0" prefHeight="39.0" prefWidth="308.0" />
-                  <ImageView fx:id="chat" fitHeight="37.0" fitWidth="32.0" layoutX="988.0" layoutY="310.0" pickOnBounds="true" preserveRatio="true">
+                  <TextArea fx:id="fo9" layoutX="620.0" layoutY="307.0" prefHeight="39.0" prefWidth="334.0" />
+                  <ImageView fx:id="chat" fitHeight="37.0" fitWidth="32.0" layoutX="990.0" layoutY="311.0" pickOnBounds="true" preserveRatio="true">
                      <image>
                         <Image url="@../Front/images/exo/3106794.png" />
+                     </image>
+                  </ImageView>
+                  <ImageView fitHeight="29.0" fitWidth="31.0" layoutX="961.0" layoutY="312.0" onMouseClicked="#recordVoice" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../Front/images/exo/mic.png" />
                      </image>
                   </ImageView>
                </children>

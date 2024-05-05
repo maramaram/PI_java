@@ -1,9 +1,7 @@
 package Controller;
 
 import Entities.Defi;
-import Entities.Exercice;
 import Service.DefiService;
-import Service.ExerciceService;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
