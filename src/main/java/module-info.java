@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 module com.example.pijava {
     requires javafx.controls;
     requires javafx.fxml;
@@ -29,3 +30,25 @@ module com.example.pijava {
 
 
 }
+=======
+module User {
+    requires javafx.controls;
+    requires javafx.fxml;
+    requires java.sql;
+    requires mysql.connector.j;
+    requires org.controlsfx.controls;
+    requires org.apache.commons.codec;
+    requires MaterialFX;
+    requires VirtualizedFX;
+    requires jakarta.mail;
+    requires twilio;
+
+    requires bcrypt;
+    exports Controller;
+
+    opens Controller to javafx.fxml;
+    opens User;
+    opens Utils;
+    opens Entities to javafx.base;
+}
+>>>>>>> 23e81c01d9c8342b6b58c7bbe160fc8d8556d3ea

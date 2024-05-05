@@ -1,0 +1,120 @@
+.MFXButton1
+{
+    -fx-background-color : #25242f;
+    -fx-background-radius :  30 0 0 30;
+}
+/* MFXAnchorPane */
+.MFXAnchorPane {
+    -fx-background-color: #f0f0f0; /* Background color */
+}
+
+/* MFXTextField */
+.MFXTextField {
+    -fx-background-color: #ffffff; /* Background color */
+    -fx-background-radius: 5px; /* Background radius */
+    -fx-border-color: #cccccc; /* Border color */
+    -fx-border-radius: 5px; /* Border radius */
+    -fx-border-width: 1px; /* Border width */
+    -fx-padding: 8px; /* Padding */
+    -fx-font-size: 14px; /* Font size */
+}
+
+/* MFXTableView (Paginated) */
+.MFXTableView {
+    -fx-background-color: #ffffff; /* Background color */
+}
+
+/* Pagination controls */
+.pagination-control > .pagination-control-button {
+    -fx-background-color: #ffffff; /* Background color */
+    -fx-background-radius: 5px; /* Background radius */
+    -fx-border-color: #cccccc; /* Border color */
+    -fx-border-radius: 5px; /* Border radius */
+    -fx-border-width: 1px; /* Border width */
+    -fx-font-size: 14px; /* Font size */
+    -fx-padding: 5px 10px; /* Padding */
+}
+
+/* Pagination controls hover effect */
+.pagination-control > .pagination-control-button:hover {
+    -fx-background-color: #f0f0f0; /* Hover background color */
+}
+
+/* Pagination controls pressed effect */
+.pagination-control > .pagination-control-button:pressed {
+    -fx-background-color: #e0e0e0; /* Pressed background color */
+}
+
+/* Pagination controls disabled effect */
+.pagination-control > .pagination-control-button:disabled {
+    -fx-opacity: 0.5; /* Opacity for disabled state */
+    -fx-cursor: default; /* Cursor for disabled state */
+}
+/* MFXTableColumn */
+.MFXTableColumn {
+    -fx-alignment: center-left; /* Alignment of column content */
+    -fx-font-size: 14px; /* Font size */
+    -fx-padding: 5px; /* Padding */
+}
+
+/* MFXTableColumn Header */
+.MFXTableColumn .column-header-background {
+    -fx-background-color: #393351; /* Header background color */
+    -fx-background-radius: 5px; /* Header background radius */
+}
+
+/* MFXTableColumn Header Label */
+.MFXTableColumn .label {
+    -fx-text-fill: #282280; /* Header label color */
+    -fx-font-weight: bold; /* Header label font weight */
+}
+/* MFXPaginatedTableView */
+.MFXPaginatedTableView {
+    -fx-background-color: #c05f5f; /* Background color */
+}
+
+/* Pagination controls */
+.pagination-control > .pagination-control-button {
+    -fx-background-color: #d57474; /* Background color */
+    -fx-background-radius: 5px; /* Background radius */
+    -fx-border-color: #3f0606; /* Border color */
+    -fx-border-radius: 5px; /* Border radius */
+    -fx-border-width: 1px; /* Border width */
+    -fx-font-size: 14px; /* Font size */
+    -fx-padding: 5px 10px; /* Padding */
+}
+
+/* Pagination controls hover effect */
+.pagination-control > .pagination-control-button:hover {
+    -fx-background-color: #965353; /* Hover background color */
+}
+
+/* Pagination controls pressed effect */
+.pagination-control > .pagination-control-button:pressed {
+    -fx-background-color: #3f0606; /* Pressed background color */
+}
+
+/* Pagination controls disabled effect */
+.pagination-control > .pagination-control-button:disabled {
+    -fx-opacity: 0.5; /* Opacity for disabled state */
+    -fx-cursor: default; /* Cursor for disabled state */
+}
+
+/* MFXTableColumn */
+.MFXPaginatedTableView .MFXTableColumn {
+    -fx-alignment: center-left; /* Alignment of column content */
+    -fx-font-size: 14px; /* Font size */
+    -fx-padding: 5px; /* Padding */
+}
+
+/* MFXTableColumn Header */
+.MFXPaginatedTableView .MFXTableColumn .column-header-background {
+    -fx-background-color: #393351; /* Header background color */
+    -fx-background-radius: 5px; /* Header background radius */
+}
+
+/* MFXTableColumn Header Label */
+.MFXPaginatedTableView .MFXTableColumn .label {
+    -fx-text-fill: #282280; /* Header label color */
+    -fx-font-weight: bold; /* Header label font weight */
+}
