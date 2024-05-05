@@ -4,6 +4,9 @@ import Entities.Commande;
 import Entities.Livreur;
 import Service.CommandeService;
 import Service.LivreurService;
+import com.google.zxing.EncodeHintType;
+import com.google.zxing.client.j2se.MatrixToImageWriter;
+import com.google.zxing.qrcode.decoder.ErrorCorrectionLevel;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
@@ -21,8 +24,10 @@ import javafx.scene.layout.HBox;
 import javafx.stage.Stage;
 
 import java.awt.datatransfer.Clipboard;
-import java.io.IOException;
+import java.awt.image.BufferedImage;
+import java.io.*;
 import java.sql.SQLException;
+import java.util.HashMap;
 import java.util.List;
 
 import Controller.NavigationController;
@@ -32,14 +37,27 @@ import org.apache.pdfbox.pdmodel.PDPage;
 import org.apache.pdfbox.pdmodel.PDPageContentStream;
 import org.apache.pdfbox.pdmodel.common.PDRectangle;
 import org.apache.pdfbox.pdmodel.font.PDType1Font;
+import org.apache.pdfbox.text.PDFTextStripper;
 import org.apache.poi.ss.usermodel.*;
 import org.apache.poi.xssf.usermodel.XSSFCell;
 import org.apache.poi.xssf.usermodel.XSSFRow;
 import org.apache.poi.xssf.usermodel.XSSFSheet;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
-import java.io.FileOutputStream;
+
 import java.awt.Color;
 import javafx.scene.chart.PieChart;
+import com.google.zxing.BarcodeFormat;
+import com.google.zxing.WriterException;
+import com.google.zxing.common.BitMatrix;
+import com.google.zxing.qrcode.QRCodeWriter;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
+import javafx.scene.layout.StackPane;
+
+import java.io.IOException;
+import java.util.Map;
+import javax.imageio.ImageIO;
+import com.google.zxing.client.j2se.MatrixToImageConfig;
 
 
 public class CommandeFront {
@@ -150,6 +168,7 @@ public class CommandeFront {
         } catch (SQLException e) {
             System.out.println(e.getMessage());
         }
+
     }
 
 
@@ -278,7 +297,7 @@ public class CommandeFront {
     }
 
     @FXML
-    public void PDF() {
+    public void PDF() throws IOException {
         CommandeService es = new CommandeService();
         try {
             List<Commande> listeCommandes = es.afficherList();
@@ -375,6 +394,40 @@ public class CommandeFront {
         } catch (SQLException e) {
             System.out.println(e.getMessage());
         }
+        // Extraire le texte du PDF
+        String text = extractTextFromPDF("TableauCommande.pdf");
+
+        // Générer le QR code à partir du texte du PDF
+        int width = 300;
+        int height = 300;
+        BufferedImage qrImage = generateQRCode(text, width, height);
+
+        // Enregistrer le QR code dans un fichier image
+        File outputFile = new File("qrcode.png");
+        ImageIO.write(qrImage, "png", outputFile);
+    }
+
+    private String extractTextFromPDF(String filePath) {
+        String text = "";
+        try (PDDocument document = PDDocument.load(new File(filePath))) {
+            PDFTextStripper stripper = new PDFTextStripper();
+            text = stripper.getText(document);
+        } catch (IOException e) {
+            System.out.println("Une erreur s'est produite lors de l'extraction du texte du PDF : " + e.getMessage());
+        }
+        return text;
+    }
+
+    private BufferedImage generateQRCode(String text, int width, int height) {
+        QRCodeWriter qrCodeWriter = new QRCodeWriter();
+        try {
+            BitMatrix bitMatrix = qrCodeWriter.encode(text, BarcodeFormat.QR_CODE, width, height);
+            BufferedImage qrImage = MatrixToImageWriter.toBufferedImage(bitMatrix);
+            return qrImage;
+        } catch (WriterException e) {
+            System.out.println("Une erreur s'est produite lors de la génération du code QR : " + e.getMessage());
+            return null;
+        }
     }
 
     @FXML
@@ -423,9 +476,7 @@ public class CommandeFront {
         } catch (SQLException | IOException e) {
             e.printStackTrace();
         }
-
     }
-
 
 }
 

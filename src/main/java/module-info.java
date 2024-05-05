@@ -10,6 +10,8 @@ module com.example.pijava {
     requires org.apache.pdfbox;
     requires org.apache.poi.poi;
     requires org.apache.poi.ooxml;
+    requires com.google.zxing;
+    requires com.google.zxing.javase;
 
     opens com.example.pijava to javafx.fxml;
     opens Entities to javafx.base; // Ajout de cette ligne pour ouvrir le paquetage Entities à javafx.base
