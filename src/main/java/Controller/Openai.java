@@ -37,9 +37,9 @@ public class Openai extends Application {
         launch();
     }
 
-
-    private static final String API_URL = "https://api.openai.com/v1/engines/text-davinci-003/completions";
-    private static final String API_KEY = "sk-proj-80v94ykJj8S4JK4DBCCUT3BlbkFJzCnMWstGlKoMfidJyiwW";
+    private static final String API_URL = "";
+    private static final String API_KEY = "";
+  //
 
     @FXML
     private Label answerLabel;
@@ -106,12 +106,12 @@ public class Openai extends Application {
                 String answer;
                 if (question.matches("(?i).*conditions|termes|utilisation|propriété.*")) {
                     answer = getTermsAndConditions();
-                } else if (question.matches("(?i).*shop|site|buy.*")) {
+                } else if (question.matches("(?i).*shop|site|buy|credibility.*")) {
                     answer = " Breath_Out is a website to help you buy,sports products easily and safely.";
-                } else if (question.matches("(?i).*troc|echange|house|garden|exchange.*")) {
-                    answer = "Our site helps you exchange your products easily and quickly with the security of your home. You can easily add a product to get rid of.";
-                } else if (question.matches("(?i).*recylage|environement|eco|green.*")) {
-                    answer = "you can easily recycle any product by depositing it in any dropping point you can consult the page associated the recycling";
+                } else if (question.matches("(?i).*|order|validation|confirmation.*")) {
+                    answer = "Once your order has been placed on Breath_Out, you will receive an SMS confirmation to ensure that your purchase is successfully completed..";
+                } else if (question.matches("(?i).*payment|delivery|online.*")) {
+                    answer = "With Breath_Out, you can pay online with peace of mind and offers a fast and reliable delivery service to get your favorite sporting goods right to your door.";
                 } else if (question.matches("(?i).*blog|comment|like|want.*")) {
                     answer = "you can add a blog or comment on one leave a like and dont forget to share it with your friends";
                 } else if (question.matches("(?i).*don|donnation|give|charity|want.*")) {
@@ -122,7 +122,7 @@ public class Openai extends Application {
                 return answer;
             } catch (Exception e) {
                 e.printStackTrace();
-                return "I'm sorry, I can only answer questions related to JardinDars products and services. Please try again.";
+                return "I'm sorry, I can only answer questions related to Breath-Out products and Cart. Please try again.";
             }
         }
 

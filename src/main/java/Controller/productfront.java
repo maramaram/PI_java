@@ -11,6 +11,7 @@ import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.TextField;
+import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
@@ -19,6 +20,7 @@ import javafx.stage.Stage;
 import java.io.IOException;
 import java.sql.SQLException;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class productfront extends Application {
     @Override
@@ -41,8 +43,10 @@ public class productfront extends Application {
     @FXML
     private TilePane cardContainer;
     @FXML
-    private TextField search2;
+    private TextField searchField;
     private panierfront panierfront; // Déplacer la déclaration ici
+    private List<product> productList; // Déclarer productList en tant que champ de classe
+
     @FXML
     void cartview(MouseEvent event) {
         try {
@@ -78,7 +82,7 @@ public class productfront extends Application {
         try {
             // Charger les produits depuis la base de données
             productService service = new productService();
-            List<product> productList = service.afficherListFront();
+            productList = service.afficherListFront(); // Assigner la liste de produits à productList
 
             // Ajouter une carte pour chaque produit à cardContainer
             for (product product : productList) {
@@ -110,6 +114,7 @@ public class productfront extends Application {
     }
 
 
+
     public void addCard(product product) {
         try {
             FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/Products/card.fxml"));
@@ -136,4 +141,29 @@ public class productfront extends Application {
         } catch (IOException e) {
             e.printStackTrace();
         }
-    }}
+    }
+    @FXML
+    void handleSearch(KeyEvent event) {
+        String searchTerm = searchField.getText().toLowerCase(); // Convertir la recherche en minuscules pour la correspondance insensible à la casse
+        if (searchTerm.isEmpty()) {
+            // Si le champ de recherche est vide, affichez tous les produits
+            // Remplacer cartProducts par votre liste de produits
+            displayProducts(productList);
+        } else {
+            // Filtrer les produits pour afficher uniquement ceux correspondant au terme de recherche
+            List<product> filteredProducts = productList.stream()
+                    .filter(product -> product.getNom().toLowerCase().contains(searchTerm))
+                    .collect(Collectors.toList());
+            // Mettre à jour l'affichage avec les produits filtrés
+            displayProducts(filteredProducts);
+        }
+    }
+
+    private void displayProducts(List<product> products) {
+        cardContainer.getChildren().clear(); // Effacer les anciens produits
+        // Ajouter les produits filtrés ou non filtrés
+        for (product product : products) {
+            addCard(product);
+        }
+    }
+}

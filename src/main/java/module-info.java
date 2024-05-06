@@ -4,6 +4,8 @@ module com.example.projectpi {
     requires java.sql;
     requires org.apache.pdfbox;
     requires org.controlsfx.controls;
+    requires twilio;
+    requires stripe.java;
     exports Controller;
 
     opens Controller to javafx.fxml;

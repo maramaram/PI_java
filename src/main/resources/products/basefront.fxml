@@ -24,21 +24,21 @@
                         <Label layoutX="698.0" layoutY="24.0" prefHeight="20.0" prefWidth="42.0" text="Blog" />
                         <Label layoutX="804.0" layoutY="24.0" prefHeight="21.0" prefWidth="60.0" text="Sessions" />
                         <Label fx:id="logout_btn" layoutX="1035.0" layoutY="28.0" text="Logout" />
-                        <TextField fx:id="search2" layoutX="216.0" layoutY="10.0" prefHeight="31.0" prefWidth="205.0" />
+                        <TextField fx:id="searchField" layoutX="216.0" layoutY="10.0" onKeyPressed="#handleSearch" prefHeight="31.0" prefWidth="205.0" />
                         <Text fill="WHITE" layoutX="81.0" layoutY="37.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="text-field" text="BreatheOut" wrappingWidth="88.43966674804688" />
                   <Label fx:id="cart" layoutX="900.0" layoutY="24.0" onMouseClicked="#cartview" text="Cart" />
                     </children>
                 </AnchorPane>
             </top>
          <center>
-                <AnchorPane prefHeight="525.0" prefWidth="1099.0" BorderPane.alignment="CENTER">
+                <AnchorPane prefHeight="558.0" prefWidth="1128.0" BorderPane.alignment="CENTER">
                     <children>
                         <ImageView fitHeight="150.0" fitWidth="200.0" layoutX="394.0" layoutY="89.0" pickOnBounds="true" preserveRatio="true" />
 
                         <TilePane fx:id="cardContainer" hgap="10" prefColumns="3" vgap="10" BorderPane.alignment="CENTER">
                             <!-- Le contenu ici sera ajouté dynamiquement par le code Java -->
                         </TilePane>
-                  <Label layoutX="850.0" layoutY="475.0" onMouseClicked="#navigatechatbot" prefHeight="35.0" prefWidth="154.0" text="       Any Questions ?">
+                  <Label layoutX="926.0" layoutY="474.0" onMouseClicked="#navigatechatbot" prefHeight="50.0" prefWidth="174.0" text="       Any Questions ?">
                      <font>
                         <Font name="System Bold" size="17.0" />
                      </font>

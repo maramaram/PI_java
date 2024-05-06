@@ -114,13 +114,15 @@ public class productController extends Application {
             document.addPage(page);
 
             PDPageContentStream contentStream = new PDPageContentStream(document, page);
+            PDImageXObject logo = PDImageXObject.createFromFile("src/main/resources/logo.png", document);
+            contentStream.drawImage(logo, 20, page.getMediaBox().getHeight() - 70, 70, 50);
 
             // Déterminez les dimensions et les marges du tableau
-            float margin = 50;
+            float margin = 60;
             float tableWidth = page.getMediaBox().getWidth() - (2 * margin);
             float nexty = page.getMediaBox().getHeight() - margin;
-            float rowHeight = 20;
-            float[] columnWidths = {50, 100, 100, 100, 100, 100}; // Largeurs de colonne pour chaque colonne
+            float rowHeight = 70;
+            float[] columnWidths = {50, 100, 150, 70, 100, 100}; // Largeurs de colonne pour chaque colonne
             String[] columnTitles = {"ID", "Nom", "Description", "Quantité", "Catégorie", "Prix"}; // Titres de colonne
 
             // Dessinez le tableau avec les données du TableView
