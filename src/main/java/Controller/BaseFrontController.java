@@ -102,7 +102,7 @@ public class BaseFrontController {
         stage.setTitle("User SignIn");
         stage.show();
     }
-
+    @FXML
     public void logout(ActionEvent event) {
         System.out.println("begin basefront");
         SessionManager.getInstance().cleanUserSessionAdmin();
@@ -121,6 +121,7 @@ public class BaseFrontController {
             e.printStackTrace();
         }
     }
+
 
     public void Exercice(ActionEvent event) {
         loadFXML("/Exercice/ExerciceV.fxml", event);

@@ -17,6 +17,7 @@
  */
 
 .mfx-list-view {
+<<<<<<< HEAD
   -mfx-track-color: rgb(230, 230, 230);
   -mfx-thumb-color: rgb(137, 137, 137);
   -mfx-thumb-hover-color: rgb(89, 88, 91);
@@ -28,9 +29,26 @@
 
 .mfx-list-view .virtual-flow .scroll-bar .thumb {
   -fx-background-color: -mfx-thumb-color;
+=======
+    -mfx-track-color: rgb(230, 230, 230);
+    -mfx-thumb-color: rgb(137, 137, 137);
+    -mfx-thumb-hover-color: rgb(89, 88, 91);
+}
+
+.mfx-list-view .virtual-flow .scroll-bar .track {
+    -fx-background-color: -mfx-track-color;
+}
+
+.mfx-list-view .virtual-flow .scroll-bar .thumb {
+    -fx-background-color: -mfx-thumb-color;
+>>>>>>> GestionProduits
 }
 
 .mfx-list-view .virtual-flow .scroll-bar .thumb:pressed,
 .mfx-list-view .virtual-flow .scroll-bar .thumb:hover {
+<<<<<<< HEAD
   -fx-background-color: -mfx-thumb-hover-color;
+=======
+    -fx-background-color: -mfx-thumb-hover-color;
+>>>>>>> GestionProduits
 }

@@ -20,12 +20,18 @@ module User {
     requires com.google.auth.oauth2;
     requires assemblyai.java;
     requires org.apache.poi.ooxml;
+    requires stripe.java;
+
+    // Add any additional module dependencies here
 
     opens com.example.pijava to javafx.fxml;
     opens Controller to javafx.fxml;
     opens User;
     opens Utils;
     opens Entities to javafx.base;
-    exports com.example.pijava;
+
+    // Ensure that all opens and exports are consistent with your project structure
+
+    exports com.example.projectpi;
     exports Controller;
 }

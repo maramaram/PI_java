@@ -50,7 +50,7 @@ public class HomeOnController extends BaseFrontController implements Initializab
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
 
-
+/*
         // Use the user ID to fetch user details from the database
         UserService userService = new UserService();
         User user = userService.afficher(userId);
@@ -175,7 +175,7 @@ public class HomeOnController extends BaseFrontController implements Initializab
             firstname.setText(user.getPrenom());
             lastname.setText(user.getNom());
 
-        }
+        }*/
         }
     }
 

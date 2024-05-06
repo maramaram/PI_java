@@ -31,7 +31,7 @@ public class MyDatabase {
 
     }
 
-
+    public Connection getConnection(){return conx;}
     public Connection getConx() {
         return conx;
     }

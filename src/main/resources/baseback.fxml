@@ -13,8 +13,7 @@
         <AnchorPane onMouseClicked="#logout" prefHeight="584.0" prefWidth="1102.0" styleClass="gradient-anchor" stylesheets="@User/styleback.css" BorderPane.alignment="CENTER">
             <children>
                 <AnchorPane layoutY="7.0" prefHeight="583.0" prefWidth="305.0" styleClass="context-menu" stylesheets="@MFXListView.css">
-                    <!-- wtf @../../../../MaterialFX-main/materialfx/src/main/resources/io/github/palexdev/materialfx/css/MFXListView.css -->
-                    <children>
+                     <children>
                         <Button layoutX="1.0" layoutY="100.0" mnemonicParsing="false" prefHeight="50.0" prefWidth="300.0" text="Users" />
                         <Button layoutX="1.0" layoutY="150.0" mnemonicParsing="false" onAction="#Exercices" prefHeight="50.0" prefWidth="300.0" text="Exercices" />
                         <Button layoutX="1.0" layoutY="200.0" mnemonicParsing="false" onAction="#Defis" prefHeight="50.0" prefWidth="300.0" text="Defis" />

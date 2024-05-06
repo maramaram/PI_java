@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.geometry.*?>
+
+<AnchorPane fx:id="anchorPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.StripePayment">
+    <children>
+        <VBox layoutX="51.0" layoutY="40.0" prefHeight="320.0" prefWidth="499.0" spacing="10.0">
+            <children>
+                <Label fx:id="total" text="Total : " />
+                <TextField fx:id="client_name" promptText="Name" />
+                <TextField fx:id="email" promptText="Email" />
+                <TextField fx:id="num_card" promptText="Card Number" />
+                <HBox spacing="10.0">
+                    <TextField fx:id="MM" promptText="MM" />
+                    <TextField fx:id="YY" promptText="YY" />
+                    <TextField fx:id="cvc" promptText="CVC" />
+                </HBox>
+                <Button fx:id="pay_btn" onAction="#payment" text="Pay" />
+                <Button fx:id="back_btn" onAction="#redirectToListReservation" text="Back" />
+            </children>
+        </VBox>
+    </children>
+</AnchorPane>

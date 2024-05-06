@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.TilePane?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="576.0" prefWidth="1101.0" stylesheets="@style.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.productfront">
+   <center>
+       <fx:include source="../basefront.fxml" />
+        <BorderPane prefHeight="556.0" prefWidth="1102.0" styleClass="border" stylesheets="@style.css" BorderPane.alignment="CENTER">
+            <top>
+                <AnchorPane prefHeight="49.0" prefWidth="1101.0" styleClass="anchor-pane" stylesheets="@style.css" BorderPane.alignment="CENTER">
+                    <children>
+                        <Label layoutX="170.0" layoutY="18.0" prefHeight="31.0" prefWidth="72.0" text="Search" />
+
+                        <TextField fx:id="searchField" layoutX="216.0" layoutY="10.0" onKeyPressed="#handleSearch" prefHeight="31.0" prefWidth="205.0" />
+                        <Text fill="WHITE" layoutX="81.0" layoutY="37.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="text-field" text="BreatheOut" wrappingWidth="88.43966674804688" />
+                        <Label fx:id="cart" layoutX="900.0" layoutY="24.0" onMouseClicked="#cartview" text="Cart" />
+                    </children>
+                </AnchorPane>
+            </top>
+         <center>
+                <AnchorPane prefHeight="558.0" prefWidth="1128.0" BorderPane.alignment="CENTER">
+                    <children>
+                        <ImageView fitHeight="150.0" fitWidth="200.0" layoutX="394.0" layoutY="89.0" pickOnBounds="true" preserveRatio="true" />
+
+                        <TilePane fx:id="cardContainer" hgap="10" prefColumns="3" vgap="10" BorderPane.alignment="CENTER">
+                            <!-- Le contenu ici sera ajouté dynamiquement par le code Java -->
+                        </TilePane>
+                  <Label layoutX="926.0" layoutY="474.0" onMouseClicked="#navigatechatbot" prefHeight="50.0" prefWidth="174.0" text="       Any Questions ?">
+                     <font>
+                        <Font name="System Bold" size="17.0" />
+                     </font>
+                  </Label>
+
+                    </children>
+                </AnchorPane>
+         </center>
+        </BorderPane>
+   </center>
+</BorderPane>
