@@ -17,7 +17,9 @@ import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
-
+import Entities.SessionManager;
+import Entities.User;
+import Service.UserService;
 import java.io.IOException;
 import java.sql.SQLException;
 import java.util.ArrayList;
@@ -44,26 +46,32 @@ public class DefiV {
 
     @FXML
     public void initialize() {
-        ObservableList<String> valeurs = FXCollections.observableArrayList("Nom", "Nombre de jours", "Niveau de difficulté");
-        choice.setItems(valeurs);
+        String userId = SessionManager.getInstance().getUserId();
 
-        ObservableList<String> valeurss = FXCollections.observableArrayList("ASC", "DESC");
-        choice1.setItems(valeurss);
-        choice1.setValue("ASC");
+        // Use the user ID to fetch user details from the database
+        UserService userService = new UserService();
+        User user = userService.afficher(userId);
+        if (user != null) {
+            ObservableList<String> valeurs = FXCollections.observableArrayList("Nom", "Nombre de jours", "Niveau de difficulté");
+            choice.setItems(valeurs);
 
-        choice.setOnAction(event -> {
-            // Appelez votre fonction de tri ici
-            Tri();
-        });
+            ObservableList<String> valeurss = FXCollections.observableArrayList("ASC", "DESC");
+            choice1.setItems(valeurss);
+            choice1.setValue("ASC");
 
-        choice1.setOnAction(event -> {
-            // Appelez votre fonction de tri ici
-            Tri();
-        });
-        AfficherEX(); // Appeler la méthode pour afficher les données
+            choice.setOnAction(event -> {
+                // Appelez votre fonction de tri ici
+                Tri();
+            });
 
+            choice1.setOnAction(event -> {
+                // Appelez votre fonction de tri ici
+                Tri();
+            });
+            AfficherEX(); // Appeler la méthode pour afficher les données
+
+        }
     }
-
 
     @FXML
     private void Tri(){

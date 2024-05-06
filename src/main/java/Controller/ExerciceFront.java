@@ -24,7 +24,9 @@ import org.apache.poi.xssf.usermodel.XSSFCell;
 import org.apache.poi.xssf.usermodel.XSSFRow;
 import org.apache.poi.xssf.usermodel.XSSFSheet;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
-
+import Entities.SessionManager;
+import Entities.User;
+import Service.UserService;
 import java.awt.*;
 import java.io.FileOutputStream;
 import java.io.IOException;
@@ -63,87 +65,90 @@ public class ExerciceFront {
     private BarChart<String, Integer> barChartStats;
     @FXML
     public void initialize() {
+        String userId = SessionManager.getInstance().getUserId();
 
+        // Use the user ID to fetch user details from the database
+        UserService userService = new UserService();
+        User user = userService.afficher(userId);
+        if (user != null) {
 
-        ExerciceService es = new ExerciceService();
-        try {
-            List<Exercice> listeExercices = es.afficherList();
+            ExerciceService es = new ExerciceService();
+            try {
+                List<Exercice> listeExercices = es.afficherList();
 
-        XYChart.Series<String, Integer> niveau1 = new XYChart.Series<>();
-        niveau1.setName("Niveau 1");
+                XYChart.Series<String, Integer> niveau1 = new XYChart.Series<>();
+                niveau1.setName("Niveau 1");
 
-        XYChart.Series<String, Integer> niveau2 = new XYChart.Series<>();
-        niveau2.setName("Niveau 2");
+                XYChart.Series<String, Integer> niveau2 = new XYChart.Series<>();
+                niveau2.setName("Niveau 2");
 
-        XYChart.Series<String, Integer> niveau3 = new XYChart.Series<>();
-        niveau3.setName("Niveau 3");
+                XYChart.Series<String, Integer> niveau3 = new XYChart.Series<>();
+                niveau3.setName("Niveau 3");
 
-        // Parcourir la liste d'exercices et compter le nombre d'exercices pour chaque niveau de difficulté
-        int countNiveau1 = 0;
-        int countNiveau2 = 0;
-        int countNiveau3 = 0;
+                // Parcourir la liste d'exercices et compter le nombre d'exercices pour chaque niveau de difficulté
+                int countNiveau1 = 0;
+                int countNiveau2 = 0;
+                int countNiveau3 = 0;
 
-        for (Exercice exercice : listeExercices) {
-            String niveau = exercice.getNd();
-            if (niveau.equals("1")) {
-                countNiveau1++;
-            } else if (niveau.equals("2")) {
-                countNiveau2++;
-            } else if (niveau.equals("3")) {
-                countNiveau3++;
-            }
-        }
-
-        // Ajouter les données à chaque série
-        niveau1.getData().add(new XYChart.Data<>("Niveau 1", countNiveau1));
-        niveau2.getData().add(new XYChart.Data<>("Niveau 2", countNiveau2));
-        niveau3.getData().add(new XYChart.Data<>("Niveau 3", countNiveau3));
-
-        // Ajouter les séries au BarChart
-        barChartStats.getData().addAll(niveau1, niveau2, niveau3);
-
-
-
-        } catch (SQLException e) {
-            System.out.println(e.getMessage());
-        }
-
-
-
-
-        AfficherEX(); // Appeler la méthode pour afficher les données
-
-        // Ajouter un écouteur sur la table pour détecter les double-clics
-        table.setOnMouseClicked(event -> {
-            if (event.getClickCount() == 2) { // Vérifier si c'est un double-clic
-                // Convertir l'objet sélectionné en Exercice en utilisant le casting
-                Exercice exercice = (Exercice) table.getSelectionModel().getSelectedItem();
-                if (exercice != null) {
-                    try {
-                        // Charger le fichier FXML ExerciceUpdate.fxml
-                        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/Exercice/ExerciceUpdate.fxml"));
-                        Parent root = fxmlLoader.load();
-
-                        // Obtenir le contrôleur associé au fichier FXML chargé
-                        ExerciceUpdate exerciceUpdate = fxmlLoader.getController();
-
-                        // Remplir les champs du contrôleur avec les données de l'exercice sélectionné
-                        exerciceUpdate.setIdM(String.valueOf(exercice.getId()));
-                        exerciceUpdate.setNomM(exercice.getNom());
-                        exerciceUpdate.setDesM(exercice.getDes());
-                        exerciceUpdate.setMcM(exercice.getMc());
-                        exerciceUpdate.setNdM(exercice.getNd());
-                        exerciceUpdate.setImgM(exercice.getImg());
-                        exerciceUpdate.setGifM(exercice.getGif());
-
-                        // Remplacer la racine de la scène par le nouveau contenu chargé à partir du fichier FXML
-                        table.getScene().setRoot(root);
-                    } catch (IOException e) {
-                        throw new RuntimeException(e);
+                for (Exercice exercice : listeExercices) {
+                    String niveau = exercice.getNd();
+                    if (niveau.equals("1")) {
+                        countNiveau1++;
+                    } else if (niveau.equals("2")) {
+                        countNiveau2++;
+                    } else if (niveau.equals("3")) {
+                        countNiveau3++;
                     }
                 }
+
+                // Ajouter les données à chaque série
+                niveau1.getData().add(new XYChart.Data<>("Niveau 1", countNiveau1));
+                niveau2.getData().add(new XYChart.Data<>("Niveau 2", countNiveau2));
+                niveau3.getData().add(new XYChart.Data<>("Niveau 3", countNiveau3));
+
+                // Ajouter les séries au BarChart
+                barChartStats.getData().addAll(niveau1, niveau2, niveau3);
+
+
+            } catch (SQLException e) {
+                System.out.println(e.getMessage());
             }
-        });
+
+
+            AfficherEX(); // Appeler la méthode pour afficher les données
+
+            // Ajouter un écouteur sur la table pour détecter les double-clics
+            table.setOnMouseClicked(event -> {
+                if (event.getClickCount() == 2) { // Vérifier si c'est un double-clic
+                    // Convertir l'objet sélectionné en Exercice en utilisant le casting
+                    Exercice exercice = (Exercice) table.getSelectionModel().getSelectedItem();
+                    if (exercice != null) {
+                        try {
+                            // Charger le fichier FXML ExerciceUpdate.fxml
+                            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/Exercice/ExerciceUpdate.fxml"));
+                            Parent root = fxmlLoader.load();
+
+                            // Obtenir le contrôleur associé au fichier FXML chargé
+                            ExerciceUpdate exerciceUpdate = fxmlLoader.getController();
+
+                            // Remplir les champs du contrôleur avec les données de l'exercice sélectionné
+                            exerciceUpdate.setIdM(String.valueOf(exercice.getId()));
+                            exerciceUpdate.setNomM(exercice.getNom());
+                            exerciceUpdate.setDesM(exercice.getDes());
+                            exerciceUpdate.setMcM(exercice.getMc());
+                            exerciceUpdate.setNdM(exercice.getNd());
+                            exerciceUpdate.setImgM(exercice.getImg());
+                            exerciceUpdate.setGifM(exercice.getGif());
+
+                            // Remplacer la racine de la scène par le nouveau contenu chargé à partir du fichier FXML
+                            table.getScene().setRoot(root);
+                        } catch (IOException e) {
+                            throw new RuntimeException(e);
+                        }
+                    }
+                }
+            });
+        }
     }
 
 
@@ -397,45 +402,6 @@ public class ExerciceFront {
 
     }
 
-
-
-
-
-
-
-    public void Exercices(ActionEvent event) {
-        try {
-            // Charger le fichier FXML de la nouvelle scène
-
-            Parent root = FXMLLoader.load(getClass().getResource("/Exercice/Exercice-front.fxml"));
-            primaryStage=(Stage)((Node)event.getSource()).getScene().getWindow();
-            // Créer une nouvelle scène
-            Scene scene = new Scene(root);
-
-            // Définir la scène sur la fenêtre principale (Stage)
-            primaryStage.setScene(scene);
-            primaryStage.show();
-        } catch (IOException e) {
-            System.out.println("Erreur lors du chargement de la nouvelle scène : " + e.getMessage());
-        }
-    }
-
-    public void Defis(ActionEvent event) {
-        try {
-            // Charger le fichier FXML de la nouvelle scène
-
-            Parent root = FXMLLoader.load(getClass().getResource("/Defi/Defi-front.fxml"));
-            primaryStage=(Stage)((Node)event.getSource()).getScene().getWindow();
-            // Créer une nouvelle scène
-            Scene scene = new Scene(root);
-
-            // Définir la scène sur la fenêtre principale (Stage)
-            primaryStage.setScene(scene);
-            primaryStage.show();
-        } catch (IOException e) {
-            System.out.println("Erreur lors du chargement de la nouvelle scène : " + e.getMessage());
-        }
-    }
 
 }
 

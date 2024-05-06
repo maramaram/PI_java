@@ -20,7 +20,9 @@ import javafx.scene.image.ImageView;
 import javafx.stage.Stage;
 import javafx.util.Duration;
 import org.controlsfx.control.Notifications;
-
+import Entities.SessionManager;
+import Entities.User;
+import Service.UserService;
 import java.io.IOException;
 import java.sql.SQLException;
 import java.util.ArrayList;
@@ -95,34 +97,37 @@ public class DefiAdd {
 
     @FXML
     public void initialize() {
-        // Appeler la méthode pour afficher les données
-        AfficherEX();
-        ObservableList<String> valeurs = FXCollections.observableArrayList("Facile", "Moyen", "Difficile");
-        ndA.setItems(valeurs);
-        // Ajouter un écouteur sur la table pour détecter les double-clics
-        table.setOnMouseClicked(event -> {
-            if (event.getClickCount() == 2) { // Vérifier si c'est un double-clic
-                // Convertir l'objet sélectionné en Exercice en utilisant le casting
-                Exercice exercice = (Exercice) table.getSelectionModel().getSelectedItem();
-                if (exercice != null) {
-                    if (exercice.isTest())
-                    {
-                        supprimerExerciceParId(exercice.getId(),ex);
-                    }
-                    else
-                    {
-                        if (ex!=null)
-                        ex.add(exercice);
-                        else
-                        {
-                            ex=new ArrayList<>() ;
-                            ex.add(exercice);
+        String userId = SessionManager.getInstance().getUserId();
+
+        // Use the user ID to fetch user details from the database
+        UserService userService = new UserService();
+        User user = userService.afficher(userId);
+        if (user != null) {
+            // Appeler la méthode pour afficher les données
+            AfficherEX();
+            ObservableList<String> valeurs = FXCollections.observableArrayList("Facile", "Moyen", "Difficile");
+            ndA.setItems(valeurs);
+            // Ajouter un écouteur sur la table pour détecter les double-clics
+            table.setOnMouseClicked(event -> {
+                if (event.getClickCount() == 2) { // Vérifier si c'est un double-clic
+                    // Convertir l'objet sélectionné en Exercice en utilisant le casting
+                    Exercice exercice = (Exercice) table.getSelectionModel().getSelectedItem();
+                    if (exercice != null) {
+                        if (exercice.isTest()) {
+                            supprimerExerciceParId(exercice.getId(), ex);
+                        } else {
+                            if (ex != null)
+                                ex.add(exercice);
+                            else {
+                                ex = new ArrayList<>();
+                                ex.add(exercice);
+                            }
                         }
                     }
+                    AfficherEX();
                 }
-                AfficherEX();
-            }
-        });
+            });
+        }
     }
 
     // Méthode appelée lorsque le bouton est cliqué

@@ -15,7 +15,9 @@ import javafx.scene.control.*;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.stage.Stage;
-
+import Entities.SessionManager;
+import Entities.User;
+import Service.UserService;
 import java.io.IOException;
 import java.net.URI;
 import java.net.URISyntaxException;
@@ -89,106 +91,110 @@ public class ExerciceAdd {
 
     @FXML
     public void initialize() {
+        String userId = SessionManager.getInstance().getUserId();
 
-        // Action à effectuer lors du clic sur le bouton
-        ib.setOnAction(e -> {
-            // Création du sélecteur de fichier
-            FileChooser fileChooser = new FileChooser();
-            fileChooser.setTitle("Choisir une image");
+        // Use the user ID to fetch user details from the database
+        UserService userService = new UserService();
+        User user = userService.afficher(userId);
+        if (user != null) {
+            // Action à effectuer lors du clic sur le bouton
+            ib.setOnAction(e -> {
+                // Création du sélecteur de fichier
+                FileChooser fileChooser = new FileChooser();
+                fileChooser.setTitle("Choisir une image");
 
-            // Filtrer les types de fichiers
-            fileChooser.getExtensionFilters().addAll(
-                    new FileChooser.ExtensionFilter("Images", "*.png", "*.jpg", "*.bmp", "*.jpeg"),
-                    new FileChooser.ExtensionFilter("Tous les fichiers", "*.*")
-            );
+                // Filtrer les types de fichiers
+                fileChooser.getExtensionFilters().addAll(
+                        new FileChooser.ExtensionFilter("Images", "*.png", "*.jpg", "*.bmp", "*.jpeg"),
+                        new FileChooser.ExtensionFilter("Tous les fichiers", "*.*")
+                );
 
-            // Afficher la boîte de dialogue pour sélectionner un fichier
-            File selectedFile = fileChooser.showOpenDialog(primaryStage);
+                // Afficher la boîte de dialogue pour sélectionner un fichier
+                File selectedFile = fileChooser.showOpenDialog(primaryStage);
 
-            // Vérifier si un fichier a été sélectionné
-            if (selectedFile != null) {
-                try {
-                    // Définir le répertoire de destination dans les ressources
-                    String destinationDirectory = "Front/images/exo/";
-                    String fileName = selectedFile.getName();
+                // Vérifier si un fichier a été sélectionné
+                if (selectedFile != null) {
+                    try {
+                        // Définir le répertoire de destination dans les ressources
+                        String destinationDirectory = "Front/images/exo/";
+                        String fileName = selectedFile.getName();
 
-                    // Obtenir le répertoire de destination dans les ressources
-                    Path destinationPath = Paths.get("src/main/resources", destinationDirectory);
+                        // Obtenir le répertoire de destination dans les ressources
+                        Path destinationPath = Paths.get("src/main/resources", destinationDirectory);
 
-                    // Créer le chemin complet du fichier de destination
-                    Path destinationFilePath = destinationPath.resolve(fileName);
+                        // Créer le chemin complet du fichier de destination
+                        Path destinationFilePath = destinationPath.resolve(fileName);
 
-                    // Copier le fichier sélectionné vers le répertoire de destination dans les ressources
-                    Files.copy(selectedFile.toPath(), destinationFilePath, StandardCopyOption.REPLACE_EXISTING);
+                        // Copier le fichier sélectionné vers le répertoire de destination dans les ressources
+                        Files.copy(selectedFile.toPath(), destinationFilePath, StandardCopyOption.REPLACE_EXISTING);
 
-                    // Mettre à jour le chemin de l'image dans imgA
-                    String newImagePath = destinationDirectory + fileName;
-                    imgA.setText(newImagePath);
+                        // Mettre à jour le chemin de l'image dans imgA
+                        String newImagePath = destinationDirectory + fileName;
+                        imgA.setText(newImagePath);
 
-                    // Afficher un message de succès
-                    System.out.println("Fichier téléchargé avec succès dans les ressources. Nouveau chemin : " + newImagePath);
-                } catch (IOException ex) {
-                    // Gérer les exceptions en cas d'erreur de téléchargement
-                    ex.printStackTrace();
+                        // Afficher un message de succès
+                        System.out.println("Fichier téléchargé avec succès dans les ressources. Nouveau chemin : " + newImagePath);
+                    } catch (IOException ex) {
+                        // Gérer les exceptions en cas d'erreur de téléchargement
+                        ex.printStackTrace();
+                    }
+                } else {
+                    System.out.println("Aucun fichier sélectionné.");
                 }
-            } else {
-                System.out.println("Aucun fichier sélectionné.");
-            }
-        });
+            });
 
 
+            gb.setOnAction(e -> {
+                // Création du sélecteur de fichier
+                FileChooser fileChooser = new FileChooser();
+                fileChooser.setTitle("Choisir une Gif");
 
-        gb.setOnAction(e -> {
-            // Création du sélecteur de fichier
-            FileChooser fileChooser = new FileChooser();
-            fileChooser.setTitle("Choisir une Gif");
+                // Filtrer les types de fichiers
+                fileChooser.getExtensionFilters().addAll(
+                        new FileChooser.ExtensionFilter("Gifs", "*.gif"),
+                        new FileChooser.ExtensionFilter("Tous les fichiers", "*.*")
+                );
 
-            // Filtrer les types de fichiers
-            fileChooser.getExtensionFilters().addAll(
-                    new FileChooser.ExtensionFilter("Gifs", "*.gif"),
-                    new FileChooser.ExtensionFilter("Tous les fichiers", "*.*")
-            );
+                // Afficher la boîte de dialogue pour sélectionner un fichier
+                File selectedFilee = fileChooser.showOpenDialog(primaryStage);
+                // gifA=selectedFilee.getAbsolutePath()
+                // Vérifier si un fichier a été sélectionné
+                if (selectedFilee != null) {
+                    try {
+                        // Définir le répertoire de destination dans les ressources
+                        String destinationDirectory = "Front/images/exo/gif/";
+                        String fileName = selectedFilee.getName();
 
-            // Afficher la boîte de dialogue pour sélectionner un fichier
-            File selectedFilee = fileChooser.showOpenDialog(primaryStage);
-           // gifA=selectedFilee.getAbsolutePath()
-            // Vérifier si un fichier a été sélectionné
-            if (selectedFilee != null) {
-                try {
-                    // Définir le répertoire de destination dans les ressources
-                    String destinationDirectory = "Front/images/exo/gif/";
-                    String fileName = selectedFilee.getName();
+                        // Obtenir le répertoire de destination dans les ressources
+                        Path destinationPath = Paths.get("src/main/resources", destinationDirectory);
 
-                    // Obtenir le répertoire de destination dans les ressources
-                    Path destinationPath = Paths.get("src/main/resources", destinationDirectory);
+                        // Créer le chemin complet du fichier de destination
+                        Path destinationFilePath = destinationPath.resolve(fileName);
 
-                    // Créer le chemin complet du fichier de destination
-                    Path destinationFilePath = destinationPath.resolve(fileName);
+                        // Copier le fichier sélectionné vers le répertoire de destination dans les ressources
+                        Files.copy(selectedFilee.toPath(), destinationFilePath, StandardCopyOption.REPLACE_EXISTING);
 
-                    // Copier le fichier sélectionné vers le répertoire de destination dans les ressources
-                    Files.copy(selectedFilee.toPath(), destinationFilePath, StandardCopyOption.REPLACE_EXISTING);
+                        // Mettre à jour le chemin de l'image dans imgA
+                        String newImagePath = destinationDirectory + fileName;
+                        gifA.setText(newImagePath);
 
-                    // Mettre à jour le chemin de l'image dans imgA
-                    String newImagePath = destinationDirectory + fileName;
-                    gifA.setText(newImagePath);
-
-                    // Afficher un message de succès
-                    System.out.println("Fichier téléchargé avec succès dans les ressources. Nouveau chemin : " + newImagePath);
-                } catch (IOException ex) {
-                    // Gérer les exceptions en cas d'erreur de téléchargement
-                    ex.printStackTrace();
+                        // Afficher un message de succès
+                        System.out.println("Fichier téléchargé avec succès dans les ressources. Nouveau chemin : " + newImagePath);
+                    } catch (IOException ex) {
+                        // Gérer les exceptions en cas d'erreur de téléchargement
+                        ex.printStackTrace();
+                    }
+                } else {
+                    System.out.println("Aucun fichier sélectionné.");
                 }
-            } else {
-                System.out.println("Aucun fichier sélectionné.");
-            }
-        });
+            });
 
 
-
-        ObservableList<String> valeurs = FXCollections.observableArrayList("Pectoraux", "Epaules", "Biceps", "Triceps", "Abdos", "Dos", "Quadriceps", "Ischio-jambiers", "Fessiers" , "Mollets");
-        mcA.setItems(valeurs);
-        ObservableList<String> valeurss = FXCollections.observableArrayList("Facile", "Moyen", "Difficile");
-        ndA.setItems(valeurss);
+            ObservableList<String> valeurs = FXCollections.observableArrayList("Pectoraux", "Epaules", "Biceps", "Triceps", "Abdos", "Dos", "Quadriceps", "Ischio-jambiers", "Fessiers", "Mollets");
+            mcA.setItems(valeurs);
+            ObservableList<String> valeurss = FXCollections.observableArrayList("Facile", "Moyen", "Difficile");
+            ndA.setItems(valeurss);
+        }
     }
 
     @FXML

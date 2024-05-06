@@ -1,5 +1,4 @@
-
-    package Controller;
+package Controller;
 
 import Entities.SessionManager;
 import Entities.User;
@@ -10,124 +9,120 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
-import javafx.scene.control.Label;
+import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 
-import java.awt.*;
-import java.io.File;
 import java.io.IOException;
-import java.net.MalformedURLException;
-import java.net.URL;
 import java.util.Objects;
-import java.util.ResourceBundle;
 
-        public class BaseFrontController {
+public class BaseFrontController {
 
-
-
-        @FXML
-        private Label logout_btn;
-
-
-            @FXML
-            private ImageView bg_pic;
-
-
-        @FXML
-        private ImageView pp_view;
-        public BaseFrontController() {
-
-        }
-        @FXML
-        public void initialize() {
-            // Retrieve the current user ID from the session manager
-           String userId = SessionManager.getInstance().getUserId();
-
-            // Use the user ID to fetch user details from the database
-            UserService userService = new UserService();
-            User user = userService.afficher(userId);
-
-            // Populate the labels with user details
-            if (user != null) {
-                try {
-                    // Convert the file path to a URL
-                    File file = new File("C:/Users/bouaz/PREVIOUS/src/main/java/image/logo.png");
-                    String imageUrl = file.toURI().toURL().toString();
-                    // Create an Image object from the URL
-                    Image image = new Image(imageUrl);
-                    // Set the image to the ImageView
-                    bg_pic.setImage(image);
-                } catch (MalformedURLException e) {
-                    // Handle invalid URL exception
-                    e.printStackTrace();
-                    // Optionally, show an alert or fallback image
-                }
-                try {
-                    // Convert the file path to a URL
-                    File file = new File("C:/Users/bouaz/PREVIOUS/src/main/java/image/Untitled design.png");
-                    String imageUrl = file.toURI().toURL().toString();
-                    // Create an Image object from the URL
-                    Image image = new Image(imageUrl);
-                    // Set the image to the ImageView
-                    bg_pic.setImage(image);
-                } catch (MalformedURLException e) {
-                    // Handle invalid URL exception
-                    e.printStackTrace();
-                    // Optionally, show an alert or fallback image
-                }
-                String photoPath = user.getPhoto();
-                if (photoPath != null && !photoPath.isEmpty()) {
-                    try {
-                        // Convert the file path to a URL
-                        File file = new File(photoPath);
-                        String imageUrl = file.toURI().toURL().toString();
-                        // Create an Image object from the URL
-                        Image image = new Image(imageUrl);
-                        // Set the image to the ImageView
-                        pp_view.setImage(image);
-                    } catch (MalformedURLException e) {
-                        // Handle invalid URL exception
-                        e.printStackTrace();
-                        // Optionally, show an alert or fallback image
-                    }
-                }
-
-            }}
-
-        @FXML
-        void logout_click(MouseEvent event) {
-            SessionManager.getInstance().cleanUserSessionAdmin();
-            try {
-                Node sourceNode = (Node) logout_btn;
-                Stage stage = (Stage) sourceNode.getScene().getWindow();
-                stage.close();
-                Stage newStage = new Stage();
-                Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/User/LogIn.fxml")));
-                Scene scene = new Scene(root);
-                newStage.setScene(scene);
-                newStage.show();
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-        }
+    @FXML
+    private ImageView bg_pic;
+    @FXML
+    private Button logout;
+    @FXML
+    private ImageView pp_view;
+    @FXML
+    private TextField search_tf;
 
 
-            @FXML
-            void gotoprofile(MouseEvent event) throws IOException {
-                Stage stage = (Stage) pp_view.getScene().getWindow();
-                stage.close();
-                Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/User/UpdateProfile.fxml")));
-                Scene scene = new Scene(root);
-                stage.setScene(scene);
-                stage.setTitle("User SignIn");
-                stage.show();
-            }
 
+    public void Commande(ActionEvent event) {
+        loadFXML("/Commande/CommandeV.fxml", event);
+    }
+
+    public void Blogs(ActionEvent event) {
+        loadFXML("/Post/Post-front.fxml", event);
     }
 
 
+    private void loadFXML(String fxmlPath, ActionEvent event) {
+        try {
+            Parent root = FXMLLoader.load(getClass().getResource(fxmlPath));
+            Stage primaryStage = (Stage) ((Button) event.getSource()).getScene().getWindow();
+            Scene scene = new Scene(root);
+            primaryStage.setScene(scene);
+            primaryStage.show();
+        } catch (IOException e) {
+            System.out.println("Error loading the new scene: " + e.getMessage());
+        }
+    }
+
+    @FXML
+    public void initialize() {
+        // Retrieve the current user ID from the session manager
+        String userId = SessionManager.getInstance().getUserId();
+
+        // Use the user ID to fetch user details from the database
+        UserService userService = new UserService();
+        User user = userService.afficher(userId);
+
+        // Populate the labels with user details
+        if (user != null) {
+            try {
+                // Set the image to the ImageView
+                Image image1 = new Image("file:C:/Users/bouaz/PREVIOUS/src/main/java/image/logo.png");
+                bg_pic.setImage(image1);
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+
+            try {
+                // Set the image to the ImageView
+                Image image2 = new Image("file:C:/Users/bouaz/PREVIOUS/src/main/java/image/Untitled design.png");
+                bg_pic.setImage(image2);
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+
+            String photoPath = user.getPhoto();
+            if (photoPath != null && !photoPath.isEmpty()) {
+                try {
+                    // Set the image to the ImageView
+                    Image image = new Image("file:" + photoPath);
+                    pp_view.setImage(image);
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+            }
+        }
+    }
+
+    @FXML
+    public void gotoprofile() throws IOException {
+        Stage stage = (Stage) pp_view.getScene().getWindow();
+        stage.close();
+        Parent root = FXMLLoader.load(getClass().getResource("/User/UpdateProfile.fxml"));
+        Scene scene = new Scene(root);
+        stage.setScene(scene);
+        stage.setTitle("User SignIn");
+        stage.show();
+    }
+
+    public void logout(ActionEvent event) {
+        System.out.println("begin basefront");
+        SessionManager.getInstance().cleanUserSessionAdmin();
+        System.out.println("session basefront");
+        try {
+            System.out.println("session basefront");
+            Node sourceNode = (Node) logout;
+            Stage stage = (Stage) sourceNode.getScene().getWindow();
+            stage.close();
+            Stage newStage = new Stage();
+            Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/User/LogIn.fxml")));
+            Scene scene = new Scene(root);
+            newStage.setScene(scene);
+            newStage.show();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void Exercice(ActionEvent event) {
+        loadFXML("/Exercice/ExerciceV.fxml", event);
+    }
+}

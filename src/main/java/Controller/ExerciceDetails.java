@@ -19,7 +19,9 @@ import javafx.scene.image.ImageView;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 import okhttp3.*;
-
+import Entities.SessionManager;
+import Entities.User;
+import Service.UserService;
 import javax.sound.sampled.*;
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
@@ -170,6 +172,7 @@ private boolean to=true;
 
     @FXML
     public void initialize() {
+
         // Load the CSS file
         // Set the chat container style
         String userId = SessionManager.getInstance().getUserId();

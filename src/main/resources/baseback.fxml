@@ -32,8 +32,6 @@
                 </AnchorPane>
                 <AnchorPane layoutX="304.0" prefHeight="56.0" prefWidth="841.0" styleClass="bar" stylesheets="@User/styleback.css">
                     <children>
-                        <Label layoutX="18.0" layoutY="15.0" prefHeight="39.0" prefWidth="78.0" text="Search" />
-                        <TextField layoutX="71.0" layoutY="22.0" minHeight="24.0" prefHeight="24.0" prefWidth="257.0" styleClass="text-field" />
                         <Label fx:id="logout_btn" layoutX="677.0" layoutY="19.0" onMouseClicked="#logout" prefHeight="28.0" prefWidth="96.0" text="LogOut" />
                         <Label fx:id="adminID" layoutX="349.0" layoutY="26.0" prefHeight="20.0" prefWidth="174.0" />
                     </children>

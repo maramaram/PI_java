@@ -18,7 +18,9 @@ import javafx.scene.image.ImageView;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
-
+import Entities.SessionManager;
+import Entities.User;
+import Service.UserService;
 import java.io.IOException;
 import java.sql.SQLException;
 import java.util.List;
@@ -43,26 +45,32 @@ public class ExerciceV {
     private int wez=0,wezz=1;
     @FXML
     public void initialize() {
+        String userId = SessionManager.getInstance().getUserId();
 
-        ObservableList<String> valeurs = FXCollections.observableArrayList("Nom", "Muscle ciblé", "Niveau de difficulté");
-        choice.setItems(valeurs);
+        // Use the user ID to fetch user details from the database
+        UserService userService = new UserService();
+        User user = userService.afficher(userId);
+        if (user != null) {
+            ObservableList<String> valeurs = FXCollections.observableArrayList("Nom", "Muscle ciblé", "Niveau de difficulté");
+            choice.setItems(valeurs);
 
-        ObservableList<String> valeurss = FXCollections.observableArrayList("ASC", "DESC");
-        choice1.setItems(valeurss);
-        choice1.setValue("ASC");
+            ObservableList<String> valeurss = FXCollections.observableArrayList("ASC", "DESC");
+            choice1.setItems(valeurss);
+            choice1.setValue("ASC");
 
-        choice.setOnAction(event -> {
-            // Appelez votre fonction de tri ici
-            Tri();
-        });
+            choice.setOnAction(event -> {
+                // Appelez votre fonction de tri ici
+                Tri();
+            });
 
-        choice1.setOnAction(event -> {
-            // Appelez votre fonction de tri ici
-            Tri();
-        });
-        AfficherEX(); // Appeler la méthode pour afficher les données
+            choice1.setOnAction(event -> {
+                // Appelez votre fonction de tri ici
+                Tri();
+            });
+            AfficherEX(); // Appeler la méthode pour afficher les données
 
 
+        }
     }
 
 
