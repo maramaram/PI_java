@@ -27,8 +27,8 @@ import java.util.regex.Pattern;
 public class Openai  {
     String userId = SessionManager.getInstance().getUserId();
 
-    private static final String API_URL = "https://api.openai.com/v1/engines/text-davinci-003/completions";
-    private static final String API_KEY = "sk-proj-80v94ykJj8S4JK4DBCCUT3BlbkFJzCnMWstGlKoMfidJyiwW";
+    private static final String API_URL = "";
+    private static final String API_KEY = "";
   //
 
     @FXML

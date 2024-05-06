@@ -268,14 +268,14 @@ public class panierfront  {
         });
         valider.setOnAction(event -> {
             // Récupérer le numéro de téléphone du destinataire du SMS
-            String phoneNumber = "+21692238564"; // Remplacez par le numéro de téléphone du destinataire
+            String phoneNumber = ""; // Remplacez par le numéro de téléphone du destinataire
 
             // Récupérer le corps du SMS à envoyer
             String messageBody = "Votre commande a été validée avec succès.";
 
             // Vos identifiants Twilio
-            String accountSid = "AC0ef21d337e89b5f58f20f5daa5bdb875";
-            String authToken = "70fdcfd7f313ad55975ad90ced23ddab";
+            String accountSid = "";
+            String authToken = "";
 
             // Initialiser le client Twilio
             Twilio.init(accountSid, authToken);
@@ -283,7 +283,7 @@ public class panierfront  {
             // Envoyer le SMS
             Message message = Message.creator(
                             new com.twilio.type.PhoneNumber(phoneNumber),
-                            new com.twilio.type.PhoneNumber("+17178379850"),
+                            new com.twilio.type.PhoneNumber(""),
                             messageBody)
                     .create();
 
