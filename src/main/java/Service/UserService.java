@@ -1,26 +1,21 @@
 package Service;
 
-import Controller.AdminController;
-import Utils.DataBase;
 import Entities.*;
+import Utils.MyDatabase;
 import at.favre.lib.crypto.bcrypt.BCrypt;
-import helper.AlertHelper;
-import javafx.scene.control.Alert;
-import helper.AlertHelper;
+
 import java.awt.*;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
-
-import static java.awt.SystemColor.window;
 
 public class UserService  {
     Window window;
     Connection conn;
 
     public boolean addUser(User user) {
-        DataBase dataBase = new DataBase();
-        Connection connection = dataBase.getConnect();
+
+        Connection connection = MyDatabase.getConnect();
 
         if (connection != null) {
             String sql = "INSERT INTO user (nom, prenom, email, num_tel, pwd, status, role, date_n, photo, adress) " +
@@ -57,8 +52,8 @@ public class UserService  {
 
 
     public User login(String email, String password) {
-        DataBase dataBase = new DataBase();
-        Connection connection = dataBase.getConnect();
+
+        Connection connection = MyDatabase.getConnect();
 
         if (connection != null) {
             String sql = "SELECT * FROM user WHERE email = ?";
@@ -102,8 +97,8 @@ public class UserService  {
     }
 
     public User afficher(String userId) {
-        DataBase dataBase = new DataBase();
-        Connection connection = dataBase.getConnect();
+
+        Connection connection = MyDatabase.getConnect();
 
         if (connection != null) {
             String sql = "SELECT * FROM user WHERE id = ?";
@@ -143,8 +138,8 @@ public class UserService  {
         return null;
     }
     public boolean updateUser(User user) {
-        DataBase dataBase = new DataBase();
-        Connection connection = dataBase.getConnect();
+
+        Connection connection = MyDatabase.getConnect();
 
         if (connection != null) {
             String sql = "UPDATE user SET nom=?, prenom=?, email=?, num_tel=?, pwd=?, status=?, role=?, date_n=?, photo=?, adress=? WHERE id=?";
@@ -181,8 +176,8 @@ public class UserService  {
 
     public List<User> getAllUsers() {
         List<User> userList = new ArrayList<>();
-        DataBase dataBase = new DataBase();
-        Connection connection = dataBase.getConnect();
+
+        Connection connection = MyDatabase.getConnect();
 
         if (connection != null) {
             String sql = "SELECT * FROM user WHERE LOWER(role) NOT IN ('admin', 'Admin')";

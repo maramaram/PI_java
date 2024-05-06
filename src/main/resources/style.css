@@ -36,7 +36,16 @@
 .MFXbutton:hover {
   -fx-background-color: linear-gradient(to right, #FA849B, #da5f46);
 }
+.button-black-orange {
+  -fx-background-color: black; /* Black background color */
+  -fx-text-fill: #da5f46; /* Orange text color */
+  -fx-font-weight: bold; /* Bold font */
+  -fx-border-width: 0px; /* No border */
+}
 
+.button-black-orange:hover {
+  -fx-background-color: #2F2F2F; /* Darker background color on hover */
+}
 /* Text Fields */
 .text-field {
   -fx-font-family: sans-serif;
@@ -45,6 +54,15 @@
   -fx-border-color: #da5f46;
   -fx-border-width: 0px 0px 2px 0px;
   -fx-font-weight: bold;
+}
+.text-field-black {
+  -fx-font-family: sans-serif;
+  -fx-font-size: 14px;
+  -fx-background-color: transparent;
+  -fx-border-color: #da5f46;
+  -fx-border-width: 0px 0px 2px 0px;
+  -fx-font-weight: bold;
+  -fx-text-fill: black;
 }
 
 .text-field:focused {
@@ -57,6 +75,14 @@
   -fx-font-size: 14px;
   -fx-text-fill: #da5f46;
 }
+/* Label */
+.big-label {
+  -fx-font-family: "Montserrat", sans-serif;
+  -fx-font-size: 36px;
+  -fx-font-weight: bold;
+  -fx-text-fill: white;
+}
+
 
 /* Anchors */
 .anchor-pane {

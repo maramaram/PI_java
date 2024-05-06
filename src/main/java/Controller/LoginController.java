@@ -3,7 +3,7 @@ package Controller;
 import Entities.SessionManager;
 import Entities.User;
 import Service.UserService;
-import Utils.DataBase;
+import Utils.MyDatabase;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -11,20 +11,15 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 
-import at.favre.lib.crypto.bcrypt.BCrypt;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.net.MalformedURLException;
-import java.sql.SQLException;
 import java.sql.Connection;
-import java.sql.ResultSet;
 
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
-import javafx.scene.input.TouchEvent;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 import helper.AlertHelper;
@@ -34,7 +29,7 @@ import java.util.Objects;
 import java.util.Random;
 import java.util.ResourceBundle;
 import java.util.regex.Pattern;
-import org.apache.commons.codec.digest.DigestUtils;
+
 import javafx.stage.Window;
 
 public class LoginController implements Initializable {
@@ -109,7 +104,7 @@ public class LoginController implements Initializable {
     private void openCoachPanel() throws IOException {
         Stage stage = (Stage) loginButton.getScene().getWindow();
         stage.close();
-        Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/User/CoachPannel.fxml")));
+        Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/User/HomeOn.fxml")));
         Scene scene = new Scene(root);
         stage.setScene(scene);
         stage.setTitle("Coach Panel");
@@ -119,7 +114,7 @@ public class LoginController implements Initializable {
     private void openClientPanel() throws IOException {
         Stage stage = (Stage) loginButton.getScene().getWindow();
         stage.close();
-        Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/User/clientPanne.fxml")));
+        Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/User/HomeOn.fxml")));
         Scene scene = new Scene(root);
         stage.setScene(scene);
         stage.setTitle("Client Panel");
@@ -248,8 +243,7 @@ public class LoginController implements Initializable {
     }*/
 
     public LoginController() {
-        DataBase dataBase = new DataBase();
-        con = dataBase.getConnect();
+        con = MyDatabase.getConnect();
     }
 
     @Override

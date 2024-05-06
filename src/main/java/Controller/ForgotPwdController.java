@@ -1,8 +1,6 @@
 package Controller;
-import Entities.SessionManager;
+import Utils.MyDatabase;
 import helper.AlertHelper;
-import javafx.animation.KeyFrame;
-import javafx.animation.Timeline;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -21,11 +19,8 @@ import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 import com.twilio.type.PhoneNumber;
 import com.twilio.rest.api.v2010.account.Message;
-import Service.*;
-import Utils.DataBase;
 import javafx.stage.Window;
 import com.twilio.Twilio;
-import javafx.util.Duration;
 import org.apache.commons.codec.digest.DigestUtils;
 
 import java.io.File;
@@ -100,12 +95,12 @@ public class ForgotPwdController implements Initializable {
 
 
     public ForgotPwdController() {
-        DataBase dataBase = new DataBase();
-        this.con = dataBase.getConnect();
+
+        this.con = MyDatabase.getConnect();
     }
     private boolean isPhoneNumberAvailable(String phoneNumber) throws SQLException {
         String query = "SELECT * FROM user WHERE num_tel = ?";
-        PreparedStatement preparedStatement = DataBase.getConnect().prepareStatement(query);
+        PreparedStatement preparedStatement = MyDatabase.getConnect().prepareStatement(query);
         preparedStatement.setString(1, phoneNumber);
         ResultSet resultSet = preparedStatement.executeQuery();
         return resultSet.next();
@@ -213,7 +208,7 @@ public class ForgotPwdController implements Initializable {
         if (checkPasswordForgot()) {
             if (newPassword.equals(ConfirmPassword)) {
                 String query = "UPDATE user SET pwd = ? WHERE num_tel = ?";
-                PreparedStatement preparedStatement = DataBase.getConnect().prepareStatement(query);
+                PreparedStatement preparedStatement = MyDatabase.getConnect().prepareStatement(query);
                 String hashedPwd = DigestUtils.sha1Hex(newPassword);
                 String hashedConfirmPwd = DigestUtils.sha1Hex(ConfirmPassword);
                 preparedStatement.setString(1, hashedPwd);

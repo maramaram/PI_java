@@ -1,5 +1,8 @@
 package Controller;
 
+import Entities.SessionManager;
+import Entities.User;
+import Service.UserService;
 import com.assemblyai.api.AssemblyAI;
 import com.assemblyai.api.resources.transcripts.types.Transcript;
 import com.google.gson.Gson;
@@ -102,7 +105,7 @@ private boolean to=true;
 
     public void convertVoiceToText() {
       AssemblyAI aai=AssemblyAI.builder().apiKey(System.getenv("API_KEY_SOUND")).build();
-        File audioFile = new File("C:/Users/Vayso/OneDrive/Bureau/piJAVA/audio.wav");
+        File audioFile = new File("C:/Users/bouaz/PREVIOUS/audio.wav");
         try {
             Transcript t=aai.transcripts().transcribe(audioFile);
             if (t.getText().isPresent())
@@ -169,7 +172,12 @@ private boolean to=true;
     public void initialize() {
         // Load the CSS file
         // Set the chat container style
+        String userId = SessionManager.getInstance().getUserId();
 
+        // Use the user ID to fetch user details from the database
+        UserService userService = new UserService();
+        User user = userService.afficher(userId);
+        if (user != null) {
         vchat.getStyleClass().add("chat-container");
 
         // Set the VBox properties
@@ -198,7 +206,7 @@ private boolean to=true;
                 }
                 fo9.clear(); // Clear the text field after sending the message
             }
-        });
+        });}
     }
 
 

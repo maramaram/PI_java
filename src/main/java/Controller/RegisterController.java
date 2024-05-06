@@ -1,33 +1,27 @@
 package Controller;
-import javafx.scene.Node;
+import Utils.MyDatabase;
 import at.favre.lib.crypto.bcrypt.BCrypt;
 import javafx.fxml.Initializable;
 import javafx.scene.control.ComboBox;
 import helper.AlertHelper;
 import Entities.*;
 import Service.*;
-import Utils.DataBase;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
-import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
-import javafx.scene.text.Text;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 import javafx.stage.Window;
-import org.apache.commons.codec.digest.DigestUtils;
 import javafx.scene.control.Alert;
-import javafx.stage.Window;
 
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
-import java.net.MalformedURLException;
 import java.util.ResourceBundle;
 import java.io.File;
 import java.io.IOException;
@@ -353,8 +347,8 @@ public class RegisterController  implements Initializable {
     }
 
     public RegisterController() {
-        DataBase dataBase = new DataBase();
-        con = dataBase.getConnect();
+
+        con = MyDatabase.getConnect();
     }
 
     private String generateUniqueToken() {

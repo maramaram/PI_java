@@ -1,8 +1,7 @@
 package Controller;
 import Service.UserService;
-import helper.AlertHelper;
+import Utils.MyDatabase;
 import Entities.* ;
-import Utils.DataBase ;
 import io.github.palexdev.materialfx.controls.MFXPagination;
 import io.github.palexdev.materialfx.controls.MFXTableColumn;
 import javafx.collections.FXCollections;
@@ -19,7 +18,6 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.control.Button;
 import javafx.scene.Node;
 import javafx.stage.Stage;
-import javafx.scene.control.Pagination;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.fxml.FXMLLoader;
@@ -30,13 +28,11 @@ import java.net.MalformedURLException;
 import java.net.URI;
 import java.net.URL;
 import java.sql.*;
-import java.time.LocalDate;
 import java.util.List;
 import java.util.Objects;
 import java.util.Optional;
-import java.util.UUID;
+
 import javafx.stage.Window;
-import javafx.scene.control.Button;
 
 
 public class AdminController {
@@ -105,8 +101,8 @@ public class AdminController {
         status.setCellValueFactory(new PropertyValueFactory<>("status"));
         adress.setCellValueFactory(new PropertyValueFactory<>("adress"));
         photo.setCellValueFactory(new PropertyValueFactory<>("photo"));
-        listM = DataBase.getDatauser();
-        userTableView.setItems(listM);
+     //   listM = DataBase.getDatauser();
+  //      userTableView.setItems(listM);
         int itemsPerPage = 8; // Show 8 rows per page
         int pageCount = (int) Math.ceil((double) listUsers.size() / itemsPerPage);
         pages.setMaxPage(pageCount); // Set the max number of pages
@@ -249,7 +245,7 @@ public class AdminController {
 
 
     private void updateUserStatus(String userId, String newStatus) {
-        try (Connection conn = DataBase.getConnect();
+        try (Connection conn = MyDatabase.getConnect();
              PreparedStatement ps = conn.prepareStatement("UPDATE user SET status = ? WHERE id = ?")) {
             ps.setString(1, newStatus);
             ps.setString(2, userId);
@@ -259,7 +255,7 @@ public class AdminController {
         }
     }
     private void updateUserStatusInactive(String userId, String newStatus) {
-        try (Connection conn = DataBase.getConnect();
+        try (Connection conn = MyDatabase.getConnect();
              PreparedStatement ps = conn.prepareStatement("UPDATE user SET status = ? WHERE id = ?")) {
             ps.setString(1, newStatus);
             ps.setString(2, userId);

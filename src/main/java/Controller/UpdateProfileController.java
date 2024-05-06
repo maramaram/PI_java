@@ -3,7 +3,7 @@ package Controller;
 import Entities.SessionManager;
 import Entities.User;
 import Service.UserService;
-import Utils.DataBase;
+import Utils.MyDatabase;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -89,13 +89,11 @@ public class UpdateProfileController {
     private ImageView pp_view;
     private Connection con;
     String photoPath;
-    String photoPath1;
     private UserService userService;
 
     public UpdateProfileController() {
         this.userService = new UserService();
-        DataBase dataBase = new DataBase();
-        con = dataBase.getConnect();
+        con = MyDatabase.getConnect();
     }
 
     @FXML

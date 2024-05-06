@@ -1,7 +1,7 @@
 package Controller;
 
 import Entities.SessionManager;
-import Utils.DataBase;
+import Utils.MyDatabase;
 import at.favre.lib.crypto.bcrypt.BCrypt;
 import helper.AlertHelper;
 import javafx.animation.KeyFrame;
@@ -22,7 +22,6 @@ import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 import javafx.stage.Window;
 import javafx.util.Duration;
-import org.apache.commons.codec.digest.DigestUtils;
 
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
@@ -39,12 +38,8 @@ public class EnterPassword implements Initializable {
     @FXML
     private Button changePWD_btn;
 
-
-
     @FXML
     private Label checkOld_PWD;
-
-
 
     @FXML
     private ImageView goback;
@@ -65,8 +60,7 @@ public class EnterPassword implements Initializable {
         System.out.println("New password: " + passwordnew);
 
         if (password()) {
-            DataBase dataBase = new DataBase();
-            Connection con = dataBase.getConnect();
+            Connection con = MyDatabase.getConnect();
             String userId = SessionManager.getInstance().getUserId();
             System.out.println("User ID: " + userId);
 

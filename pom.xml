@@ -2,155 +2,6 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0"
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
-<<<<<<< HEAD
-  <modelVersion>4.0.0</modelVersion>
-
-  <groupId>com.example</groupId>
-  <artifactId>piJAVA</artifactId>
-  <version>1.0-SNAPSHOT</version>
-  <name>piJAVA</name>
-
-  <properties>
-    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-<junit.version>5.9.2</junit.version>  </properties>
-
-  <dependencies>
-    <dependency>
-      <groupId>org.openjfx</groupId>
-      <artifactId>javafx-controls</artifactId>
-      <version>21.0.2</version>
-    </dependency>
-    <dependency>
-      <groupId>org.openjfx</groupId>
-      <artifactId>javafx-fxml</artifactId>
-      <version>21.0.2</version>
-    </dependency>
-<dependency>
-      <groupId>com.dlsc.formsfx</groupId>
-      <artifactId>formsfx-core</artifactId>
-      <version>11.6.0</version>
-      <exclusions>
-        <exclusion>
-          <groupId>org.openjfx</groupId>
-          <artifactId>*</artifactId>
-        </exclusion>
-      </exclusions>
-    </dependency><dependency>
-      <groupId>org.kordamp.bootstrapfx</groupId>
-      <artifactId>bootstrapfx-core</artifactId>
-      <version>0.4.0</version>
-    </dependency>
-<dependency>
-      <groupId>org.junit.jupiter</groupId>
-      <artifactId>junit-jupiter-api</artifactId>
-      <version>${junit.version}</version>
-      <scope>test</scope>
-    </dependency>
-    <dependency>
-      <groupId>org.junit.jupiter</groupId>
-      <artifactId>junit-jupiter-engine</artifactId>
-      <version>${junit.version}</version>
-      <scope>test</scope>
-    </dependency>
-    <dependency>
-      <groupId>mysql</groupId>
-      <artifactId>mysql-connector-java</artifactId>
-      <version>8.0.33</version>
-    </dependency>
-    <dependency>
-      <groupId>io.github.palexdev</groupId>
-      <artifactId>materialfx</artifactId>
-      <version>11.17.0</version>
-    </dependency>
-
-      <dependency>
-          <groupId>org.apache.pdfbox</groupId>
-          <artifactId>pdfbox</artifactId>
-          <version>2.0.24</version>
-      </dependency>
-
-      <dependency>
-          <groupId>org.apache.poi</groupId>
-          <artifactId>poi-ooxml</artifactId>
-          <version>5.2.5</version>
-      </dependency>
-
-      <dependency>
-          <groupId>com.squareup.okhttp3</groupId>
-          <artifactId>okhttp</artifactId>
-          <version>4.9.3</version>
-      </dependency>
-
-      <dependency>
-          <groupId>com.google.code.gson</groupId>
-          <artifactId>gson</artifactId>
-          <version>2.8.9</version>
-      </dependency>
-      <dependency>
-          <groupId>org.openjfx</groupId>
-          <artifactId>javafx-graphics</artifactId>
-          <version>21.0.2</version>
-      </dependency>
-      <dependency> <groupId>org.controlsfx</groupId>
-          <artifactId>controlsfx</artifactId>
-          <version>11.1.0</version>
-      </dependency>
-
-      <dependency>
-          <groupId>com.google.cloud</groupId>
-          <artifactId>google-cloud-speech</artifactId>
-          <version>2.5.0</version> <!-- Assurez-vous de vérifier la dernière version -->
-      </dependency>
-
-      <dependency>
-          <groupId>com.google.auth</groupId>
-          <artifactId>google-auth-library-oauth2-http</artifactId>
-          <version>0.26.0</version> <!-- Assurez-vous de vérifier la dernière version -->
-      </dependency>
-
-
-      <dependency>
-          <groupId>com.assemblyai</groupId>
-          <artifactId>assemblyai-java</artifactId>
-          <version>1.0.1</version>
-      </dependency>
-
-  </dependencies>
-
-  <build>
-    <plugins>
-      <plugin>
-        <groupId>org.apache.maven.plugins</groupId>
-        <artifactId>maven-compiler-plugin</artifactId>
-        <version>3.11.0</version>
-        <configuration>
-          <source>17</source>
-          <target>17</target>
-        </configuration>
-      </plugin>
-      <plugin>
-        <groupId>org.openjfx</groupId>
-        <artifactId>javafx-maven-plugin</artifactId>
-        <version>0.0.8</version>
-        <executions>
-          <execution>
-            <!-- Default configuration for running with: mvn clean javafx:run -->
-            <id>default-cli</id>
-            <configuration>
-              <mainClass>com.example.pijava/com.example.pijava.HelloApplication</mainClass>
-              <launcher>app</launcher>
-              <jlinkZipName>app</jlinkZipName>
-              <jlinkImageName>app</jlinkImageName>
-              <noManPages>true</noManPages>
-              <stripDebug>true</stripDebug>
-              <noHeaderFiles>true</noHeaderFiles>
-            </configuration>
-          </execution>
-        </executions>
-      </plugin>
-    </plugins>
-  </build>
-=======
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>org.example</groupId>
@@ -238,17 +89,73 @@
             <artifactId>twilio</artifactId>
             <version>10.1.2</version>
         </dependency>
-            <dependency>
-                <groupId>com.sun.mail</groupId>
-                <artifactId>javax.mail</artifactId>
-                <version>1.6.2</version>
-            </dependency>
+        <dependency>
+            <groupId>com.sun.mail</groupId>
+            <artifactId>javax.mail</artifactId>
+            <version>1.6.2</version>
+        </dependency>
         <dependency>
             <groupId>org.openjfx</groupId>
             <artifactId>javafx-base</artifactId>
             <version>21</version>
         </dependency>
+        <dependency>
+            <groupId>io.github.palexdev</groupId>
+            <artifactId>materialfx</artifactId>
+            <version>11.17.0</version>
+        </dependency>
 
+        <dependency>
+            <groupId>org.apache.pdfbox</groupId>
+            <artifactId>pdfbox</artifactId>
+            <version>2.0.24</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.apache.poi</groupId>
+            <artifactId>poi-ooxml</artifactId>
+            <version>5.2.5</version>
+        </dependency>
+
+        <dependency>
+            <groupId>com.squareup.okhttp3</groupId>
+            <artifactId>okhttp</artifactId>
+            <version>4.9.3</version>
+        </dependency>
+
+        <dependency>
+            <groupId>com.google.code.gson</groupId>
+            <artifactId>gson</artifactId>
+            <version>2.8.9</version>
+        </dependency>
+        <dependency>
+            <groupId>org.openjfx</groupId>
+            <artifactId>javafx-graphics</artifactId>
+            <version>21.0.2</version>
+        </dependency>
+        <dependency> <groupId>org.controlsfx</groupId>
+            <artifactId>controlsfx</artifactId>
+            <version>11.1.0</version>
+        </dependency>
+
+        <dependency>
+            <groupId>com.google.cloud</groupId>
+            <artifactId>google-cloud-speech</artifactId>
+            <version>2.5.0</version> <!-- Assurez-vous de vérifier la dernière version -->
+        </dependency>
+
+        <dependency>
+            <groupId>com.google.auth</groupId>
+            <artifactId>google-auth-library-oauth2-http</artifactId>
+            <version>0.26.0</version> <!-- Assurez-vous de vérifier la dernière version -->
+        </dependency>
+
+
+        <dependency>
+            <groupId>com.assemblyai</groupId>
+            <artifactId>assemblyai-java</artifactId>
+            <version>1.0.1</version>
+        </dependency>
     </dependencies>
 
 
@@ -285,5 +192,4 @@
             </plugin>
         </plugins>
     </build>
->>>>>>> 23e81c01d9c8342b6b58c7bbe160fc8d8556d3ea
 </project>
