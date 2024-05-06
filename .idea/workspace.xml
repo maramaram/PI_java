@@ -4,59 +4,11 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="219bd414-8940-4b2a-834a-a288c154de45" name="Changes" comment="after rebase">
-      <change afterPath="$PROJECT_DIR$/src/main/java/Controller/HomeOnController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/User/HomeOn.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
+    <list default="true" id="219bd414-8940-4b2a-834a-a288c154de45" name="Changes" comment="integration with gestion Exercice">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/TableauExercices.pdf" beforeDir="false" afterPath="$PROJECT_DIR$/TableauExercices.pdf" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/audio.wav" beforeDir="false" afterPath="$PROJECT_DIR$/audio.wav" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/Controller/AdminController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Controller/AdminController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/Controller/EnterPassword.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Controller/EnterPassword.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/Controller/ExerciceDetails.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Controller/ExerciceDetails.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/Controller/ForgotPwdController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Controller/ForgotPwdController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/Controller/LoginController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Controller/LoginController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/Controller/RegisterController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Controller/RegisterController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/Controller/UpdateProfileController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Controller/UpdateProfileController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/Controller/basebackController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Controller/basebackController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/Entities/User.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Entities/User.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/Service/UserService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Service/UserService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/User/UserManagment.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/User/UserManagment.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/Utils/DataBase.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/Utils/MyDatabase.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Utils/MyDatabase.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/module-info.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/module-info.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/User/CoachPannel.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/User/CoachPannel.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/User/DataBase.fxml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/User/EnterPassword.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/User/EnterPassword.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/User/LogIn.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/User/LogIn.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/User/UpdateProfile.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/User/UpdateProfile.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/User/baseback.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/baseback.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/User/basefront.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/basefront.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/User/clientPanne.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/User/clientPanne.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/style.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/style.css" afterDir="false" />
     </list>
-    <list id="682c7730-fa5f-4219-9371-600ce54afd07" name="Changes by asus" comment="">
-      <change beforePath="$PROJECT_DIR$/src/main/java/Controller/BaseFrontController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Controller/BaseFrontController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/Controller/DefiFront.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Controller/DefiFront.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/Controller/ExerciceFront.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Controller/ExerciceFront.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/Controller/basebackController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Controller/basebackController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/Defi/Defi-front.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/Defi/Defi-front.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/Exercice/Exercice-front.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/Exercice/Exercice-front.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/User/baseback.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/baseback.fxml" afterDir="false" />
-    </list>
-    <list id="efb288aa-a19a-4327-a2a7-fb777cc24d78" name="Changes by Vayso" comment="">
-      <change beforePath="$PROJECT_DIR$/src/main/java/Controller/DefiAdd.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Controller/DefiAdd.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/Controller/DefiFront.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Controller/DefiFront.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/Controller/DefiUpdate.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Controller/DefiUpdate.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/Controller/DefiV.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Controller/DefiV.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/Controller/ExerciceAdd.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Controller/ExerciceAdd.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/Controller/ExerciceDetails.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Controller/ExerciceDetails.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/Controller/ExerciceFront.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Controller/ExerciceFront.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/Controller/ExerciceUpdate.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Controller/ExerciceUpdate.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/Controller/ExerciceV.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Controller/ExerciceV.java" afterDir="false" />
-    </list>
+    <list id="682c7730-fa5f-4219-9371-600ce54afd07" name="Changes by asus" comment="Changes by asus and vayso" />
+    <list id="efb288aa-a19a-4327-a2a7-fb777cc24d78" name="Changes by Vayso" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -86,82 +38,6 @@
         <option name="url" value="https://github.com/maramaram/PI_java.git" />
       </UrlAndAccount>
     </option>
-  </component>
-  <component name="LineStatusTrackerManager">
-    <file path="$PROJECT_DIR$/src/main/java/Controller/basebackController.java">
-      <ranges>
-        <range start1="2" end1="2" start2="2" end2="15" changelist="682c7730-fa5f-4219-9371-600ce54afd07" />
-        <range start1="3" end1="3" start2="16" end2="64" changelist="219bd414-8940-4b2a-834a-a288c154de45" />
-      </ranges>
-    </file>
-    <file path="$PROJECT_DIR$/src/main/java/Controller/ExerciceFront.java">
-      <ranges>
-        <range start1="26" end1="27" start2="26" end2="29" changelist="efb288aa-a19a-4327-a2a7-fb777cc24d78" />
-        <range start1="65" end1="65" start2="67" end2="68" changelist="efb288aa-a19a-4327-a2a7-fb777cc24d78" />
-        <range start1="66" end1="66" start2="69" end2="73" changelist="efb288aa-a19a-4327-a2a7-fb777cc24d78" />
-        <range start1="67" end1="70" start2="74" end2="77" changelist="efb288aa-a19a-4327-a2a7-fb777cc24d78" />
-        <range start1="71" end1="73" start2="78" end2="80" changelist="efb288aa-a19a-4327-a2a7-fb777cc24d78" />
-        <range start1="74" end1="76" start2="81" end2="83" changelist="efb288aa-a19a-4327-a2a7-fb777cc24d78" />
-        <range start1="77" end1="79" start2="84" end2="86" changelist="efb288aa-a19a-4327-a2a7-fb777cc24d78" />
-        <range start1="80" end1="84" start2="87" end2="91" changelist="efb288aa-a19a-4327-a2a7-fb777cc24d78" />
-        <range start1="85" end1="95" start2="92" end2="102" changelist="efb288aa-a19a-4327-a2a7-fb777cc24d78" />
-        <range start1="96" end1="100" start2="103" end2="107" changelist="efb288aa-a19a-4327-a2a7-fb777cc24d78" />
-        <range start1="101" end1="103" start2="108" end2="110" changelist="efb288aa-a19a-4327-a2a7-fb777cc24d78" />
-        <range start1="105" end1="109" start2="112" end2="115" changelist="efb288aa-a19a-4327-a2a7-fb777cc24d78" />
-        <range start1="111" end1="114" start2="117" end2="118" changelist="efb288aa-a19a-4327-a2a7-fb777cc24d78" />
-        <range start1="115" end1="125" start2="119" end2="129" changelist="efb288aa-a19a-4327-a2a7-fb777cc24d78" />
-        <range start1="126" end1="128" start2="130" end2="132" changelist="efb288aa-a19a-4327-a2a7-fb777cc24d78" />
-        <range start1="129" end1="137" start2="133" end2="141" changelist="efb288aa-a19a-4327-a2a7-fb777cc24d78" />
-        <range start1="138" end1="146" start2="142" end2="151" changelist="efb288aa-a19a-4327-a2a7-fb777cc24d78" />
-        <range start1="399" end1="438" start2="404" end2="404" changelist="682c7730-fa5f-4219-9371-600ce54afd07" />
-      </ranges>
-    </file>
-    <file path="$PROJECT_DIR$/src/main/java/Controller/ExerciceDetails.java">
-      <ranges>
-        <range start1="2" end1="2" start2="2" end2="5" changelist="219bd414-8940-4b2a-834a-a288c154de45" />
-        <range start1="18" end1="19" start2="21" end2="24" changelist="efb288aa-a19a-4327-a2a7-fb777cc24d78" />
-        <range start1="104" end1="105" start2="109" end2="110" changelist="219bd414-8940-4b2a-834a-a288c154de45" />
-        <range start1="169" end1="169" start2="174" end2="175" changelist="efb288aa-a19a-4327-a2a7-fb777cc24d78" />
-        <range start1="171" end1="171" start2="177" end2="178" changelist="219bd414-8940-4b2a-834a-a288c154de45" />
-        <range start1="172" end1="172" start2="179" end2="183" changelist="219bd414-8940-4b2a-834a-a288c154de45" />
-        <range start1="200" end1="201" start2="211" end2="212" changelist="219bd414-8940-4b2a-834a-a288c154de45" />
-      </ranges>
-    </file>
-    <file path="$PROJECT_DIR$/src/main/resources/baseback.fxml">
-      <ranges>
-        <range start1="2" end1="3" start2="2" end2="2" changelist="219bd414-8940-4b2a-834a-a288c154de45" />
-        <range start1="4" end1="5" start2="3" end2="3" changelist="219bd414-8940-4b2a-834a-a288c154de45" />
-        <range start1="12" end1="13" start2="10" end2="11" changelist="219bd414-8940-4b2a-834a-a288c154de45" />
-        <range start1="14" end1="15" start2="12" end2="13" changelist="219bd414-8940-4b2a-834a-a288c154de45" />
-        <range start1="16" end1="17" start2="14" end2="16" changelist="219bd414-8940-4b2a-834a-a288c154de45" />
-        <range start1="18" end1="29" start2="17" end2="26" changelist="219bd414-8940-4b2a-834a-a288c154de45" />
-        <range start1="35" end1="36" start2="32" end2="33" changelist="219bd414-8940-4b2a-834a-a288c154de45" />
-        <range start1="37" end1="39" start2="34" end2="34" changelist="682c7730-fa5f-4219-9371-600ce54afd07" />
-        <range start1="43" end1="48" start2="38" end2="41" changelist="219bd414-8940-4b2a-834a-a288c154de45" />
-      </ranges>
-    </file>
-    <file path="$PROJECT_DIR$/src/main/java/Controller/DefiFront.java">
-      <ranges>
-        <range start1="26" end1="27" start2="26" end2="29" changelist="efb288aa-a19a-4327-a2a7-fb777cc24d78" />
-        <range start1="67" end1="67" start2="69" end2="70" changelist="efb288aa-a19a-4327-a2a7-fb777cc24d78" />
-        <range start1="68" end1="68" start2="71" end2="75" changelist="efb288aa-a19a-4327-a2a7-fb777cc24d78" />
-        <range start1="69" end1="72" start2="76" end2="79" changelist="efb288aa-a19a-4327-a2a7-fb777cc24d78" />
-        <range start1="73" end1="75" start2="80" end2="82" changelist="efb288aa-a19a-4327-a2a7-fb777cc24d78" />
-        <range start1="76" end1="78" start2="83" end2="85" changelist="efb288aa-a19a-4327-a2a7-fb777cc24d78" />
-        <range start1="79" end1="81" start2="86" end2="88" changelist="efb288aa-a19a-4327-a2a7-fb777cc24d78" />
-        <range start1="82" end1="86" start2="89" end2="93" changelist="efb288aa-a19a-4327-a2a7-fb777cc24d78" />
-        <range start1="87" end1="97" start2="94" end2="104" changelist="efb288aa-a19a-4327-a2a7-fb777cc24d78" />
-        <range start1="98" end1="102" start2="105" end2="109" changelist="efb288aa-a19a-4327-a2a7-fb777cc24d78" />
-        <range start1="103" end1="105" start2="110" end2="112" changelist="efb288aa-a19a-4327-a2a7-fb777cc24d78" />
-        <range start1="107" end1="111" start2="114" end2="117" changelist="efb288aa-a19a-4327-a2a7-fb777cc24d78" />
-        <range start1="113" end1="115" start2="119" end2="120" changelist="efb288aa-a19a-4327-a2a7-fb777cc24d78" />
-        <range start1="116" end1="127" start2="121" end2="132" changelist="efb288aa-a19a-4327-a2a7-fb777cc24d78" />
-        <range start1="128" end1="130" start2="133" end2="135" changelist="efb288aa-a19a-4327-a2a7-fb777cc24d78" />
-        <range start1="131" end1="138" start2="136" end2="143" changelist="efb288aa-a19a-4327-a2a7-fb777cc24d78" />
-        <range start1="139" end1="149" start2="144" end2="154" changelist="efb288aa-a19a-4327-a2a7-fb777cc24d78" />
-        <range start1="406" end1="443" start2="411" end2="411" changelist="682c7730-fa5f-4219-9371-600ce54afd07" />
-      </ranges>
-    </file>
   </component>
   <component name="MavenImportPreferences">
     <option name="generalSettings">
@@ -313,7 +189,8 @@
       <workItem from="1714908484963" duration="1348000" />
       <workItem from="1714909847801" duration="13489000" />
       <workItem from="1714945718402" duration="4217000" />
-      <workItem from="1715003035693" duration="52000" />
+      <workItem from="1715003035693" duration="4144000" />
+      <workItem from="1715009229426" duration="3786000" />
     </task>
     <task id="LOCAL-00001" summary="crud, active inactive small problem , search back, show password, recaptcha">
       <option name="closed" value="true" />
@@ -443,7 +320,23 @@
       <option name="project" value="LOCAL" />
       <updated>1714828435395</updated>
     </task>
-    <option name="localTasksCounter" value="17" />
+    <task id="LOCAL-00017" summary="integration with gestion Exercice">
+      <option name="closed" value="true" />
+      <created>1715003140284</created>
+      <option name="number" value="00017" />
+      <option name="presentableId" value="LOCAL-00017" />
+      <option name="project" value="LOCAL" />
+      <updated>1715003140284</updated>
+    </task>
+    <task id="LOCAL-00018" summary="Changes by asus and vayso">
+      <option name="closed" value="true" />
+      <created>1715003168441</created>
+      <option name="number" value="00018" />
+      <option name="presentableId" value="LOCAL-00018" />
+      <option name="project" value="LOCAL" />
+      <updated>1715003168441</updated>
+    </task>
+    <option name="localTasksCounter" value="19" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -468,17 +361,8 @@
     <MESSAGE value="mot de passe oublié, changement de mot de passe, mot de passe web+java compatible" />
     <MESSAGE value="simple interface adjustments" />
     <MESSAGE value="after rebase" />
-    <option name="LAST_COMMIT_MESSAGE" value="after rebase" />
-  </component>
-  <component name="XDebuggerManager">
-    <breakpoint-manager>
-      <breakpoints>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/Controller/EmailSender.java</url>
-          <line>14</line>
-          <option name="timeStamp" value="1" />
-        </line-breakpoint>
-      </breakpoints>
-    </breakpoint-manager>
+    <MESSAGE value="integration with gestion Exercice" />
+    <MESSAGE value="Changes by asus and vayso" />
+    <option name="LAST_COMMIT_MESSAGE" value="Changes by asus and vayso" />
   </component>
 </project>
