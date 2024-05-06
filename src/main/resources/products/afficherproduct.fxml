@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane prefHeight="517.0" prefWidth="770.0" stylesheets="styleback.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.productController">
+   <children>
+      <TableView fx:id="table_produits" layoutX="229.0" layoutY="113.0" prefHeight="269.0" prefWidth="526.0" style="-fx-background-color: white;">
+        <columns>
+          <TableColumn fx:id="col_id" prefWidth="75.0" text="id" />
+          <TableColumn fx:id="col_nom" prefWidth="75.0" text="nom" />
+            <TableColumn fx:id="col_description" prefWidth="75.0" text="description" />
+            <TableColumn fx:id="col_quantite" prefWidth="75.0" text="quantite_stock" />
+            <TableColumn fx:id="col_categorie" prefWidth="75.0" text="categorie" />
+            <TableColumn fx:id="col_prix" prefWidth="75.0" text="prix" />
+            <TableColumn fx:id="col_image" prefWidth="75.0" text="image" />
+        </columns>
+      </TableView>
+      <Button fx:id="btn_add" layoutX="86.0" layoutY="444.0" mnemonicParsing="false" onAction="#ajouterproduit" prefHeight="20.0" prefWidth="120.0" style="-fx-background-color: green;" text="add" />
+      <Button fx:id="bnt_update" layoutX="216.0" layoutY="444.0" mnemonicParsing="false" onAction="#updateProduit" prefWidth="120.0" style="-fx-background-color: blue;" text="update" />
+      <Button fx:id="bnt_delete" layoutX="344.0" layoutY="444.0" mnemonicParsing="false" onAction="#deleteproduit" prefWidth="120.0" style="-fx-background-color: red;" text="delete" />
+      <TextField fx:id="txt_nom" layoutX="28.0" layoutY="90.0" promptText="nom" />
+      <TextField fx:id="txt_description" layoutX="29.0" layoutY="128.0" promptText="description" />
+      <TextField fx:id="txt_quantite" layoutX="29.0" layoutY="169.0" promptText="quantite" />
+      <TextField fx:id="txt_categorie" layoutX="30.0" layoutY="210.0" promptText="categorie" />
+      <TextField fx:id="txt_prix" layoutX="29.0" layoutY="246.0" promptText="prix" />
+      <TextField fx:id="txt_image" layoutX="30.0" layoutY="285.0" />
+   </children>
+</AnchorPane>
