@@ -1,8 +1,8 @@
-module User {
+module com.example.pijava {
     requires javafx.controls;
     requires javafx.fxml;
     requires java.sql;
-    requires mysql.connector.j;
+    //requires mysql.connector.java; // Check the correct module name
     requires org.controlsfx.controls;
     requires org.apache.commons.codec;
     requires MaterialFX;
@@ -10,7 +10,6 @@ module User {
     requires jakarta.mail;
     requires twilio;
     requires bcrypt;
-
     requires org.apache.pdfbox;
     requires java.desktop;
     requires okhttp3;
@@ -21,16 +20,16 @@ module User {
     requires assemblyai.java;
     requires org.apache.poi.ooxml;
     requires stripe.java;
-
-    // Add any additional module dependencies here
+    requires com.dlsc.formsfx;
+    requires org.kordamp.bootstrapfx.core;
+    requires com.google.zxing;
+    requires com.google.zxing.javase;
 
     opens com.example.pijava to javafx.fxml;
     opens Controller to javafx.fxml;
-    opens User;
     opens Utils;
     opens Entities to javafx.base;
-
-    // Ensure that all opens and exports are consistent with your project structure
+    opens User to javafx.graphics;
 
     exports com.example.projectpi;
     exports Controller;

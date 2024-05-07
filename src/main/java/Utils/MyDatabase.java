@@ -9,7 +9,9 @@ public class MyDatabase {
     private final String URL ="jdbc:mysql://localhost:3306/pidev2";
     private final String USERNAME ="root";
     private final String PWD ="";
+
     public static Connection connect;
+
     private Connection conx;
 
     public static MyDatabase instance;
@@ -31,10 +33,12 @@ public class MyDatabase {
 
     }
 
-    public Connection getConnection(){return conx;}
     public Connection getConx() {
         return conx;
     }
+
+    public Connection getConnection(){return conx;}
+
     public static Connection getConnect() {
         String DatabaseName = "pidev2";
         String username = "root";
@@ -52,4 +56,3 @@ public class MyDatabase {
         return connect;
     }
 }
-

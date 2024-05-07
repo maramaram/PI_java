@@ -18,6 +18,9 @@
 
 .mfx-list-view {
 <<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> 00b42386c01b7ac04cc55c8849278d9980bf8921
   -mfx-track-color: rgb(230, 230, 230);
   -mfx-thumb-color: rgb(137, 137, 137);
   -mfx-thumb-hover-color: rgb(89, 88, 91);
@@ -29,6 +32,8 @@
 
 .mfx-list-view .virtual-flow .scroll-bar .thumb {
   -fx-background-color: -mfx-thumb-color;
+<<<<<<< HEAD
+=======
 =======
     -mfx-track-color: rgb(230, 230, 230);
     -mfx-thumb-color: rgb(137, 137, 137);
@@ -42,6 +47,7 @@
 .mfx-list-view .virtual-flow .scroll-bar .thumb {
     -fx-background-color: -mfx-thumb-color;
 >>>>>>> GestionProduits
+>>>>>>> 00b42386c01b7ac04cc55c8849278d9980bf8921
 }
 
 .mfx-list-view .virtual-flow .scroll-bar .thumb:pressed,
@@ -49,6 +55,10 @@
 <<<<<<< HEAD
   -fx-background-color: -mfx-thumb-hover-color;
 =======
+<<<<<<< HEAD
+  -fx-background-color: -mfx-thumb-hover-color;
+=======
     -fx-background-color: -mfx-thumb-hover-color;
 >>>>>>> GestionProduits
+>>>>>>> 00b42386c01b7ac04cc55c8849278d9980bf8921
 }

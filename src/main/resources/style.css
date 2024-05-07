@@ -1,30 +1,30 @@
-/* JavaFX FXML CSS */
-
 /* Body */
 .root {
-  -fx-font-family: sans-serif;
+  -fx-font-family: "Montserrat", sans-serif;
   -fx-font-size: 16px;
-  -fx-text-fill: #00000099;
+  -fx-text-fill: #00000099; /* Default text color */
 }
 
 /* Headings */
 .label, .h1, .h2, .h3, .h4, .h5, .h6 {
-  -fx-font-family: sans-serif;
+  -fx-font-family: "Montserrat", sans-serif;
 }
 
 .h1, .h2 {
   -fx-font-size: 38px;
-  -fx-text-fill: #da5f46;
+  -fx-text-fill: #da5f46; /* Red text color */
+  -fx-font-weight: bold; /* Bold font */
 }
 
 .h3 {
   -fx-font-size: 28px;
-  -fx-text-fill: #da5f46;
+  -fx-text-fill: #da5f46; /* Red text color */
+  -fx-font-weight: bold; /* Bold font */
 }
 
 /* Buttons */
-.MFXbutton {
-  -fx-font-family: sans-serif;
+.button {
+  -fx-font-family: "Montserrat", sans-serif;
   -fx-font-size: 14px;
   -fx-background-color: linear-gradient(to right, #da5f46, #FA849B);
   -fx-text-fill: white;
@@ -33,60 +33,63 @@
   -fx-border-radius: 0;
 }
 
-.MFXbutton:hover {
+.button:hover {
   -fx-background-color: linear-gradient(to right, #FA849B, #da5f46);
-}
-.button-black-orange {
-  -fx-background-color: black; /* Black background color */
-  -fx-text-fill: #da5f46; /* Orange text color */
-  -fx-font-weight: bold; /* Bold font */
-  -fx-border-width: 0px; /* No border */
-}
-
-.button-black-orange:hover {
-  -fx-background-color: #2F2F2F; /* Darker background color on hover */
 }
 /* Text Fields */
 .text-field {
-  -fx-font-family: sans-serif;
+  -fx-font-family: "Montserrat", sans-serif;
   -fx-font-size: 14px;
   -fx-background-color: transparent;
   -fx-border-color: #da5f46;
   -fx-border-width: 0px 0px 2px 0px;
-  -fx-font-weight: bold;
+  -fx-font-weight: bold; /* Bold font */
+  -fx-text-fill: white; /* White text color */
 }
-.text-field-black {
-  -fx-font-family: sans-serif;
-  -fx-font-size: 14px;
-  -fx-background-color: transparent;
-  -fx-border-color: #da5f46;
-  -fx-border-width: 0px 0px 2px 0px;
-  -fx-font-weight: bold;
-  -fx-text-fill: black;
+
+/* Define the style for the prompt text */
+.text-field .text {
+  -fx-fill: white; /* White text color */
 }
 
 .text-field:focused {
   -fx-border-color: #da5f46;
 }
 
+
 /* Labels */
 .label {
-  -fx-font-family: sans-serif;
-  -fx-font-size: 14px;
-  -fx-text-fill: #da5f46;
-}
-/* Label */
-.big-label {
   -fx-font-family: "Montserrat", sans-serif;
-  -fx-font-size: 36px;
-  -fx-font-weight: bold;
-  -fx-text-fill: white;
+  -fx-font-size: 14px;
+  -fx-text-fill: #da5f46; /* Red text color */
 }
 
+.bold-label {
+  -fx-font-weight: bold; /* Bold font */
+}
+
+.small-label {
+  -fx-font-size: 12px; /* Small label size */
+}
+
+.large-label {
+  -fx-font-size: 20px; /* Large label size */
+}
+
+.black-label {
+  -fx-text-fill: black; /* Black text color */
+}
+
+.white-label {
+  -fx-text-fill: white; /* White text color */
+}
 
 /* Anchors */
 .anchor-pane {
   -fx-background-color: #000;
+}
+.anchor-pane-black {
+  -fx-background-color: #fff;
 }
 
 /* Borders */
@@ -96,80 +99,11 @@
 
 /* Dropdown */
 .dropdown-menu {
-  -fx-background-color: #1c1c1c;
+  -fx-background-color: #ffffff;
   -fx-border-radius: 0;
-  -fx-padding: 24px 0 26px;
+  -fx-box-shadow: none; /* No box shadow */
+  -fx-padding: 24px 0 26px 0; /* Corrected padding value */
   -fx-min-width: 280px;
 }
 
-.dropdown-item {
-  -fx-text-fill: #c8c8c8;
-  -fx-font-size: 12px;
-  -fx-padding: 1px 2px; /* Modification de la valeur de padding en un entier */
-}
 
-.dropdown-item:hover {
-  -fx-background-color: transparent;
-  -fx-text-fill: #da5f46;
-}
-/* ScrollPane */
-.scroll-pane {
-  -fx-background-color: #f0f0f0; /* Couleur de fond du ScrollPane */
-  -fx-border-color: #da5f46; /* Couleur des bordures */
-  -fx-border-width: 1px; /* Épaisseur des bordures */
-}
-
-.scroll-pane .viewport {
-  -fx-background-color: transparent; /* Rend le fond de la zone de contenu transparent */
-}
-
-.scroll-pane .scroll-bar {
-  -fx-background-color: #e0e0e0; /* Couleur de fond des barres de défilement */
-}
-
-.scroll-pane .scroll-bar:vertical {
-  -fx-pref-width: 8px; /* Largeur préférée de la barre de défilement verticale */
-}
-
-.scroll-pane .scroll-bar:horizontal {
-  -fx-pref-height: 8px; /* Hauteur préférée de la barre de défilement horizontale */
-}
-
-.scroll-pane .scroll-bar .thumb {
-  -fx-background-color: #da5f46; /* Couleur de la partie mobile de la barre de défilement (le thumb) */
-  -fx-background-insets: 2, 2, 2, 2; /* Ajustements internes pour le thumb pour éviter qu'il ne touche directement les bords */
-  -fx-background-radius: 4px; /* Arrondissement des angles du thumb */
-}
-
-.scroll-pane .scroll-bar .thumb:hover {
-  -fx-background-color: #e08040; /* Couleur du thumb lorsque la souris passe dessus */
-}
-.chat-container {
-  -fx-background-color: #f0f0f0;
-  -fx-padding: 10px;
-  -fx-spacing: 10px;
-}
-
-.message-bubble {
-  -fx-background-color: #d9edf7;
-  -fx-border-radius: 10px;
-  -fx-padding: 10px;
-  -fx-max-width: 300px;
-}
-
-.message-label {
-  -fx-font-size: 14px;
-  -fx-font-weight: bold;
-}
-
-.response-label {
-  -fx-font-size: 14px;
-}
-
-.user-bubble {
-  -fx-background-color: #d9edf7;
-}
-
-.assistant-bubble {
-  -fx-background-color: #82eca7;
-}
