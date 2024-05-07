@@ -19,7 +19,7 @@
                 <TableView fx:id="table" layoutX="318.0" layoutY="75.0" prefHeight="256.0" prefWidth="770.0">
                     <columns>
                         <TableColumn fx:id="id" prefWidth="66.4000244140625" text="ID" />
-                        <TableColumn fx:id="LivreurId" prefWidth="111.199951171875" text="LivreurId" />
+                        <TableColumn fx:id="LivreurId" prefWidth="111.199951171875" text="Nom Prenom Livreur" />
                         <TableColumn fx:id="UserId" prefWidth="148.800048828125" text="UserId" />
                         <TableColumn fx:id="Statut" prefWidth="216.800048828125" text="Statut" />
                         <TableColumn fx:id="PrixTotal" prefWidth="221.60000000000002" text="PrixTotal" />
