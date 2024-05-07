@@ -1,0 +1,380 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="219bd414-8940-4b2a-834a-a288c154de45" name="Changes" comment="integration with gestion Exercice" />
+    <list id="682c7730-fa5f-4219-9371-600ce54afd07" name="Changes by asus" comment="Changes by asus and vayso" />
+    <list id="efb288aa-a19a-4327-a2a7-fb777cc24d78" name="Changes by Vayso" comment="" />
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="FxmlFile" />
+        <option value="Class" />
+      </list>
+    </option>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="GitHubPullRequestSearchHistory">{
+  &quot;lastFilter&quot;: {
+    &quot;state&quot;: &quot;OPEN&quot;,
+    &quot;assignee&quot;: &quot;Khalil-Bouazizi&quot;
+  }
+}</component>
+  <component name="GithubPullRequestsUISettings">
+    <option name="selectedUrlAndAccountId">
+      <UrlAndAccount>
+        <option name="accountId" value="6747543a-4174-46cf-99c3-8330c018cffb" />
+        <option name="url" value="https://github.com/maramaram/PI_java.git" />
+      </UrlAndAccount>
+    </option>
+  </component>
+  <component name="MavenImportPreferences">
+    <option name="generalSettings">
+      <MavenGeneralSettings>
+        <option name="mavenHome" value="Use Maven wrapper" />
+      </MavenGeneralSettings>
+    </option>
+  </component>
+  <component name="ProblemsViewState">
+    <option name="selectedTabId" value="CurrentFile" />
+  </component>
+  <component name="ProjectColorInfo">{
+  &quot;associatedIndex&quot;: 6
+}</component>
+  <component name="ProjectId" id="2e3sjKETCox3ibuSLjvKW8eeU4y" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "ASKED_ADD_EXTERNAL_FILES": "true",
+    "Application.HelloApplication.executor": "Run",
+    "Application.UserManagment.executor": "Run",
+    "Gradle.MaterialFX [run].executor": "Run",
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
+    "WebServerToolWindowFactoryState": "false",
+    "git-widget-placeholder": "Merging master",
+    "kotlin-language-version-configured": "true",
+    "last_opened_file_path": "D:/téléchargenments/travailjava/piJAVA git",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "project.structure.last.edited": "Project",
+    "project.structure.proportion": "0.15",
+    "project.structure.side.proportion": "0.39885056",
+    "vue.rearranger.settings.migration": "true"
+  }
+}]]></component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\bouaz\PREVIOUS\src\main\resources\User" />
+    </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\bouaz\PREVIOUS\src\main\resources" />
+      <recent name="C:\Users\bouaz\PREVIOUS\src\main\resources\User" />
+      <recent name="C:\Users\bouaz\PREVIOUS\src\main\java" />
+    </key>
+  </component>
+  <component name="RunManager">
+    <configuration name="UserManagment" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="User.UserManagment" />
+      <module name="piJAVA" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="User.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration default="true" type="JetRunConfigurationType">
+      <module name="piJAVA git" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Application.UserManagment" />
+      </list>
+    </recent_temporary>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="219bd414-8940-4b2a-834a-a288c154de45" name="Changes" comment="" />
+      <created>1711144731554</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1711144731554</updated>
+      <workItem from="1711144732714" duration="2819000" />
+      <workItem from="1711247367745" duration="739000" />
+      <workItem from="1711284556705" duration="2953000" />
+      <workItem from="1711310310590" duration="4857000" />
+      <workItem from="1711370632462" duration="7341000" />
+      <workItem from="1711401400612" duration="9872000" />
+      <workItem from="1711420333868" duration="580000" />
+      <workItem from="1711459560926" duration="10110000" />
+      <workItem from="1711557088779" duration="341000" />
+      <workItem from="1711567676966" duration="10102000" />
+      <workItem from="1711652431981" duration="1205000" />
+      <workItem from="1711653899676" duration="4000" />
+      <workItem from="1711654454727" duration="1105000" />
+      <workItem from="1711669491007" duration="2207000" />
+      <workItem from="1711673357092" duration="1317000" />
+      <workItem from="1711838432102" duration="4450000" />
+      <workItem from="1711997660082" duration="11915000" />
+      <workItem from="1712022467109" duration="808000" />
+      <workItem from="1712093445462" duration="4922000" />
+      <workItem from="1712112770088" duration="5336000" />
+      <workItem from="1712306848415" duration="459000" />
+      <workItem from="1712307786074" duration="1572000" />
+      <workItem from="1712611841099" duration="596000" />
+      <workItem from="1712928271940" duration="4933000" />
+      <workItem from="1712944514502" duration="2482000" />
+      <workItem from="1713437757609" duration="9289000" />
+      <workItem from="1713471474761" duration="7936000" />
+      <workItem from="1713515036250" duration="6248000" />
+      <workItem from="1713549527573" duration="14634000" />
+      <workItem from="1713611948882" duration="15926000" />
+      <workItem from="1713791897869" duration="59000" />
+      <workItem from="1713792773441" duration="2512000" />
+      <workItem from="1713901888639" duration="6011000" />
+      <workItem from="1713948468016" duration="7804000" />
+      <workItem from="1713985355175" duration="1133000" />
+      <workItem from="1714036297169" duration="7612000" />
+      <workItem from="1714050409575" duration="6585000" />
+      <workItem from="1714066393282" duration="18923000" />
+      <workItem from="1714119893665" duration="5048000" />
+      <workItem from="1714323415208" duration="5333000" />
+      <workItem from="1714388442665" duration="8662000" />
+      <workItem from="1714425888942" duration="194000" />
+      <workItem from="1714482034063" duration="684000" />
+      <workItem from="1714503043752" duration="4233000" />
+      <workItem from="1714557409209" duration="617000" />
+      <workItem from="1714567299602" duration="16486000" />
+      <workItem from="1714646651248" duration="2427000" />
+      <workItem from="1714653548490" duration="7031000" />
+      <workItem from="1714683772255" duration="1843000" />
+      <workItem from="1714724553748" duration="1980000" />
+      <workItem from="1714727092112" duration="601000" />
+      <workItem from="1714820032155" duration="3353000" />
+      <workItem from="1714900582434" duration="1395000" />
+      <workItem from="1714906077949" duration="7000" />
+      <workItem from="1714906254398" duration="322000" />
+      <workItem from="1714906588550" duration="1869000" />
+      <workItem from="1714908484963" duration="1348000" />
+      <workItem from="1714909847801" duration="13489000" />
+      <workItem from="1714945718402" duration="4217000" />
+      <workItem from="1715003035693" duration="4144000" />
+      <workItem from="1715009229426" duration="3786000" />
+      <workItem from="1715073578069" duration="80000" />
+      <workItem from="1715073730239" duration="1954000" />
+      <workItem from="1715075740386" duration="182000" />
+      <workItem from="1715075938799" duration="173000" />
+      <workItem from="1715076136368" duration="93000" />
+      <workItem from="1715076243333" duration="1357000" />
+    </task>
+    <task id="LOCAL-00001" summary="crud, active inactive small problem , search back, show password, recaptcha">
+      <option name="closed" value="true" />
+      <created>1713986156998</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1713986156998</updated>
+    </task>
+    <task id="LOCAL-00002" summary="crud, active inactive , search back, show password, recaptcha,forgot password,">
+      <option name="closed" value="true" />
+      <created>1714091128997</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1714091128997</updated>
+    </task>
+    <task id="LOCAL-00003" summary="interface front rectifié, problem forget pwd,">
+      <option name="closed" value="true" />
+      <created>1714424826880</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1714424826880</updated>
+    </task>
+    <task id="LOCAL-00004" summary="mot de passe oublié, changement de mot de passe, mot de passe web+java compatible">
+      <option name="closed" value="true" />
+      <created>1714686148438</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1714686148438</updated>
+    </task>
+    <task id="LOCAL-00005" summary="simple interface adjustments">
+      <option name="closed" value="true" />
+      <created>1714823652007</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1714823652007</updated>
+    </task>
+    <task id="LOCAL-00006" summary="simple interface adjustments">
+      <option name="closed" value="true" />
+      <created>1714824233813</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1714824233813</updated>
+    </task>
+    <task id="LOCAL-00007" summary="simple interface adjustments">
+      <option name="closed" value="true" />
+      <created>1714824501960</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1714824501960</updated>
+    </task>
+    <task id="LOCAL-00008" summary="simple interface adjustments">
+      <option name="closed" value="true" />
+      <created>1714824566753</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1714824566753</updated>
+    </task>
+    <task id="LOCAL-00009" summary="simple interface adjustments">
+      <option name="closed" value="true" />
+      <created>1714824576237</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1714824576237</updated>
+    </task>
+    <task id="LOCAL-00010" summary="simple interface adjustments">
+      <option name="closed" value="true" />
+      <created>1714824580867</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1714824580867</updated>
+    </task>
+    <task id="LOCAL-00011" summary="simple interface adjustments">
+      <option name="closed" value="true" />
+      <created>1714824593067</created>
+      <option name="number" value="00011" />
+      <option name="presentableId" value="LOCAL-00011" />
+      <option name="project" value="LOCAL" />
+      <updated>1714824593067</updated>
+    </task>
+    <task id="LOCAL-00012" summary="simple interface adjustments">
+      <option name="closed" value="true" />
+      <created>1714824983825</created>
+      <option name="number" value="00012" />
+      <option name="presentableId" value="LOCAL-00012" />
+      <option name="project" value="LOCAL" />
+      <updated>1714824983825</updated>
+    </task>
+    <task id="LOCAL-00013" summary="simple interface adjustments">
+      <option name="closed" value="true" />
+      <created>1714825048268</created>
+      <option name="number" value="00013" />
+      <option name="presentableId" value="LOCAL-00013" />
+      <option name="project" value="LOCAL" />
+      <updated>1714825048268</updated>
+    </task>
+    <task id="LOCAL-00014" summary="simple interface adjustments">
+      <option name="closed" value="true" />
+      <created>1714825099471</created>
+      <option name="number" value="00014" />
+      <option name="presentableId" value="LOCAL-00014" />
+      <option name="project" value="LOCAL" />
+      <updated>1714825099471</updated>
+    </task>
+    <task id="LOCAL-00015" summary="simple interface adjustments">
+      <option name="closed" value="true" />
+      <created>1714825113110</created>
+      <option name="number" value="00015" />
+      <option name="presentableId" value="LOCAL-00015" />
+      <option name="project" value="LOCAL" />
+      <updated>1714825113110</updated>
+    </task>
+    <task id="LOCAL-00016" summary="after rebase">
+      <option name="closed" value="true" />
+      <created>1714828435395</created>
+      <option name="number" value="00016" />
+      <option name="presentableId" value="LOCAL-00016" />
+      <option name="project" value="LOCAL" />
+      <updated>1714828435395</updated>
+    </task>
+    <task id="LOCAL-00017" summary="integration with gestion Exercice">
+      <option name="closed" value="true" />
+      <created>1715003140284</created>
+      <option name="number" value="00017" />
+      <option name="presentableId" value="LOCAL-00017" />
+      <option name="project" value="LOCAL" />
+      <updated>1715003140284</updated>
+    </task>
+    <task id="LOCAL-00018" summary="Changes by asus and vayso">
+      <option name="closed" value="true" />
+      <created>1715003168441</created>
+      <option name="number" value="00018" />
+      <option name="presentableId" value="LOCAL-00018" />
+      <option name="project" value="LOCAL" />
+      <updated>1715003168441</updated>
+    </task>
+    <option name="localTasksCounter" value="19" />
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="architecture basique du projet (commit1)" />
+    <MESSAGE value="crud, active inactive small problem , search back, show password, recaptcha" />
+    <MESSAGE value="crud, active inactive , search back, show password, recaptcha,forgot password," />
+    <MESSAGE value="interface front rectifié, problem forget pwd," />
+    <MESSAGE value="mot de passe oublié, changement de mot de passe, mot de passe web+java compatible" />
+    <MESSAGE value="simple interface adjustments" />
+    <MESSAGE value="after rebase" />
+    <MESSAGE value="integration with gestion Exercice" />
+    <MESSAGE value="Changes by asus and vayso" />
+    <option name="LAST_COMMIT_MESSAGE" value="Changes by asus and vayso" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="java-field">
+          <url>file://$PROJECT_DIR$/src/main/java/Utils/MyDatabase.java</url>
+          <line>10</line>
+          <properties field="PWD" class="Utils.MyDatabase" />
+          <option name="timeStamp" value="1" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
+  </component>
+</project>

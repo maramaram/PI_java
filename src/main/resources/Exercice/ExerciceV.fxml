@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.ChoiceBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Text?>
+
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="687.0" prefWidth="1101.0" stylesheets="@../style.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.ExerciceV">
+    <center>
+        <BorderPane prefHeight="613.0" prefWidth="1102.0" BorderPane.alignment="CENTER">
+            <top>
+                <AnchorPane prefHeight="49.0" prefWidth="1101.0" styleClass="anchor-pane" stylesheets="@../style.css" BorderPane.alignment="CENTER">
+                    <children>
+                        <Label layoutX="257.0" layoutY="16.0" prefHeight="20.0" prefWidth="70.0" text="Search" />
+
+                        <TextField fx:id="search" layoutX="303.0" layoutY="5.0" onKeyTyped="#AfficherEXSearch" prefHeight="31.0" prefWidth="205.0" />
+                        <Text fill="WHITE" layoutX="18.0" layoutY="32.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="text-field" text="BreatheOut" wrappingWidth="88.43966674804688" />
+                  <ChoiceBox fx:id="choice" layoutX="186.0" layoutY="14.0" prefHeight="26.0" prefWidth="62.0" />
+                  <ChoiceBox fx:id="choice1" layoutX="125.0" layoutY="14.0" prefHeight="26.0" prefWidth="60.0" />
+                    </children>
+                </AnchorPane>
+            </top>
+            <left>
+                <AnchorPane prefHeight="523.0" prefWidth="1102.0" BorderPane.alignment="CENTER">
+               <children>
+                   <ScrollPane fitToHeight="true" fitToWidth="true" prefHeight="638.0" prefWidth="1101.0">
+                     <content>
+                         <VBox fx:id="vbox" prefHeight="628.0" prefWidth="1099.0" />
+                     </content>
+                   </ScrollPane>
+               </children>
+                </AnchorPane>
+            </left>
+        </BorderPane>
+    </center>
+</BorderPane>

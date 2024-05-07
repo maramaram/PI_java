@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Text?>
+
+<AnchorPane prefHeight="591.0" prefWidth="858.0" stylesheets="@styleback.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.panierController">
+    <children>
+        <TextField fx:id="txt_prix_tot" layoutX="102.0" layoutY="159.0" />
+        <TextField fx:id="txt_quantite" layoutX="103.0" layoutY="232.0" />
+        <TableView fx:id="table_panier" layoutX="490.0" layoutY="132.0" prefHeight="200.0" prefWidth="266.0">
+            <columns>
+                <TableColumn fx:id="col_id" prefWidth="75.0" text="id" />
+                <TableColumn fx:id="col_prix_tot" prefWidth="75.0" text="prix_tot" />
+                <TableColumn fx:id="col_quantite" prefWidth="75.0" text="quantite" />
+            </columns>
+        </TableView>
+        <Text layoutX="102.0" layoutY="137.0" strokeType="OUTSIDE" strokeWidth="0.0" text="prix_tot" />
+        <Text layoutX="102.0" layoutY="220.0" strokeType="OUTSIDE" strokeWidth="0.0" text="quantite" />
+        <Button fx:id="btn_add" layoutX="152.0" layoutY="443.0" mnemonicParsing="false" onAction="#ajouterpanier" prefHeight="26.0" prefWidth="70.0" text="add" />
+        <Button fx:id="btn_update" layoutX="271.0" layoutY="443.0" mnemonicParsing="false" onAction="#updatepanier" prefHeight="26.0" prefWidth="80.0" text="update" />
+        <Button fx:id="bnt_delete" layoutX="403.0" layoutY="443.0" mnemonicParsing="false" onAction="#deletepanier" prefHeight="26.0" prefWidth="80.0" stylesheets="@styleback.css" text="delete" />
+    </children>
+</AnchorPane>

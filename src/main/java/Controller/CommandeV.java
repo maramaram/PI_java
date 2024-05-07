@@ -1,6 +1,7 @@
 package Controller;
 
 import Entities.Commande;
+import Entities.SessionManager;
 import Service.CommandeService;
 import Entities.Livreur;
 import Service.LivreurService;
@@ -23,7 +24,7 @@ public class CommandeV {
 
     @FXML
     private VBox vbox;
-
+    String userId = SessionManager.getInstance().getUserId();
     @FXML
     public void initialize() {
         afficherCommandes();
@@ -33,7 +34,7 @@ public class CommandeV {
     protected void afficherCommandes() {
         CommandeService commandeService = new CommandeService();
         try {
-            List<Commande> commandes = commandeService.afficherList();
+            List<Commande> commandes = commandeService.afficherListwithuserid(userId);
 
             // Effacer les données existantes de la VBox
             vbox.getChildren().clear();

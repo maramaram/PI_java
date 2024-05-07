@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.Cursor?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.PasswordField?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="576.0" prefWidth="1101.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.LoginController">
+    <left>
+        <AnchorPane prefHeight="576.0" prefWidth="690.0" styleClass="anchor-pane" stylesheets="@style.css" BorderPane.alignment="CENTER">
+            <children>
+                <Text fill="#da5f46" layoutX="27.0" layoutY="400.0" onMouseClicked="#showSignInStage" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="text-field" text="Don't have an account? Register" wrappingWidth="210.6080322265625">
+                    <cursor>
+                        <Cursor fx:constant="HAND" />
+                    </cursor>
+                    <font>
+                        <Font name="Arial" size="13.0" />
+                    </font>
+                </Text>
+            <ImageView fx:id="imageView" fitHeight="336.0" fitWidth="452.0" layoutX="125.0" layoutY="39.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../../java/image/logo.png" />
+               </image>
+            </ImageView>
+            </children>
+        </AnchorPane>
+    </left>
+    <center>
+        <AnchorPane prefHeight="620.0" prefWidth="454.0" stylesheets="@style.css" BorderPane.alignment="CENTER">
+            <TextField fx:id="mailFieldLogin" layoutX="122.0" layoutY="218.0" prefHeight="25.0" prefWidth="202.0" promptText="Mail" style="-fx-background-color: transparent; -fx-border-color: #404040; -fx-border-width: 0px 0px 2px 0px;" styleClass="text-field-black" stylesheets="@../style.css" />
+            <PasswordField fx:id="passwordFieldLogin" layoutX="122.0" layoutY="270.0" prefHeight="25.0" prefWidth="202.0" promptText="Password" style="-fx-background-color: transparent; -fx-border-color: #404040; -fx-border-width: 0px 0px 2px 0px;" styleClass="text-field-black" stylesheets="@../style.css" />
+            <Button fx:id="loginButton" layoutX="174.0" layoutY="450.0" mnemonicParsing="false" onAction="#login" prefHeight="43.0" prefWidth="106.0" stylesheets="@style.css" text="Login" textFill="WHITE">
+                <cursor>
+                    <Cursor fx:constant="OPEN_HAND" />
+                </cursor>
+                <font>
+                    <Font size="20.0" />
+                </font>
+            </Button>
+            <Label fx:id="checkMailLogin" layoutX="122.0" layoutY="251.0" prefHeight="18.0" prefWidth="295.0" />
+            <Label fx:id="CheckPasswordLogin" layoutX="122.0" layoutY="307.0" prefHeight="18.0" prefWidth="295.0" />
+         <TextField fx:id="tfCaptcha" layoutX="122.0" layoutY="357.0" prefHeight="25.0" prefWidth="202.0" promptText="code" style="-fx-background-color: transparent; -fx-border-color: #404040; -fx-border-width: 0px 0px 2px 0px;" />
+         <Label fx:id="captchaLabel" layoutX="195.0" layoutY="327.0" prefHeight="20.0" prefWidth="124.0" />
+         <Label fx:id="checkrecaptcha" layoutX="153.0" layoutY="395.0" prefHeight="16.0" prefWidth="121.0" />
+         <ImageView fx:id="generateCap" fitHeight="44.0" fitWidth="59.0" layoutX="342.0" layoutY="353.0" onMouseClicked="#generateCaptcha" pickOnBounds="true" preserveRatio="true">
+            <image>
+               <Image url="@../../java/image/image-removebg-preview.png" />
+            </image>
+         </ImageView>
+         <ImageView fx:id="copy" fitHeight="48.0" fitWidth="46.0" layoutX="319.0" layoutY="426.0" onMouseClicked="#CopyCaptchaCode" pickOnBounds="true" preserveRatio="true" />
+         <Label fx:id="LabelCopyNotify" layoutX="369.0" layoutY="423.0" text="copy" />
+         <ImageView fx:id="eyehide" fitHeight="28.0" fitWidth="30.0" layoutX="339.0" layoutY="272.0" onMouseClicked="#SHOWpassword" onMouseExited="#SHOWpassword" onTouchPressed="#SHOWpassword" pickOnBounds="true" preserveRatio="true">
+            <image>
+               <Image url="@../../java/image/image-removebg-preview (2).png" />
+            </image>
+         </ImageView>
+         <TextField fx:id="tempPasswordField" layoutX="120.0" layoutY="268.0" prefHeight="31.0" prefWidth="205.0" styleClass="text-field-black" stylesheets="@../style.css" />
+         <Label fx:id="pwd_forgot_label" layoutX="158.0" layoutY="511.0" onMouseClicked="#go_to_forgottenPWD" text="Forgot password?" />
+             <Text layoutX="169.0" layoutY="171.0" strokeType="OUTSIDE" strokeWidth="0.0" text="LOGIN" wrappingWidth="131.51199340820312">
+                 <font>
+                     <Font name="System Bold" size="27.0" />
+                 </font>
+             </Text>
+        </AnchorPane>
+    </center>
+</BorderPane>

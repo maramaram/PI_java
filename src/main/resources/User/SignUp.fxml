@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.Cursor?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.CheckBox?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.DatePicker?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.PasswordField?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="576.0" prefWidth="1101.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.RegisterController">
+   <right>
+        <AnchorPane prefHeight="578.0" prefWidth="466.0" stylesheets="@style.css" BorderPane.alignment="CENTER">
+            <children>
+                <TextField id="TF_prenom" fx:id="firstName" layoutX="46.0" layoutY="81.0" prefHeight="25.0" prefWidth="202.0" promptText="First Name" style="-fx-background-color: transparent; -fx-border-color: #404040; -fx-border-width: 0px 0px 2px 0px;" />
+                <TextField id="TF_nom" fx:id="lastName" layoutX="46.0" layoutY="131.0" prefHeight="25.0" prefWidth="202.0" promptText="Last Name" style="-fx-background-color: transparent; -fx-border-color: #404040; -fx-border-width: 0px 0px 2px 0px;" />
+                <TextField id="TF_email" fx:id="email" layoutX="46.0" layoutY="181.0" prefHeight="25.0" prefWidth="202.0" promptText="Email" style="-fx-background-color: transparent; -fx-border-color: #404040; -fx-border-width: 0px 0px 2px 0px;" />
+                <TextField id="TF_num_tel" fx:id="phoneNumber" layoutX="46.0" layoutY="231.0" prefHeight="25.0" prefWidth="202.0" promptText="Phone Number" style="-fx-background-color: transparent; -fx-border-color: #404040; -fx-border-width: 0px 0px 2px 0px;" />
+                <PasswordField id="TF_mdps" fx:id="password" layoutX="50.0" layoutY="315.0" prefHeight="25.0" prefWidth="202.0" promptText="Password" style="-fx-background-color: transparent; -fx-border-color: #404040; -fx-border-width: 0px 0px 2px 0px;" />
+                <Button fx:id="registerButton" layoutX="218.0" layoutY="504.0" mnemonicParsing="false" onAction="#register" prefHeight="32.0" prefWidth="90.0" text="Submit" textFill="WHITE">
+                    <cursor>
+                        <Cursor fx:constant="HAND" />
+                    </cursor></Button>
+                <DatePicker id="dt_Date_N" fx:id="dateBirthday" layoutX="46.0" layoutY="280.0" prefWidth="202.0" promptText="Date Birthday" />
+                <Label fx:id="checkAge" layoutX="51.0" layoutY="393.0" prefHeight="18.0" prefWidth="186.0" />
+                <Label fx:id="checkConfirmPassword" layoutX="53.0" layoutY="506.0" prefHeight="18.0" prefWidth="326.0" />
+                <CheckBox layoutX="47.0" layoutY="476.0" mnemonicParsing="false" prefHeight="18.0" prefWidth="288.0" text="By registering, you accept our terms &amp; conditions">
+                    <font>
+                        <Font size="10.0" />
+                    </font>
+                </CheckBox>
+            <Label id="checkfirstName" fx:id="checkfirstName" layoutX="45.0" layoutY="109.0" prefHeight="21.0" prefWidth="200.0" />
+            <Label id="checklastName" fx:id="checklastName" layoutX="48.0" layoutY="159.0" prefHeight="19.0" prefWidth="194.0" />
+            <Label id="checkMail" fx:id="CheckMail" layoutX="47.0" layoutY="209.0" prefHeight="20.0" prefWidth="200.0" />
+            <Label id="checkPhoneNumber" fx:id="CheckPhoneNumber" layoutX="47.0" layoutY="259.0" prefHeight="20.0" prefWidth="199.0" />
+            <Label id="checkDateBirthday" fx:id="checkDateBirthday" layoutX="46.0" layoutY="301.0" prefHeight="19.0" prefWidth="211.0" />
+            <Label id="checkPassword" fx:id="checkPassword" layoutX="51.0" layoutY="343.0" prefHeight="21.0" prefWidth="191.0" />
+            <Label id="CheckAdresse" fx:id="CheckAdresse" layoutX="59.0" layoutY="390.0" prefHeight="23.0" prefWidth="170.0" />
+            <TextField id="TF_adresse" fx:id="adresse" layoutX="50.0" layoutY="367.0" prefHeight="25.0" prefWidth="202.0" promptText="Adresse" style="-fx-background-color: transparent; -fx-border-color: #404040; -fx-border-width: 0px 0px 2px 0px;" />
+            <Label fx:id="checkPhoto" layoutX="290.0" layoutY="379.0" prefHeight="34.0" prefWidth="193.0" />
+            <ComboBox fx:id="role" layoutX="50.0" layoutY="421.0" prefWidth="150.0" promptText="Role" />
+            <Label id="checkRole" fx:id="checkRole" layoutX="53.0" layoutY="453.0" prefHeight="18.0" prefWidth="205.0" />
+            <Button fx:id="img_btn" layoutX="297.0" layoutY="301.0" mnemonicParsing="false" onAction="#add_img" prefHeight="36.0" prefWidth="161.0" text="Ajouter une Image" />
+            <ImageView fx:id="pp_view" fitHeight="113.0" fitWidth="123.0" layoutX="316.0" layoutY="137.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../../java/image/blank-profile-picture-973460_1280.png" />
+               </image></ImageView>
+                <Text layoutX="137.0" layoutY="70.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Sign Up" wrappingWidth="283.51171875">
+                    <font>
+                        <Font name="System Bold" size="33.0" />
+                    </font>
+                </Text>
+            </children>
+        </AnchorPane>
+   </right>
+   <center>
+        <AnchorPane prefHeight="576.0" prefWidth="646.0" styleClass="anchor-pane" stylesheets="@style.css" BorderPane.alignment="CENTER">
+            <children>
+                <ImageView fx:id="imageView" fitHeight="200.0" fitWidth="231.0" layoutX="48.0" layoutY="240.0" pickOnBounds="true" preserveRatio="true" />
+                <Text fx:id="login_btn" fill="#d96048" layoutX="37.0" layoutY="422.0" onMouseClicked="#showLoginStage" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="text-field" text="Already have an account? Login" wrappingWidth="205.94558715820312">
+                    <cursor>
+                        <Cursor fx:constant="HAND" />
+                    </cursor>
+                    <font>
+                        <Font name="Arial" size="13.0" />
+                    </font>
+                </Text>
+            <ImageView fx:id="imageView" fitHeight="262.0" fitWidth="280.0" layoutX="146.0" layoutY="95.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../../java/image/logo.png" />
+               </image>
+            </ImageView>
+            </children>
+        </AnchorPane>
+   </center>
+</BorderPane>

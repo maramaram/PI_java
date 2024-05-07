@@ -1,4 +1,4 @@
-package com.example.pijava;
+package com.example.projectpi;
 
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
@@ -10,10 +10,9 @@ import java.io.IOException;
 public class HelloApplication extends Application {
     @Override
     public void start(Stage stage) throws IOException {
-        ///com/example/pijava/AdminPannel.fxml   /Exercice/ExerciceV.fxml /Defi/DefiV.fxml /Commande/CommandeV.fxml
-        FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("/Commande/CommandeBack.fxml"));
-        Scene scene = new Scene(fxmlLoader.load());
-        stage.setTitle("BreathOut");
+        FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("/paniers/afficherpanier.fxml"));
+        Scene scene = new Scene(fxmlLoader.load(), 320, 240);
+        stage.setTitle("Hello!");
         stage.setScene(scene);
         stage.show();
     }

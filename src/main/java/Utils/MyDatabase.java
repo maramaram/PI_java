@@ -10,6 +10,8 @@ public class MyDatabase {
     private final String USERNAME ="root";
     private final String PWD ="";
 
+    public static Connection connect;
+
     private Connection conx;
 
     public static MyDatabase instance;
@@ -31,8 +33,26 @@ public class MyDatabase {
 
     }
 
-
     public Connection getConx() {
         return conx;
+    }
+
+    public Connection getConnection(){return conx;}
+
+    public static Connection getConnect() {
+        String DatabaseName = "pidev2";
+        String username = "root";
+        String password = "";
+        String url = "jdbc:mysql://localhost:3306/" + DatabaseName + "?user=" + username + "&password=" + password;
+
+        try {
+            Class.forName("com.mysql.cj.jdbc.Driver");
+            connect = DriverManager.getConnection(url);
+            System.out.println("Connected to the database");
+        } catch (ClassNotFoundException | SQLException e) {
+            e.printStackTrace();
+            System.err.println("Error connecting to the database: " + e.getMessage());
+        }
+        return connect;
     }
 }

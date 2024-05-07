@@ -753,4 +753,49 @@
 /* Modifier la couleur de fond de l'AnchorPane en blanc grisâtre */
 .anchor-pane {
     -fx-background-color: #E0E0E0; /* Couleur de fond blanc grisâtre */
+<<<<<<< HEAD
 }
+=======
+}
+
+.chart-bar {
+    -fx-bar-fill: #4e4e4e; /* Couleur de remplissage des barres */
+    -fx-bar-alignment: CENTER; /* Alignement des barres */
+}
+
+.chart-bar:hover {
+    -fx-bar-fill: #3E3E40; /* Couleur de remplissage des barres au survol */
+}
+
+.chart-bar:selected {
+    -fx-bar-fill: #AFB1B3; /* Couleur de remplissage des barres sélectionnées */
+}
+
+.axis {
+    -fx-text-fill: #AFB1B3; /* Couleur du texte des axes */
+}
+
+.axis-label {
+    -fx-text-fill: #AFB1B3; /* Couleur du texte des étiquettes des axes */
+}
+
+.axis .tick-mark {
+    -fx-stroke: #4e4e4e; /* Couleur des marques des axes */
+}
+
+.axis .tick-label {
+    -fx-fill: #AFB1B3; /* Couleur du texte des marques des axes */
+}
+
+.chart-legend {
+    -fx-text-fill: #AFB1B3; /* Couleur du texte de la légende */
+}
+
+.chart-legend-item-symbol {
+    -fx-background-color: #4e4e4e; /* Couleur de fond du symbole de la légende */
+}
+
+.chart-legend-item-text {
+    -fx-fill: #AFB1B3; /* Couleur du texte de la légende */
+}
+>>>>>>> 00b42386c01b7ac04cc55c8849278d9980bf8921

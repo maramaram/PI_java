@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="576.0" prefWidth="1101.0" stylesheets="@style.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.HomeOnController">
+    <fx:include source="../basefront.fxml" />
+   <!-- <center>
+        <BorderPane prefHeight="556.0" prefWidth="1102.0" styleClass="border" stylesheets="@style.css" BorderPane.alignment="CENTER">
+         <center>
+                <AnchorPane prefHeight="574.0" prefWidth="732.0" BorderPane.alignment="CENTER">
+               <children>
+                  <ImageView fitHeight="150.0" fitWidth="200.0" layoutX="598.0" layoutY="95.0" pickOnBounds="true" preserveRatio="true" />
+                  <ImageView fx:id="pp5" fitHeight="284.0" fitWidth="430.0" layoutY="291.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../../../../../ThirdProject/public/Front/images/blog/post3.jpg" />
+                     </image>
+                  </ImageView>
+                  <ImageView fx:id="pp2" fitHeight="247.0" fitWidth="358.0" layoutX="334.0" layoutY="64.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../../../../../ThirdProject/public/Front/images/blog/post4.jpg" />
+                     </image>
+                  </ImageView>
+                  <ImageView fx:id="pp6" fitHeight="281.0" fitWidth="182.0" layoutX="393.0" layoutY="294.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../../../../../ThirdProject/public/Front/images/about/img-6.jpg" />
+                     </image>
+                  </ImageView>
+                  <ImageView fx:id="pp7" fitHeight="284.0" fitWidth="422.0" layoutX="549.0" layoutY="292.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../../../../../ThirdProject/public/Front/images/about/img-3.jpg" />
+                     </image>
+                  </ImageView>
+                  <ImageView fx:id="pp3" fitHeight="246.0" fitWidth="257.0" layoutX="691.0" layoutY="77.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../../../../../ThirdProject/public/Front/images/about/img-1.jpg" />
+                     </image>
+                  </ImageView>
+                  <ImageView fx:id="pp4" fitHeight="281.0" fitWidth="194.0" layoutX="934.0" layoutY="105.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../../../../../ThirdProject/public/Front/images/team/team-4.jpg" />
+                     </image>
+                  </ImageView>
+                  <ImageView fx:id="pp8" fitHeight="283.0" fitWidth="286.0" layoutX="833.0" layoutY="292.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../../../../../ThirdProject/public/Front/images/about/img-5.jpg" />
+                     </image>
+                  </ImageView>
+                  <ImageView fx:id="pp1" fitHeight="246.0" fitWidth="347.0" layoutX="-3.0" layoutY="47.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../../java/image/pp1.jpg" />
+                     </image>
+                  </ImageView>
+                  <AnchorPane prefHeight="200.0" prefWidth="200.0" />
+                  <Pane layoutX="194.0" layoutY="240.0" prefHeight="94.0" prefWidth="714.0" styleClass="anchor-pane">
+                     <children>
+                        <Text fill="WHITE" layoutX="-14.0" layoutY="58.0" strokeType="OUTSIDE" strokeWidth="0.0" text="WELCOME " textAlignment="CENTER" wrappingWidth="363.11566162109375">
+                           <font>
+                              <Font name="System Bold" size="36.0" />
+                           </font>
+                        </Text>
+                        <ImageView fx:id="pp9" fitHeight="86.0" fitWidth="74.0" layoutX="1.0" layoutY="15.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../../java/image/logo.png" />
+                           </image>
+                        </ImageView>
+                        <Label fx:id="firstname" layoutX="268.0" layoutY="21.0" prefHeight="53.0" prefWidth="232.0" styleClass="big-label" stylesheets="@../style.css" text="Label" />
+                        <Label fx:id="lastname" layoutX="502.0" layoutY="21.0" prefHeight="53.0" prefWidth="209.0" styleClass="big-label" stylesheets="@../style.css" text="Label" />
+                     </children>
+                  </Pane>
+               </children>
+                </AnchorPane>
+         </center>
+        </BorderPane>
+    </center>  -->
+</BorderPane>
