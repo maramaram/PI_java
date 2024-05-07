@@ -4,10 +4,8 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="219bd414-8940-4b2a-834a-a288c154de45" name="Changes" comment="integration with gestion Exercice">
+    <list default="true" id="219bd414-8940-4b2a-834a-a288c154de45" name="Changes" comment="key removed">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/Controller/Openai.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Controller/Openai.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/Controller/panierfront.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Controller/panierfront.java" afterDir="false" />
     </list>
     <list id="682c7730-fa5f-4219-9371-600ce54afd07" name="Changes by asus" comment="Changes by asus and vayso" />
     <list id="efb288aa-a19a-4327-a2a7-fb777cc24d78" name="Changes by Vayso" comment="" />
@@ -193,6 +191,7 @@
       <workItem from="1714945718402" duration="4217000" />
       <workItem from="1715003035693" duration="4144000" />
       <workItem from="1715009229426" duration="3786000" />
+      <workItem from="1715070527785" duration="613000" />
     </task>
     <task id="LOCAL-00001" summary="crud, active inactive small problem , search back, show password, recaptcha">
       <option name="closed" value="true" />
@@ -338,7 +337,15 @@
       <option name="project" value="LOCAL" />
       <updated>1715003168441</updated>
     </task>
-    <option name="localTasksCounter" value="19" />
+    <task id="LOCAL-00019" summary="key removed">
+      <option name="closed" value="true" />
+      <created>1715031663444</created>
+      <option name="number" value="00019" />
+      <option name="presentableId" value="LOCAL-00019" />
+      <option name="project" value="LOCAL" />
+      <updated>1715031663444</updated>
+    </task>
+    <option name="localTasksCounter" value="20" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -365,6 +372,7 @@
     <MESSAGE value="after rebase" />
     <MESSAGE value="integration with gestion Exercice" />
     <MESSAGE value="Changes by asus and vayso" />
-    <option name="LAST_COMMIT_MESSAGE" value="Changes by asus and vayso" />
+    <MESSAGE value="key removed" />
+    <option name="LAST_COMMIT_MESSAGE" value="key removed" />
   </component>
 </project>
