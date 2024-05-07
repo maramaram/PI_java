@@ -1,0 +1,55 @@
+/* Styles for the VBox (post container) */
+.vbox-style {
+  -fx-background-color: #f9f9f9; /* Light gray background color */
+  -fx-border-color: #da5f46; /* Border color */
+  -fx-border-width: 2px; /* Border width */
+  -fx-border-style: solid; /* Solid border style */
+  -fx-border-radius: 5px; /* Rounded corners */
+  -fx-padding: 15px; /* Padding inside the VBox */
+  -fx-alignment: center; /* Center alignment */
+  -fx-min-width: 700px; /* Minimum width of the VBox */
+  -fx-max-width: 700px; /* Maximum width of the VBox */
+  -fx-margin: 10px; /* Margin around the VBox */
+}
+
+/* Styles for the HBox (post container wrapper) */
+.hbox-style {
+  -fx-spacing: 20px; /* Spacing between child elements */
+  -fx-alignment: center; /* Center alignment */
+  -fx-padding: 10px; /* Padding inside the HBox */
+  -fx-wrap-text: wrap; /* Allow wrapping of text */
+}
+
+/* Styles for the ImageView (post image) */
+.image-style {
+  -fx-fit-width: 400px; /* Set width to fit 400px */
+  -fx-fit-height: 300px; /* Set height to fit 300px */
+  -fx-border-color: #da5f46; /* Border color */
+  -fx-border-width: 3px; /* Border width */
+  -fx-border-style: solid; /* Solid border style */
+  -fx-border-radius: 8px; /* Rounded corners */
+  -fx-margin-bottom: 10px; /* Add margin below the image */
+}
+
+/* Styles for the title label (post title) */
+.title-label-style {
+  -fx-font-size: 24px; /* Font size */
+  -fx-font-weight: bold; /* Font weight */
+  -fx-text-fill: #333333; /* Darker text color */
+  -fx-alignment: center; /* Center alignment */
+  -fx-padding-bottom: 5px; /* Padding below the title */
+}
+
+/* Styles for the content label (post content) */
+.content-label-style {
+  -fx-text-fill: #666666; /* Medium gray text color */
+  -fx-font-size: 16px; /* Font size */
+  -fx-line-spacing: 1.2; /* Line spacing */
+}
+
+/* Styles for the date label (post date) */
+.date-label-style {
+  -fx-text-fill: #888888; /* Light gray text color */
+  -fx-font-size: 14px; /* Smaller font size */
+  -fx-padding-bottom: 5px; /* Padding below the date */
+}
