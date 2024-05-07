@@ -3,6 +3,8 @@ module tn.esprit.javafxproject {
     requires javafx.fxml;
     requires mysql.connector.j;
     requires java.sql;
+    requires org.apache.pdfbox;
+    requires java.desktop;
 
 
     opens Controller to javafx.fxml; // Ouvrir l'accès au package Controller

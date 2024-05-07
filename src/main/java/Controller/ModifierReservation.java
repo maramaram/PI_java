@@ -1,9 +1,7 @@
 package Controller;
 
 import Entities.Reservation;
-import Entities.Session;
 import Service.ServiceReservation;
-import Service.ServiceSession;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -41,7 +39,7 @@ public class ModifierReservation {
     @FXML
     private DatePicker datePicker;
 
-    private ReservationController reservationControllerController;
+    private ReservationController reservationController;
     private Stage primaryStage;
 
     public void initialize() {
@@ -50,8 +48,8 @@ public class ModifierReservation {
         comboBoxClient.getItems().addAll("Firas", "Rayan", "Yahya", "Aziz"); // Remplacez avec vos propres valeurs si nécessaire
 
         // Remplacez avec vos types de session réels
-        comboBoxSession.getItems().addAll("1","2","3","4","5"); // Correction du nom de la ComboBox
-        comboBoxEtat.getItems().addAll( "1","2");
+        comboBoxSession.getItems().addAll("1", "2", "3", "4", "5"); // Correction du nom de la ComboBox
+        comboBoxEtat.getItems().addAll("1", "2");
     }
 
     public void setIdA(String idA) {
@@ -61,19 +59,24 @@ public class ModifierReservation {
     public void setDatePicker(LocalDate newDate) {
         this.datePicker.setValue(newDate);
     }
+
     public void setComboBoxClient(String selectedClient) {
         this.comboBoxClient.setValue(selectedClient);
     }
+
     public void setComboBoxSession(String selectedSession) {
         this.comboBoxSession.setValue(selectedSession);
     }
-    public void setComboBoxEtat (String selectedEtat) { this.comboBoxEtat.setValue(selectedEtat);}
+
+    public void setComboBoxEtat(String selectedEtat) {
+        this.comboBoxEtat.setValue(selectedEtat);
+    }
 
     public void Se() {
         try {
             // Charger le fichier FXML de la nouvelle scène
 
-            Parent root = FXMLLoader.load(getClass().getResource("/Fxml/Reservation.fxml"));
+            Parent root = FXMLLoader.load(getClass().getResource("/Fxml/Reservation-front.fxml"));
             primaryStage = (Stage) comboBoxEtat.getScene().getWindow();
             // Créer une nouvelle scène
             Scene scene = new Scene(root);
@@ -97,13 +100,12 @@ public class ModifierReservation {
         } else {
             etatE.setText("");
         }
-
-        if(comboBoxClient.getValue().isEmpty() || comboBoxClient.getValue() == null) {
-    test = false;
-    clientE.setText("vide");
-} else {
-    clientE.setText("");
-}
+        if (comboBoxClient.getValue().isEmpty() || comboBoxClient.getValue() == null) {
+            test = false;
+            clientE.setText("vide");
+        } else {
+            clientE.setText("");
+        }
 
         if (comboBoxSession.getValue() == null || comboBoxSession.getValue().isEmpty()) {
             sessionE.setText("Session is required");
@@ -122,9 +124,9 @@ public class ModifierReservation {
         }
 
         if (test) {
-            ServiceReservation ree= new ServiceReservation();
+            ServiceReservation ree = new ServiceReservation();
             Date date = Date.valueOf(selectedDate);
-            Reservation re = new Reservation(comboBoxEtat.getValue() , comboBoxClient.getValue(), comboBoxSession.getValue(),date);
+            Reservation re = new Reservation(comboBoxSession.getValue(), date,comboBoxEtat.getValue(),comboBoxClient.getValue());
             try {
                 ree.modifier(re);
                 Alert alert = new Alert(Alert.AlertType.INFORMATION);

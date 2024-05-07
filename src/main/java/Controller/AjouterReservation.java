@@ -1,24 +1,17 @@
 package Controller;
 
 import Entities.Reservation;
-import Entities.Session;
 import Service.ServiceReservation;
-import Service.ServiceSession;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
-import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.stage.Stage;
 
 import java.io.IOException;
-import java.net.URL;
-import java.sql.Date;
 import java.time.LocalDate;
-import java.time.ZoneId;
-import java.util.ResourceBundle;
 
 public class AjouterReservation {
 
@@ -41,7 +34,7 @@ public class AjouterReservation {
         @FXML
         private DatePicker datePicker;
 
-        private SessionController sessionController;
+        private ReservationController reservationController;
 
 
         public void initialize() {
@@ -98,7 +91,7 @@ public class AjouterReservation {
         java.sql.Date date = java.sql.Date.valueOf(datePicker.getValue());
 
         // Create a new reservation object
-        Reservation reservation = new Reservation(etat, client, session,(java.sql.Date) date);
+        Reservation reservation = new Reservation(session , (java.sql.Date) date , etat,client);
 
         // Call the service to save the reservation
         ServiceReservation serviceReservation = new ServiceReservation();
@@ -106,8 +99,8 @@ public class AjouterReservation {
             serviceReservation.add(reservation);
             showSuccessMessage("Reservation added successfully!");
             // If needed, notify the session controller to refresh the sessions table
-            if (sessionController != null) {
-                sessionController.refreshSessions();
+            if (reservationController != null) {
+                reservationController.refreshReservations();
             }
         } catch (Exception e) {
             showErrorAlert("Failed to add reservation: " + e.getMessage());
@@ -123,7 +116,7 @@ public class AjouterReservation {
 
         private void navigateToMainInterface() {
             try {
-                Parent loader = FXMLLoader.load(getClass().getResource("/Fxml/Reservation.fxml"));
+                Parent loader = FXMLLoader.load(getClass().getResource("/Fxml/Reservation-front.fxml"));
                 Stage stage = new Stage();
                 Scene scene = new Scene(loader);
                 stage.setScene(scene);
@@ -153,7 +146,7 @@ public class AjouterReservation {
         @FXML
         void createSession() {
             try {
-                Parent loader = FXMLLoader.load(getClass().getResource("/Fxml/Reservation.fxml"));
+                Parent loader = FXMLLoader.load(getClass().getResource("/Fxml/Reservation-front.fxml"));
                 Stage s;
                 Scene scene = new Scene(loader);
                 s = (Stage) (comboBoxEtat).getScene().getWindow();

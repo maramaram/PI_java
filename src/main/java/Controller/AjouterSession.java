@@ -2,8 +2,6 @@ package Controller;
 
 import Entities.Session;
 import Service.ServiceSession;
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -16,8 +14,6 @@ import javafx.stage.Stage;
 import java.io.IOException;
 import java.net.URL;
 import java.time.LocalDate;
-import java.time.ZoneId;
-import java.util.Date;
 import java.util.ResourceBundle;
 
 public class AjouterSession implements Initializable {
@@ -128,7 +124,7 @@ public class AjouterSession implements Initializable {
 
     private void navigateToMainInterface() {
         try {
-            Parent loader = FXMLLoader.load(getClass().getResource("/Fxml/Sessions.fxml"));
+            Parent loader = FXMLLoader.load(getClass().getResource("/Fxml/Sessions-front.fxml"));
             Stage stage = new Stage();
             Scene scene = new Scene(loader);
             stage.setScene(scene);

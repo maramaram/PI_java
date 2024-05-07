@@ -11,55 +11,55 @@ import java.util.List;
 
 public class ServiceReservation implements IService<Reservation> {
 
-    private Connection connection;
+    private Connection conx;
+    private Statement stm;
+    private PreparedStatement pstm;
 
-    public ServiceReservation(){
-        connection = MyDataBase.getInstance().getConnection();
+    public ServiceReservation()
+    {
+        conx = MyDataBase.getInstance().getConnection();
     }
-Date date;
+
     @Override
     public void add(Reservation reservation) throws SQLException {
-        String sql = "INSERT INTO `reservation`(`session`, `date`, `etat`, `client`) VALUES (?, ?, ?,?)";
-        PreparedStatement statement = connection.prepareStatement(sql);
-        statement.setString(1, reservation.getSession());
-        statement.setDate(2, Date.valueOf(reservation.getDate())); // Convert Date to java.sql.Date
-        statement.setString(3, reservation.getEtat());
-        statement.setString(4, reservation.getClient());
-        statement.executeUpdate();
+        String req = "INSERT INTO `reservation`(`session`, `date`, `etat`, `client`) VALUES ('" + reservation.getSession() + "' ,'" + reservation.getDate() + "', '" + reservation.getEtat() + "', '" + reservation.getClient() + "')";
+stm = conx.createStatement();
+stm.executeUpdate(req);
+System.out.println("Reservation ajoutée avec succés");
     }
+
     @Override
     public void modifier(Reservation reservation) throws SQLException {
-        String sql = "UPDATE reservation SET session = ?, date = ?, etat = ? , Client = ? WHERE id = ?";
-        PreparedStatement preparedStatement= connection.prepareStatement(sql);
-
-        preparedStatement.setString(1, reservation.getSession());
+        String req = "UPDATE `reservation` SET session = ?, date = ?, etat = ? , client = ? WHERE id = ?";
+        pstm = conx.prepareStatement(req);
+        pstm.setString(1, reservation.getSession());
         LocalDate date = LocalDate.parse(reservation.getDate());
-        preparedStatement.setDate(2, java.sql.Date.valueOf(date));
-        preparedStatement.setString(3, reservation.getEtat());
-        preparedStatement.setString(4, reservation.getClient());
-        preparedStatement.setInt(5, reservation.getId());
-        preparedStatement.executeUpdate();
-        System.out.println("Reservation modifier");
+        pstm.setDate(2, java.sql.Date.valueOf(date));
+        pstm.setString(3, reservation.getEtat());
+        pstm.setString(4, reservation.getClient());
+        pstm.setInt(5, reservation.getId());
+        pstm.executeUpdate();
+        System.out.println("Reservation modifiée avec succes");
     }
 
     @Override
     public void delete(Reservation reservation) throws SQLException {
-        String sql= "DELETE FROM reservation WHERE id = ?";
-        PreparedStatement preparedStatement= connection.prepareStatement(sql);
-        preparedStatement.setInt(1, reservation.getId());
-        preparedStatement.executeUpdate();
+        String req= "DELETE FROM reservation WHERE id = ?";
+        pstm = conx.prepareStatement(req);
+        pstm.setInt(1, reservation.getId());
+        pstm.executeUpdate();
+        System.out.println("Reservation suprimée avec succes");
     }
 
     @Override
     public List<Reservation> afficherList() throws SQLException {
         List<Reservation> re = new ArrayList<>();
-        String sql = "SELECT * FROM reservation";
-        Statement statement = connection.createStatement();
-        ResultSet rs = statement.executeQuery(sql);
+        String req = "SELECT * FROM reservation";
+        stm  = conx.createStatement();
+        ResultSet rs = stm.executeQuery(req);
         while (rs.next()){
             Reservation r = new Reservation();
-
-            re.add(new Reservation(rs.getInt(1), rs.getString(2), rs.getString(3),rs.getString(4) ,  rs.getDate(5)));
+            re.add(new Reservation(rs.getInt(1), rs.getString(2), rs.getDate(3),rs.getString(4) , rs.getString(5)));
         }
         return re;
     }

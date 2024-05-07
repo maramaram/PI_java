@@ -23,7 +23,7 @@ public class AdminPannelController {
         try {
             // Charger le fichier FXML de la nouvelle scène
 
-            Parent root = FXMLLoader.load(getClass().getResource("/Fxml/Sessions.fxml"));
+            Parent root = FXMLLoader.load(getClass().getResource("/Fxml/Sessions-front.fxml"));
             primaryStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
             // Créer une nouvelle scène
             Scene scene = new Scene(root);
@@ -40,11 +40,10 @@ public class AdminPannelController {
         try {
             // Charger le fichier FXML de la nouvelle scène
 
-            Parent root = FXMLLoader.load(getClass().getResource("/Fxml/Reservation.fxml"));
+            Parent root = FXMLLoader.load(getClass().getResource("/Fxml/Reservation-front.fxml"));
             primaryStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
             // Créer une nouvelle scène
             Scene scene = new Scene(root);
-
             // Définir la scène sur la fenêtre principale (Stage)
             primaryStage.setScene(scene);
             primaryStage.show();

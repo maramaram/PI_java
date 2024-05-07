@@ -10,12 +10,9 @@ import javafx.scene.control.*;
 import javafx.stage.Stage;
 
 import java.io.IOException;
-import java.net.URL;
 import java.sql.Date;
 import java.sql.SQLException;
 import java.time.LocalDate;
-import java.time.ZoneId;
-import java.util.ResourceBundle;
 
 public class ModifierSession {
 
@@ -75,7 +72,7 @@ private Button btnsave;
         try {
             // Charger le fichier FXML de la nouvelle scène
 
-            Parent root = FXMLLoader.load(getClass().getResource("/Fxml/Sessions.fxml"));
+            Parent root = FXMLLoader.load(getClass().getResource("/Fxml/Sessions-front.fxml"));
             primaryStage = (Stage) tCap.getScene().getWindow();
             // Créer une nouvelle scène
             Scene scene = new Scene(root);

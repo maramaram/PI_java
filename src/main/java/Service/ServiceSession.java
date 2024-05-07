@@ -33,7 +33,7 @@ public class ServiceSession implements IService<Session> {
 
     @Override
     public void modifier(Session session) throws SQLException {
-        String req = "Update session set cap = ?, type= ? , date= ? , coach= ? where id = ?";
+        String req = "Update `session` set cap = ?, type= ? , date= ? , coach= ? where id = ?";
         pstm = conx.prepareStatement(req);
         pstm.setInt(1, (session.getCap()));
         pstm.setString(2, session.getType());
@@ -58,7 +58,6 @@ public class ServiceSession implements IService<Session> {
     @Override
     public List<Session> afficherList() throws SQLException {
         String req = "SELECT * FROM `session`";
-
         stm = conx.createStatement();
         ResultSet res = stm.executeQuery(req);
         List<Session> se = new ArrayList<>();

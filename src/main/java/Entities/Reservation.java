@@ -14,19 +14,19 @@ public class Reservation {
         // Constructeur par défaut
     }
 
-    public Reservation(int id, String etat, String client, String session, Date date) {
+    public Reservation(int id, String session, Date date, String etat, String client) {
         this.id = id;
-        this.etat = etat;
-        this.client = client;
         this.session = session;
         this.date = date.toString();
-    }
-
-    public Reservation(String etat, String client, String session, Date date) {
         this.etat = etat;
         this.client = client;
+    }
+
+    public Reservation(String session, Date date, String etat, String client ) {
         this.session = session;
         this.date = String.valueOf(date);
+        this.etat = etat;
+        this.client = client;
     }
 
     public String getClient() {
