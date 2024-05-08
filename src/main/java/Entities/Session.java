@@ -2,6 +2,8 @@ package Entities;
 
 import java.sql.Date;
 
+import static Utils.MyDataBase.instance;
+
 public class Session {
 
     private int id, cap;

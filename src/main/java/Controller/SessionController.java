@@ -96,6 +96,7 @@ public class SessionController implements Initializable {
     private ServiceSession serviceSession = new ServiceSession();
     private ObservableList<Session> sessions = FXCollections.observableArrayList();
 
+    //String userId = Session.getInstance().getUserId();
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         currentPageLabel = new Label();

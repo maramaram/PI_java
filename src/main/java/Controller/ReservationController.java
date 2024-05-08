@@ -5,6 +5,9 @@ import Entities.Session;
 import Service.ServiceReservation;
 import Service.ServiceSession;
 import Utils.MyDataBase;
+import javafx.animation.Animation;
+import javafx.animation.KeyFrame;
+import javafx.animation.Timeline;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
@@ -25,6 +28,9 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.image.ImageView;
 import javafx.stage.Stage;
 import javafx.util.Callback;
+import javafx.util.Duration;
+import org.json.JSONException;
+import org.json.JSONObject;
 
 import java.io.IOException;
 import java.net.URL;
@@ -81,7 +87,8 @@ public class ReservationController implements Initializable {
 
     @FXML
     private TableView<Reservation> table;
-
+    @FXML
+    private Label temperatureLabel;
     @FXML
     private TextField searchField;
     private ServiceReservation serviceReservation = new ServiceReservation();
@@ -95,32 +102,46 @@ public class ReservationController implements Initializable {
         currentPageLabel = new Label();
         pagination.currentPageIndexProperty().addListener((observable, oldValue, newValue) -> handlePageChange());
         AfficherRE();
+        Timeline timeline = new Timeline(new KeyFrame(Duration.seconds(10), event -> {
+            JSONObject weatherData = WeatherService.getWeatherData("Tunis");
+            if (weatherData != null) {
+                try {
+                    JSONObject main = weatherData.getJSONObject("main");
+                    double temp = main.getDouble("temp") - 273.15; // Convertir de Kelvin à Celsius
+                    temperatureLabel.setText("Temperature à Tunis : " + String.format("%.2f", temp) + "°C");
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+            }     else {
+                temperatureLabel.setText("Erreur");
+            }
+        }));
+        timeline.setCycleCount(Animation.INDEFINITE);
+        timeline.play();
+            table.setOnMouseClicked(event -> {
+                if (event.getClickCount() == 2) {
+                    Reservation reservation = (Reservation) table.getSelectionModel().getSelectedItem();
 
-        table.setOnMouseClicked(event -> {
-            if (event.getClickCount() == 2) {
-                Reservation reservation = (Reservation) table.getSelectionModel().getSelectedItem();
+                    if (reservation != null) {
+                        try {
+                            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/Fxml/ModifierReservation.fxml"));
+                            Parent root = fxmlLoader.load();
 
-                if (reservation != null) {
-                    try {
-                        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/Fxml/ModifierReservation.fxml"));
-                        Parent root = fxmlLoader.load();
+                            ModifierReservation modifierReservation = fxmlLoader.getController();
+                            modifierReservation.setIdA(String.valueOf(reservation.getId()));
+                            modifierReservation.setDatePicker(LocalDate.parse(reservation.getDate()));
+                            modifierReservation.setComboBoxClient(String.valueOf(reservation.getClient()));
+                            modifierReservation.setComboBoxSession(String.valueOf(reservation.getSession()));
+                            modifierReservation.setComboBoxEtat(String.valueOf(reservation.getEtat()));
 
-                        ModifierReservation modifierReservation = fxmlLoader.getController();
-                        modifierReservation.setIdA(String.valueOf(reservation.getId()));
-                        modifierReservation.setDatePicker(LocalDate.parse(reservation.getDate()));
-                        modifierReservation.setComboBoxClient(String.valueOf(reservation.getClient()));
-                        modifierReservation.setComboBoxSession(String.valueOf(reservation.getSession()));
-                        modifierReservation.setComboBoxEtat(String.valueOf(reservation.getEtat()));
-
-                        table.getScene().setRoot(root);
-                    } catch (IOException e) {
-                        e.printStackTrace();
+                            table.getScene().setRoot(root);
+                        } catch (IOException e) {
+                            e.printStackTrace();
+                        }
                     }
                 }
-            }
-        });
-    }
-
+            });
+        }
     public ObservableList<Reservation> getReservations() {
         ObservableList<Reservation> reservation = FXCollections.observableArrayList();
         String query = "select * from reservation";
