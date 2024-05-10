@@ -10,7 +10,21 @@ import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
+import javafx.stage.Stage;
+
+import java.io.IOException;
+import java.util.Objects;
+import javafx.event.ActionEvent;
+import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Node;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
+import javafx.scene.control.Button;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.stage.Stage;
@@ -20,110 +34,87 @@ import java.util.Objects;
 
 public class BaseFrontController {
 
-    @FXML
-    private ImageView bg_pic;
-    @FXML
-    private Button logout;
+
     @FXML
     private ImageView pp_view;
-    @FXML
-    private TextField search_tf;
 
 
 
-    public void Commande(ActionEvent event) {
-        loadFXML("/Commande/CommandeV.fxml", event);
-    }
-
-    public void Blogs(ActionEvent event) {
-        loadFXML("/Post/Post-front.fxml", event);
-    }
-
-
-    private void loadFXML(String fxmlPath, ActionEvent event) {
-        try {
-            Parent root = FXMLLoader.load(getClass().getResource(fxmlPath));
-            Stage primaryStage = (Stage) ((Button) event.getSource()).getScene().getWindow();
-            Scene scene = new Scene(root);
-            primaryStage.setScene(scene);
-            primaryStage.show();
-        } catch (IOException e) {
-            System.out.println("Error loading the new scene: " + e.getMessage());
+        @FXML
+        public void Commande() {
+            loadFXML("/Commande/CommandeV.fxml");
         }
-    }
-
+        @FXML
+        public void Panier() {loadFXML("/paniers/basefrontp.fxml");}
+        @FXML
+        public void Blogs() {
+            loadFXML("/Post/PostV.fxml");
+        }
+        @FXML
+        public void Exercice() {
+            loadFXML("/Exercice/ExerciceV.fxml");
+        }
+        @FXML
+        public void Defi() {
+            loadFXML("/Defi/DefiV.fxml");
+        }
     @FXML
-    public void initialize() {
-        // Retrieve the current user ID from the session manager
-        String userId = SessionManager.getInstance().getUserId();
+    public void Shop() {loadFXML("/products/basefront.fxml");}
+        @FXML
+        public void Logout() {loadFXML("/User/LogIn.fxml");}
 
-        // Use the user ID to fetch user details from the database
-        UserService userService = new UserService();
-        User user = userService.afficher(userId);
-
-        // Populate the labels with user details
-        if (user != null) {
+        private void loadFXML(String fxmlPath) {
             try {
-                // Set the image to the ImageView
-                Image image1 = new Image("file:C:/Users/bouaz/PREVIOUS/src/main/java/image/logo.png");
-                bg_pic.setImage(image1);
-            } catch (Exception e) {
+                FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource(fxmlPath));
+                Parent root = fxmlLoader.load();
+                Stage stage = (Stage)pp_view.getScene().getWindow();
+                Scene scene = new Scene(root);
+                stage.setScene(scene);
+                stage.show();
+            } catch (IOException e) {
+                System.out.println("Error loading FXML: " + e.getMessage());
                 e.printStackTrace();
             }
+        }
 
-            try {
-                // Set the image to the ImageView
-                Image image2 = new Image("file:C:/Users/bouaz/PREVIOUS/src/main/java/image/Untitled design.png");
-                bg_pic.setImage(image2);
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
+        @FXML
+        public void gotoprofile() {
+            Stage stage = (Stage) pp_view.getScene().getWindow();
+            stage.close();
+            loadFXML("/User/UpdateProfile.fxml");
+        }
 
-            String photoPath = user.getPhoto();
-            if (photoPath != null && !photoPath.isEmpty()) {
+
+
+        @FXML
+        public void initialize() {
+            String userId = SessionManager.getInstance().getUserId();
+            UserService userService = new UserService();
+            User user = userService.afficher(userId);
+
+            if (user != null) {
+
+                String photoPath = user.getPhoto();
+
                 try {
-                    // Set the image to the ImageView
-                    Image image = new Image("file:" + photoPath);
-                    pp_view.setImage(image);
+                    Image image2 = new Image(getClass().getResourceAsStream("/"+photoPath));
+                    pp_view.setImage(image2);
                 } catch (Exception e) {
+                    System.out.println("Error loading profile image: " + e.getMessage());
                     e.printStackTrace();
+                }
+
+
+                if (photoPath != null && !photoPath.isEmpty()) {
+
+                        Image image = new Image(getClass().getResourceAsStream("/"+photoPath));
+                        pp_view.setImage(image);
+                    
                 }
             }
         }
-    }
-
-    @FXML
-    public void gotoprofile() throws IOException {
-        Stage stage = (Stage) pp_view.getScene().getWindow();
-        stage.close();
-        Parent root = FXMLLoader.load(getClass().getResource("/User/UpdateProfile.fxml"));
-        Scene scene = new Scene(root);
-        stage.setScene(scene);
-        stage.setTitle("User SignIn");
-        stage.show();
-    }
-    @FXML
-    public void logout(ActionEvent event) {
-        System.out.println("begin basefront");
-        SessionManager.getInstance().cleanUserSessionAdmin();
-        System.out.println("session basefront");
-        try {
-            System.out.println("session basefront");
-            Node sourceNode = (Node) logout;
-            Stage stage = (Stage) sourceNode.getScene().getWindow();
-            stage.close();
-            Stage newStage = new Stage();
-            Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/User/LogIn.fxml")));
-            Scene scene = new Scene(root);
-            newStage.setScene(scene);
-            newStage.show();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-    }
 
 
-    public void Exercice(ActionEvent event) {
-        loadFXML("/Exercice/ExerciceV.fxml", event);
-    }
 }
+
+

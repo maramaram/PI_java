@@ -106,26 +106,6 @@ public class ClientPannelController {
             }
 
         }}
-
-
-    @FXML
-    void logout_click(MouseEvent event) {
-        SessionManager.getInstance().cleanUserSessionAdmin();
-        try {
-            Node sourceNode = (Node) logout_btn;
-            Stage stage = (Stage) sourceNode.getScene().getWindow();
-            stage.close();
-            Stage newStage = new Stage();
-            Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/User/LogIn.fxml")));
-            Scene scene = new Scene(root);
-            newStage.setScene(scene);
-            newStage.show();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-    }
-
-
     public void showUpdateStage(javafx.scene.input.MouseEvent mouseEvent) throws IOException {
         Stage stage = (Stage) update_btn.getScene().getWindow();
         stage.close();

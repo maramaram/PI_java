@@ -15,4 +15,6 @@ public interface ICRUDS<T> {
     public void deleteproduit(int id) throws SQLException;
     List<T> afficherList() throws SQLException;
     List<T> afficherListFront() throws SQLException;
-}
+
+
+    }

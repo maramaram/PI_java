@@ -9,9 +9,9 @@
 
 <?import javafx.scene.control.ChoiceBox?>
 <BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="576.0" prefWidth="1101.0" stylesheets="@../styleback.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.LivreurAdd">
-
     <left>
         <AnchorPane prefHeight="584.0" prefWidth="1102.0" stylesheets="@../styleback.css" BorderPane.alignment="CENTER">
+            <fx:include source="../baseback.fxml" />
             <children>
                 <ChoiceBox fx:id="disponibiliteA" layoutX="444.0" layoutY="201.0" prefWidth="308.0" />
                 <TextField fx:id="imageA" disable="true" layoutX="443.0" layoutY="241.0" prefWidth="308.0" />
@@ -28,22 +28,6 @@
                 <Label fx:id="disponibiliteE" layoutX="755.0" layoutY="206.0" prefHeight="18.0" prefWidth="338.0" styleClass="error-label" />
                 <Label fx:id="imageE" layoutX="755.0" layoutY="246.0" prefHeight="18.0" prefWidth="339.0" styleClass="error-label" />
                 <Label fx:id="noteE" layoutX="755.0" layoutY="284.0" prefHeight="18.0" prefWidth="337.0" styleClass="error-label" />
-                <AnchorPane layoutY="-3.0" prefHeight="576.0" prefWidth="305.0" styleClass="context-menu" stylesheets="@../MFXListView.css">
-                    <children>
-                        <Button layoutX="1.0" layoutY="100.0" mnemonicParsing="false" prefHeight="50.0" prefWidth="300.0" text="Users" />
-                        <Button layoutX="1.0" layoutY="250.0" mnemonicParsing="false" prefHeight="50.0" prefWidth="300.0" text="Blogs" />
-                        <Button layoutX="1.0" layoutY="300.0" mnemonicParsing="false" prefHeight="50.0" prefWidth="300.0" text="Products" />
-                        <Button layoutX="1.0" layoutY="350.0" mnemonicParsing="false" prefHeight="50.0" prefWidth="300.0" text="Sessions" />
-                        <Button layoutX="1.0" layoutY="150.0" mnemonicParsing="false" onAction="#Exercices" prefHeight="50.0" prefWidth="300.0" text="Exercices" />
-                        <Button layoutX="1.0" layoutY="400.0" mnemonicParsing="false" prefHeight="50.0" prefWidth="300.0" text="Livreur" />
-                        <Label layoutX="49.0" layoutY="28.0" prefHeight="54.0" prefWidth="221.0" stylesheets="@../styleback.css" text="Breathe Out">
-                            <font>
-                                <Font size="20.0" />
-                            </font>
-                        </Label>
-                        <Button layoutX="1.0" layoutY="200.0" mnemonicParsing="false" onAction="#Defis" prefHeight="50.0" prefWidth="300.0" text="Defis" />
-                    </children>
-                </AnchorPane>
                 <AnchorPane layoutX="304.0" prefHeight="56.0" prefWidth="841.0" styleClass="bar" stylesheets="@../styleback.css">
                     <children>
                         <Label layoutX="18.0" layoutY="15.0" prefHeight="39.0" prefWidth="78.0" text="Search" />

@@ -442,6 +442,11 @@ public class RegisterController  implements Initializable {
                         viderTextField();
                         AlertHelper.showAlert(Alert.AlertType.INFORMATION, window, "Information",
                                 "You have registered successfully.");
+
+                        panierService es=new panierService();
+                        panier p=new panier(0,0);
+                        es.ajouter(p);
+
                     }
                 } catch (Exception e) {
                     e.printStackTrace();
@@ -462,6 +467,10 @@ public class RegisterController  implements Initializable {
                             e.printStackTrace();
                         }
                     }
+
+
+
+
                 }
             } else {
                 AlertHelper.showAlert(Alert.AlertType.ERROR, window, "Error",

@@ -45,12 +45,7 @@ public class ExerciceV {
     private int wez=0,wezz=1;
     @FXML
     public void initialize() {
-        String userId = SessionManager.getInstance().getUserId();
 
-        // Use the user ID to fetch user details from the database
-        UserService userService = new UserService();
-        User user = userService.afficher(userId);
-        if (user != null) {
             ObservableList<String> valeurs = FXCollections.observableArrayList("Nom", "Muscle ciblé", "Niveau de difficulté");
             choice.setItems(valeurs);
 
@@ -71,7 +66,7 @@ public class ExerciceV {
 
 
         }
-    }
+
 
 
 

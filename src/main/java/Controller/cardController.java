@@ -58,14 +58,15 @@ public class cardController  {
     public void setpanierfront(panierfront panierfront) {
         this.panierfront = panierfront;
     }
+
     public void setData(product product) {
         // Charger l'image  à l'ImageView
-        String imageName = "C:/Users/bouaz/PREVIOUS/src/main/java/image/download.jpg";//product.getImage();
-        Image image = new Image(imageName);
+        String imageName = product.getImage();
+        Image image = new Image(getClass().getResourceAsStream("/"+imageName));
+
 
         // Attribuer l'image chargée à l'ImageView
         imagep.setImage(image);
-
         p= product;
         // Attribuer le nom, la description et le prix du produit aux labels correspondants
         nom.setText(product.getNom());

@@ -46,12 +46,7 @@ public class DefiV {
 
     @FXML
     public void initialize() {
-        String userId = SessionManager.getInstance().getUserId();
 
-        // Use the user ID to fetch user details from the database
-        UserService userService = new UserService();
-        User user = userService.afficher(userId);
-        if (user != null) {
             ObservableList<String> valeurs = FXCollections.observableArrayList("Nom", "Nombre de jours", "Niveau de difficulté");
             choice.setItems(valeurs);
 
@@ -71,7 +66,7 @@ public class DefiV {
             AfficherEX(); // Appeler la méthode pour afficher les données
 
         }
-    }
+
 
     @FXML
     private void Tri(){

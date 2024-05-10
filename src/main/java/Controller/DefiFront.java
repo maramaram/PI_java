@@ -1,7 +1,9 @@
 package Controller;
 
 import Entities.Defi;
+import Entities.Exercice;
 import Service.DefiService;
+import Service.ExerciceService;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -67,56 +69,6 @@ public class DefiFront {
     @FXML
     public void initialize() {
 
-        String userId = SessionManager.getInstance().getUserId();
-
-        // Use the user ID to fetch user details from the database
-        UserService userService = new UserService();
-        User user = userService.afficher(userId);
-        if (user != null) {
-
-            DefiService es = new DefiService();
-            try {
-                List<Defi> listeDefis = es.afficherList();
-
-                XYChart.Series<String, Integer> niveau1 = new XYChart.Series<>();
-                niveau1.setName("Niveau 1");
-
-                XYChart.Series<String, Integer> niveau2 = new XYChart.Series<>();
-                niveau2.setName("Niveau 2");
-
-                XYChart.Series<String, Integer> niveau3 = new XYChart.Series<>();
-                niveau3.setName("Niveau 3");
-
-                // Parcourir la liste d'exercices et compter le nombre d'exercices pour chaque niveau de difficulté
-                int countNiveau1 = 0;
-                int countNiveau2 = 0;
-                int countNiveau3 = 0;
-
-                for (Defi exercice : listeDefis) {
-                    String niveau = exercice.getNd();
-                    if (niveau.equals("1")) {
-                        countNiveau1++;
-                    } else if (niveau.equals("2")) {
-                        countNiveau2++;
-                    } else if (niveau.equals("3")) {
-                        countNiveau3++;
-                    }
-                }
-
-                // Ajouter les données à chaque série
-                niveau1.getData().add(new XYChart.Data<>("Niveau 1", countNiveau1));
-                niveau2.getData().add(new XYChart.Data<>("Niveau 2", countNiveau2));
-                niveau3.getData().add(new XYChart.Data<>("Niveau 3", countNiveau3));
-
-                // Ajouter les séries au BarChart
-                barChartStats.getData().addAll(niveau1, niveau2, niveau3);
-
-
-            } catch (SQLException e) {
-                System.out.println(e.getMessage());
-            }
-
-
             AfficherEX(); // Appeler la méthode pour afficher les données
 
             // Ajouter un écouteur sur la table pour détecter les double-clics
@@ -150,6 +102,52 @@ public class DefiFront {
                     }
                 }
             });
+
+    }
+
+    public void stats()
+    {
+        barChartStats.getData().clear();
+        DefiService es = new DefiService();
+        try {
+            List<Defi> listeDefis = es.afficherList();
+
+            XYChart.Series<String, Integer> niveau1 = new XYChart.Series<>();
+            niveau1.setName("Niveau 1");
+
+            XYChart.Series<String, Integer> niveau2 = new XYChart.Series<>();
+            niveau2.setName("Niveau 2");
+
+            XYChart.Series<String, Integer> niveau3 = new XYChart.Series<>();
+            niveau3.setName("Niveau 3");
+
+            // Parcourir la liste d'exercices et compter le nombre d'exercices pour chaque niveau de difficulté
+            int countNiveau1 = 0;
+            int countNiveau2 = 0;
+            int countNiveau3 = 0;
+
+            for (Defi exercice : listeDefis) {
+                String niveau = exercice.getNd();
+                if (niveau.equals("1")) {
+                    countNiveau1++;
+                } else if (niveau.equals("2")) {
+                    countNiveau2++;
+                } else if (niveau.equals("3")) {
+                    countNiveau3++;
+                }
+            }
+
+            // Ajouter les données à chaque série
+            niveau1.getData().add(new XYChart.Data<>("Niveau 1", countNiveau1));
+            niveau2.getData().add(new XYChart.Data<>("Niveau 2", countNiveau2));
+            niveau3.getData().add(new XYChart.Data<>("Niveau 3", countNiveau3));
+
+            // Ajouter les séries au BarChart
+            barChartStats.getData().addAll(niveau1, niveau2, niveau3);
+
+
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
         }
     }
     @FXML
@@ -198,6 +196,7 @@ public class DefiFront {
         } catch (SQLException e) {
             System.out.println(e.getMessage());
         }
+        stats();
     }
 
 
@@ -246,6 +245,7 @@ public class DefiFront {
         } catch (SQLException e) {
             System.out.println(e.getMessage());
         }
+        stats();
     }
 
 

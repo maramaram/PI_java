@@ -13,5 +13,6 @@ public interface PCRUD<T> {
     public List<panier> afficherp() throws SQLException ;
     public int creerPanier() throws SQLException;
     public void ajouterProduitAuPanier(int panierId, int produitId) throws SQLException;
+    void effacerPanier() throws SQLException;
 
     }

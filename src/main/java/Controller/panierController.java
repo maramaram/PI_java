@@ -54,13 +54,11 @@ public class panierController  {
 
     // Instance de panierService
     private panierService pService;
-
-    public panierController() throws SQLException {
+/* what
+public panierController() throws SQLException {
         pService = new panierService();
-
-
     }
-
+*/
     @FXML
     void ajouterpanier(ActionEvent event) {
         if (validateFields()) {

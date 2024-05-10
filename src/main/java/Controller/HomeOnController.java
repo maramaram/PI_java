@@ -50,132 +50,28 @@ public class HomeOnController extends BaseFrontController implements Initializab
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
 
-/*
+
         // Use the user ID to fetch user details from the database
         UserService userService = new UserService();
         User user = userService.afficher(userId);
         if (user != null) {
-            try {
-                // Convert the file path to a URL
-                File file = new File("C:/Users/bouaz/PREVIOUS/src/main/java/image/pp1.jpg");
-                String imageUrl = file.toURI().toURL().toString();
-                // Create an Image object from the URL
-                Image image = new Image(imageUrl);
-                // Set the image to the ImageView
-                pp1.setImage(image);
-            } catch (MalformedURLException e) {
-                // Handle invalid URL exception
-                e.printStackTrace();
-                // Optionally, show an alert or fallback image
-            }
-            try {
-                // Convert the file path to a URL
-                File file = new File("C:/Users/bouaz/PREVIOUS/src/main/java/image/pp2.jpg");
-                String imageUrl = file.toURI().toURL().toString();
-                // Create an Image object from the URL
-                Image image = new Image(imageUrl);
-                // Set the image to the ImageView
-                pp2.setImage(image);
-            } catch (MalformedURLException e) {
-                // Handle invalid URL exception
-                e.printStackTrace();
-                // Optionally, show an alert or fallback image
-            }
-            try {
-                // Convert the file path to a URL
-                File file = new File("C:/Users/bouaz/PREVIOUS/src/main/java/image/pp3.jpg");
-                String imageUrl = file.toURI().toURL().toString();
-                // Create an Image object from the URL
-                Image image = new Image(imageUrl);
-                // Set the image to the ImageView
-                pp3.setImage(image);
-            } catch (MalformedURLException e) {
-                // Handle invalid URL exception
-                e.printStackTrace();
-                // Optionally, show an alert or fallback image
-            }
-            try {
-                // Convert the file path to a URL
-                File file = new File("C:/Users/bouaz/PREVIOUS/src/main/java/image/pp4.jpg");
-                String imageUrl = file.toURI().toURL().toString();
-                // Create an Image object from the URL
-                Image image = new Image(imageUrl);
-                // Set the image to the ImageView
-                pp4.setImage(image);
-            } catch (MalformedURLException e) {
-                // Handle invalid URL exception
-                e.printStackTrace();
-                // Optionally, show an alert or fallback image
-            }
-            try {
-                // Convert the file path to a URL
-                File file = new File("C:/Users/bouaz/PREVIOUS/src/main/java/image/pp5.jpg");
-                String imageUrl = file.toURI().toURL().toString();
-                // Create an Image object from the URL
-                Image image = new Image(imageUrl);
-                // Set the image to the ImageView
-                pp5.setImage(image);
-            } catch (MalformedURLException e) {
-                // Handle invalid URL exception
-                e.printStackTrace();
-                // Optionally, show an alert or fallback image
-            }
-            try {
-                // Convert the file path to a URL
-                File file = new File("C:/Users/bouaz/PREVIOUS/src/main/java/image/pp6.jpg");
-                String imageUrl = file.toURI().toURL().toString();
-                // Create an Image object from the URL
-                Image image = new Image(imageUrl);
-                // Set the image to the ImageView
-                pp6.setImage(image);
-            } catch (MalformedURLException e) {
-                // Handle invalid URL exception
-                e.printStackTrace();
-                // Optionally, show an alert or fallback image
-            }
-            try {
-                // Convert the file path to a URL
-                File file = new File("C:/Users/bouaz/PREVIOUS/src/main/java/image/pp7.jpg");
-                String imageUrl = file.toURI().toURL().toString();
-                // Create an Image object from the URL
-                Image image = new Image(imageUrl);
-                // Set the image to the ImageView
-                pp7.setImage(image);
-            } catch (MalformedURLException e) {
-                // Handle invalid URL exception
-                e.printStackTrace();
-                // Optionally, show an alert or fallback image
-            }
-            try {
-                // Convert the file path to a URL
-                File file = new File("C:/Users/bouaz/PREVIOUS/src/main/java/image/pp8.jpg");
-                String imageUrl = file.toURI().toURL().toString();
-                // Create an Image object from the URL
-                Image image = new Image(imageUrl);
-                // Set the image to the ImageView
-                pp8.setImage(image);
-            } catch (MalformedURLException e) {
-                // Handle invalid URL exception
-                e.printStackTrace();
-                // Optionally, show an alert or fallback image
-            }
-            try {
-                // Convert the file path to a URL
-                File file = new File("C:/Users/bouaz/PREVIOUS/src/main/java/image/logo.png");
-                String imageUrl = file.toURI().toURL().toString();
-                // Create an Image object from the URL
-                Image image = new Image(imageUrl);
-                // Set the image to the ImageView
-                pp9.setImage(image);
-            } catch (MalformedURLException e) {
-                // Handle invalid URL exception
-                e.printStackTrace();
-                // Optionally, show an alert or fallback image
-            }
+              this.pp1.setImage(new Image(this.getClass().getResourceAsStream("/images/pp1.jpg")));
+              this.pp2.setImage(new Image(this.getClass().getResourceAsStream("/images/pp2.jpg")));
+              this.pp3.setImage(new Image(this.getClass().getResourceAsStream("/images/pp3.jpg")));
+              this.pp4.setImage(new Image(this.getClass().getResourceAsStream("/images/pp4.jpg")));
+              this.pp5.setImage(new Image(this.getClass().getResourceAsStream("/images/pp5.jpg")));
+              this.pp6.setImage(new Image(this.getClass().getResourceAsStream("/images/pp6.jpg")));
+              this.pp7.setImage(new Image(this.getClass().getResourceAsStream("/images/pp7.jpg")));
+            this.pp8.setImage(new Image(this.getClass().getResourceAsStream("/images/pp8.jpg")));
+            this.pp9.setImage(new Image(this.getClass().getResourceAsStream("/images/logo.png")));
+
+            // Optionally, show an alert or fallback image
+
+
             firstname.setText(user.getPrenom());
             lastname.setText(user.getNom());
 
-        }*/
+        }
         }
     }
 

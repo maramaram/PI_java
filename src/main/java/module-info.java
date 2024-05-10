@@ -24,6 +24,10 @@ module com.example.pijava {
     requires org.kordamp.bootstrapfx.core;
     requires com.google.zxing;
     requires com.google.zxing.javase;
+    requires org.json;
+    requires java.mail;
+    requires org.apache.httpcomponents.httpcore;
+    requires org.apache.httpcomponents.httpclient;
 
     opens com.example.pijava to javafx.fxml;
     opens Controller to javafx.fxml;

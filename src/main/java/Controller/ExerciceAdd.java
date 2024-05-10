@@ -91,12 +91,11 @@ public class ExerciceAdd {
 
     @FXML
     public void initialize() {
-        String userId = SessionManager.getInstance().getUserId();
+
 
         // Use the user ID to fetch user details from the database
-        UserService userService = new UserService();
-        User user = userService.afficher(userId);
-        if (user != null) {
+
+
             // Action à effectuer lors du clic sur le bouton
             ib.setOnAction(e -> {
                 // Création du sélecteur de fichier
@@ -194,7 +193,7 @@ public class ExerciceAdd {
             mcA.setItems(valeurs);
             ObservableList<String> valeurss = FXCollections.observableArrayList("Facile", "Moyen", "Difficile");
             ndA.setItems(valeurss);
-        }
+
     }
 
     @FXML

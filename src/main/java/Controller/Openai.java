@@ -27,8 +27,8 @@ import java.util.regex.Pattern;
 public class Openai  {
     String userId = SessionManager.getInstance().getUserId();
 
-    private static final String API_URL = "";
-    private static final String API_KEY = "";
+    private static final String API_URL = "https://api.openai.com/v1/engines/text-davinci-003/completions";
+    private static final String API_KEY= "Ysk-proj-WRl5dH7v2aFc1QdNL5y6T3BlbkFJDifon9rPGpCnUGMSV0ig";
   //
 
     @FXML
@@ -98,7 +98,7 @@ public class Openai  {
                     answer = getTermsAndConditions();
                 } else if (question.matches("(?i).*shop|site|buy|credibility.*")) {
                     answer = " Breath_Out is a website to help you buy,sports products easily and safely.";
-                } else if (question.matches("(?i).*|order|validation|confirmation.*")) {
+                } else if (question.matches("(?i).*|how to confirm my order|How can I validate this?|confirmation.*")) {
                     answer = "Once your order has been placed on Breath_Out, you will receive an SMS confirmation to ensure that your purchase is successfully completed..";
                 } else if (question.matches("(?i).*payment|delivery|online.*")) {
                     answer = "With Breath_Out, you can pay online with peace of mind and offers a fast and reliable delivery service to get your favorite sporting goods right to your door.";

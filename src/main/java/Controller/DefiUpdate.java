@@ -123,12 +123,7 @@ public class DefiUpdate {
 
     @FXML
     public void initialize() {
-        String userId = SessionManager.getInstance().getUserId();
 
-        // Use the user ID to fetch user details from the database
-        UserService userService = new UserService();
-        User user = userService.afficher(userId);
-        if (user != null) {
             // Appeler la méthode pour afficher les données
             ObservableList<String> valeurs = FXCollections.observableArrayList("Facile", "Moyen", "Difficile");
             ndM.setItems(valeurs);
@@ -148,7 +143,6 @@ public class DefiUpdate {
                 }
             });
         }
-    }
 
 
 

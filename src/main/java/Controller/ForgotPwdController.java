@@ -173,32 +173,18 @@ public class ForgotPwdController implements Initializable {
         code.setVisible(false);
         password.setVisible(false);
         telephone.setVisible(true);
-        try {
+
             // Convert the file path to a URL
-            File file = new File("C:/Users/bouaz/PREVIOUS/src/main/java/image/goback.png");
-            String imageUrl = file.toURI().toURL().toString();
-            // Create an Image object from the URL
-            Image image = new Image(imageUrl);
-            // Set the image to the ImageView
-            goback.setImage(image);
-        } catch (MalformedURLException e) {
+            this.goback.setImage(new Image(this.getClass().getResourceAsStream("/images/goback.png")));
+        this.imageView.setImage(new Image(this.getClass().getResourceAsStream("/images/logo.png")));
+
             // Handle invalid URL exception
-            e.printStackTrace();
+
             // Optionally, show an alert or fallback image
-        }
-        try {
-            // Convert the file path to a URL
-            File file = new File("C:/Users/bouaz/PREVIOUS/src/main/java/image/logo.png");
-            String imageUrl = file.toURI().toURL().toString();
-            // Create an Image object from the URL
-            Image image = new Image(imageUrl);
-            // Set the image to the ImageView
-            imageView.setImage(image);
-        } catch (MalformedURLException e) {
-            // Handle invalid URL exception
-            e.printStackTrace();
+
+
             // Optionally, show an alert or fallback image
-        }
+
 
     }
     @FXML

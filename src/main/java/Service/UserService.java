@@ -215,6 +215,42 @@ public class UserService  {
         }
         return userList;
     }
+
+
+
+    public User getUserById(int userId) throws SQLException {
+        String req = "SELECT * FROM `user` WHERE `id` = ?";
+;       Connection connection = MyDatabase.getConnect();
+        User user = new User();
+        try (PreparedStatement pstm = connection.prepareStatement(req)) {
+            pstm.setInt(1, userId);
+            ResultSet rs = pstm.executeQuery();
+
+            if (rs.next()) {
+
+                user.setId(rs.getString("id"));
+                user.setNom(rs.getString("nom"));
+                user.setPrenom(rs.getString("prenom"));
+                user.setEmail(rs.getString("email"));
+                user.setNum_tel(rs.getString("num_tel"));
+                user.setPwd(rs.getString("pwd"));
+                user.setStatus(rs.getString("status"));
+                user.setRole(rs.getString("role"));
+                user.setDate_N(rs.getDate("date_n").toLocalDate()); // Convert java.sql.Date to LocalDate
+                user.setPhoto(rs.getString("photo"));
+                user.setAdress(rs.getString("adress"));
+            }
+        } catch (SQLException e) {
+            System.out.println("Error fetching user: " + e.getMessage());
+            throw e;
+        }
+
+        return user;
+    }
+
+
+
+
     /*public boolean logIn(User user) {
         DataBase dataBase = new DataBase();
         Connection connection = dataBase.getConnect();

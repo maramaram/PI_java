@@ -2,8 +2,10 @@ package Controller;
 
 import Entities.Commande;
 import Entities.Livreur;
+import Entities.User;
 import Service.CommandeService;
 import Service.LivreurService;
+import Service.UserService;
 import com.google.zxing.EncodeHintType;
 import com.google.zxing.client.j2se.MatrixToImageWriter;
 import com.google.zxing.qrcode.decoder.ErrorCorrectionLevel;
@@ -123,7 +125,7 @@ public class CommandeFront {
                         // Remplir les champs du contrôleur avec les données de l'Commande sélectionné
                         CommandeUpdate.setIdA(String.valueOf(Commande.getId()));
                         CommandeUpdate.setLivreurChoiceBoxValue(Commande.getLivreurId());
-                        CommandeUpdate.setUserIdA(String.valueOf(Commande.getUserId()));
+                        CommandeUpdate.setUserChoiceBoxValue(Commande.getLivreurId());
                         CommandeUpdate.setStatutA(Commande.getStatut());
                         CommandeUpdate.setPrixTotalA(String.valueOf(Commande.getPrixTotal()));
 
@@ -217,7 +219,20 @@ public class CommandeFront {
                     return new SimpleStringProperty(livreur.getNom() + " " + livreur.getPrenom());
                 }
             });
-            UserId.setCellValueFactory(new PropertyValueFactory<>("userId"));
+            UserId.setCellValueFactory(new Callback<TableColumn.CellDataFeatures<Commande, String>, ObservableValue<String>>() {
+                @Override
+                public ObservableValue<String> call(TableColumn.CellDataFeatures<Commande, String> cellData) {
+                    Commande commande = cellData.getValue();
+                    UserService userService = new UserService(); // Assuming this is your user service
+                    User user = null;
+                    try {
+                        user = userService.getUserById(commande.getUserId()); // Retrieve user by userId
+                    } catch (SQLException e) {
+                        throw new RuntimeException(e);
+                    }
+                    return new SimpleStringProperty(user.getNom() + " " + user.getPrenom());
+                }
+            });
             Statut.setCellValueFactory(new PropertyValueFactory<>("statut"));
             PrixTotal.setCellValueFactory(new PropertyValueFactory<>("prixTotal"));
 

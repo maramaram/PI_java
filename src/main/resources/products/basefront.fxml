@@ -11,7 +11,7 @@
 
 <BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="576.0" prefWidth="1101.0" stylesheets="@style.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.productfront">
    <center>
-       <fx:include source="../basefront.fxml" />
+
         <BorderPane prefHeight="556.0" prefWidth="1102.0" styleClass="border" stylesheets="@style.css" BorderPane.alignment="CENTER">
             <top>
                 <AnchorPane prefHeight="49.0" prefWidth="1101.0" styleClass="anchor-pane" stylesheets="@style.css" BorderPane.alignment="CENTER">
@@ -41,6 +41,7 @@
                     </children>
                 </AnchorPane>
          </center>
+            <fx:include source="../basefront.fxml" />
         </BorderPane>
    </center>
 </BorderPane>

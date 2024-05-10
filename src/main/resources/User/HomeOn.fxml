@@ -11,7 +11,7 @@
 
 <BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="576.0" prefWidth="1101.0" stylesheets="@style.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.HomeOnController">
     <fx:include source="../basefront.fxml" />
-   <!-- <center>
+    <center>
         <BorderPane prefHeight="556.0" prefWidth="1102.0" styleClass="border" stylesheets="@style.css" BorderPane.alignment="CENTER">
          <center>
                 <AnchorPane prefHeight="574.0" prefWidth="732.0" BorderPane.alignment="CENTER">
@@ -19,42 +19,42 @@
                   <ImageView fitHeight="150.0" fitWidth="200.0" layoutX="598.0" layoutY="95.0" pickOnBounds="true" preserveRatio="true" />
                   <ImageView fx:id="pp5" fitHeight="284.0" fitWidth="430.0" layoutY="291.0" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@../../../../../ThirdProject/public/Front/images/blog/post3.jpg" />
+                        <Image url="@../images/pp1.jpg" />
                      </image>
                   </ImageView>
                   <ImageView fx:id="pp2" fitHeight="247.0" fitWidth="358.0" layoutX="334.0" layoutY="64.0" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@../../../../../ThirdProject/public/Front/images/blog/post4.jpg" />
+                        <Image url="@../images/pp2.jpg" />
                      </image>
                   </ImageView>
                   <ImageView fx:id="pp6" fitHeight="281.0" fitWidth="182.0" layoutX="393.0" layoutY="294.0" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@../../../../../ThirdProject/public/Front/images/about/img-6.jpg" />
+                        <Image url="@../images/pp3.jpg" />
                      </image>
                   </ImageView>
                   <ImageView fx:id="pp7" fitHeight="284.0" fitWidth="422.0" layoutX="549.0" layoutY="292.0" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@../../../../../ThirdProject/public/Front/images/about/img-3.jpg" />
+                        <Image url="@../images/pp4.jpg" />
                      </image>
                   </ImageView>
                   <ImageView fx:id="pp3" fitHeight="246.0" fitWidth="257.0" layoutX="691.0" layoutY="77.0" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@../../../../../ThirdProject/public/Front/images/about/img-1.jpg" />
+                        <Image url="@../images/pp5.jpg" />
                      </image>
                   </ImageView>
                   <ImageView fx:id="pp4" fitHeight="281.0" fitWidth="194.0" layoutX="934.0" layoutY="105.0" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@../../../../../ThirdProject/public/Front/images/team/team-4.jpg" />
+                        <Image url="@../images/pp6.jpg" />
                      </image>
                   </ImageView>
                   <ImageView fx:id="pp8" fitHeight="283.0" fitWidth="286.0" layoutX="833.0" layoutY="292.0" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@../../../../../ThirdProject/public/Front/images/about/img-5.jpg" />
+                        <Image url="@../images/pp7.jpg" />
                      </image>
                   </ImageView>
                   <ImageView fx:id="pp1" fitHeight="246.0" fitWidth="347.0" layoutX="-3.0" layoutY="47.0" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@../../java/image/pp1.jpg" />
+                        <Image url="@../../java/image/pp8.jpg" />
                      </image>
                   </ImageView>
                   <AnchorPane prefHeight="200.0" prefWidth="200.0" />
@@ -77,6 +77,7 @@
                </children>
                 </AnchorPane>
          </center>
+           <fx:include source="../basefront.fxml" />
         </BorderPane>
-    </center>  -->
+    </center>
 </BorderPane>

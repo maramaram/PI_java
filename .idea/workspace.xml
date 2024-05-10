@@ -5,7 +5,129 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="219bd414-8940-4b2a-834a-a288c154de45" name="Changes" comment="key removed">
+      <change beforePath="$PROJECT_DIR$/.gitattributes" beforeDir="false" afterPath="$PROJECT_DIR$/.gitattributes" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.gitignore" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/encodings.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/encodings.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/uiDesigner.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/uiDesigner.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Exercices.xlsx" beforeDir="false" afterPath="$PROJECT_DIR$/Exercices.xlsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/TableauExercices.pdf" beforeDir="false" afterPath="$PROJECT_DIR$/TableauExercices.pdf" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/audio.wav" beforeDir="false" afterPath="$PROJECT_DIR$/audio.wav" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Controller/AdminController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Controller/AdminController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Controller/BaseFrontController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Controller/BaseFrontController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Controller/ClientPannelController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Controller/ClientPannelController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Controller/CoachPannelController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Controller/CoachPannelController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Controller/CommandeAdd.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Controller/CommandeAdd.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Controller/CommandeFront.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Controller/CommandeFront.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Controller/CommandeUpdate.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Controller/CommandeUpdate.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Controller/CommandeV.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Controller/CommandeV.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Controller/DefiAdd.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Controller/DefiAdd.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Controller/DefiFront.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Controller/DefiFront.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Controller/DefiUpdate.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Controller/DefiUpdate.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Controller/DefiV.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Controller/DefiV.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Controller/EmailSender.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Controller/EmailSender.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Controller/EnterPassword.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Controller/EnterPassword.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Controller/ExerciceAdd.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Controller/ExerciceAdd.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Controller/ExerciceDetails.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Controller/ExerciceDetails.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Controller/ExerciceFront.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Controller/ExerciceFront.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Controller/ExerciceUpdate.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Controller/ExerciceUpdate.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Controller/ExerciceV.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Controller/ExerciceV.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Controller/ForgotPwdController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Controller/ForgotPwdController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Controller/HomeOnController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Controller/HomeOnController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Controller/LivreurAdd.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Controller/LivreurAdd.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Controller/LivreurDetail.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Controller/LivreurDetail.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Controller/LivreurFront.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Controller/LivreurFront.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Controller/LivreurUpdate.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Controller/LivreurUpdate.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Controller/LoginController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Controller/LoginController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Controller/MessageBubble.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Controller/MessageBubble.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Controller/Openai.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Controller/Openai.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Controller/PaymentProcessor.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Controller/PaymentProcessor.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Controller/RegisterController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Controller/RegisterController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Controller/StripePayment.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Controller/StripePayment.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Controller/UpdateProfileController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Controller/UpdateProfileController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Controller/basebackController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Controller/basebackController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Controller/cardController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Controller/cardController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Controller/panierController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Controller/panierController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Controller/panierfront.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Controller/panierfront.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Controller/productController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Controller/productController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Controller/productfront.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Controller/productfront.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Entities/Commande.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Entities/Commande.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Entities/Defi.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Entities/Defi.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Entities/Exercice.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Entities/Exercice.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Entities/Livreur.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Entities/Livreur.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Entities/LivreurItem.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Entities/LivreurItem.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Entities/SessionManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Entities/SessionManager.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Entities/User.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Entities/User.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Entities/panier.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Entities/panier.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Entities/product.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Entities/product.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Service/CommandeService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Service/CommandeService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Service/DefiService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Service/DefiService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Service/ExerciceService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Service/ExerciceService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Service/ICRUD.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Service/ICRUD.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Service/ICRUDS.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Service/ICRUDS.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Service/LivreurService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Service/LivreurService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Service/PCRUD.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Service/PCRUD.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Service/UserService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Service/UserService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Service/panierService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Service/panierService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Service/productService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Service/productService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/User/UserManagment.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/User/UserManagment.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Utils/MyDatabase.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Utils/MyDatabase.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Utils/main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Utils/main.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/projectpi/HelloApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/projectpi/HelloApplication.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/projectpi/HelloController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/projectpi/HelloController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/helper/AlertHelper.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/helper/AlertHelper.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/module-info.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/module-info.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/Commande/CommandeAdd.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/Commande/CommandeAdd.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/Commande/CommandeBack.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/Commande/CommandeBack.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/Commande/CommandeUpdate.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/Commande/CommandeUpdate.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/Commande/CommandeV.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/Commande/CommandeV.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/Defi/Defi-front.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/Defi/Defi-front.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/Defi/DefiAdd.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/Defi/DefiAdd.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/Defi/DefiUpdate.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/Defi/DefiUpdate.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/Defi/DefiV.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/Defi/DefiV.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/Exercice/Exercice-front.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/Exercice/Exercice-front.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/Exercice/ExerciceAdd.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/Exercice/ExerciceAdd.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/Exercice/ExerciceDetails.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/Exercice/ExerciceDetails.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/Exercice/ExerciceUpdate.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/Exercice/ExerciceUpdate.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/Exercice/ExerciceV.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/Exercice/ExerciceV.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/Livreur/LivreurAdd.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/Livreur/LivreurAdd.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/Livreur/LivreurBack.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/Livreur/LivreurBack.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/Livreur/LivreurDetail.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/Livreur/LivreurDetail.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/Livreur/LivreurUpdate.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/Livreur/LivreurUpdate.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/MFXListView.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/MFXListView.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/User/AdminPannel.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/User/AdminPannel.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/User/CoachPannel.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/User/CoachPannel.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/User/EnterPassword.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/User/EnterPassword.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/User/Forgot_pwd.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/User/Forgot_pwd.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/User/HomeOn.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/User/HomeOn.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/User/LogIn.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/User/LogIn.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/User/SignUp.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/User/SignUp.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/User/UpdateProfile.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/User/UpdateProfile.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/User/clientPanne.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/User/clientPanne.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/baseback.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/baseback.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/basefront.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/basefront.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/com/example/pijava/AdminPannel.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/com/example/pijava/AdminPannel.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/com/example/pijava/UpdateProfile.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/com/example/pijava/UpdateProfile.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/com/example/pijava/hello-view.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/com/example/pijava/hello-view.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/com/example/projectpi/hello-view.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/com/example/projectpi/hello-view.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/cssStylesheet.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/cssStylesheet.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/paniers/afficherpanier.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/paniers/afficherpanier.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/paniers/basebackp.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/paniers/basebackp.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/paniers/basefrontp.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/paniers/basefrontp.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/paniers/payment.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/paniers/payment.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/paniers/style.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/paniers/style.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/paniers/styleback.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/paniers/styleback.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/products/baseback.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/products/baseback.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/products/basefront.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/products/basefront.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/products/card.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/products/card.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/products/openai.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/products/openai.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/products/style.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/products/style.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/products/styleback.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/products/styleback.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/style.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/style.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/styleback.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/styleback.css" afterDir="false" />
     </list>
     <list id="682c7730-fa5f-4219-9371-600ce54afd07" name="Changes by asus" comment="Changes by asus and vayso" />
     <list id="efb288aa-a19a-4327-a2a7-fb777cc24d78" name="Changes by Vayso" comment="" />
@@ -58,29 +180,30 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;ASKED_ADD_EXTERNAL_FILES&quot;: &quot;true&quot;,
-    &quot;Application.HelloApplication.executor&quot;: &quot;Run&quot;,
-    &quot;Application.UserManagment.executor&quot;: &quot;Run&quot;,
-    &quot;Gradle.MaterialFX [run].executor&quot;: &quot;Run&quot;,
-    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;master&quot;,
-    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
-    &quot;last_opened_file_path&quot;: &quot;C:/Users/bouaz/PREVIOUS&quot;,
-    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
-    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
-    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
-    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
-    &quot;project.structure.last.edited&quot;: &quot;Modules&quot;,
-    &quot;project.structure.proportion&quot;: &quot;0.15&quot;,
-    &quot;project.structure.side.proportion&quot;: &quot;0.39885056&quot;,
-    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "ASKED_ADD_EXTERNAL_FILES": "true",
+    "Application.HelloApplication.executor": "Run",
+    "Application.UserManagment.executor": "Run",
+    "Gradle.MaterialFX [run].executor": "Run",
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
+    "git-widget-placeholder": "master",
+    "kotlin-language-version-configured": "true",
+    "last_opened_file_path": "C:/Users/MSI/Downloads/PI_java-Gestion_Blog",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "project.structure.last.edited": "Project",
+    "project.structure.proportion": "0.15",
+    "project.structure.side.proportion": "0.39885056",
+    "settings.editor.selected.configurable": "preferences.keymap",
+    "vue.rearranger.settings.migration": "true"
   }
-}</component>
+}]]></component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="C:\Users\bouaz\PREVIOUS\src\main\resources\User" />
@@ -105,22 +228,19 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration default="true" type="JetRunConfigurationType">
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration default="true" type="KotlinStandaloneScriptRunConfigurationType">
-      <option name="filePath" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
     <recent_temporary>
       <list>
         <item itemvalue="Application.UserManagment" />
       </list>
     </recent_temporary>
+  </component>
+  <component name="SharedIndexes">
+    <attachedChunks>
+      <set>
+        <option value="jdk-17.0.9-jbrsdk-17.0.9-4caba194b151-b614c381" />
+        <option value="jdk-22-openjdk-22-4caba194b151-f504ca98" />
+      </set>
+    </attachedChunks>
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
@@ -192,6 +312,17 @@
       <workItem from="1715003035693" duration="4144000" />
       <workItem from="1715009229426" duration="3786000" />
       <workItem from="1715070527785" duration="613000" />
+      <workItem from="1715110710135" duration="500000" />
+      <workItem from="1715111224918" duration="181000" />
+      <workItem from="1715111420232" duration="5455000" />
+      <workItem from="1715116896729" duration="2055000" />
+      <workItem from="1715160353467" duration="6005000" />
+      <workItem from="1715166928620" duration="115000" />
+      <workItem from="1715261213795" duration="33000" />
+      <workItem from="1715262302454" duration="10088000" />
+      <workItem from="1715277991052" duration="15383000" />
+      <workItem from="1715293503412" duration="6006000" />
+      <workItem from="1715299528536" duration="5125000" />
     </task>
     <task id="LOCAL-00001" summary="crud, active inactive small problem , search back, show password, recaptcha">
       <option name="closed" value="true" />
@@ -374,5 +505,16 @@
     <MESSAGE value="Changes by asus and vayso" />
     <MESSAGE value="key removed" />
     <option name="LAST_COMMIT_MESSAGE" value="key removed" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/Controller/LoginController.java</url>
+          <line>96</line>
+          <option name="timeStamp" value="1" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
   </component>
 </project>

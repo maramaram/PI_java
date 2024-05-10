@@ -50,7 +50,7 @@ public class ExerciceDetails {
     @FXML
     private VBox vchat;
     private ByteArrayOutputStream out;
-    private static final String API_KEY = System.getenv("API_KEY");
+    private static final String API_KEY = "sk-proj-e9D2xvx6BG31Jq7RJTlPT3BlbkFJlheradh3jT3YsJoqTXsi";
     private static final String API_URL = "https://api.openai.com/v1/completions";
     private static final MediaType JSON = MediaType.get("application/json; charset=utf-8");
     private static final OkHttpClient client = new OkHttpClient();
@@ -106,8 +106,8 @@ private boolean to=true;
 
 
     public void convertVoiceToText() {
-      AssemblyAI aai=AssemblyAI.builder().apiKey(System.getenv("API_KEY_SOUND")).build();
-        File audioFile = new File("C:/Users/bouaz/PREVIOUS/audio.wav");
+      AssemblyAI aai=AssemblyAI.builder().apiKey("14c6f115c4c64705bd8894b81ca31dab").build();
+        File audioFile = new File("C:/Users/MSI/Desktop/PI_java-master/audio.wav");
         try {
             Transcript t=aai.transcripts().transcribe(audioFile);
             if (t.getText().isPresent())
@@ -173,14 +173,7 @@ private boolean to=true;
     @FXML
     public void initialize() {
 
-        // Load the CSS file
-        // Set the chat container style
-        String userId = SessionManager.getInstance().getUserId();
 
-        // Use the user ID to fetch user details from the database
-        UserService userService = new UserService();
-        User user = userService.afficher(userId);
-        if (user != null) {
         vchat.getStyleClass().add("chat-container");
 
         // Set the VBox properties
@@ -210,7 +203,7 @@ private boolean to=true;
                 fo9.clear(); // Clear the text field after sending the message
             }
         });}
-    }
+
 
 
 

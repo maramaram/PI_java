@@ -273,7 +273,7 @@ public class LoginController implements Initializable {
         });
         try {
             // Convert the file path to a URL
-            File file = new File("C:/Users/bouaz/PREVIOUS/src/main/java/image/image-removebg-preview.png");
+            File file = new File("C:/Users/MSI/Desktop/PI_java-master/src/main/java/image/image-removebg-preview.png");
             String imageUrl = file.toURI().toURL().toString();
             // Create an Image object from the URL
             Image image = new Image(imageUrl);
@@ -286,21 +286,21 @@ public class LoginController implements Initializable {
         }
 
         try {
-            FileInputStream fileInputStream = new FileInputStream("C:/Users/bouaz/PREVIOUS/src/main/java/image/image-removebg-preview (1).png"); // Replace "path_to_your_image.jpg" with the actual path to your image file
+            FileInputStream fileInputStream = new FileInputStream("C:/Users/MSI/Desktop/PI_java-master/src/main/java/image/image-removebg-preview (1).png"); // Replace "path_to_your_image.jpg" with the actual path to your image file
             Image image1 = new Image(fileInputStream);
             copy.setImage(image1);
         } catch (FileNotFoundException e) {
             e.printStackTrace();
         }
         try {
-            FileInputStream fileInputStream1 = new FileInputStream("C:/Users/bouaz/PREVIOUS/src/main/java/image/logo.png"); // Replace "path_to_your_image.jpg" with the actual path to your image file
+            FileInputStream fileInputStream1 = new FileInputStream("C:/Users/MSI/Desktop/PI_java-master/src/main/java/image/logo.png"); // Replace "path_to_your_image.jpg" with the actual path to your image file
             Image image2 = new Image(fileInputStream1);
             imageView.setImage(image2);
         } catch (FileNotFoundException e) {
             e.printStackTrace();
         }
         try {
-            FileInputStream fileInputStream2 = new FileInputStream("C:/Users/bouaz/PREVIOUS/src/main/java/image/image-removebg-preview (2).png"); // Replace "path_to_your_image.jpg" with the actual path to your image file
+            FileInputStream fileInputStream2 = new FileInputStream("C:/Users/MSI/Desktop/PI_java-master/src/main/java/image/image-removebg-preview (2).png"); // Replace "path_to_your_image.jpg" with the actual path to your image file
             Image image3 = new Image(fileInputStream2);
             eyehide.setImage(image3);
         } catch (FileNotFoundException e) {

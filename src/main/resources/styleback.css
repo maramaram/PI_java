@@ -753,10 +753,8 @@
 /* Modifier la couleur de fond de l'AnchorPane en blanc grisâtre */
 .anchor-pane {
     -fx-background-color: #E0E0E0; /* Couleur de fond blanc grisâtre */
-<<<<<<< HEAD
 }
-=======
-}
+
 
 .chart-bar {
     -fx-bar-fill: #4e4e4e; /* Couleur de remplissage des barres */
@@ -798,4 +796,3 @@
 .chart-legend-item-text {
     -fx-fill: #AFB1B3; /* Couleur du texte de la légende */
 }
->>>>>>> 00b42386c01b7ac04cc55c8849278d9980bf8921

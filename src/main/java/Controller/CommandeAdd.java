@@ -1,10 +1,9 @@
 package Controller;
 
-import Entities.Commande;
-import Entities.Livreur;
-import Entities.LivreurItem;
+import Entities.*;
 import Service.CommandeService;
 import Service.LivreurService;
+import Service.UserService;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -44,7 +43,7 @@ public class CommandeAdd {
     @FXML
     private ChoiceBox<LivreurItem> livreurChoiceBox;
     @FXML
-    private TextField UserIdA;
+    private ChoiceBox<UserItem> userChoiceBox;
     @FXML
     private ChoiceBox<String> StatutA;
     @FXML
@@ -68,6 +67,17 @@ public class CommandeAdd {
             }
         } catch (SQLException e) {
             System.out.println("Error fetching livreurs: " + e.getMessage());
+        }
+
+        UserService userService = new UserService(); // Assuming this is your UserService
+
+        // Populate the livreurChoiceBox with user names and IDs
+        List<User> users = userService.getAllUsers(); // Fetch all users from database
+
+        for (User user : users) {
+            String name = user.getNom() + " " + user.getPrenom();
+            UserItem userItem = new UserItem(Integer.parseInt(user.getId()), name); // Create a UserItem with userId and name
+            userChoiceBox.getItems().add(userItem); // Add the UserItem to the choiceBox
         }
     }
 
@@ -105,13 +115,13 @@ public class CommandeAdd {
         }
 
 
-        if (UserIdA.getText().isEmpty()) {
-            test=false;
-            UserIdE.setText("vide");
-        }else if (!UserIdA.getText().matches("^[0-9]+$")) {
+        UserItem selectedUser = userChoiceBox.getValue();
+        if (selectedUser == null) {
             test = false;
-            UserIdE.setText("Le UserId ne doit contenir que des nombres");
-        }else {UserIdE.setText("");}
+            UserIdE.setText("vide");
+        } else {
+            UserIdE.setText("");
+        }
 
 
         if (StatutA.getValue() == null) {
@@ -137,7 +147,7 @@ public class CommandeAdd {
 
         if (test){
 
-            Commande ex = new Commande(selectedLivreur.getId(), Integer.parseInt(UserIdA.getText())
+            Commande ex = new Commande(selectedLivreur.getId(),selectedUser.getId()
                     , StatutA.getValue(),Integer.parseInt(PrixTotalA.getText()));
             try{
                 es.add(ex);
@@ -171,61 +181,6 @@ public class CommandeAdd {
             alert.setTitle("Echec");
             alert.setContentText("Echec de l'ajout du Commande !!");
             alert.showAndWait();
-        }
-    }
-
-
-
-
-
-
-    public void Commande(ActionEvent event) {
-        try {
-            // Charger le fichier FXML de la nouvelle scène
-
-            Parent root = FXMLLoader.load(getClass().getResource("/Commande/CommandeBack.fxml"));
-            primaryStage=(Stage)((Node)event.getSource()).getScene().getWindow();
-            // Créer une nouvelle scène
-            Scene scene = new Scene(root);
-
-            // Définir la scène sur la fenêtre principale (Stage)
-            primaryStage.setScene(scene);
-            primaryStage.show();
-        } catch (IOException e) {
-            System.out.println("Erreur lors du chargement de la nouvelle scène : " + e.getMessage());
-        }
-    }
-    public void Exercices(ActionEvent event) {
-        try {
-            // Charger le fichier FXML de la nouvelle scène
-
-            Parent root = FXMLLoader.load(getClass().getResource("/Exercice/Exercice-front.fxml"));
-            primaryStage=(Stage)((Node)event.getSource()).getScene().getWindow();
-            // Créer une nouvelle scène
-            Scene scene = new Scene(root);
-
-            // Définir la scène sur la fenêtre principale (Stage)
-            primaryStage.setScene(scene);
-            primaryStage.show();
-        } catch (IOException e) {
-            System.out.println("Erreur lors du chargement de la nouvelle scène : " + e.getMessage());
-        }
-    }
-
-    public void Defis(ActionEvent event) {
-        try {
-            // Charger le fichier FXML de la nouvelle scène
-
-            Parent root = FXMLLoader.load(getClass().getResource("/Defi/Defi-front.fxml"));
-            primaryStage=(Stage)((Node)event.getSource()).getScene().getWindow();
-            // Créer une nouvelle scène
-            Scene scene = new Scene(root);
-
-            // Définir la scène sur la fenêtre principale (Stage)
-            primaryStage.setScene(scene);
-            primaryStage.show();
-        } catch (IOException e) {
-            System.out.println("Erreur lors du chargement de la nouvelle scène : " + e.getMessage());
         }
     }
 

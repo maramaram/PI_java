@@ -1,10 +1,9 @@
 package Controller;
 
-import Entities.Commande;
-import Entities.Livreur;
-import Entities.LivreurItem;
+import Entities.*;
 import Service.CommandeService;
 import Service.LivreurService;
+import Service.UserService;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -38,7 +37,7 @@ public class CommandeUpdate {
     @FXML
     private TextField LivreurIdA;
     @FXML
-    private TextField UserIdA;
+    private ChoiceBox<UserItem> userChoiceBox;
     @FXML
     private ChoiceBox<String> StatutA;
     @FXML
@@ -62,9 +61,13 @@ public class CommandeUpdate {
             }
         }
     }
-
-    public void setUserIdA(String UserIdA) {
-        this.UserIdA.setText(UserIdA);
+    public void setUserChoiceBoxValue(int userId) {
+        for (UserItem item : userChoiceBox.getItems()) {
+            if (item.getId() == userId) {
+                userChoiceBox.setValue(item);
+                break;
+            }
+        }
     }
     public void setStatutA(String StatutA) {
         this.StatutA.setValue(StatutA);
@@ -91,12 +94,21 @@ public class CommandeUpdate {
         } catch (SQLException e) {
             System.out.println("Error fetching livreurs: " + e.getMessage());
         }
+        UserService userService = new UserService(); // Assuming this is your UserService
+
+        // Populate the livreurChoiceBox with user names and IDs
+        List<User> users = userService.getAllUsers(); // Fetch all users from database
+
+        for (User user : users) {
+            String name = user.getNom() + " " + user.getPrenom();
+            UserItem userItem = new UserItem(Integer.parseInt(user.getId()), name); // Create a UserItem with userId and name
+            userChoiceBox.getItems().add(userItem); // Add the UserItem to the choiceBox
+        }
     }
     // Méthode appelée lorsque le bouton est cliqué
     public void Lib() {
         try {
             // Charger le fichier FXML de la nouvelle scène
-
             Parent root = FXMLLoader.load(getClass().getResource("/Commande/CommandeBack.fxml"));
             primaryStage=(Stage)livreurChoiceBox.getScene().getWindow();
             // Créer une nouvelle scène
@@ -124,13 +136,13 @@ public class CommandeUpdate {
         }
 
 
-        if (UserIdA.getText().isEmpty()) {
-            test=false;
-            UserIdE.setText("vide");
-        }else if (!UserIdA.getText().matches("^[0-9]+$")) {
+        UserItem selectedUser = userChoiceBox.getValue();
+        if (selectedUser == null) {
             test = false;
-            UserIdE.setText("Le UserId ne doit contenir que des nombres");
-        }else {UserIdE.setText("");}
+            UserIdE.setText("vide");
+        } else {
+            UserIdE.setText("");
+        }
 
         if (StatutA.getValue() == null) {
             test = false;
@@ -144,7 +156,7 @@ public class CommandeUpdate {
             PrixTotalE.setText("vide");
         } else {
             String PrixTotalText = PrixTotalA.getText();
-            if (!PrixTotalText.matches("^[0-9]+$")) { // Vérifier si la PrixTotal est un LivreurIdbre de 0 à 5
+            if (!PrixTotalText.matches("^[0-9]+$")) {
                 test = false;
                 PrixTotalE.setText("Le PrixTotal ne doit contenir que des nombres");
             } else {
@@ -154,7 +166,7 @@ public class CommandeUpdate {
 
         if (test){
             LivreurItem selectedLivreur = livreurChoiceBox.getValue();
-            Commande ex = new Commande(Integer.parseInt(idA.getText()),selectedLivreur.getId(), Integer.parseInt(UserIdA.getText())
+            Commande ex = new Commande(Integer.parseInt(idA.getText()),selectedLivreur.getId(), selectedUser.getId()
                     , StatutA.getValue(),Integer.parseInt(PrixTotalA.getText()));
             try{
                 es.modifier(ex);
@@ -174,61 +186,6 @@ public class CommandeUpdate {
             alert.setTitle("Echec");
             alert.setContentText("Echec de la modification du Commande !!");
             alert.showAndWait();
-        }
-    }
-
-
-
-
-
-
-    public void Commande(ActionEvent event) {
-        try {
-            // Charger le fichier FXML de la nouvelle scène
-
-            Parent root = FXMLLoader.load(getClass().getResource("/Commande/CommandeBack.fxml"));
-            primaryStage=(Stage)((Node)event.getSource()).getScene().getWindow();
-            // Créer une nouvelle scène
-            Scene scene = new Scene(root);
-
-            // Définir la scène sur la fenêtre principale (Stage)
-            primaryStage.setScene(scene);
-            primaryStage.show();
-        } catch (IOException e) {
-            System.out.println("Erreur lors du chargement de la nouvelle scène : " + e.getMessage());
-        }
-    }
-    public void Exercices(ActionEvent event) {
-        try {
-            // Charger le fichier FXML de la nouvelle scène
-
-            Parent root = FXMLLoader.load(getClass().getResource("/Exercice/Exercice-front.fxml"));
-            primaryStage=(Stage)((Node)event.getSource()).getScene().getWindow();
-            // Créer une nouvelle scène
-            Scene scene = new Scene(root);
-
-            // Définir la scène sur la fenêtre principale (Stage)
-            primaryStage.setScene(scene);
-            primaryStage.show();
-        } catch (IOException e) {
-            System.out.println("Erreur lors du chargement de la nouvelle scène : " + e.getMessage());
-        }
-    }
-
-    public void Defis(ActionEvent event) {
-        try {
-            // Charger le fichier FXML de la nouvelle scène
-
-            Parent root = FXMLLoader.load(getClass().getResource("/Defi/Defi-front.fxml"));
-            primaryStage=(Stage)((Node)event.getSource()).getScene().getWindow();
-            // Créer une nouvelle scène
-            Scene scene = new Scene(root);
-
-            // Définir la scène sur la fenêtre principale (Stage)
-            primaryStage.setScene(scene);
-            primaryStage.show();
-        } catch (IOException e) {
-            System.out.println("Erreur lors du chargement de la nouvelle scène : " + e.getMessage());
         }
     }
 

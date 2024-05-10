@@ -19,21 +19,18 @@ public class product {
         this.prix = prix;
         this.image = image;
 
-        /*if (this.getClass().getResourceAsStream("/"+image) != null) {
+        if (this.getClass().getResourceAsStream("/"+image) != null) {
             this.img = new ImageView(new Image(this.getClass().getResourceAsStream("/"+image)));
             this.img.setFitHeight(125);
             this.img.setFitWidth(125);
         } else {
             System.out.println("Image not found: " + image);
             // ou lancez une exception ou affichez un message d'erreur
-        }*/
-        String imagePath = "file:///C:/Users/wesla/IdeaProjects/projectpi/src/main/resources/" + image;
-        this.img = new ImageView(new Image(imagePath));
-        this.img.setFitHeight(125);
-        this.img.setFitWidth(125);
 
 
-    }
+
+    }}
+
 
     public product(String nom, String description,int quantite_stock, String categories, float prix,  String image) {
 
@@ -45,18 +42,15 @@ public class product {
         this.image = String.valueOf(image);
 
 
-      /*  if (this.getClass().getResourceAsStream("/"+image) != null) {
+        if (this.getClass().getResourceAsStream("/"+image) != null) {
             this.img = new ImageView(new Image(this.getClass().getResourceAsStream("/"+image)));
             this.img.setFitHeight(125);
             this.img.setFitWidth(125);
         } else {
             System.out.println("Image not found: " + image);
             // ou lancez une exception ou affichez un message d'erreur
-        }*/
-        String imagePath = "file:///C:/Users/wesla/IdeaProjects/projectpi/src/main/resources/" + image;
-        this.img = new ImageView(new Image(imagePath));
-        this.img.setFitHeight(125);
-        this.img.setFitWidth(125);
+        }
+
 
     }
 

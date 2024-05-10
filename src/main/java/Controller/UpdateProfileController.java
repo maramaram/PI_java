@@ -22,6 +22,10 @@ import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.net.MalformedURLException;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+import java.nio.file.StandardCopyOption;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -89,6 +93,7 @@ public class UpdateProfileController {
     private ImageView pp_view;
     private Connection con;
     String photoPath;
+    private Stage primaryStage;
     private UserService userService;
 
     public UpdateProfileController() {
@@ -98,27 +103,57 @@ public class UpdateProfileController {
 
     @FXML
     void choose_photo(ActionEvent event) {
+        String userId = SessionManager.getInstance().getUserId();
+        UserService userService = new UserService();
+        User user = userService.afficher(userId);
         FileChooser fileChooser = new FileChooser();
-        fileChooser.setTitle("Open Image File");
-        File file = fileChooser.showOpenDialog(null);
-        if (file != null) {
-            String imagePath = file.toURI().toString();
-            System.out.println("Image Path: " + imagePath); // Debugging: Print out image path
+        fileChooser.setTitle("Choisir une image");
 
+        // Filtrer les types de fichiers
+        fileChooser.getExtensionFilters().addAll(
+                new FileChooser.ExtensionFilter("Images", "*.png", "*.jpg", "*.bmp", "*.jpeg"),
+                new FileChooser.ExtensionFilter("Tous les fichiers", "*.*")
+        );
+
+        // Afficher la boîte de dialogue pour sélectionner un fichier
+        File selectedFile = fileChooser.showOpenDialog(primaryStage);
+
+        // Vérifier si un fichier a été sélectionné
+        if (selectedFile != null) {
             try {
-                Image image = new Image(imagePath);
-                pp_view.setImage(image);
-                // Set the image to the ImageView
-            } catch (Exception e) {
-                System.err.println("Error loading image: " + e.getMessage());
-                e.printStackTrace();
-                Alert alert = new Alert(Alert.AlertType.ERROR);
-                alert.setContentText("Error loading image: " + e.getMessage());
-                alert.show();
-            }
+                // Définir le répertoire de destination dans les ressources
+                String destinationDirectory = "Front/images/exo/";
+                String fileName = selectedFile.getName();
 
+                // Obtenir le répertoire de destination dans les ressources
+                Path destinationPath = Paths.get("src/main/resources", destinationDirectory);
+
+                // Créer le chemin complet du fichier de destination
+                Path destinationFilePath = destinationPath.resolve(fileName);
+
+                // Copier le fichier sélectionné vers le répertoire de destination dans les ressources
+                Files.copy(selectedFile.toPath(), destinationFilePath, StandardCopyOption.REPLACE_EXISTING);
+
+                // Mettre à jour le chemin de l'image dans imgA
+                String newImagePath = destinationDirectory + fileName;
+                user.setPhoto(newImagePath);
+                photoPath = user.getPhoto();
+
+                if (photoPath != null && !photoPath.isEmpty()) {
+
+                    Image image = new Image(getClass().getResourceAsStream("/"+photoPath));
+                    profile_img.setImage(image);
+
+                }
+                // Afficher un message de succès
+                System.out.println("Fichier téléchargé avec succès dans les ressources. Nouveau chemin : " + newImagePath);
+            } catch (IOException ex) {
+                // Gérer les exceptions en cas d'erreur de téléchargement
+                ex.printStackTrace();
+            }
+        } else {
+            System.out.println("Aucun fichier sélectionné.");
         }
-        photoPath = file.getAbsolutePath();
 
     }
 
@@ -139,27 +174,17 @@ public class UpdateProfileController {
             adress.setText(user.getAdress());
             birthdate.setValue(user.getDate_N());
 
+            this.goback.setImage(new Image(this.getClass().getResourceAsStream("/images/goback.png")));
 
-            try {
-                FileInputStream fileInputStream2 = new FileInputStream("C:/Users/bouaz/PREVIOUS/src/main/java/image/gobackwhite.png"); // Replace "path_to_your_image.jpg" with the actual path to your image file
-                Image image3 = new Image(fileInputStream2);
-                goback.setImage(image3);
-            } catch (FileNotFoundException e) {
-                e.printStackTrace();
-            }
+
+
             // Load the profile image into profile_img ImageView
             photoPath = user.getPhoto();
             if (photoPath != null && !photoPath.isEmpty()) {
-                try {
-                    File file = new File(photoPath);
-                    String imageUrl = file.toURI().toURL().toString();
-                    Image image = new Image(imageUrl);
+
+                    Image image = new Image(getClass().getResourceAsStream("/"+photoPath));
                     profile_img.setImage(image);
-                } catch (MalformedURLException e) {
-                    // Handle invalid URL exception
-                    e.printStackTrace();
-                    // Show an alert or fallback image
-                }
+
             }
 
         }
@@ -179,7 +204,7 @@ public class UpdateProfileController {
         PreparedStatement ps;
         ResultSet rs;
         boolean MailExist = false;
-        String query = "select * from user WHERE mail = ?";
+        String query = "select * from user WHERE email = ?";
         try {
             ps = con.prepareStatement(query);
             ps.setString(1, tf_email.getText());
@@ -212,7 +237,7 @@ public class UpdateProfileController {
         PreparedStatement ps;
         ResultSet rs;
         boolean PhoneExist = false;
-        String query = "select * from user WHERE tel = ?";
+        String query = "select * from user WHERE num_tel = ?";
         try {
             ps = con.prepareStatement(query);
             ps.setString(1, tf_numtel.getText());
@@ -308,12 +333,12 @@ public class UpdateProfileController {
             CheckPhoneNumber.setText("The telephone number must consist of exactly 8 digits.");
             CheckPhoneNumber.setStyle("-fx-text-fill: red;");
             verif = false;
-        } else if (isAlreadyRegisteredWithPhoneNumber()) {
+        } /*else if (isAlreadyRegisteredWithPhoneNumber()) {
             CheckPhoneNumber.setVisible(true);
             CheckPhoneNumber.setText("Phone Number already exists");
             CheckPhoneNumber.setStyle("-fx-text-fill: red;");
             verif = false;
-        } else {
+        }*/ else {
             CheckPhoneNumber.setVisible(false);
         }
 
@@ -330,11 +355,11 @@ public class UpdateProfileController {
             CheckMail.setText("Mail field cannot be blank.");
             CheckMail.setStyle("-fx-text-fill: red;");
             verif = false;
-        } else if (isAlreadyRegisteredWithMail()) {
+        } /*else if (isAlreadyRegisteredWithMail()) {
             CheckMail.setVisible(true);
             CheckMail.setText("Mail already exists");
             CheckMail.setStyle("-fx-text-fill: red;");
-        } else if (!isValidEmail(tf_email.getText())) {
+        }*/ else if (!isValidEmail(tf_email.getText())) {
             CheckMail.setVisible(true);
             CheckMail.setText("Invalid email format.");
             CheckMail.setStyle("-fx-text-fill: red;");

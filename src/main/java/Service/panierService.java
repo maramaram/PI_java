@@ -149,49 +149,7 @@ public class panierService  implements PCRUD<panier>{
 
         return list;
     }
-
-
-    public double calculerSommePrix() {
-        double somme = 0;
-
-        try {
-            String requete = "SELECT SUM(prix) FROM panier";
-            PreparedStatement pst = connection.prepareStatement(requete);
-            ResultSet rs = pst.executeQuery();
-
-            if (rs.next()) {
-                somme = rs.getDouble(1);
-            }
-
-        } catch (SQLException ex) {
-            System.err.println(ex.getMessage());
-        }
-
-        return somme;
-    }
-
-    public void suprimer(panier t) {
-        try {
-            Statement ste = connection.createStatement();
-            String requetedelete = "delete from panier where nom_produit='" + t.getProduitsAsString()+"'";
-            ste.execute(requetedelete);
-            System.out.println("Produit supprimée !");
-
-        } catch (SQLException ex) {
-            System.err.println(ex.getMessage());
-        }
-    }
-    public void truncate(){
-        try {
-            Statement ste = connection.createStatement();
-            String requete = "truncate table panier";
-            ste.execute(requete);
-            System.out.println("Panier vide !");
-
-        } catch (SQLException ex) {
-            System.err.println(ex.getMessage());
-        }
-    }
+    
     @Override
     public void ajouterProduitAuPanier(int panierId, int produitsId) throws SQLException {
         String sql = "INSERT INTO panier_produits (panier_id, produits_id) VALUES (?, ?)";
@@ -205,11 +163,11 @@ public class panierService  implements PCRUD<panier>{
     }
 
 
-    public void add(product p,String userId) throws SQLException {
+    public void add(product p,String user_Id) throws SQLException {
 
 String req;
 
-            req = "INSERT INTO `panier_produits` VALUES ('"+userId+"','"+p.getId()+"')";
+            req = "INSERT INTO `panier_produits` VALUES ('"+user_Id+"','"+p.getId()+"')";
             stm = connection.createStatement();
             stm.executeUpdate(req);
 
@@ -217,7 +175,7 @@ String req;
     }
 
     public panier afficherList() throws SQLException {
-        String req = "SELECT * FROM `panier` WHERE `id` = userId";
+        String req = "SELECT * FROM `panier` WHERE `id` = user_Id";
 
         stm = connection.createStatement();
         ResultSet res = stm.executeQuery(req);
@@ -248,7 +206,14 @@ String req;
             }
             d.setproductList(pr);
         }
+        System.out.println(d);
         return  d;
+    }
+    public void effacerPanier() throws SQLException {
+        String sql = "DELETE FROM `panier_produits` WHERE `panier_id` = user_Id ";
+        try (PreparedStatement preparedStatement = connection.prepareStatement(sql)) {
+            preparedStatement.executeUpdate();
+        }
     }
 
 

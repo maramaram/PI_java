@@ -1,7 +1,9 @@
 package Controller;
+import Entities.Commande;
 import Entities.SessionManager;
 import Entities.panier;
 import Entities.product;
+import Service.CommandeService;
 import Service.panierService;
 import Service.productService;
 import com.example.projectpi.HelloApplication;
@@ -218,6 +220,7 @@ public class panierfront  {
     public void initialize() {
         try {
             panierService ez = new panierService();
+
             List<product> productList = ez.afficherList().getproductList();
 
             // Clear the existing items in the cartListView
@@ -268,14 +271,14 @@ public class panierfront  {
         });
         valider.setOnAction(event -> {
             // Récupérer le numéro de téléphone du destinataire du SMS
-            String phoneNumber = ""; // Remplacez par le numéro de téléphone du destinataire
+            String phoneNumber = "+21655022515"; // Remplacez par le numéro de téléphone du destinataire
 
             // Récupérer le corps du SMS à envoyer
-            String messageBody = "Votre commande a été validée avec succès.";
+            String messageBody = "Votre panier a été validée avec succès.";
 
             // Vos identifiants Twilio
-            String accountSid = "";
-            String authToken = "";
+            String accountSid = "ACd307fd2aec973d415e7f38baa08540ee";
+            String authToken = "693076c7830472399e1259b99ac72b0c";
 
             // Initialiser le client Twilio
             Twilio.init(accountSid, authToken);
@@ -283,12 +286,32 @@ public class panierfront  {
             // Envoyer le SMS
             Message message = Message.creator(
                             new com.twilio.type.PhoneNumber(phoneNumber),
-                            new com.twilio.type.PhoneNumber(""),
+                            new com.twilio.type.PhoneNumber("+12673968526"),
                             messageBody)
                     .create();
 
             // Afficher un message indiquant que le SMS a été envoyé avec succès
             System.out.println("SMS envoyé avec succès: " + message.getSid());
+
+            // Effacer les données de la table panier_produits dans la base de données
+            try {
+                // Appeler une méthode pour effacer les données du panier dans la base de données
+                panierService effacerPanier = new panierService();
+                Commande ex = new Commande(5,effacerPanier.afficherList().getId(),"en attente",effacerPanier.afficherList().getPrix_tot());
+                ex.toString();
+                System.out.println("id commande: "+ex.getId()+"id panier :"+effacerPanier.afficherList().getId());
+                CommandeService cd= new CommandeService();
+                cd.add(ex);
+                cd.addcommandeproduit(ex.getId(),effacerPanier.afficherList().getId());
+
+                // Effacer la liste des produits
+                cartListView.getItems().clear();
+
+                effacerPanier.effacerPanier();
+                System.out.println("Les données du panier ont été effacées de la base de données.");
+            } catch (SQLException e) {
+                System.out.println("Erreur lors de la suppression des données du panier: " + e.getMessage());
+            }
         });
 
     }

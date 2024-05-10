@@ -65,13 +65,46 @@ public class ExerciceFront {
     private BarChart<String, Integer> barChartStats;
     @FXML
     public void initialize() {
-        String userId = SessionManager.getInstance().getUserId();
 
-        // Use the user ID to fetch user details from the database
-        UserService userService = new UserService();
-        User user = userService.afficher(userId);
-        if (user != null) {
 
+            AfficherEX(); // Appeler la méthode pour afficher les données
+
+            // Ajouter un écouteur sur la table pour détecter les double-clics
+            table.setOnMouseClicked(event -> {
+                if (event.getClickCount() == 2) { // Vérifier si c'est un double-clic
+                    // Convertir l'objet sélectionné en Exercice en utilisant le casting
+                    Exercice exercice = (Exercice) table.getSelectionModel().getSelectedItem();
+                    if (exercice != null) {
+                        try {
+                            // Charger le fichier FXML ExerciceUpdate.fxml
+                            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/Exercice/ExerciceUpdate.fxml"));
+                            Parent root = fxmlLoader.load();
+
+                            // Obtenir le contrôleur associé au fichier FXML chargé
+                            ExerciceUpdate exerciceUpdate = fxmlLoader.getController();
+
+                            // Remplir les champs du contrôleur avec les données de l'exercice sélectionné
+                            exerciceUpdate.setIdM(String.valueOf(exercice.getId()));
+                            exerciceUpdate.setNomM(exercice.getNom());
+                            exerciceUpdate.setDesM(exercice.getDes());
+                            exerciceUpdate.setMcM(exercice.getMc());
+                            exerciceUpdate.setNdM(exercice.getNd());
+                            exerciceUpdate.setImgM(exercice.getImg());
+                            exerciceUpdate.setGifM(exercice.getGif());
+
+                            // Remplacer la racine de la scène par le nouveau contenu chargé à partir du fichier FXML
+                            table.getScene().setRoot(root);
+                        } catch (IOException e) {
+                            throw new RuntimeException(e);
+                        }
+                    }
+                }
+            });
+        }
+
+        public void stats()
+        {
+            barChartStats.getData().clear();
             ExerciceService es = new ExerciceService();
             try {
                 List<Exercice> listeExercices = es.afficherList();
@@ -113,43 +146,7 @@ public class ExerciceFront {
             } catch (SQLException e) {
                 System.out.println(e.getMessage());
             }
-
-
-            AfficherEX(); // Appeler la méthode pour afficher les données
-
-            // Ajouter un écouteur sur la table pour détecter les double-clics
-            table.setOnMouseClicked(event -> {
-                if (event.getClickCount() == 2) { // Vérifier si c'est un double-clic
-                    // Convertir l'objet sélectionné en Exercice en utilisant le casting
-                    Exercice exercice = (Exercice) table.getSelectionModel().getSelectedItem();
-                    if (exercice != null) {
-                        try {
-                            // Charger le fichier FXML ExerciceUpdate.fxml
-                            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/Exercice/ExerciceUpdate.fxml"));
-                            Parent root = fxmlLoader.load();
-
-                            // Obtenir le contrôleur associé au fichier FXML chargé
-                            ExerciceUpdate exerciceUpdate = fxmlLoader.getController();
-
-                            // Remplir les champs du contrôleur avec les données de l'exercice sélectionné
-                            exerciceUpdate.setIdM(String.valueOf(exercice.getId()));
-                            exerciceUpdate.setNomM(exercice.getNom());
-                            exerciceUpdate.setDesM(exercice.getDes());
-                            exerciceUpdate.setMcM(exercice.getMc());
-                            exerciceUpdate.setNdM(exercice.getNd());
-                            exerciceUpdate.setImgM(exercice.getImg());
-                            exerciceUpdate.setGifM(exercice.getGif());
-
-                            // Remplacer la racine de la scène par le nouveau contenu chargé à partir du fichier FXML
-                            table.getScene().setRoot(root);
-                        } catch (IOException e) {
-                            throw new RuntimeException(e);
-                        }
-                    }
-                }
-            });
         }
-    }
 
 
     @FXML
@@ -199,6 +196,7 @@ public class ExerciceFront {
         } catch (SQLException e) {
             System.out.println(e.getMessage());
         }
+        stats();
     }
 
 
@@ -248,6 +246,7 @@ public class ExerciceFront {
         } catch (SQLException e) {
             System.out.println(e.getMessage());
         }
+        stats();
     }
 
 

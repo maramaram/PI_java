@@ -8,9 +8,9 @@
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="576.0" prefWidth="1101.0" stylesheets="@User/style.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.basebackController">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="576.0" prefWidth="305.0" stylesheets="@styleback.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.basebackController">
     <left>
-        <AnchorPane onMouseClicked="#logout" prefHeight="584.0" prefWidth="1102.0" styleClass="gradient-anchor" stylesheets="@User/styleback.css" BorderPane.alignment="CENTER">
+        <AnchorPane  prefHeight="584.0" prefWidth="305.0" styleClass="gradient-anchor" stylesheets="@styleback.css" BorderPane.alignment="CENTER">
             <children>
                 <AnchorPane layoutY="7.0" prefHeight="583.0" prefWidth="305.0" styleClass="context-menu" stylesheets="@MFXListView.css">
                      <children>
@@ -29,8 +29,9 @@
                         </Label>
                     </children>
                 </AnchorPane>
-                <AnchorPane layoutX="304.0" prefHeight="56.0" prefWidth="841.0" styleClass="bar" stylesheets="@User/styleback.css">
+                <AnchorPane layoutX="304.0" prefHeight="56.0" prefWidth="841.0" styleClass="bar" stylesheets="@styleback.css">
                     <children>
+
                         <Label fx:id="logout_btn" layoutX="677.0" layoutY="19.0" onMouseClicked="#logout" prefHeight="28.0" prefWidth="96.0" text="LogOut" />
                         <Label fx:id="adminID" layoutX="349.0" layoutY="26.0" prefHeight="20.0" prefWidth="174.0" />
                     </children>
